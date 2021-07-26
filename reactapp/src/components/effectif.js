@@ -1,10 +1,5 @@
 import React, {useState, useEffect } from 'react';
 import {Input, Typography, Space } from 'antd'; 
-import { Button, Image } from 'react-bootstrap';
-
-
-import Effectif from './effectif'
-import Nav from './nav';
 
 
 /*
@@ -13,7 +8,7 @@ import Nav from './nav';
 */
 
 
-function WelcomeEdia () {
+function Effectif () {
 
     const [aidName, setAidName] = useState('Le nom de Aid !');
     const { Search } = Input;
@@ -31,22 +26,23 @@ function WelcomeEdia () {
         }
         
     }
- 
-    let moduleQuestion;
-    if (1==1) {
-        moduleQuestion = <Effectif/>
-    }
 
 
     return ( 
-    <div>
-        <Nav/>
-        <h1 style={{color:'rebeccapurple', marginLeft: 30 , marginTop: 100}}>Welcome Edia</h1>  
-        
-        {moduleQuestion}
+        <div>
 
-    </div>)
+        <Text type="secondary" >Vous recherchez une Aide !</Text>    
+        <Search placeholder="input search text" onSearch={onSearch} enterButton placeholder='Enter Aid Id'/>
+
+        <Space direction="vertical">
+            <Text type="secondary" >{aidName}</Text>
+        </Space>
+
+
+
+
+        </div>)
 
 
 }
-export default WelcomeEdia;
+export default Effectif;
