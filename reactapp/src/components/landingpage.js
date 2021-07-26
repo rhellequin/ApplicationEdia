@@ -1,6 +1,7 @@
 import React, {useState, useEffect } from 'react';
 import {Input, Typography, Space } from 'antd'; 
-import { Button,Badge,Col,Row,Container,Card, CardImg, CardText, CardBody,CardTitle, CardSubtitle} from 'reactstrap';
+import { Button,Badge,Col,Row,Container,Card, CardImg, CardText, CardBody,CardTitle, CardSubtitle, Media} from 'reactstrap';
+import{Link} from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -49,17 +50,56 @@ function Landingpage () {
                 <div style={{width:'50%',borderRadius:'10px', border:'1px solid black', textAlign:'center'}}>En utilisant EDIA vous acceptez notre politique de cookies</div>
             </Col>
         </Row>
-        <Row >
+        
+
+{/* MEDIA  */}
+        <Row style={{margin:'60px 0 60px 0'}}>
+            <Col sm="12" style={{display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center',marginTop:'60px'}}>
+            <h1 style={{fontSize:50, fontWeight:'bold'}}>Fonctionnalités</h1>
+            <h5 style={{fontSize:20}}>Vos recherches d’aides publiques deviennent</h5>
+            </Col>
+        </Row>
+
+        <Row>
+            <Media style={{display:'flex',alignItems:'center'}}>
+                <Media object src="../images/yellow.png" alt="Icon with a robot" style={{marginRight:'20px'}}/>
+                <Media body> 
+                    <Media heading style={{fontSize:40}}>INTELLIGENTES</Media>
+                    <Media style={{fontSize:20}} >En quelques clics</Media>
+                    <Media >Nous vous posons quelques questions et notre algorithme s'occupe du reste pour trouver les aides qui correspondent au mieux aux besoins de votre entreprise.</Media>
+                </Media>
+            </Media>
+
+            <Media style={{display:'flex',alignItems:'center'}}>
+                <Media body> 
+                    <Media heading style={{fontSize:40,textAlign:'right'}}>EXHAUSTIVES</Media>
+                    <Media style={{fontSize:20,textAlign:'right'}} >La puissance du big data</Media>
+                    <Media >Notre algorithme se charge de parcourir l'ensemble des dispositifs d'aides en France et en Europe. Vous êtes assuré(e) de ne manquer aucune aide publique pour développer votre entreprise.</Media>
+                </Media>
+                <Media object src="../images/grey.png" alt="Icon with a robot" style={{marginLeft:'20px'}} />
+            </Media>
+
+            <Media style={{display:'flex',alignItems:'center'}}>
+                <Media object src="../images/blue.png" alt="Icon with a robot" style={{marginRight:'20px'}}/>
+                <Media body> 
+                    <Media heading style={{fontSize:40}}>AUTOMATISEES</Media>
+                    <Media style={{fontSize:20}} >C'est un match !</Media>
+                    <Media >Plus besoin de vérifier de manière régulière les nouveaux dispositifs d'aides. Une notification vous est envoyée quand une aide correspond à vos critères.</Media>
+                </Media>
+            </Media>
+            
+            
+        </Row>
+
+{/* CARTES CONTACT */}
+        <Row style={{margin:'60px 0 60px 0'}}>
             <Col sm="12" style={{display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center',marginTop:'60px'}}>
             <h1 style={{fontSize:50, fontWeight:'bold'}}>Nos clients</h1>
             <h5 style={{fontSize:20}}>Ils et elles nous ont fait confiance</h5>
             </Col>
         </Row>
 
-{/* CARTES CONTACT */}
-
-
-        <Row style={{marginTop:'50px'}}>
+        <Row >
             <Col sm="12" md="6" lg="4">
             <Card style={{display:'flex', alignItems:'center'}}>
                 <CardImg top style={{margin:'20px',width:"50%",justifyContent:'center'}} src="../images/eric.png" alt="Card image cap" />
@@ -97,6 +137,32 @@ function Landingpage () {
             <h5 style={{fontSize:20, marginTop:'50px'}}>En moins de 2mn ;)</h5>
             <Button color="primary" size='lg' style={{width:'30%', marginTop:'60px'}}>Rechercher</Button>
             </Col>
+        </Row>
+
+
+{/* FOOTER */}
+        <Row style={{display:'flex', margin:'50px 0 20px 0', backgroundColor:'grey  '}}>
+            <Col style={{display:'flex', flexDirection:'column'}}>
+                <h4>A propos</h4>
+                <Link>Notre mission</Link>
+                <Link>We're hiring !</Link>
+            </Col>
+
+            <Col>
+                <h4>Ressources</h4>
+                <Link>Blog</Link>
+            </Col>
+
+            <Col>
+                <h4>Nous contacter</h4>
+                <div>40 Rue des Boulangers</div>
+                <div>75005</div>
+                <div>06 18 44 98 45</div>
+            </Col>
+
+
+
+
         </Row>
 
     </Container>
