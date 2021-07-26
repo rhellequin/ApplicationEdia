@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-
+var mongoose = require('mongoose');
 
 // Models de toutes les collections :
 var aidModel = require('../models/aids');
@@ -12,6 +12,7 @@ var funderModel = require('../models/funders');
 var thirdPartyModel = require('../models/thirdparties');
 var territoryModel = require('../models/territories');
 var profileModel = require('../models/profiles');
+const { Mongoose } = require('mongoose');
 
 
 /* GET home page. */
@@ -56,7 +57,7 @@ router.get('/types', async function(req, res, next) {
   
   console.log ('\x1b[34m%s\x1b[0m','=============== > GET Types')
 
-  types =  await typeModel.find()
+  types =  await typeModel.find().sort({ typeName: 1 })
 
   if (types) {
     res.json({result: true, types: types})
@@ -73,7 +74,7 @@ router.get('/projects', async function(req, res, next) {
   
   console.log ('\x1b[34m%s\x1b[0m','=============== > GET Projects')
  
-  projects =  await projectModel.find()
+  projects =  await projectModel.find().sort({ projectName: 1 })
 
   if (projects) {
     res.json({result: true, projects: projects})
@@ -84,6 +85,61 @@ router.get('/projects', async function(req, res, next) {
 })
 
 
+
+// POST avec les paramètres pour la recherche :
+router.post('/search', async function(req, res, next){
+
+  //const parameters = req.body.parameters;
+  
+
+  let parameters = [
+    {
+      param : 'aidFunders',
+      value : '60fc1b0fa82b6b286c08b2b2'
+    },
+    {
+      param : 'aidThirdParties',
+      value : '60fc204cb139a23b903dab4c'
+    }
+  ]
+
+
+
+  console.log ('\x1b[34m%s\x1b[0m','=============== > Search Parameters : ', parameters)
+
+
+  let filter = {};
+
+  for (let i=0;i<parameters.length;i++) {
+
+    if (parameters[i].value != null) {  
+
+      filter[parameters[i].param] = parameters[i].value
+
+  
+
+
+    }
+
+  }
+
+
+console.log('filter :', filter);
+
+
+// populate sur l'ensemble des collections :
+  const aid =  await aidModel.find(filter);
+          
+
+
+  if (aid) {
+  res.json({result: true, aid: aid})
+  } else {
+  console.log ('\x1b[31m%s\x1b[0m','=============== > POST Search Nothing Found')
+  res.json({result: false})
+  }
+
+})
 
 
 module.exports = router;
