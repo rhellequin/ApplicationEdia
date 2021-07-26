@@ -1,5 +1,7 @@
 import React, {useState, useEffect } from 'react';
 import {Input, Typography, Space } from 'antd'; 
+import { Button, Image } from 'react-bootstrap';
+
 
 
 /*
@@ -31,6 +33,7 @@ function WelcomeEdia () {
     return ( 
     <div style={{color:'rebeccapurple', marginLeft: 30 , marginTop: 100}}>
         <h1>Welcome Edia</h1> 
+        <Image src='../images/EDIA.png' rounded />
         
         <Search placeholder="input search text" onSearch={onSearch} enterButton placeholder='Enter Aid Id'/>
 
