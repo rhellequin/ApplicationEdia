@@ -1,8 +1,6 @@
 import React, {useState, useEffect } from 'react';
 import {Input, Typography, Space } from 'antd'; 
 
-import Effectif from './effectif'
-
 
 /*
     Composant pour tester la communication avec le back 
@@ -10,7 +8,7 @@ import Effectif from './effectif'
 */
 
 
-function WelcomeEdia () {
+function Effectif () {
 
     const [aidName, setAidName] = useState('Le nom de Aid !');
     const { Search } = Input;
@@ -28,24 +26,23 @@ function WelcomeEdia () {
         }
         
     }
- 
-    let moduleQuestion;
-    if (1==1) {
-        moduleQuestion = <Effectif/>
-    }
 
 
     return ( 
-    <div style={{color:'rebeccapurple', marginLeft: 30 , marginTop: 100}}>
-        <h1>Welcome Edia</h1> 
-        
-        {moduleQuestion}
+        <div>
+
+        <Text type="secondary" >Vous recherchez une Aide !</Text>    
+        <Search placeholder="input search text" onSearch={onSearch} enterButton placeholder='Enter Aid Id'/>
+
+        <Space direction="vertical">
+            <Text type="secondary" >{aidName}</Text>
+        </Space>
 
 
 
 
-    </div>)
+        </div>)
 
 
 }
-export default WelcomeEdia;
+export default Effectif;
