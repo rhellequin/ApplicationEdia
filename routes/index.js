@@ -56,7 +56,6 @@ router.get('/types', async function(req, res, next) {
   
   console.log ('\x1b[34m%s\x1b[0m','=============== > GET Types')
 
-// populate sur l'ensemble des collections :
   types =  await typeModel.find()
 
   if (types) {
@@ -67,6 +66,22 @@ router.get('/types', async function(req, res, next) {
   }
 })
 
+// GET pour les Projets :
+router.get('/projects', async function(req, res, next) {
+
+  let projects = []
+  
+  console.log ('\x1b[34m%s\x1b[0m','=============== > GET Projects')
+ 
+  projects =  await projectModel.find()
+
+  if (projects) {
+    res.json({result: true, projects: projects})
+  } else {
+    console.log ('\x1b[31m%s\x1b[0m','=============== > GET Project Not Found')
+    res.json({result: false})
+  }
+})
 
 
 
