@@ -6,7 +6,7 @@ import 'antd/dist/antd.css';
 
 import Types from './types'
 import Nav from './nav';
-import { Card, Col, Row } from 'antd';
+
 
 /*
     Composant pour tester la communication avec le back 
