@@ -1,9 +1,9 @@
 import React, {useState, useEffect } from 'react';
-import {Input, Typography, Space } from 'antd'; 
+import {Input, Typography, Space, Icon, Card, Col, Row } from 'antd'; 
 import { Button, Image } from 'react-bootstrap';
 
 
-import Effectif from './effectif'
+import Types from './types'
 import Nav from './nav';
 
 
@@ -34,14 +34,14 @@ function WelcomeEdia () {
  
     let moduleQuestion;
     if (1==1) {
-        moduleQuestion = <Effectif/>
+        moduleQuestion = <Types/>
     }
 
 
     return ( 
     <div>
         <Nav/>
-        <h1 style={{color:'rebeccapurple', marginLeft: 30 , marginTop: 100}}>Welcome Edia</h1>  
+       
         
         {moduleQuestion}
 

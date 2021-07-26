@@ -12,7 +12,7 @@ function Nav () {
             <img src='../images/EDIA.png' style={{}} height='150px' />
             <div>
                 <Button outline color="primary" size='lg' style={{margin:'20px'}}>Se connecter</Button>
-                <Button color="primary" size='lg'style={{margin:'20px'}}>S'inscrire</Button>
+                <Button color="primary" style={{margin:'20px'}}>S'inscrire</Button>
             </div>
         </div>
     </div>
