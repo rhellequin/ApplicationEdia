@@ -36,3 +36,18 @@
     transform: rotate(360deg);
   }
 }
+
+h1{
+  font-family: Spartan;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 50px;
+  letter-spacing: -0.015em;
+  color: #191718;
+  
+}
+
+.question{
+  text-align: center;
+  
+}
