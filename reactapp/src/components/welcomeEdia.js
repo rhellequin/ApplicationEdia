@@ -5,8 +5,8 @@ import 'antd/dist/antd.css';
 
 
 import Types from './types'
+import Effectif from './effectif';
 import Nav from './nav';
-import { Card, Col, Row } from 'antd';
 
 /*
     Composant pour tester la communication avec le back 
@@ -19,7 +19,7 @@ function WelcomeEdia () {
 
     let moduleQuestion;
     if (1==1) {
-        moduleQuestion = <Types/>
+        moduleQuestion = <Effectif/>
     }
 
 

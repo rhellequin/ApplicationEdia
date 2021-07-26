@@ -17,7 +17,6 @@ function App() {
        <Switch>
          <Route exact path="/" component={WelcomeEdia} />
          <Route exact path="/landingpage" component={Landingpage} />
-
          <Route exact path="/searchPage" component={SearchPage} />
 
           
