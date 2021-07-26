@@ -8,6 +8,7 @@ import './App.css';
 import WelcomeEdia from './components/welcomeEdia'
 import Landingpage from './components/landingpage'
 import SearchPage from './components/searchPage'
+import ResultPage from './components/resultPage'
 
 
 
@@ -18,6 +19,7 @@ function App() {
          <Route exact path="/" component={WelcomeEdia} />
          <Route exact path="/landingpage" component={Landingpage} />
          <Route exact path="/searchPage" component={SearchPage} />
+         <Route exact path="/resultPage" component={ResultPage} />
 
           
           
