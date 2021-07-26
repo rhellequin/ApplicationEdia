@@ -4,6 +4,7 @@ import { Button, Image } from 'react-bootstrap';
 
 
 import Effectif from './effectif'
+import Nav from './nav';
 
 
 /*
@@ -38,14 +39,11 @@ function WelcomeEdia () {
 
 
     return ( 
-    <div style={{color:'rebeccapurple', marginLeft: 30 , marginTop: 100}}>
-        <h1>Welcome Edia</h1> 
-        <Image src='../images/EDIA.png' rounded />
+    <div>
+        <Nav/>
+        <h1 style={{color:'rebeccapurple', marginLeft: 30 , marginTop: 100}}>Welcome Edia</h1>  
         
         {moduleQuestion}
-
-
-
 
     </div>)
 

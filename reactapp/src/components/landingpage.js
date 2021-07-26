@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 
-function landingpage () {
+function Landingpage () {
 
     return ( 
     <div>
@@ -20,4 +20,4 @@ function landingpage () {
 
 
     )}
-export default landingpage;
+export default Landingpage;
