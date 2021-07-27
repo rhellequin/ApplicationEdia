@@ -2,14 +2,14 @@ var mongoose = require('mongoose')
 
 var userSchema = mongoose.Schema({
 
-        userFirstName: String,
-        userLastName: String,
-        userEmail: String,
-        userSiret: String,
-        userCompanyName: String,
-        userPosition: String,
-        userPhone: String,
-        userPassword: String,
+        firstName: String,
+        lastName: String,
+        email: String,
+        siret: String,
+        company: String,
+        position: String,
+        phone: String,
+        password: String,
         userAids: [ {type:mongoose.Schema.Types.ObjectId, ref: 'aids'}],  
 
  })

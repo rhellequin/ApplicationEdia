@@ -6,7 +6,8 @@ import {connect} from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function SigninPage(props) {
-   
+
+    
     const [signInEmail, setSignInEmail] = useState("");
     const [signInPassword, setSignInPassword] = useState("");
     const [isLogin, setIsLogin] = useState(false)
@@ -14,34 +15,36 @@ function SigninPage(props) {
     const [listErrorsUp, setListErrorsUp] = useState([]);
 
     var handleSubmitSignIn = async () => {
-        var requete = await fetch('/sign-in',{
+        var data = await fetch('/sign-in',{
           method: 'POST',
           headers: {'Content-Type':'application/x-www-form-urlencoded'},
           body: "email=" + signInEmail + "&password=" + signInPassword
-        });
-        var response = await requete.json();
-        if (response.result === true){
-          props.connectFunction(response.user);
+        });  
+        var body = await data.json();
+        var user = body.userSaved;
+        if(body.result){
+          props.connectFunction(user);
           setIsLogin(true);
         } else {
-          setListErrorsIn(response.error2)
+          setListErrorsUp(body.error)
         }
       }
 
 
+
 return(
 <div className="Login-page" >
+            
             {/* SIGN-IN */}
             <div className="Sign">
-                <Input onChange={(e)=> setSignInEmail(e)} value='' className="Login-input" placeholder="arthur@lacapsule.com" />
-                <Input.Password onChange={(e)=> setSignInPassword(e.target.value)} value={signInPassword}  className="Login-input" placeholder="password" />  
-              <Button onClick={()=> handleSubmitSignIn()} style={{width:'80px'}} type="primary">Sign-in</Button>
+                <Input onChange={(e)=> setSignInEmail(e.target.value)} value={signInEmail} className="Signin-input" placeholder="johndoe@gmail.com" />
+                <Input.Password onChange={(e)=> setSignInPassword(e.target.value)} value={signInPassword}  className="Signin-input" placeholder="mot de passe" />  
+              <Button onClick={()=> handleSubmitSignIn()} style={{width:'80px',  background: "#0A62D0" }} type="primary">Sign in</Button>
             </div>
-
-          
-</div>
+        </div>
     );
 }
+
 function mapDispatchToProps(dispatch){
     return{
       connectFunction: function(user){
