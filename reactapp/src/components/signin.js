@@ -7,18 +7,18 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 function SigninPage(props) {
 
-    const [signUpUsername, setSignUpUsername] = useState("");
-    const [signUpEmail, setSignUpEmail] = useState("");
-    const [signUpPassword, setSignUpPassword] = useState("");
+    
+    const [signInEmail, setSignInEmail] = useState("");
+    const [signInPassword, setSignInPassword] = useState("");
     const [isLogin, setIsLogin] = useState(false)
     const [listErrorsIn, setListErrorsIn] = useState([]);
     const [listErrorsUp, setListErrorsUp] = useState([]);
 
-    var handleSubmitSignUp = async () => {
-        var data = await fetch('/sign-up',{
+    var handleSubmitSignIn = async () => {
+        var data = await fetch('/sign-in',{
           method: 'POST',
           headers: {'Content-Type':'application/x-www-form-urlencoded'},
-          body: "username=" + signUpUsername + "&email=" + signUpEmail + "&password=" + signUpPassword
+          body: "email=" + signInEmail + "&password=" + signInPassword
         });  
         var body = await data.json();
         var user = body.userSaved;
@@ -35,9 +35,9 @@ function SigninPage(props) {
 return(
 <div className="Login-page" >
             
-            {/* SIGN-UP */}
+            {/* SIGN-IN */}
             <div className="Sign">
-                <Input onChange={(e)=> setSignInEmail(e)} value='' className="Login-input" placeholder="johndoe@gmail.com" />
+                <Input onChange={(e)=> setSignInEmail(e.target.value)} value={signInEmail} className="Login-input" placeholder="johndoe@gmail.com" />
                 <Input.Password onChange={(e)=> setSignInPassword(e.target.value)} value={signInPassword}  className="Login-input" placeholder="mot de passe" />  
               <Button onClick={()=> handleSubmitSignIn()} style={{width:'80px'}} type="primary">Sign-in</Button>
             </div>
