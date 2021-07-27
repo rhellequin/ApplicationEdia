@@ -35,7 +35,7 @@ function SignupPage(props) {
         });
         var response = await requete.json();
         if (response.result === true){
-          props.connectFunction(response.user);
+          props.connectFunction(response.token, response.firstName);
           setIsLogin(true);
         } else {
           setListErrorsUp(response.error)
@@ -96,8 +96,8 @@ else if (isLogin === true) {
 }
 function mapDispatchToProps(dispatch){
     return{
-      connectFunction: function(user){
-        dispatch({type: 'connection', user: user});
+      connectFunction: function(token,firstName){
+        dispatch({type: 'login', token: token,firstName:firstName});
       }
     }
   }

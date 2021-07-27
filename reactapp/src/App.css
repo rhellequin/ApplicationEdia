@@ -61,8 +61,13 @@ h1{
 
   }
 
-  .Login-input{
+  .Signin-input {
     margin: 15px;
+    width: 400px;
+  }
+
+  .Signup-input {
+    margin: 5px !important;
     width: 400px;
   }
 
@@ -76,8 +81,8 @@ h1{
     margin: 40px;
 }
 
-.Sign .Login-input{
-  width: 250px;
+.Button {
+  background-color: blue;
 }
 
 .question{

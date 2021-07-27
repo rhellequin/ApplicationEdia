@@ -21,9 +21,9 @@ function SigninPage(props) {
         });  
         var body = await data.json();
         if(body.result){
-          props.connectFunction(body.user);
+          props.connectFunction(body.token,body.firstName);
           setIsLogin(true);
-          console.log('body.result', body.user)
+          console.log('body.result', body)
         } else {
           setListErrorsUp(body.error)
         }
@@ -41,9 +41,9 @@ return(
             
             {/* SIGN-IN */}
             <div className="Sign">
-                <Input onChange={(e)=> setSignInEmail(e.target.value)} value={signInEmail} className="Login-input" placeholder="johndoe@gmail.com" />
-                <Input.Password onChange={(e)=> setSignInPassword(e.target.value)} value={signInPassword}  className="Login-input" placeholder="mot de passe" />  
-              <Button onClick={()=> handleSubmitSignIn()} style={{width:'80px'}} type="primary">Sign-in</Button>
+                <Input onChange={(e)=> setSignInEmail(e.target.value)} value={signInEmail} className="Signin-input" placeholder="johndoe@gmail.com" />
+                <Input.Password onChange={(e)=> setSignInPassword(e.target.value)} value={signInPassword}  className="Signin-input" placeholder="mot de passe" />  
+              <Button onClick={()=> handleSubmitSignIn()} style={{width:'80px',  background: "#0A62D0" }} type="primary">Sign in</Button>
             </div>
             {tabError}
         </div>
@@ -58,8 +58,8 @@ else if (isLogin === true) {
 
 function mapDispatchToProps(dispatch){
     return{
-      connectFunction: function(user){
-        dispatch({type: 'login', user: user});
+      connectFunction: function(token,firstName){
+        dispatch({type: 'login', token: token,firstName:firstName});
       }
     }
   }

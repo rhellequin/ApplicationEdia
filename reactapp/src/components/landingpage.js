@@ -2,10 +2,23 @@ import React, { useState, useEffect } from 'react';
 
 import {Link, Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
+import Nav from './nav';
 
 
-import { Input, Typography, Space } from 'antd';
+import { Input, Typography, Space,Avatar } from 'antd';
 import { Button,Col,Row,Container,Card, CardImg, CardText, CardBody,CardTitle, CardSubtitle, Media} from 'reactstrap';
+
+// composant de test :
+import TestEngine from './testengine';
+
+// Import des composants pour les critères de recherche :
+import Types from './types';
+import Domains from './domains';
+import Projects from './projects';
+import ActivitySector from './activitysector';
+import Territories from './territories';
+import NumberOfWorker from './numberofworker';
+import CompanyAge from './companyage'; 
 
 
 
@@ -15,6 +28,12 @@ function Landingpage(props) {
 
     const [onCallSearch, setOnCallSearch] = useState(false)
 
+    useEffect(() => {
+        async function loadSources(){
+          console.log(props.token)
+        }
+        loadSources()
+      }, [])
 
 
 
@@ -25,24 +44,52 @@ function Landingpage(props) {
     const tb = 
     [
         {
-            composant : "<TestEngine/>",
-            question : "Quel est votre projet ?",
+            composant : <Types/>,
+            question : "Quel type d'aide recherchez vous ?",
+            critere : "aidTypes",
+            valeur: null
+        },
+        {
+            composant : <Domains/>,
+            question : "Quel domaine d'aide recherchez vous ?",
+            critere : "aidDomains",
+            valeur: null
+        },
+        {
+            composant : <TestEngine/>, // <Projects/>
+            question : "Quels enjeux souhaitez-vous poursuivre ?",
             critere : "aidProjects",
             valeur: null
         },
         {
-            composant : "<Types/>",
-            question : "Quel est votre type ?",
-            critere : "aidTypes",
+            composant : <ActivitySector/>,  
+            question : "Quel secteur d'activité ?",
+            critere : "aidActivitySector",
+            valeur: null
+        },
+        {
+            composant : <Territories/>,  
+            question : "Quel est votre département ?",
+            critere : "aidTerritories",
+            valeur: null
+        },
+        {
+            composant : <NumberOfWorker/>,  
+            question : "Quel est l'effectif de votre entreprise ?",
+            critere : "aidNumberOfWorker",
+            valeur: null
+        },
+        {
+            composant : <CompanyAge/>,  
+            question : "Quel est l'age de votre entreprise ?",
+            critere : "aidCompanyAge",
             valeur: null
         }
-
-
-        //  à suivre ...
-
 ]
+
+
 // Dans le Store :
-    props.updateSearchOptions(tb);
+    props.initSearchOptions(tb);
 // Indice du tableau de recherche :
     props.updateIndexOptions(0);
 // Compteur de recherche :
@@ -72,16 +119,8 @@ function Landingpage(props) {
     return ( 
     
     <Container fluid={true}>
-
-        <Row style={{display:'flex',justifyContent:'center', alignItems:'center'}}>
-        <Col sm="12" md="6" lg="6" style={{display:'flex', justifyContent:'space-between',alignItems:'center'}}>
-            <img src='../images/EDIA.png'  height='120px' />
-        </Col>
-        <Col sm="12" md="6" lg="6" style={{ display:'flex',justifyContent:'flex-end', alignItems:'self-end'}}>
-            <Button outline color="primary" size='lg' style={{margin:'20px'}}>Se connecter</Button>
-            <Button color="primary" size='lg'style={{margin:'20px'}}>S'inscrire</Button>
-        </Col>
-        </Row>
+    <Nav/>
+        
 
         <Row fluid={true} style={{display:'flex', flexDirection:'row',alignItems:'center'}}>
         <Col sm="12" md="6" lg="6" style={{ display:'flex', flexDirection:'column',marginTop:'30px',justifyContent:'center', alignItems:'center'}} >
@@ -227,27 +266,27 @@ function Landingpage(props) {
     )
 }
 
-
+function mapStateToProps(state){
+    return { token: state.user.token, firstName: state.user.firstName }
+  }
 
 
 function mapDispatchToProps(dispatch){
     return {
-      updateSearchOptions: function(tb) {
-        dispatch({type: 'updateSearchOptions', searchOptions: tb})},
+      initSearchOptions: function(tb) {
+        dispatch({type: 'initSearchOptions', searchOptions: tb})},
         
       updateIndexOptions: function(i) {
         dispatch({type: 'updateIndexOptions', indexOptions: i})},
         
       updateNumberOfAids: function(n) {
         dispatch({type: 'updateNumberOfAids', numberOfAids: n})}
-  
-      
-      
+
     }
   }
   
   export default connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps
   )(Landingpage)
   

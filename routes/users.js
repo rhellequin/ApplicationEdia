@@ -42,7 +42,7 @@ router.post('/sign-up', async function(req, res, next) {
     result = true
     console.log(result)
   } 
-  res.json({result, user, error})
+  res.json({result, token: user.token,firstName:user.firstName, error})
 });
 
 
@@ -65,7 +65,7 @@ router.post('/sign-in', async function(req, res, next) {
     error.push('Mot de passe incorrect');
   };
   console.log(result)
-  res.json({result, user, error});
+  res.json({result, token: user.token,firstName: user.firstName, error});
 });
 
 module.exports = router;
