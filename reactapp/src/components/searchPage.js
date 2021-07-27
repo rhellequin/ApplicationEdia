@@ -3,6 +3,7 @@ import {Input, Typography, Space, Layout, Text, Button, Col, Row  } from 'antd';
 import Nav from './nav';
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 import Types from './types';
+import {connect} from 'react-redux';
 import 'antd/dist/antd.css';
 
 

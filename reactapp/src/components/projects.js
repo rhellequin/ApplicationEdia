@@ -1,7 +1,7 @@
 import React, {useState, useEffect } from 'react';
 import {Input, Typography, Card, Col, Row } from 'antd'; 
 import 'antd/dist/antd.css';
-
+import {connect} from 'react-redux';
 import { Menu, Dropdown, Button, message, Space, Tooltip } from 'antd';
 import { DownOutlined, UserOutlined } from '@ant-design/icons';
 

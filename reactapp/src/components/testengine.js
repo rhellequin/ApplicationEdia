@@ -1,9 +1,13 @@
 import React, {useState, useEffect } from 'react';
-import {Input, Typography, Card, Col, Row } from 'antd'; 
-import 'antd/dist/antd.css';
 
+
+
+import 'antd/dist/antd.css';
+import {Input, Typography, Card, Col, Row } from 'antd'; 
 import { Menu, Dropdown, Button, message, Space, Tooltip } from 'antd';
 import { DownOutlined, UserOutlined } from '@ant-design/icons';
+
+
 
 /*
     Composant pour tester la communication avec le back 
@@ -11,23 +15,14 @@ import { DownOutlined, UserOutlined } from '@ant-design/icons';
 */
 
 
-function Effectif () {
+function TestEngine () {
 
-    const [types, setTypes] = useState([]);
+     
     const [projects, setProjects] = useState([]);
     const [project, setProject] = useState([]);
         
     useEffect(() => {
-        const FindTypes = async () => {
-            const data = await fetch("/types", {
-                method: 'GET',
-                headers: {'Content-Type': 'application/x-www-form-urlencoded'},    
-            })
-            const body = await data.json()
-            if (body.result) {
-                setTypes(body.types);
-            }
-        }
+         
         const FindProjects = async () => {
             const data = await fetch("/projects", {
                 method: 'GET',
@@ -43,7 +38,7 @@ function Effectif () {
 
 
         FindProjects();
-        FindTypes();
+         
       },[])   
     
 
@@ -109,4 +104,4 @@ function Effectif () {
 }
 
 
-export default Effectif;
+export default TestEngine;
