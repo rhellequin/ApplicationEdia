@@ -1,18 +1,13 @@
 import React, {useState, useEffect } from 'react';
 import {connect} from 'react-redux';
 
+import SearchAids from './searchaids'
+
 
 import 'antd/dist/antd.css';
 import {Input, Typography, Card, Col, Row } from 'antd'; 
 import { Menu, Dropdown, Button, message, Space, Tooltip } from 'antd';
 import { DownOutlined, UserOutlined } from '@ant-design/icons';
-
-
-
-/*
-    Composant pour tester la communication avec le back 
-    ===================================================
-*/
 
 
 function TestEngine (props) {
@@ -33,10 +28,7 @@ function TestEngine (props) {
                 setProjects(body.projects);
             }
         }
-
         setNumberOfAids(props.numberOfAids);
-
-
         FindProjects();
          
       },[])   
@@ -44,36 +36,20 @@ function TestEngine (props) {
 
     const { Text, Link } = Typography;
 
-
-
-
-    const handleMenuClick = async (elem) => {
+    const runSearch = async (elem) => {
         
-    // Store la valeur saisie pour le critère :
+    // Appel recherche :
+        let parameters = [...props.searchOptions]
+        parameters[props.indexOptions].valeur = projects[elem.key]._id
+        const aids = await SearchAids(parameters);
+    // Mise à jour du critère dans le store :
         props.updateSearchOptions(props.indexOptions,projects[elem.key]._id);
-
-
-    // POST de la recherche :    
-        const param = JSON.stringify(props.searchOptions)
-        const data = await fetch('/search', {
-            method: 'POST',
-            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-            body: `parameters=${param}`
-            })
-        const body = await data.json();
-        if(body.result){
-
-// Store des aids trouvées :
-            props.updateAids(body.aids);
-// Store du compteur d'aides :         
-            const n = body.aids.length;
-            props.updateNumberOfAids(n);
-            setNumberOfAids(n);
-
-            
-            console.log("Aids : ", body.aids)
-        }
-
+    // Store des aids trouvées :
+        props.updateAids(aids);
+    // Store du compteur d'aides :         
+        const n = aids.length;
+        props.updateNumberOfAids(n);
+        setNumberOfAids(n);
     }
 
 
@@ -82,42 +58,24 @@ function TestEngine (props) {
                 <Menu.Item key={i} icon={<UserOutlined />}>{projet.projectName}</Menu.Item>
     ));
 
-
-
     const menu = (
-        <Menu onClick={handleMenuClick}>
+        <Menu onClick={runSearch} >
           {tb}
         </Menu>
       );
 
 
-    console.log('searchOptions :', props.searchOptions)
-
-
     return (
 
     <Row>
+        <h1 class='question' style={{color:'#ff33e0'}}>Déjà {numberOfAids} aides!</h1> 
         <Col span={8} offset="4">
             <Space wrap>
             <Dropdown.Button  overlay={menu} style={{marginLeft:"0px"}} >
                 Projets
             </Dropdown.Button>
             </Space>
-            <Card title="Compteur Aids " bordered={true} 
-                    style={{ 
-                        backgroundColor: '#0A62D0', 
-                        marginRight: '15px',
-                        marginLeft: '15px',
-                        marginTop: '15px',
-                        marginBottom: '15px',
-                        textAlign: 'center',
-                        fontFamily: 'Alata',
-                        borderRadius: '10px',
-                        fontSize: '18px',
-                        color: 'white'
-                    }}>
-                {numberOfAids}
-            </Card> 
+            
         </Col>
     </Row>
     )

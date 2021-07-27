@@ -91,15 +91,6 @@ router.post('/search', async function(req, res, next){
 
   const parameters = JSON.parse(req.body.parameters);
   
-  console.log('parameters :', parameters)
- 
-  
-
-
-
-  console.log ('\x1b[34m%s\x1b[0m','=============== > Search Parameters : ', parameters)
-
-
   let filter = {};
 
   for (let i=0;i<parameters.length;i++) {
@@ -108,26 +99,19 @@ router.post('/search', async function(req, res, next){
 
       filter[parameters[i].critere] = parameters[i].valeur
 
-  
-
-
     }
-
   }
 
 
 console.log('filter :', filter);
 
 
-// populate sur l'ensemble des collections :
   const aids =  await aidModel.find(filter);
-  
-  console.log(aids.length, ' aids found')
-
   if (aids) {
+    console.log ('\x1b[34m%s\x1b[0m','=============== > POST Search Aids Found : ', aids.length )
   res.json({result: true, aids: aids})
   } else {
-  console.log ('\x1b[31m%s\x1b[0m','=============== > POST Search Nothing Found')
+    console.log ('\x1b[31m%s\x1b[0m','=============== > POST Search Nothing Found')
   res.json({result: false})
   }
 

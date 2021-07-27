@@ -8,6 +8,7 @@ import Nav from './nav';
 import { Input, Typography, Space,Avatar } from 'antd';
 import { Button,Col,Row,Container,Card, CardImg, CardText, CardBody,CardTitle, CardSubtitle, Media} from 'reactstrap';
 
+
 // composant de test :
 import TestEngine from './testengine';
 
@@ -40,9 +41,8 @@ function Landingpage(props) {
 // Action Click sur Recherche :
     const callSearchPage = ()=> {
 
-// Tableau pour les gestion des critères de recherche et la valeur des réponses :
-    const tb = 
-    [
+
+    const tb = [
         {
             composant : <Types/>,
             question : "Quel type d'aide recherchez vous ?",
@@ -57,7 +57,7 @@ function Landingpage(props) {
         },
         {
             composant : <TestEngine/>, // <Projects/>
-            question : "Quels enjeux souhaitez-vous poursuivre ?",
+            question : "TestEngine : Quels enjeux souhaitez-vous poursuivre ?",
             critere : "aidProjects",
             valeur: null
         },
@@ -84,24 +84,20 @@ function Landingpage(props) {
             question : "Quel est l'age de votre entreprise ?",
             critere : "aidCompanyAge",
             valeur: null
-        }
-]
+        }]
+    
+    
+        // Dans le Store :
+        props.initSearchOptions(tb);
+        // Indice du tableau de recherche :
+        props.updateIndexOptions(0);
+        // Compteur de recherche :
+        props.updateNumberOfAids(0);
 
 
-// Dans le Store :
-    props.initSearchOptions(tb);
-// Indice du tableau de recherche :
-    props.updateIndexOptions(0);
-// Compteur de recherche :
-    props.updateNumberOfAids(0);
 // Call Search Page :
     setOnCallSearch(true);
 }
-
-
-
-
-
 
 // Call de la page de recherche :
 
