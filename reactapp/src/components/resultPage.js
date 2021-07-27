@@ -19,13 +19,26 @@ const { Header, Content, Footer, Sider } = Layout;
 
 function ResultPage () {
 
+  const [ResultList, setResultList] = useState([])
+
+
  var ListEssai=[
-    {name: 'AAA', crit1:'bbb', crit2:30, crit3:37, crit4:'ddd', crit5:60},
-    {name: 'BBB', crit1:'aaa', crit2:20, crit3:47, crit4:'eee', crit5:70},
+    {name: 'AAA', crit1:'bbb', crit2:30, crit3:37, crit4:'zzz', crit5:100},
+    {name: 'BBB', crit1:'aaa', crit2:800, crit3:77, crit4:'qqq', crit5:2},
     {name: 'CCC', crit1:'ccc', crit2:60, crit3:57, crit4:'fff', crit5:80},
       ]
 
-
+      // useEffect(() => {
+      //   const findLang = async() => {
+          
+      //     const reqFind = await fetch(`/user-lang?token=${props.token}`)
+      //     const resultFind = await reqFind.json()
+    
+      //     setSelectedLang(resultFind.lang)
+      //   }
+    
+       
+      // }, [])
 
 
 
@@ -96,30 +109,35 @@ function compare5( a, b ) {
       }
     
 
-  // Tri alphabétique
+  // Tri
   var tri1 = async () => {
     ListEssai.sort( compare1 );
-    console.log('ListEssai', ListEssai)
+    console.log('ListEssai', ListEssai);
+    setResultList(ListEssai) 
   }
 
   var tri2 = async () => {
     ListEssai.sort( compare2 );
-    console.log('ListEssai', ListEssai)
+    console.log('ListEssai', ListEssai);
+    setResultList(ListEssai)
   }
 
   var tri3 = async () => {
     ListEssai.sort( compare3 );
-    console.log('ListEssai', ListEssai)
+    console.log('ListEssai', ListEssai);
+    setResultList(ListEssai)
   }
 
   var tri4 = async () => {
     ListEssai.sort( compare4 );
-    console.log('ListEssai', ListEssai)
+    console.log('ListEssai', ListEssai);
+    setResultList(ListEssai)
   }
 
   var tri5= async () => {
     ListEssai.sort( compare5 );
-    console.log('ListEssai', ListEssai)
+    console.log('ListEssai', ListEssai);
+    setResultList(ListEssai)
   }
   
  
@@ -194,26 +212,29 @@ function compare5( a, b ) {
     </Sider>
 
     <Content >
-    {/* <div className="site-card-wrapper">
+    <div className="site-card-wrapper">
     <Row gutter={16}>
 
-    {ListEssai.map((aide,i) => (
+    {ResultList.map((aide,i) => (
                 
-                    <Col span={16} key={i}>
-                    <Card title="Card title" bordered={false} style={{ 
-                        backgroundColor: '#0A62D0'                        
+                    <Col span={10} key={i}>
+                    <Card title={aide.name} bordered={false} style={{ 
+                        backgroundColor: '#0A62D0',
+                        margin: '15px'                        
                         }}>
-                            {
-                              aideNom:name;
-
-                            }
+                            <p>{aide.crit1}</p>
+                            <p>{aide.crit2}</p>
+                            <p>{aide.crit3}</p>
+                            <p>{aide.crit4}</p>
+                            <p>{aide.crit5}</p>
+                           
                     </Card>
                     </Col>
 
               ))}
        </Row>  
     
-  </div>  */}
+  </div> 
 
 
 
