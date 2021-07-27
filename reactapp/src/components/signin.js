@@ -37,10 +37,9 @@ return(
             
             {/* SIGN-UP */}
             <div className="Sign">
-                <Input onChange={(e)=> setSignUpUsername(e.target.value)} value={signUpUsername} className="Login-input" placeholder="Arthur G" />
-                <Input onChange={(e)=> setSignUpEmail(e.target.value)} value={signUpEmail} className="Login-input" placeholder="arthur@lacapsule.com" />
-                <Input.Password onChange={(e)=> setSignUpPassword(e.target.value)} value={signUpPassword}  className="Login-input" placeholder="password" />
-              <Button onClick={()=> handleSubmitSignUp()} style={{width:'80px'}} type="primary">Sign-up</Button>
+                <Input onChange={(e)=> setSignInEmail(e)} value='' className="Login-input" placeholder="johndoe@gmail.com" />
+                <Input.Password onChange={(e)=> setSignInPassword(e.target.value)} value={signInPassword}  className="Login-input" placeholder="mot de passe" />  
+              <Button onClick={()=> handleSubmitSignIn()} style={{width:'80px'}} type="primary">Sign-in</Button>
             </div>
         </div>
     );

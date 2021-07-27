@@ -1,11 +1,73 @@
 import React, { useState, useEffect } from 'react';
+
+import {Link, Redirect} from 'react-router-dom';
+import {connect} from 'react-redux';
+
+
 import { Input, Typography, Space } from 'antd';
 import { Button,Col,Row,Container,Card, CardImg, CardText, CardBody,CardTitle, CardSubtitle, Media} from 'reactstrap';
-import{Link} from "react-router-dom";
-import {connect} from 'react-redux';
+
+
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-function Landingpage() {
+function Landingpage(props) {
+
+    const [onCallSearch, setOnCallSearch] = useState(false)
+
+
+
+
+// Action Click sur Recherche :
+    const callSearchPage = ()=> {
+
+// Tableau pour les gestion des critères de recherche et la valeur des réponses :
+    const tb = 
+    [
+        {
+            composant : "<TestEngine/>",
+            question : "Quel est votre projet ?",
+            critere : "aidProjects",
+            valeur: null
+        },
+        {
+            composant : "<Types/>",
+            question : "Quel est votre type ?",
+            critere : "aidTypes",
+            valeur: null
+        }
+
+
+        //  à suivre ...
+
+]
+// Dans le Store :
+    props.updateSearchOptions(tb);
+// Indice du tableau de recherche :
+    props.updateIndexOptions(0);
+// Compteur de recherche :
+    props.updateNumberOfAids(0);
+// Call Search Page :
+    setOnCallSearch(true);
+}
+
+
+
+
+
+
+// Call de la page de recherche :
+
+    if (onCallSearch) {
+        return <Redirect to='searchPage' />
+    }
+
+
+
+
+
+
+// Landing Page :    
 
     return ( 
     
@@ -25,7 +87,7 @@ function Landingpage() {
         <Col sm="12" md="6" lg="6" style={{ display:'flex', flexDirection:'column',marginTop:'30px',justifyContent:'center', alignItems:'center'}} >
             <h1 style={{textAlign:'left', marginBottom:'10px',fontWeight:'bold' ,fontSize:70, fontFamily:''}}>La bonne aide  au bon moment pour votre PME</h1>
             <h5 style={{marginBottom:'10px'}}>Notre algorithme trouve l'aide qu'il vous faut en fonction de vos enjeux !</h5>
-            <Link to='/searchPage'><Button type='button' color="primary" size='auto' style={{width:'150%', marginTop:'15px'}}>Rechercher</Button></Link>
+            <Button color="primary" size='lg' style={{width:'30%', marginTop:'15px'}} onClick={() => callSearchPage()} >Rechercher</Button>
         </Col>
 
         <Col sm="12" md="6" lg="6" style={{display:'flex', flexDirection:'column',alignItems:'center',marginTop:'10px'}}>
@@ -164,4 +226,28 @@ function Landingpage() {
     </Container>
     )
 }
-export default Landingpage; 
+
+
+
+
+function mapDispatchToProps(dispatch){
+    return {
+      updateSearchOptions: function(tb) {
+        dispatch({type: 'updateSearchOptions', searchOptions: tb})},
+        
+      updateIndexOptions: function(i) {
+        dispatch({type: 'updateIndexOptions', indexOptions: i})},
+        
+      updateNumberOfAids: function(n) {
+        dispatch({type: 'updateNumberOfAids', numberOfAids: n})}
+  
+      
+      
+    }
+  }
+  
+  export default connect(
+    null,
+    mapDispatchToProps
+  )(Landingpage)
+  
