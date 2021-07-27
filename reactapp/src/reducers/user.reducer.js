@@ -1,5 +1,7 @@
 export default function (user={}, action){
-    if (action.user === 'connection'){
+    console.log('user')
+    if (action.type == 'login'){
+        console.log(user,'jesuisreduceur')
         return action.user;
     } else {
         return user
