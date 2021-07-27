@@ -62,3 +62,14 @@ h1{
   color: white;
 }
 
+.puces
+{
+  background-color:'yellow';
+          width:'600px';
+          height:'73px';
+          text-align: 'center';
+          font-family: 'Alata';
+          font-size: '30px';
+          border-radius:'50px';
+          margin-left:'5px'
+}

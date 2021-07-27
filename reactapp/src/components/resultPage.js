@@ -1,5 +1,5 @@
 import React, {useState, useEffect } from 'react';
-import {Input, Typography, Space, Layout, Text, Button, Col, Row, Breadcrumb, Menu, Card } from 'antd'; 
+import {Input, Typography, Space, Layout, Text, Button, Col, Row, Breadcrumb, Menu, Card, Tag, Badge, Modal } from 'antd'; 
 import Nav from './nav';
 import { AppstoreOutlined,
   MenuUnfoldOutlined,
@@ -7,10 +7,12 @@ import { AppstoreOutlined,
   PieChartOutlined,
   DesktopOutlined,
   ContainerOutlined,
-  StarOutlined, } from '@ant-design/icons';
+  StarOutlined,
+  HomeOutlined } from '@ant-design/icons';
 import 'antd/dist/antd.css';
 import Avatar from 'antd/lib/avatar/avatar';
 import { attachTypeApi } from 'antd/lib/message';
+
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -21,6 +23,19 @@ function ResultPage () {
 
   const [ResultList, setResultList] = useState([])
 
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const handleOk = () => {
+    setIsModalVisible(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
 
  var ListEssai=[
     {name: 'TROP COOL', montant:'5000', financeur:'Cresus', niveauAide:'local', diff:'2', delai: '6 mois', logo:'../images/pinguin.png'},
@@ -134,44 +149,62 @@ function compare5( a, b ) {
         
 <Layout>
 <Nav/>
-<Col md={{ span: 6, offset: 13 }}>
+<Col md={{ span: 8, offset: 14 }}>
         <div style={{
-          backgroundColor:'yellow',
+          backgroundColor:'#E0E5E9',
           width:'600px',
           height:'73px',
           textAlign: 'center',
-          verticalAlign:'center',
           fontFamily: 'Alata',
-          fontSize: '30px'
+          fontSize: '30px',
+          borderRadius:'10px',
+          marginLeft:'5px'
         }}>
           534 aides disponibles
         </div>
 </Col>
-<Breadcrumb>
-    <Breadcrumb.Item>Home</Breadcrumb.Item>
-    <Breadcrumb.Item>
-    <a href="">Home</a>
+<Breadcrumb style={{
+          fontFamily: 'Alata',
+          fontSize: '30px',
+          
+         
+        }}>
+    
+    <Breadcrumb.Item >
+    <a href="">
+    <HomeOutlined /></a>
     </Breadcrumb.Item>
     <Breadcrumb.Item>
-      <a href="">Réponse 1</a>
+    <span style={{
+                              backgroundColor:'yellow',
+                              width:'50px',
+                              height:'50px',
+                              textAlign: 'center',
+                              fontFamily: 'Alata',
+                              fontSize: '30px',
+                              borderRadius:'50px',
+                              marginLeft:'5px'
+                              
+                            }}>1</span>
+      <a href=""><span>Réponse 1</span></a>
     </Breadcrumb.Item>
     <Breadcrumb.Item>
-      <a href="">Réponse 2</a>
+    <span>2</span><a href="">Réponse 2</a>
     </Breadcrumb.Item>
     <Breadcrumb.Item>
-      <a href="">Réponse 3</a>
+    <span>3</span><a href="">Réponse 3</a>
     </Breadcrumb.Item>
     <Breadcrumb.Item>
-      <a href="">Réponse 4</a>
+    <span>4</span><a href="">Réponse 4</a>
     </Breadcrumb.Item>
     <Breadcrumb.Item>
-      <a href="">Réponse 5</a>
+    <span>5</span><a href="">Réponse 5</a>
     </Breadcrumb.Item>
     <Breadcrumb.Item>
-      <a href="">Réponse 6</a>
+    <span>6</span><a href="">Réponse 6</a>
     </Breadcrumb.Item>
     <Breadcrumb.Item>
-      <a href="">Réponse 7</a>
+    <span>7</span><a href="">Réponse 7</a>
     </Breadcrumb.Item>
   </Breadcrumb>
 <div>
@@ -287,7 +320,7 @@ function compare5( a, b ) {
                             flexDirection:'row',
                             justifyContent:'center',
                                         alignContent:'center',}}>
-                            <Button color="primary" size='lg'
+                            <Button color="primary" size='lg' onClick={showModal}
                                         style={{backgroundColor: '#0A62D0',
                                                  borderRadius:'10px',
                                                  width:'309px',
@@ -301,7 +334,11 @@ function compare5( a, b ) {
                             En savoir +
                 
                             </Button>
-
+                            <Modal title={aide.name} visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
+        <p>{aide.financeur}</p>
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+      </Modal>
                             </Row>
                             
                             
