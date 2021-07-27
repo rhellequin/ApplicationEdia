@@ -37,9 +37,9 @@ return(
             
             {/* SIGN-IN */}
             <div className="Sign">
-                <Input onChange={(e)=> setSignInEmail(e.target.value)} value={signInEmail} className="Login-input" placeholder="johndoe@gmail.com" />
-                <Input.Password onChange={(e)=> setSignInPassword(e.target.value)} value={signInPassword}  className="Login-input" placeholder="mot de passe" />  
-              <Button onClick={()=> handleSubmitSignIn()} style={{width:'80px'}} type="primary">Sign-in</Button>
+                <Input onChange={(e)=> setSignInEmail(e.target.value)} value={signInEmail} className="Signin-input" placeholder="johndoe@gmail.com" />
+                <Input.Password onChange={(e)=> setSignInPassword(e.target.value)} value={signInPassword}  className="Signin-input" placeholder="mot de passe" />  
+              <Button onClick={()=> handleSubmitSignIn()} style={{width:'80px',  background: "#0A62D0" }} type="primary">Sign in</Button>
             </div>
         </div>
     );
