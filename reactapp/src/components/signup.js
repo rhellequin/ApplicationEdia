@@ -6,46 +6,79 @@ import {connect} from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function SignupPage(props) {
-
-    const [signUpUsername, setSignUpUsername] = useState("");
-    const [signUpEmail, setSignUpEmail] = useState("");
-    const [signUpPassword, setSignUpPassword] = useState("");
+   
     const [isLogin, setIsLogin] = useState(false)
-    const [listErrorsIn, setListErrorsIn] = useState([]);
     const [listErrorsUp, setListErrorsUp] = useState([]);
+    const[visibility, setVisibility]= useState('hidden')
+    const [user, setUser]= useState({
+        firstName: "",
+        lastName:"",
+        email:'',
+        siret:'',
+        phone:'',
+        position:'',
+        company:'',
+        password:'',
+        confirmPassword:'',
+    })
 
     var handleSubmitSignUp = async () => {
-        var data = await fetch('/sign-up',{
+        var requete = await fetch('/sign-up',{
           method: 'POST',
           headers: {'Content-Type':'application/x-www-form-urlencoded'},
-          body: "username=" + signUpUsername + "&email=" + signUpEmail + "&password=" + signUpPassword
-        });  
-        var body = await data.json();
-        var user = body.userSaved;
-        if(body.result){
-          props.connectFunction(user);
+          body: "user=" + user 
+        });
+        var response = await requete.json();
+        if (response.result === true){
+          props.connectFunction(response.user);
           setIsLogin(true);
         } else {
-          setListErrorsUp(body.error)
+          setListErrorsUp(response.error)
         }
       }
 
+      const handleChange = (name, value) => {
+        let copy={...user}
+        copy[name]=value
+        setUser({copy})
+            console.log(user)
+    
+      }
 
+      const handleChange2 = (name, value) => {
+        setUser({...user, [name]: value })
+      }
+
+      const handleRepeat =(value)=>{
+      
+        if(user.confirmPassword!==user.password){
+          setVisibility('visible')
+        }
+      }
+
+      
 
 return(
 <div className="Login-page" >
-            
-            {/* SIGN-UP */}
+            {/* SIGN-UP*/}
             <div className="Sign">
-                <Input onChange={(e)=> setSignUpUsername(e.target.value)} value={signUpUsername} className="Login-input" placeholder="Arthur G" />
-                <Input onChange={(e)=> setSignUpEmail(e.target.value)} value={signUpEmail} className="Login-input" placeholder="arthur@lacapsule.com" />
-                <Input.Password onChange={(e)=> setSignUpPassword(e.target.value)} value={signUpPassword}  className="Login-input" placeholder="password" />
+                <Input name="firstName" onChange={(e)=> handleChange(e.target.name, e.target.value)} value={user.firstName} className="Login-input" placeholder='Prénom' />
+                <Input name="lastName" onChange={(e)=> handleChange(e.target.name, e.target.value)} value={user.lastName} className="Login-input" placeholder='Nom' />
+                <Input name="email" onChange={(e)=> handleChange(e.target.name, e.target.value)} value={user.email} className="Login-input" placeholder="email" />
+                <Input name="siret" onChange={(e)=> handleChange(e.target.name, e.target.value)} value={user.siret} className="Login-input" placeholder="N° SIRET" />
+                <Input name="phone" onChange={(e)=> handleChange(e.target.name, e.target.value)} value={user.phone} className="Login-input" placeholder="Téléphone" />
+                <Input name="position" onChange={(e)=> handleChange(e.target.name, e.target.value)} value={user.position} className="Login-input" placeholder="Fonction" />
+                <Input name="company" onChange={(e)=> handleChange(e.target.name, e.target.value)} value={user.company} className="Login-input" placeholder="Entreprise" />
+                <Input name="password" onChange={(e)=> handleChange(e.target.name, e.target.value)} value={user.password} type='password'className="Login-input" placeholder="Password" />
+                <Input name="passwordRepeat"  onChange={(e) =>handleRepeat(e.target.value)} value={user.confirmPassword} className="Login-input" placeholder="Répéter Password" />
+                <p style={{visibility:{visibility} }}>No match</p>
               <Button onClick={()=> handleSubmitSignUp()} style={{width:'80px'}} type="primary">Sign-up</Button>
             </div>
-        </div>
+
+          
+</div>
     );
 }
-
 function mapDispatchToProps(dispatch){
     return{
       connectFunction: function(user){
