@@ -7,7 +7,7 @@ import { AppstoreOutlined,
   PieChartOutlined,
   DesktopOutlined,
   ContainerOutlined,
-  MailOutlined, } from '@ant-design/icons';
+  StarOutlined, } from '@ant-design/icons';
 import 'antd/dist/antd.css';
 import Avatar from 'antd/lib/avatar/avatar';
 import { attachTypeApi } from 'antd/lib/message';
@@ -23,42 +23,30 @@ function ResultPage () {
 
 
  var ListEssai=[
-    {name: 'AAA', crit1:'bbb', crit2:30, crit3:37, crit4:'zzz', crit5:100},
-    {name: 'BBB', crit1:'aaa', crit2:800, crit3:77, crit4:'qqq', crit5:2},
-    {name: 'CCC', crit1:'ccc', crit2:60, crit3:57, crit4:'fff', crit5:80},
+    {name: 'TROP COOL', montant:'5000', financeur:'Cresus', niveauAide:'local', diff:'2', delai: '6 mois', logo:'../images/pinguin.png'},
+    {name: "BESOIN d'ARGENT", montant:'2000', financeur:'Rockfeller', niveauAide:'départemental', diff:'3', delai:'3 mois', logo:'../images/pinguin.png'},
+    {name: 'NEED HELP', montant:'8000', financeur:'Jeff Bezos', niveauAide:'européen', diff:'1', delai:'2 mois', logo:'../images/pinguin.png'},
       ]
 
-      // useEffect(() => {
-      //   const findLang = async() => {
-          
-      //     const reqFind = await fetch(`/user-lang?token=${props.token}`)
-      //     const resultFind = await reqFind.json()
+      useEffect(() => {
+        var resultat = async () => {
+          ListEssai.sort( compare1 );
+          console.log('useffect', ListEssai);
+          setResultList(ListEssai) 
+        }
     
-      //     setSelectedLang(resultFind.lang)
-      //   }
-    
-       
-      // }, [])
-
-
-
-
-
-
-
-
-
-
+        resultat()
+      }, [])
 
 
 
 //fonctions de tri
       //Tri critère 1
       function compare1( a, b ) {
-        if ( a.crit1 < b.crit1 ){
+        if ( a.montant < b.montant ){
           return -1;
         }
-        if ( a.crit1 > b.crit1 ){
+        if ( a.montant > b.montant ){
           return 1;
         }
         return 0;
@@ -66,10 +54,10 @@ function ResultPage () {
      
        //Tri critère 2
        function compare2( a, b ) {
-        if ( a.crit2 < b.crit2 ){
+        if ( a.financeur < b.financeur ){
           return -1;
         }
-        if ( a.crit2 > b.crit2 ){
+        if ( a.financeur > b.financeur ){
           return 1;
         }
         return 0;
@@ -77,10 +65,10 @@ function ResultPage () {
 
       //Tri critère 3
       function compare3( a, b ) {
-        if ( a.crit3 < b.crit3 ){
+        if ( a.niveauAide < b.niveauAide ){
           return -1;
         }
-        if ( a.crit3 > b.crit3 ){
+        if ( a.niveauAide > b.niveauAide ){
           return 1;
         }
         return 0;
@@ -88,10 +76,10 @@ function ResultPage () {
 
 //Tri critère 4
       function compare4( a, b ) {
-        if ( a.crit4 < b.crit4 ){
+        if ( a.diff < b.diff ){
           return -1;
         }
-        if ( a.crit4 > b.crit4 ){
+        if ( a.diff > b.diff ){
           return 1;
         }
           return 0;
@@ -99,10 +87,10 @@ function ResultPage () {
 
             //Tri critère 5
 function compare5( a, b ) {
-  if ( a.crit5 < b.crit5 ){
+  if ( a.delai < b.delai ){
     return -1;
   }
-  if ( a.crit5 > b.crit5 ){
+  if ( a.delai > b.delai ){
     return 1;
   }
     return 0;
@@ -146,6 +134,19 @@ function compare5( a, b ) {
         
 <Layout>
 <Nav/>
+<Col md={{ span: 6, offset: 13 }}>
+        <div style={{
+          backgroundColor:'yellow',
+          width:'600px',
+          height:'73px',
+          textAlign: 'center',
+          verticalAlign:'center',
+          fontFamily: 'Alata',
+          fontSize: '30px'
+        }}>
+          534 aides disponibles
+        </div>
+</Col>
 <Breadcrumb>
     <Breadcrumb.Item>Home</Breadcrumb.Item>
     <Breadcrumb.Item>
@@ -178,32 +179,43 @@ function compare5( a, b ) {
 </div>
 
   <Layout>
-    <Sider style={{ backgroundColor:'black'}}>
+    <Sider style={{ backgroundColor:'#E0E5E9'}}>
       
    
         
         <Menu
           defaultSelectedKeys={['1']}
           defaultOpenKeys={['sub1']}
-          mode="inline"
-          theme="dark"
+          mode="vertical"
+          theme="light"
           
-          
+                 
         >
-          <Menu.Item key="1"  icon={<PieChartOutlined /> }> 
-          <Button onClick={() => tri1()}  style={{width:'80px'}} type="primary">TRI CRITERE 1</Button>
+<p style={{
+           fontSize:'24px',
+           alignContent:'center',
+           marginTop:'34px',
+           marginBottom: '40px',
+           textAlign: 'center',
+           fontFamily: 'Alata',
+          }}>Trier par</p>
+
+          <Menu.Item onClick={() => tri1()} key="1"  icon={<PieChartOutlined style={{
+            marginBottom:'100px'
+          }}/> }> 
+                    Montant
           </Menu.Item>
-          <Menu.Item key="2" icon={<DesktopOutlined />}>
-          <Button onClick={() => tri2()}  style={{width:'80px'}} type="primary">TRI CRITERE 2</Button>
+          <Menu.Item onClick={() => tri2()} key="2" icon={<DesktopOutlined />}>
+                 Financeur
           </Menu.Item>
-          <Menu.Item key="3" icon={<ContainerOutlined />}>
-          <Button onClick={() => tri3()}  style={{width:'80px'}} type="primary">TRI CRITERE 3</Button>
+          <Menu.Item onClick={() => tri3()} key="3" icon={<ContainerOutlined />}>
+                 Niveau de l'aide
           </Menu.Item>
-          <Menu.Item key="4" icon={<ContainerOutlined />}>
-          <Button onClick={() => tri4()}  style={{width:'80px'}} type="primary">TRI CRITERE 4</Button>
+          <Menu.Item onClick={() => tri4()} key="4" icon={<ContainerOutlined />}>
+                    Difficulté d'obtention
           </Menu.Item>
-          <Menu.Item key="5" icon={<ContainerOutlined />}>
-          <Button onClick={() => tri5()}  style={{width:'80px'}} type="primary">TRI CRITERE 5</Button>
+          <Menu.Item  onClick={() => tri5()} key="5" icon={<ContainerOutlined />}>
+                  Délai d'obtention
           </Menu.Item>
           
         </Menu>
@@ -212,21 +224,89 @@ function compare5( a, b ) {
     </Sider>
 
     <Content >
+      
     <div className="site-card-wrapper">
     <Row gutter={16}>
 
     {ResultList.map((aide,i) => (
                 
-                    <Col span={10} key={i}>
-                    <Card title={aide.name} bordered={false} style={{ 
-                        backgroundColor: '#0A62D0',
-                        margin: '15px'                        
+                    <Col span={12} key={i}>
+                    <Card  bordered={false} style={{ 
+                        backgroundColor: '#E0E5E9',
+                        margin: '15px',
+                        borderRadius:'30px'                        
                         }}>
-                            <p>{aide.crit1}</p>
-                            <p>{aide.crit2}</p>
-                            <p>{aide.crit3}</p>
-                            <p>{aide.crit4}</p>
-                            <p>{aide.crit5}</p>
+                            <Row style={{
+                              display:'flex',
+                              flexDirection:'row',
+                              justifyContent:'space-between', 
+                              marginBottom:'20px',
+                              
+                            }}>
+                              
+                            <img src={aide.logo}  height='80px' />
+
+                            <div style={{justifyContent:'center',
+                            alignItems: 'center',
+                            fontFamily: 'Alata',
+                            fontSize:'30px',
+                            textAlign: 'center'
+                            
+
+
+                            }}>
+                            <p>{aide.name}</p>
+                            <p>{aide.montant} €</p>
+                            </div>
+                            
+                            <p ><StarOutlined style={{
+                            fontSize:'32px',
+                            color:'#F3D849'}}/></p>
+
+                            </Row>
+                            <Row style={{
+                            display:'flex',
+                            flexDirection:'row',
+                            justifyContent:'space-around',
+                            textAlign: 'center',
+                            fontFamily: 'Alata',
+                            fontSize:'18px'}}>
+                              <div>
+                              <p>{aide.niveauAide}</p>
+                              <p>{aide.financeur}</p>
+                              </div>
+                              <div>
+                              <p>{aide.diff}</p>
+                              <p>{aide.delai}</p>
+                              </div>
+                            
+                            
+                            </Row>
+                            <Row style={{
+                            display:'flex',
+                            flexDirection:'row',
+                            justifyContent:'center',
+                                        alignContent:'center',}}>
+                            <Button color="primary" size='lg'
+                                        style={{backgroundColor: '#0A62D0',
+                                                 borderRadius:'10px',
+                                                 width:'309px',
+                                                 height: "67px",
+                                                color: 'white',
+                                                textAlign: 'center',
+                                                fontFamily: 'Alata',
+                                                fontSize:'30px'
+                                            
+                                                }}>
+                            En savoir +
+                
+                            </Button>
+
+                            </Row>
+                            
+                            
+                            
+                            
                            
                     </Card>
                     </Col>
@@ -242,7 +322,7 @@ function compare5( a, b ) {
    
   </Layout>
   
-  compare
+  
  
 </Layout>
 
