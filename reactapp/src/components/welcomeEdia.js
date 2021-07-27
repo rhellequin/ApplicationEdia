@@ -5,7 +5,7 @@ import 'antd/dist/antd.css';
 
 
 import Types from './types'
-import Effectif from './effectif';
+import TestEngine from './testengine';
 import Nav from './nav';
 
 /*
@@ -19,7 +19,7 @@ function WelcomeEdia () {
 
     let moduleQuestion;
     if (1==1) {
-        moduleQuestion = <Effectif/>
+        moduleQuestion = <TestEngine/>
     }
 
 

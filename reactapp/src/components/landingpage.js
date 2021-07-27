@@ -1,10 +1,56 @@
 import React, { useState, useEffect } from 'react';
+
+import {Link, Redirect} from 'react-router-dom';
+import {connect} from 'react-redux';
+
+
 import { Input, Typography, Space } from 'antd';
 import { Button,Col,Row,Container,Card, CardImg, CardText, CardBody,CardTitle, CardSubtitle, Media} from 'reactstrap';
-import{Link} from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-function Landingpage() {
+function Landingpage(props) {
+
+
+const callSearchPage = ()=> {
+
+    console.log('callSearchPage')
+
+
+// Tableau pour les gestion des critères de recherche et la valeur des réponses :
+const tb = 
+[
+    {
+        composant : "<TestEngine/>",
+        question : "Quel est votre projet ?",
+        critere : "aidProjects",
+        valeur: null
+    },
+    {
+        composant : "<Types/>",
+        question : "Quel est votre type ?",
+        critere : "aidTypes",
+        valeur: null
+    }
+
+
+
+
+]
+// Dans le Store :
+    props.updateSearch(tb);
+
+
+// Indice du tableau de recherche :
+
+
+// Compteur de recherche :
+    
+
+
+}
+
+
+
 
     return ( 
     
@@ -24,7 +70,7 @@ function Landingpage() {
         <Col sm="12" md="6" lg="6" style={{ display:'flex', flexDirection:'column',marginTop:'30px',justifyContent:'center', alignItems:'center'}} >
             <h1 style={{textAlign:'left', marginBottom:'10px',fontWeight:'bold' ,fontSize:70, fontFamily:''}}>La bonne aide  au bon moment pour votre PME</h1>
             <h5 style={{marginBottom:'10px'}}>Notre algorithme trouve l'aide qu'il vous faut en fonction de vos enjeux !</h5>
-            <Button color="primary" size='lg' style={{width:'30%', marginTop:'15px'}}>Rechercher</Button>
+            <Button color="primary" size='lg' style={{width:'30%', marginTop:'15px'}} onClick={() => callSearchPage()} >Rechercher</Button>
         </Col>
 
         <Col sm="12" md="6" lg="6" style={{display:'flex', flexDirection:'column',alignItems:'center',marginTop:'10px'}}>
@@ -163,4 +209,22 @@ function Landingpage() {
     </Container>
     )
 }
-export default Landingpage; 
+
+
+
+
+function mapDispatchToProps(dispatch){
+    return {
+      updateSearch: function(tb) {
+        dispatch({type: 'updateSearch', updateSearch: tb})},
+  
+      
+      
+    }
+  }
+  
+  export default connect(
+    null,
+    mapDispatchToProps
+  )(Landingpage)
+  
