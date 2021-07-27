@@ -10,12 +10,20 @@ import SearchPage from './components/searchPage'
 import ResultPage from './components/resultPage'
 import SigninPage from './components/signin'
 import SignupPage from './components/signup'
+import TestEngine from './components/testengine'
+
+
 
 import user from './reducers/user.reducer';
+import searchOptions from  './reducers/searchoptions';
+import numberOfAids from  './reducers/numberofaids';
+import indexOptions from  './reducers/indexoptions';
+
 import {Provider} from 'react-redux';
 import {createStore, combineReducers} from 'redux';
-const store = createStore(combineReducers({user}));
 
+
+const store = createStore(combineReducers({user, searchOptions, numberOfAids, indexOptions}));
 
 
 function App() {
@@ -23,12 +31,16 @@ function App() {
   <Provider store={store}>
      <Router>
        <Switch>
-         <Route exact path="/" component={WelcomeEdia} />
+         <Route exact path="/" component={Landingpage} />
          <Route exact path="/landingpage" component={Landingpage} />
          <Route exact path="/searchPage" component={SearchPage} />
          <Route exact path="/resultPage" component={ResultPage} />
-         <Route exact path="/signin" component={SigninPage} />
-         <Route exact path="/signin" component={SignupPage} />
+
+         <Route exact path="/test" component={TestEngine} />
+          
+
+
+
 
        </Switch>
      </Router>
