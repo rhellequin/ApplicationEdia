@@ -11,19 +11,17 @@ function SigninPage(props) {
     const [signInEmail, setSignInEmail] = useState("");
     const [signInPassword, setSignInPassword] = useState("");
     const [isLogin, setIsLogin] = useState(false)
-    const [listErrorsIn, setListErrorsIn] = useState([]);
     const [listErrorsUp, setListErrorsUp] = useState([]);
 
     var handleSubmitSignIn = async () => {
-        var data = await fetch('/sign-in',{
+        var data = await fetch('users/sign-in',{
           method: 'POST',
           headers: {'Content-Type':'application/x-www-form-urlencoded'},
           body: "email=" + signInEmail + "&password=" + signInPassword
         });  
         var body = await data.json();
-        var user = body.userSaved;
         if(body.result){
-          props.connectFunction(user);
+          props.connectFunction(body.user);
           setIsLogin(true);
         } else {
           setListErrorsUp(body.error)

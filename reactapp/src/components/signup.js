@@ -23,7 +23,7 @@ function SignupPage(props) {
     })
 
     var handleSubmitSignUp = async () => {
-        var requete = await fetch('/sign-up',{
+        var requete = await fetch('users/sign-up',{
           method: 'POST',
           headers: {'Content-Type':'application/x-www-form-urlencoded'},
           body: "user=" + user 
@@ -37,15 +37,8 @@ function SignupPage(props) {
         }
       }
 
-      const handleChange = (name, value) => {
-        let copy={...user}
-        copy[name]=value
-        setUser({copy})
-            console.log(user)
     
-      }
-
-      const handleChange2 = (name, value) => {
+      const handleChange = (name, value) => {
         setUser({...user, [name]: value })
       }
 
@@ -70,7 +63,7 @@ return(
                 <Input name="position" onChange={(e)=> handleChange(e.target.name, e.target.value)} value={user.position} className="Login-input" placeholder="Fonction" />
                 <Input name="company" onChange={(e)=> handleChange(e.target.name, e.target.value)} value={user.company} className="Login-input" placeholder="Entreprise" />
                 <Input name="password" onChange={(e)=> handleChange(e.target.name, e.target.value)} value={user.password} type='password'className="Login-input" placeholder="Password" />
-                <Input name="passwordRepeat"  onChange={(e) =>handleRepeat(e.target.value)} value={user.confirmPassword} className="Login-input" placeholder="Répéter Password" />
+                <Input name="passwordRepeat"  onChange={(e) =>handleRepeat(e.target.value)} value={user.confirmPassword} type='password' className="Login-input" placeholder="Répéter Password" />
                 <p style={{visibility:{visibility} }}>No match</p>
               <Button onClick={()=> handleSubmitSignUp()} style={{width:'80px'}} type="primary">Sign-up</Button>
             </div>

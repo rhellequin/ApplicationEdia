@@ -45,4 +45,20 @@ router.post('/sign-up', async function(req, res, next) {
 });
 
 
+/* POST sign in. */
+router.post('/sign-in', async function(req, res, next) {
+  var user = await UserModel.findOne({ email: req.body.email });
+  var result = false;
+  var error = [];
+  if (req.body.email == '' || req.body.password == ''){
+    error.push('Champ manquant')
+  } else if (bcrypt.compareSync(req.body.password, user.password)){
+    result = true;
+    user = user;
+  } else { 
+    error.push('Mot de passe incorrect');
+  };
+  res.json({result, user, error});
+});
+
 module.exports = router;
