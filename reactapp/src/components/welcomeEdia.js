@@ -1,12 +1,12 @@
 import React, {useState, useEffect } from 'react';
-import {Input, Typography, Space } from 'antd'; 
+import {Input, Typography, Space, Icon, Card, Col, Row } from 'antd'; 
 import { Button, Image } from 'react-bootstrap';
 import 'antd/dist/antd.css';
 
 
-import Effectif from './effectif'
+import Types from './types'
+import Effectif from './effectif';
 import Nav from './nav';
-import { Card, Col, Row } from 'antd';
 
 /*
     Composant pour tester la communication avec le back 

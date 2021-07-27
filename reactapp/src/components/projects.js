@@ -1,7 +1,7 @@
 import React, {useState, useEffect } from 'react';
 import {Input, Typography, Card, Col, Row } from 'antd'; 
 import 'antd/dist/antd.css';
-
+import {connect} from 'react-redux';
 import { Menu, Dropdown, Button, message, Space, Tooltip } from 'antd';
 import { DownOutlined, UserOutlined } from '@ant-design/icons';
 
@@ -11,7 +11,7 @@ import { DownOutlined, UserOutlined } from '@ant-design/icons';
 */
 
 
-function Effectif () {
+function Projects () {
 
     const [types, setTypes] = useState([]);
     const [projects, setProjects] = useState([]);
@@ -85,19 +85,7 @@ function Effectif () {
                 Projets
             </Dropdown.Button>
             </Space>
-            <Card title={project.projectDomain} bordered={true} 
-                    style={{ 
-                        backgroundColor: '#0A62D0', 
-                        marginRight: '15px',
-                        marginLeft: '15px',
-                        marginTop: '15px',
-                        marginBottom: '15px',
-                        textAlign: 'center',
-                        fontFamily: 'Alata',
-                        borderRadius: '10px',
-                        fontSize: '18px',
-                        color: 'white'
-                    }}>
+            <Card title={project.projectDomain} bordered={true} style={{marginTop:"50px" }}>
                 {project.projectName}
             </Card> 
         </Col>
@@ -109,4 +97,4 @@ function Effectif () {
 }
 
 
-export default Effectif;
+export default Projects;
