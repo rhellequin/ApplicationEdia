@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Input, Typography, Space } from 'antd';
 import { Button,Col,Row,Container,Card, CardImg, CardText, CardBody,CardTitle, CardSubtitle, Media} from 'reactstrap';
 import{Link} from "react-router-dom";
+import {connect} from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Landingpage() {
@@ -24,7 +25,7 @@ function Landingpage() {
         <Col sm="12" md="6" lg="6" style={{ display:'flex', flexDirection:'column',marginTop:'30px',justifyContent:'center', alignItems:'center'}} >
             <h1 style={{textAlign:'left', marginBottom:'10px',fontWeight:'bold' ,fontSize:70, fontFamily:''}}>La bonne aide  au bon moment pour votre PME</h1>
             <h5 style={{marginBottom:'10px'}}>Notre algorithme trouve l'aide qu'il vous faut en fonction de vos enjeux !</h5>
-            <Button color="primary" size='lg' style={{width:'30%', marginTop:'15px'}}>Rechercher</Button>
+            <Link to='/searchPage'><Button type='button' color="primary" size='auto' style={{width:'150%', marginTop:'15px'}}>Rechercher</Button></Link>
         </Col>
 
         <Col sm="12" md="6" lg="6" style={{display:'flex', flexDirection:'column',alignItems:'center',marginTop:'10px'}}>
@@ -72,7 +73,7 @@ function Landingpage() {
                 <Media body> 
                     <Media heading style={{fontSize:40,textAlign:'right'}}>EXHAUSTIVES</Media>
                     <Media style={{fontSize:20,textAlign:'right'}} >La puissance du big data</Media>
-                    <Media >Notre algorithme se charge de parcourir l'ensemble des dispositifs d'aides en France et en Europe. Vous êtes assuré(e) de ne manquer aucune aide publique pour développer votre entreprise.</Media>
+                    <Media style={{textAlign:'right'}}>Notre algorithme se charge de parcourir l'ensemble des dispositifs d'aides en France et en Europe. Vous êtes assuré(e) de ne manquer aucune aide publique pour développer votre entreprise.</Media>
                 </Media>
                 <Media object src="../images/grey.png" alt="Icon with a robot" style={{marginLeft:'20px'}} />
             </Media>
@@ -133,7 +134,7 @@ function Landingpage() {
             <Col sm="12" style={{display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center',marginTop:'60px'}}>
             <h1 style={{fontSize:50, fontWeight:'bold'}}>Trouvez l'aide publique qu'il vous faut !</h1>
             <h5 style={{fontSize:20, marginTop:'50px'}}>En moins de 2mn ;)</h5>
-            <Button color="primary" size='lg' style={{width:'30%', marginTop:'60px'}}>Rechercher</Button>
+            <Link to='/searchPage'><Button type='button' color="primary" size='auto' style={{width:'150%', marginTop:'15px'}}>Rechercher</Button></Link>
             </Col>
         </Row>
 
