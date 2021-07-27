@@ -47,6 +47,44 @@ h1{
   
 }
 
+.Login-page{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height:100vh;
+  background-color: #E0E5E9;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  
+
+  }
+
+  .Signin-input {
+    margin: 15px;
+    width: 400px;
+  }
+
+  .Signup-input {
+    margin: 5px !important;
+    width: 400px;
+  }
+
+  .Sign {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 15px;
+    border-radius: 5%;
+    margin: 40px;
+}
+
+.Button {
+  background-color: blue;
+}
+
 .question{
   text-align: center;
   
@@ -60,16 +98,4 @@ h1{
   font-size: 50px;
   letter-spacing: -0.015em;
   color: white;
-}
-
-.puces
-{
-  background-color:'yellow';
-          width:'600px';
-          height:'73px';
-          text-align: 'center';
-          font-family: 'Alata';
-          font-size: '30px';
-          border-radius:'50px';
-          margin-left:'5px'
 }
