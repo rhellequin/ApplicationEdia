@@ -6,51 +6,68 @@ import {connect} from 'react-redux';
 
 import { Input, Typography, Space } from 'antd';
 import { Button,Col,Row,Container,Card, CardImg, CardText, CardBody,CardTitle, CardSubtitle, Media} from 'reactstrap';
+
+
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Landingpage(props) {
 
+    const [onCallSearch, setOnCallSearch] = useState(false)
 
-const callSearchPage = ()=> {
 
-    console.log('callSearchPage')
 
+
+// Action Click sur Recherche :
+    const callSearchPage = ()=> {
 
 // Tableau pour les gestion des critères de recherche et la valeur des réponses :
-const tb = 
-[
-    {
-        composant : "<TestEngine/>",
-        question : "Quel est votre projet ?",
-        critere : "aidProjects",
-        valeur: null
-    },
-    {
-        composant : "<Types/>",
-        question : "Quel est votre type ?",
-        critere : "aidTypes",
-        valeur: null
+    const tb = 
+    [
+        {
+            composant : "<TestEngine/>",
+            question : "Quel est votre projet ?",
+            critere : "aidProjects",
+            valeur: null
+        },
+        {
+            composant : "<Types/>",
+            question : "Quel est votre type ?",
+            critere : "aidTypes",
+            valeur: null
+        }
+
+
+        //  à suivre ...
+
+]
+// Dans le Store :
+    props.updateSearchOptions(tb);
+// Indice du tableau de recherche :
+    props.updateIndexOptions(0);
+// Compteur de recherche :
+    props.updateNumberOfAids(0);
+// Call Search Page :
+    setOnCallSearch(true);
+}
+
+
+
+
+
+
+// Call de la page de recherche :
+
+    if (onCallSearch) {
+        return <Redirect to='searchPage' />
     }
 
 
 
 
-]
-// Dans le Store :
-    props.updateSearch(tb);
 
 
-// Indice du tableau de recherche :
-
-
-// Compteur de recherche :
-    
-
-
-}
-
-
-
+// Landing Page :    
 
     return ( 
     
@@ -118,7 +135,7 @@ const tb =
                 <Media body> 
                     <Media heading style={{fontSize:40,textAlign:'right'}}>EXHAUSTIVES</Media>
                     <Media style={{fontSize:20,textAlign:'right'}} >La puissance du big data</Media>
-                    <Media >Notre algorithme se charge de parcourir l'ensemble des dispositifs d'aides en France et en Europe. Vous êtes assuré(e) de ne manquer aucune aide publique pour développer votre entreprise.</Media>
+                    <Media style={{textAlign:'right'}}>Notre algorithme se charge de parcourir l'ensemble des dispositifs d'aides en France et en Europe. Vous êtes assuré(e) de ne manquer aucune aide publique pour développer votre entreprise.</Media>
                 </Media>
                 <Media object src="../images/grey.png" alt="Icon with a robot" style={{marginLeft:'20px'}} />
             </Media>
@@ -179,7 +196,7 @@ const tb =
             <Col sm="12" style={{display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center',marginTop:'60px'}}>
             <h1 style={{fontSize:50, fontWeight:'bold'}}>Trouvez l'aide publique qu'il vous faut !</h1>
             <h5 style={{fontSize:20, marginTop:'50px'}}>En moins de 2mn ;)</h5>
-            <Button color="primary" size='lg' style={{width:'30%', marginTop:'60px'}}>Rechercher</Button>
+            <Link to='/searchPage'><Button type='button' color="primary" size='auto' style={{width:'150%', marginTop:'15px'}}>Rechercher</Button></Link>
             </Col>
         </Row>
 
@@ -215,8 +232,14 @@ const tb =
 
 function mapDispatchToProps(dispatch){
     return {
-      updateSearch: function(tb) {
-        dispatch({type: 'updateSearch', updateSearch: tb})},
+      updateSearchOptions: function(tb) {
+        dispatch({type: 'updateSearchOptions', searchOptions: tb})},
+        
+      updateIndexOptions: function(i) {
+        dispatch({type: 'updateIndexOptions', indexOptions: i})},
+        
+      updateNumberOfAids: function(n) {
+        dispatch({type: 'updateNumberOfAids', numberOfAids: n})}
   
       
       
