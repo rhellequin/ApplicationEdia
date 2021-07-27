@@ -46,7 +46,7 @@ function Landingpage() {
 <div>
 <Media>
   <Media left top href="#">
-    <Media object data-src="../images/iconeintelligentes.png" alt="Icon with a target" />
+    <Media object src="../images/iconeintelligentes.png" alt="Icon with a target" />
   </Media>
   <Media body>
     <Media heading>
@@ -58,11 +58,11 @@ function Landingpage() {
 </div>
 <Media className="mt-1">
   <Media left middle href="#">
-    <Media object data-src="../images/iconeexhaustives.png" alt="Icon with a robot" />
+    <Media object src="../images/iconeexhaustives.png" alt="Icon with a robot" />
   </Media>
   <Media body> 
     <Media heading>
-      EXHAUSTIVES
+    EXHAUSTIVES
     </Media>
     Notre algorithme se charge de parcourir l'ensemble des dispositifs d'aides en France et en Europe. Vous êtes assuré(e) de ne manquer aucune aide publique pour développer votre entreprise.
   </Media>
@@ -70,7 +70,7 @@ function Landingpage() {
 <div>
 <Media className="mt-1">
   <Media left bottom href="#">
-    <Media object data-src="../images/iconeexhaustives.png" alt="Icon with a paperplane" />
+    <Media object src="../images/iconeautomatisee.png" alt="Icon with a paperplane" />
   </Media>
   <Media body>
     <Media heading>
