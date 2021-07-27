@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {Input, Typography, Space, Button, Icon, Card, Col, Row } from 'antd'; 
 import 'antd/dist/antd.css';
 
+import SearchAids from './searchaids'
 
 /*
     Composant pour tester la communication avec le back 
@@ -13,6 +14,8 @@ const {Meta} = Card;
 function Types (props) {
 
     const [aidTypes, setAidTypes] = useState([]);
+    const [numberOfAids, setNumberOfAids] = useState(0);
+
     const { Search } = Input;
     const { Text } = Typography;
 
@@ -28,11 +31,28 @@ function Types (props) {
                 console.log("aidtypes", aidTypes)
             }
         }
-    
+        setNumberOfAids(props.numberOfAids);
         findTypes()    
       },[])
 
+      const runSearch = async (i) => {
+        
 
+
+        // Appel recherche :
+            let parameters = [...props.searchOptions]
+            parameters[props.indexOptions].valeur = aidTypes[i]._id
+            const aids = await SearchAids(parameters);
+        // Mise à jour du critère dans le store :
+            props.updateSearchOptions(props.indexOptions,aidTypes[i]._id);
+        // Store des aids trouvées :
+            props.updateAids(aids);
+        // Store du compteur d'aides :         
+            const n = aids.length;
+            props.updateNumberOfAids(n);
+            setNumberOfAids(n);
+        }
+    
    
 
 
@@ -41,13 +61,15 @@ function Types (props) {
         
 
 <div className="site-card-wrapper">
+    <h1 class='question' style={{color:'#ff33e0'}}>Déjà {numberOfAids} aides!</h1> 
+               
     <Row gutter={16}>
 
     {aidTypes.map((type,i) => (
                 
                     <Col span={8} key={i}>
                     <Card bordered={false} 
-                      
+                      onClick={() => runSearch(i)}
                       style={{ 
                         backgroundColor: '#0A62D0', 
                         marginRight: '15px',

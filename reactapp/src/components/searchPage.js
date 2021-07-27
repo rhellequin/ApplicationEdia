@@ -3,6 +3,8 @@ import {Input, Typography, Space, Layout, Text, Button, Col, Row  } from 'antd';
 import Nav from './nav';
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 
+// composant de test :
+import TestEngine from './testengine';
 
 // Import des composants pour les critères de recherche :
 import Types from './types';
@@ -14,24 +16,23 @@ import NumberOfWorker from './numberofworker';
 import CompanyAge from './companyage'; 
 
 
-
 import {connect} from 'react-redux';
 import 'antd/dist/antd.css';
 
 
 function SearchPage (props) {
 
-  
     const { Header, Footer, Sider, Content } = Layout;
-
     const [indexOptions, setIndexOptions] = useState(0);
-    const [numberOfAids, setNumberOfAids] = useState(0);
         
     useEffect(() => {
     
         setIndexOptions(0);
          
       },[])   
+
+
+console.log('SearchPage : ',props.searchOptions);
 
 
 

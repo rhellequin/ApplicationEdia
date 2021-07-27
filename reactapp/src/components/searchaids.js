@@ -1,4 +1,6 @@
 
+// Appel de la recherche : POST vers le backend :
+//==============================================
 
     async function  SearchAids   (tb) {
 

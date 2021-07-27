@@ -28,10 +28,7 @@ function TestEngine (props) {
                 setProjects(body.projects);
             }
         }
-
         setNumberOfAids(props.numberOfAids);
-
-
         FindProjects();
          
       },[])   
@@ -39,42 +36,27 @@ function TestEngine (props) {
 
     const { Text, Link } = Typography;
 
- 
-
-
-
     const runSearch = async (elem) => {
         
-
     // Appel recherche :
-
         let parameters = [...props.searchOptions]
         parameters[props.indexOptions].valeur = projects[elem.key]._id
         const aids = await SearchAids(parameters);
-
-
     // Mise à jour du critère dans le store :
         props.updateSearchOptions(props.indexOptions,projects[elem.key]._id);
-
-
-
-// Store des aids trouvées :
-            props.updateAids(aids);
-// Store du compteur d'aides :         
-            const n = aids.length;
-            props.updateNumberOfAids(n);
-            setNumberOfAids(n);
-        }
-
-
+    // Store des aids trouvées :
+        props.updateAids(aids);
+    // Store du compteur d'aides :         
+        const n = aids.length;
+        props.updateNumberOfAids(n);
+        setNumberOfAids(n);
+    }
 
 
 
     const tb = projects.map((projet,i) => (
                 <Menu.Item key={i} icon={<UserOutlined />}>{projet.projectName}</Menu.Item>
     ));
-
-
 
     const menu = (
         <Menu onClick={runSearch} >
@@ -83,33 +65,17 @@ function TestEngine (props) {
       );
 
 
-    console.log('searchOptions :', props.searchOptions)
-
-
     return (
 
     <Row>
+        <h1 class='question' style={{color:'#ff33e0'}}>Déjà {numberOfAids} aides!</h1> 
         <Col span={8} offset="4">
             <Space wrap>
             <Dropdown.Button  overlay={menu} style={{marginLeft:"0px"}} >
                 Projets
             </Dropdown.Button>
             </Space>
-            <Card title="Compteur Aids " bordered={true} 
-                    style={{ 
-                        backgroundColor: '#0A62D0', 
-                        marginRight: '15px',
-                        marginLeft: '15px',
-                        marginTop: '15px',
-                        marginBottom: '15px',
-                        textAlign: 'center',
-                        fontFamily: 'Alata',
-                        borderRadius: '10px',
-                        fontSize: '18px',
-                        color: 'white'
-                    }}>
-                {numberOfAids}
-            </Card> 
+            
         </Col>
     </Row>
     )
