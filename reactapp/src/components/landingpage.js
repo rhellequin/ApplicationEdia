@@ -7,6 +7,18 @@ import {connect} from 'react-redux';
 import { Input, Typography, Space } from 'antd';
 import { Button,Col,Row,Container,Card, CardImg, CardText, CardBody,CardTitle, CardSubtitle, Media} from 'reactstrap';
 
+// composant de test :
+import TestEngine from './testengine';
+
+// Import des composants pour les critères de recherche :
+import Types from './types';
+import Domains from './domains';
+import Projects from './projects';
+import ActivitySector from './activitysector';
+import Territories from './territories';
+import NumberOfWorker from './numberofworker';
+import CompanyAge from './companyage'; 
+
 
 
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -25,24 +37,52 @@ function Landingpage(props) {
     const tb = 
     [
         {
-            composant : "<TestEngine/>",
-            question : "Quel est votre projet ?",
+            composant : <Types/>,
+            question : "Quel type d'aide recherchez vous ?",
+            critere : "aidTypes",
+            valeur: null
+        },
+        {
+            composant : <Domains/>,
+            question : "Quel domaine d'aide recherchez vous ?",
+            critere : "aidDomains",
+            valeur: null
+        },
+        {
+            composant : <TestEngine/>, // <Projects/>
+            question : "Quels enjeux souhaitez-vous poursuivre ?",
             critere : "aidProjects",
             valeur: null
         },
         {
-            composant : "<Types/>",
-            question : "Quel est votre type ?",
-            critere : "aidTypes",
+            composant : <ActivitySector/>,  
+            question : "Quel secteur d'activité ?",
+            critere : "aidActivitySector",
+            valeur: null
+        },
+        {
+            composant : <Territories/>,  
+            question : "Quel est votre département ?",
+            critere : "aidTerritories",
+            valeur: null
+        },
+        {
+            composant : <NumberOfWorker/>,  
+            question : "Quel est l'effectif de votre entreprise ?",
+            critere : "aidNumberOfWorker",
+            valeur: null
+        },
+        {
+            composant : <CompanyAge/>,  
+            question : "Quel est l'age de votre entreprise ?",
+            critere : "aidCompanyAge",
             valeur: null
         }
-
-
-        //  à suivre ...
-
 ]
+
+
 // Dans le Store :
-    props.updateSearchOptions(tb);
+    props.initSearchOptions(tb);
 // Indice du tableau de recherche :
     props.updateIndexOptions(0);
 // Compteur de recherche :
@@ -232,8 +272,8 @@ function Landingpage(props) {
 
 function mapDispatchToProps(dispatch){
     return {
-      updateSearchOptions: function(tb) {
-        dispatch({type: 'updateSearchOptions', searchOptions: tb})},
+      initSearchOptions: function(tb) {
+        dispatch({type: 'initSearchOptions', searchOptions: tb})},
         
       updateIndexOptions: function(i) {
         dispatch({type: 'updateIndexOptions', indexOptions: i})},

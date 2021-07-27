@@ -89,21 +89,10 @@ router.get('/projects', async function(req, res, next) {
 // POST avec les paramètres pour la recherche :
 router.post('/search', async function(req, res, next){
 
-  //const parameters = req.body.parameters;
+  const parameters = JSON.parse(req.body.parameters);
   
-
-  let parameters = [
-    {
-      param : 'aidFunders',
-      value : '60fc1b0fa82b6b286c08b2b2'
-    },
-    {
-      param : 'aidThirdParties',
-      value : '60fc204cb139a23b903dab4c'
-    }
-  ]
-
-
+  console.log('parameters :', parameters)
+ 
   
 
 
@@ -115,9 +104,9 @@ router.post('/search', async function(req, res, next){
 
   for (let i=0;i<parameters.length;i++) {
 
-    if (parameters[i].value != null) {  
+    if (parameters[i].valeur != null) {  
 
-      filter[parameters[i].param] = parameters[i].value
+      filter[parameters[i].critere] = parameters[i].valeur
 
   
 
@@ -131,12 +120,12 @@ console.log('filter :', filter);
 
 
 // populate sur l'ensemble des collections :
-  const aid =  await aidModel.find(filter);
-          
+  const aids =  await aidModel.find(filter);
+  
+  console.log(aids.length, ' aids found')
 
-
-  if (aid) {
-  res.json({result: true, aid: aid})
+  if (aids) {
+  res.json({result: true, aids: aids})
   } else {
   console.log ('\x1b[31m%s\x1b[0m','=============== > POST Search Nothing Found')
   res.json({result: false})

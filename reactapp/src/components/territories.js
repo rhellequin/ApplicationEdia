@@ -8,7 +8,7 @@ import { Menu, Dropdown, Button, message, Space, Tooltip } from 'antd';
 import { DownOutlined, UserOutlined } from '@ant-design/icons';
 
 
-function Projects (props) {
+function Territories (props) {
 
      
     const [projects, setProjects] = useState([]);
@@ -84,8 +84,6 @@ function Projects (props) {
       );
 
 
-    console.log('searchOptions :', props.searchOptions)
-
 
     return (
 
@@ -146,4 +144,4 @@ function mapDispatchToProps(dispatch){
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Projects)
+)(Territories)
