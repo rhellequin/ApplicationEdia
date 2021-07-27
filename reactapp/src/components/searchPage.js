@@ -29,7 +29,7 @@ function SearchPage (props) {
         
     useEffect(() => {
     
-        setIndexOptions(props.indexOptions)
+        setIndexOptions(0);
          
       },[])   
 

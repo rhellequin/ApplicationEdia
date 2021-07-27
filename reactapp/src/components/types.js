@@ -1,4 +1,5 @@
 import React, {useState, useEffect } from 'react';
+import {connect} from 'react-redux';
 import {Input, Typography, Space, Button, Icon, Card, Col, Row } from 'antd'; 
 import 'antd/dist/antd.css';
 
@@ -9,7 +10,7 @@ import 'antd/dist/antd.css';
 */
 const {Meta} = Card;
 
-function Types () {
+function Types (props) {
 
     const [aidTypes, setAidTypes] = useState([]);
     const { Search } = Input;
@@ -45,7 +46,9 @@ function Types () {
     {aidTypes.map((type,i) => (
                 
                     <Col span={8} key={i}>
-                    <Card bordered={false} style={{ 
+                    <Card bordered={false} 
+                      
+                      style={{ 
                         backgroundColor: '#0A62D0', 
                         marginRight: '15px',
                         marginLeft: '15px',
@@ -71,20 +74,34 @@ function Types () {
 
 
 }
-export default Types;
 
-   {/* <Col span={8}>
-        <Card title="Card title" bordered={false}>
-          Card content
-        </Card>
-      </Col>
-      <Col span={8}>
-        <Card title="Card title" bordered={false}>
-          Card content
-        </Card>
-      </Col>
-      <Col span={8}>
-        <Card title="Card title" bordered={false}>
-          Card content
-        </Card>
-      </Col> */}
+
+
+function mapStateToProps(state) {
+  return { searchOptions: state.searchOptions, indexOptions: state.indexOptions, numberOfAids: state.numberOfAids  }
+ }
+
+function mapDispatchToProps(dispatch){
+  return {
+    updateSearchOptions: function(i,val) {
+      dispatch({type: 'updateSearchOptions', index: i, valeur: val})},
+      
+    updateIndexOptions: function(i) {
+      dispatch({type: 'updateIndexOptions', indexOptions: i})},
+      
+    updateNumberOfAids: function(n) {
+      dispatch({type: 'updateNumberOfAids', numberOfAids: n})},
+      
+      updateAids: function(aids) {
+        dispatch({type: 'updateAids', aids: aids})}
+
+    
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Types)
+
+

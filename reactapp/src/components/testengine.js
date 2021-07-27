@@ -1,18 +1,13 @@
 import React, {useState, useEffect } from 'react';
 import {connect} from 'react-redux';
 
+import SearchAids from './searchaids'
+
 
 import 'antd/dist/antd.css';
 import {Input, Typography, Card, Col, Row } from 'antd'; 
 import { Menu, Dropdown, Button, message, Space, Tooltip } from 'antd';
 import { DownOutlined, UserOutlined } from '@ant-design/icons';
-
-
-
-/*
-    Composant pour tester la communication avec le back 
-    ===================================================
-*/
 
 
 function TestEngine (props) {
@@ -44,37 +39,34 @@ function TestEngine (props) {
 
     const { Text, Link } = Typography;
 
+ 
 
 
 
-    const handleMenuClick = async (elem) => {
+    const runSearch = async (elem) => {
         
-    // Store la valeur saisie pour le critère :
+
+    // Appel recherche :
+
+        let parameters = [...props.searchOptions]
+        parameters[props.indexOptions].valeur = projects[elem.key]._id
+        const aids = await SearchAids(parameters);
+
+
+    // Mise à jour du critère dans le store :
         props.updateSearchOptions(props.indexOptions,projects[elem.key]._id);
 
 
-    // POST de la recherche :    
-        const param = JSON.stringify(props.searchOptions)
-        const data = await fetch('/search', {
-            method: 'POST',
-            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-            body: `parameters=${param}`
-            })
-        const body = await data.json();
-        if(body.result){
 
 // Store des aids trouvées :
-            props.updateAids(body.aids);
+            props.updateAids(aids);
 // Store du compteur d'aides :         
-            const n = body.aids.length;
+            const n = aids.length;
             props.updateNumberOfAids(n);
             setNumberOfAids(n);
-
-            
-            console.log("Aids : ", body.aids)
         }
 
-    }
+
 
 
 
@@ -85,7 +77,7 @@ function TestEngine (props) {
 
 
     const menu = (
-        <Menu onClick={handleMenuClick}>
+        <Menu onClick={runSearch} >
           {tb}
         </Menu>
       );
