@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 
+
 function Nav () {
 
     return ( 
@@ -14,7 +15,7 @@ function Nav () {
                 <Button outline color="primary" size='lg' style={{margin:'20px'}}>Se connecter</Button>
                 <Button color="primary" style={{margin:'20px'}}>S'inscrire</Button>
             </div>
-        </div>
+            </div>
     </div>
 
 

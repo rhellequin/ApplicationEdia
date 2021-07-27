@@ -43,7 +43,7 @@ function SearchPage () {
       </Row>
    
    <Row>
-   <Col xs={{ span: 1, offset: 1 }} md={{ span: 1, offset: 10 }}>
+   {/* <Col xs={{ span: 1, offset: 1 }} md={{ span: 1, offset: 10 }}>
      <Button color="primary" size='lg'
                                         style={{backgroundColor: '#0A62D0',
                                                 height: '100px',
@@ -57,10 +57,10 @@ function SearchPage () {
                 <LeftOutlined  />
                 
         </Button>
-        </Col>    
+        </Col>     */}
 
                 
-    <Col xs={{ span: 1, offset: 1 }} md={{ span: 6, offset: 2 }}>           
+    <Col xs={{ span: 1, offset: 10 }} md={{ span: 6, offset: 10 }}>           
                 <Button color="primary" size='md'
                                         style={{backgroundColor: '#0A62D0',
                                                  borderRadius:'10px',
@@ -68,11 +68,12 @@ function SearchPage () {
                                                 color: 'white',
                                                 height: "60px"
                                                 }}>
+                Continuer
                 <RightOutlined />
                           
         </Button>
         </Col>  
-        <Col xs={{ span: 5, offset: 1 }} md={{ span: 1 }}>
+        <Col xs={{ span: 5, offset: 3 }} md={{ span: 5, offset: 3}}>
       <Button color="primary" size='lg'
                                         style={{backgroundColor: '#0A62D0',
                                                  borderRadius:'10px',
