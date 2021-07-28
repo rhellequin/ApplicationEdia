@@ -1,5 +1,5 @@
 .Bouton{
-    position: absolute;
+    
     top: 30%;
     left: 50%;
     transform: translate (-50%, -50%);
@@ -9,5 +9,7 @@
     border-radius: 5px;
     border: none;
     cursor: pointer;
+    width: 309px;
+    height: 67px;
 
 }

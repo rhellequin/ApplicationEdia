@@ -11,8 +11,7 @@ import { AppstoreOutlined,
   HomeOutlined } from '@ant-design/icons';
 import 'antd/dist/antd.css';
 import Avatar from 'antd/lib/avatar/avatar';
-import { attachTypeApi } from 'antd/lib/message';
-
+import Bouton from './Bouton';
 
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -321,7 +320,7 @@ function compare5( a, b ) {
                             flexDirection:'row',
                             justifyContent:'center',
                                         alignContent:'center',}}>
-                            <Button color="primary" size='lg' onClick={showModal}
+                            {/* <Button color="primary" size='lg' onClick={showModal}
                                         style={{backgroundColor: '#0A62D0',
                                                  borderRadius:'10px',
                                                  width:'309px',
@@ -334,13 +333,13 @@ function compare5( a, b ) {
                                                 }}>
                             En savoir +
                 
-                            </Button>
+                            </Button> */}
                             {/* <Modal title={aide.name} visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
         <p>{aide.financeur}</p>
         <p>Some contents...</p>
         <p>Some contents...</p>
       </Modal> */}
-
+<Bouton />
                             </Row>
                             
                             

@@ -24,7 +24,7 @@ cache = () => {
     render() {
         return (
             <div>
-                <button onClick={this.montre} className='Bouton'>Clic-moi</button>
+                <button onClick={this.montre} className='Bouton'>En savoir +</button>
                 <Modal
                 visible={this.state.visible}
                 cache={this.cache}

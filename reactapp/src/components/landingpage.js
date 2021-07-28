@@ -230,7 +230,7 @@ function Landingpage(props) {
         <Row style={{marginTop:'50px'}}>
             <Col sm="12" style={{display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center',marginTop:'60px'}}>
             <h1 style={{fontSize:50, fontWeight:'bold'}}>Trouvez l'aide publique qu'il vous faut !</h1>
-            <h5 style={{fontSize:20, marginTop:'50px'}}>En moins de 2mn ;)</h5>
+            <h5 style={{fontSize:20, marginTop:'50px'}}>En moins de 2mn ;</h5>
             <Link to='/searchPage'><Button type='button' color="primary" size='auto' style={{width:'150%', marginTop:'15px'}}>Rechercher</Button></Link>
             </Col>
         </Row>
