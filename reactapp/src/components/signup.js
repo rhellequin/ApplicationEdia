@@ -67,12 +67,12 @@ return(
 <div className="Login-page" >
             {/* SIGN-UP*/}
             <div className="Sign">
-                <Input name="firstName" onChange={(e) => handleChange(e.target.name, e.target.value)} value={user.firstName} className="Login-input" placeholder='Prénom' />
-                <Input name="lastName" onChange={(e)=> handleChange(e.target.name, e.target.value)} value={user.lastName} className="Login-input" placeholder='Nom' />
-                <Input name="email" onChange={(e)=> handleChange(e.target.name, e.target.value)} value={user.email} className="Login-input" placeholder="email" />
-                <Input name="phone" onChange={(e)=> handleChange(e.target.name, e.target.value)} value={user.phone} className="Login-input" placeholder="Téléphone" />
-                <Input name="password" onChange={(e)=> handleChange(e.target.name, e.target.value)} value={user.password} type='password'className="Login-input" placeholder="Password" />
-                <Input name="password2"  onChange={(e) => handleChange(e.target.name, e.target.value)} value={user.password2} type='password' className="Login-input" placeholder="Répéter Password" />
+                <Input name="firstName" onChange={(e) => handleChange(e.target.name, e.target.value)} value={user.firstName} className="Signup-input" placeholder='Prénom' />
+                <Input name="lastName" onChange={(e)=> handleChange(e.target.name, e.target.value)} value={user.lastName} className="Signup-input" placeholder='Nom' />
+                <Input name="email" onChange={(e)=> handleChange(e.target.name, e.target.value)} value={user.email} className="Signup-input" placeholder="email" />
+                <Input name="phone" onChange={(e)=> handleChange(e.target.name, e.target.value)} value={user.phone} className="Signup-input" placeholder="Téléphone" />
+                <Input name="password" onChange={(e)=> handleChange(e.target.name, e.target.value)} value={user.password} type='password'className="Signup-input" placeholder="Mot de passe" />
+                <Input name="password2"  onChange={(e) => handleChange(e.target.name, e.target.value)} value={user.password2} type='password' className="Signup-input" placeholder="Répéter mot de passe" />
                 {visibility?
                 <p>No match</p>:
                 <p></p>
