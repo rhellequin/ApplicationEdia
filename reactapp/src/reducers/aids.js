@@ -1,5 +1,5 @@
 export default function(aids = [], action){
-
+ 
     if(action.type == 'initAids') {
         return [];
     } else if(action.type == 'updateAids') {
