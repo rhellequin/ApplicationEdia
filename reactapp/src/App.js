@@ -18,12 +18,13 @@ import user from './reducers/user.reducer';
 import searchOptions from  './reducers/searchoptions';
 import numberOfAids from  './reducers/numberofaids';
 import indexOptions from  './reducers/indexoptions';
+import aids from './reducers/aids';
 
 import {Provider} from 'react-redux';
 import {createStore, combineReducers} from 'redux';
 
 
-const store = createStore(combineReducers({user, searchOptions, numberOfAids, indexOptions}));
+const store = createStore(combineReducers({user, searchOptions, numberOfAids, indexOptions, aids}));
 
 
 function App() {

@@ -33,10 +33,6 @@ function SearchPage (props) {
       },[])   
 
 
-console.log('SearchPage listComposant: ',props.searchOptions);
-
-
-
     // Appel composant suivant pour autre cirtère :
     const callNext= () => {
       props.updateIndexOptions(indexOptions+1);
