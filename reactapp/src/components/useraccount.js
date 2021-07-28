@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Input, Typography, Space,Menu } from 'antd';
-import {}from '@ant-design/icons'
-import { Button,Col,Row,Container,Card, CardImg, CardText, CardBody,CardTitle, CardSubtitle, Media} from 'reactstrap';
-import{Link,Redirect} from "react-router-dom";
-import {connect} from 'react-redux';
+import { Input, Typography, Space, Menu, Form } from 'antd';
+import { } from '@ant-design/icons'
+import { Button, Col, Row, Container, Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Media } from 'reactstrap';
+import { Link, Redirect } from "react-router-dom";
+import { connect } from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Layout from 'antd/lib/layout/layout';
 import Nav from './nav';
@@ -21,7 +21,7 @@ import { propTypes } from 'react-bootstrap/esm/Image';
 
 
 
-function UserAccount (props) {
+function UserAccount(props) {
 
     const [isLogin, setIsLogin]=useState(false)
 
@@ -55,6 +55,47 @@ return (
         <h3 style={{textAlign:'left'}} >Dirigeant de l'entreprise</h3>
         <h5 style={{textAlign:'left'}}>Duclos</h5>
         </Col>
+
+        <Row style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around' }}>
+                <Row>
+                    <h1>Mes informations personnelles</h1>
+                </Row>
+                <Col style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
+
+                    <Form>
+                        <Row>
+                            <Form.Item style={{ width: '345px' }} label="">
+                                <Input placeholder="Prénom" />
+                            </Form.Item>
+                            <Form.Item style={{ width: '345px' }} label="">
+                                <Input placeholder="Nom" />
+                            </Form.Item>
+                        </Row>
+                        <Row>
+                            <Form.Item style={{ width: '345px' }} label="">
+                                <Input placeholder="Téléphone" />
+                            </Form.Item>
+                            <Form.Item style={{ width: '345px' }} label="">
+                                <Input placeholder="Mail" />
+                            </Form.Item>
+                        </Row>
+                        <Row>
+                            <Form.Item style={{ width: '345px' }} label="">
+                                <Input placeholder="Entreprise" />
+                            </Form.Item>
+                            <Form.Item style={{ width: '345px' }} label="">
+                                <Input placeholder="Siret" />
+                            </Form.Item>
+                            <Form.Item style={{ width: '345px' }} label="">
+                                <Input placeholder="Fonction" />
+                            </Form.Item>
+                        </Row>
+                        <Form.Item>
+                            <Button style={{ width: '100px', background: "#0A62D0", }} type="primary">Enregister</Button>
+                        </Form.Item>
+                    </Form>
+                </Col>
+            </Row>
     </Row>
 </Container>
 )
