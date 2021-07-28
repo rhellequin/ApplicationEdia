@@ -25,10 +25,14 @@ function UserAccount (props) {
 
     const [isLogin, setIsLogin]=useState(false)
 
-if(props.token!={})
+    var detectLogin = () => {
+        setIsLogin(true);
+      }
+
+if(isLogin==false)
 return (
 <Container>
-    <Nav handleClickParent={souvenirParent}/>
+    <Nav handleClickParent={detectLogin}/>
     <Row  style={{width:'100%',display:'flex',alignItems:'center'}}>
         <Col style={{display:'flex', alignItems:'center', justifyContent:'space-between'}}>
             
@@ -54,7 +58,7 @@ return (
     </Row>
 </Container>
 )
-else if( props.token={}){
+else if( isLogin== true){
     return(<Redirect to='/landingpage' />)
 }
 
