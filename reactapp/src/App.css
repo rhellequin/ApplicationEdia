@@ -103,20 +103,5 @@ h1{
   color: white;
 }
 
-  .ant-menu-item-active, .ant-menu-item-selected  {
-    background-color: transparent !important;
-    color:'white'
-  }
 
-.ant-menu-item {
-align-items: center;
-justify-content: center;
-width:100%;
-color: white;
-display:flex;
-flex-direction:row;
-}
 
-.ant-menu-item-icon:active{
-  color:'white' !important
-}
