@@ -18,8 +18,7 @@ import {
   import '../components/useraccount.css'
 import { propTypes } from 'react-bootstrap/esm/Image';
 
-
-
+var souvenirParent 
 
 function UserAccount(props) {
 
