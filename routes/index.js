@@ -92,21 +92,23 @@ router.post('/search', async function(req, res, next){
   const parameters = JSON.parse(req.body.parameters);
   
   let filter = {};
-
+// construction du filter :
   for (let i=0;i<parameters.length;i++) {
-
     if (parameters[i].valeur != null) {  
-
       filter[parameters[i].critere] = parameters[i].valeur
-
     }
   }
 
-
-console.log('filter :', filter);
-
-
-  const aids =  await aidModel.find(filter);
+//Find avec Populate sur les infos détails :
+  const aids =  await aidModel.find(filter)
+                              .populate('aidProfiles')
+                              .populate('aidProjects')
+                              .populate('aidLevel')
+                              .populate('aidTypes')
+                              .populate('aidTerritories')
+                              .populate('aidThirdParties')
+                              .populate('aidFunders')
+                              .exec();
   if (aids) {
     console.log ('\x1b[34m%s\x1b[0m','=============== > POST Search Aids Found : ', aids.length )
   res.json({result: true, aids: aids})
@@ -114,7 +116,6 @@ console.log('filter :', filter);
     console.log ('\x1b[31m%s\x1b[0m','=============== > POST Search Nothing Found')
   res.json({result: false})
   }
-
 })
 
 

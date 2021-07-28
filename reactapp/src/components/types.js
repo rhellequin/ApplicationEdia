@@ -28,7 +28,6 @@ function Types (props) {
             const body = await data.json()
             if (body.result) {
                 setAidTypes(body.types);
-                console.log("aidtypes", aidTypes)
             }
         }
         setNumberOfAids(props.numberOfAids);
