@@ -27,9 +27,7 @@ function SearchPage (props) {
         
     useEffect(() => {
     
-        //setIndexOptions(0);
-        //props.updateIndexOptions(0);
-         
+
       },[])   
 
 
@@ -66,6 +64,23 @@ function SearchPage (props) {
       <div>
         <Layout>
           <Nav/>
+        
+          <Col md={{ span: 8, offset: 14 }}>
+            <div style={{
+              backgroundColor:'#E0E5E9',
+              width:'600px',
+              height:'73px',
+              textAlign: 'center',
+              fontFamily: 'Alata',
+              fontSize: '30px',
+              borderRadius:'10px',
+              marginLeft:'5px'
+              }}>
+              534 aides disponibles
+            </div>
+          </Col>
+
+
           <Row>
             <Content
               style={{ 

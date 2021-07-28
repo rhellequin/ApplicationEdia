@@ -30,6 +30,8 @@ function Landingpage(props) {
 
 
     useEffect(() => {
+
+        
         const tb = [
         {
             composant : <Types/>,
@@ -44,8 +46,8 @@ function Landingpage(props) {
             valeur: null
         },
         {
-            composant : <TestEngine/>, // <Projects/>
-            question : "TestEngine : Quels enjeux souhaitez-vous poursuivre ?",
+            composant : <Projects/>, 
+            question : "Quels enjeux souhaitez-vous poursuivre ?",
             critere : "aidProjects",
             valeur: null
         },
@@ -74,6 +76,8 @@ function Landingpage(props) {
             valeur: null
         }]
     
+    
+        
         // Dans le Store :
         props.initSearchOptions(tb);
         // Indice du tableau de recherche :
@@ -81,6 +85,9 @@ function Landingpage(props) {
         // Compteur de recherche :
         props.updateNumberOfAids(0);
         
+
+
+
       }, [])
 
 
