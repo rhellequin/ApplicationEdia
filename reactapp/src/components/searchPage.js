@@ -27,12 +27,13 @@ function SearchPage (props) {
         
     useEffect(() => {
     
-        setIndexOptions(0);
+        //setIndexOptions(0);
+        //props.updateIndexOptions(0);
          
       },[])   
 
 
-console.log('SearchPage : ',props.searchOptions);
+console.log('SearchPage listComposant: ',props.searchOptions);
 
 
 
