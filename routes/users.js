@@ -11,6 +11,11 @@ router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
 
+/*router.post('/update', async function(req, res, next) { 
+}
+ update informations utilisateur*/
+
+
 /* POST sign up. */
 router.post('/sign-up', async function(req, res, next) { 
   var user= JSON.parse(req.body.user)
