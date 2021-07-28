@@ -12,6 +12,7 @@ import { AppstoreOutlined,
 import 'antd/dist/antd.css';
 import Avatar from 'antd/lib/avatar/avatar';
 import Bouton from './Bouton';
+import {connect} from 'react-redux';
 
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -19,7 +20,7 @@ const { Header, Content, Footer, Sider } = Layout;
 
 
 
-function ResultPage () {
+function ResultPage (props) {
 
   const [ResultList, setResultList] = useState([])
 
@@ -251,6 +252,7 @@ function compare5( a, b ) {
                   Délai d'obtention
           </Menu.Item>
           
+          
         </Menu>
      
     
@@ -320,25 +322,7 @@ function compare5( a, b ) {
                             flexDirection:'row',
                             justifyContent:'center',
                                         alignContent:'center',}}>
-                            {/* <Button color="primary" size='lg' onClick={showModal}
-                                        style={{backgroundColor: '#0A62D0',
-                                                 borderRadius:'10px',
-                                                 width:'309px',
-                                                 height: "67px",
-                                                color: 'white',
-                                                textAlign: 'center',
-                                                fontFamily: 'Alata',
-                                                fontSize:'30px'
-                                            
-                                                }}>
-                            En savoir +
-                
-                            </Button> */}
-                            {/* <Modal title={aide.name} visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
-        <p>{aide.financeur}</p>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-      </Modal> */}
+                            
 <Bouton />
                             </Row>
                             
@@ -371,4 +355,13 @@ function compare5( a, b ) {
 
 
 }
-export default ResultPage;
+
+function mapStateToProps(state) {
+  return { countToDisplay: state.count }
+ }
+
+
+export default connect(
+  mapStateToProps,
+  null
+ )(ResultPage);

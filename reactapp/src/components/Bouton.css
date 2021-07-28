@@ -1,15 +1,30 @@
 .Bouton{
-    
     top: 30%;
     left: 50%;
     transform: translate (-50%, -50%);
     color: #fff;
-    background: #ed3330;
+    background: #0A62D0;
     padding: 20px;
     border-radius: 5px;
     border: none;
     cursor: pointer;
     width: 309px;
     height: 67px;
+
+}
+
+.Bouton2{
+    top: 30%;
+    left: 50%;
+    color: #fff;
+    background: #0A62D0;
+    padding: 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    width: 200px;
+    height: 67px;
+    margin: 10px;
+    
 
 }

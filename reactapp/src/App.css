@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Spartan&display=swap');
+
 .App {
   text-align: center;
 }
@@ -100,3 +102,4 @@ h1{
   letter-spacing: -0.015em;
   color: white;
 }
+
