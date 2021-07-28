@@ -29,17 +29,25 @@ function Landingpage(props) {
 
     const [onCallSearch, setOnCallSearch] = useState(false)
 
+/*
     useEffect(() => {
         async function loadSources(){
           console.log(props.token)
         }
-        loadSources()
+        // loadSources();
+        
       }, [])
 
-
+*/
 
 // Action Click sur Recherche :
     const callSearchPage = ()=> {
+
+        setOnCallSearch(true);
+}
+
+
+
 
 
     const tb = [
@@ -87,6 +95,8 @@ function Landingpage(props) {
         }]
     
     
+        console.log('Avant le store :', tb);
+
         // Dans le Store :
         props.initSearchOptions(tb);
         // Indice du tableau de recherche :
@@ -95,19 +105,11 @@ function Landingpage(props) {
         props.updateNumberOfAids(0);
 
 
-// Call Search Page :
-    setOnCallSearch(true);
-}
-
 // Call de la page de recherche :
 
-    if (onCallSearch) {
-        return <Redirect to='searchPage' />
-    }
-
-
-
-
+if (onCallSearch) {
+    return <Redirect to='searchPage'/>
+}
 
 
 // Landing Page :    
@@ -115,8 +117,8 @@ function Landingpage(props) {
     return ( 
     
     <Container fluid={true}>
-    <Nav/>
-        
+    
+        <Nav/>
 
         <Row fluid={true} style={{display:'flex', flexDirection:'row',alignItems:'center'}}>
         <Col sm="12" md="6" lg="6" style={{ display:'flex', flexDirection:'column',marginTop:'30px',justifyContent:'center', alignItems:'center'}} >
@@ -230,7 +232,7 @@ function Landingpage(props) {
         <Row style={{marginTop:'50px'}}>
             <Col sm="12" style={{display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center',marginTop:'60px'}}>
             <h1 style={{fontSize:50, fontWeight:'bold'}}>Trouvez l'aide publique qu'il vous faut !</h1>
-            <h5 style={{fontSize:20, marginTop:'50px'}}>En moins de 2mn ;)</h5>
+            <h5 style={{fontSize:20, marginTop:'50px'}}>En moins de 2mn ;</h5>
             <Link to='/searchPage'><Button type='button' color="primary" size='auto' style={{width:'150%', marginTop:'15px'}}>Rechercher</Button></Link>
             </Col>
         </Row>
@@ -261,10 +263,11 @@ function Landingpage(props) {
     </Container>
     )
 }
-
+/*
 function mapStateToProps(state){
     return { token: state.user.token, firstName: state.user.firstName }
   }
+*/
 
 
 function mapDispatchToProps(dispatch){
@@ -282,7 +285,7 @@ function mapDispatchToProps(dispatch){
   }
   
   export default connect(
-    mapStateToProps,
+    null,
     mapDispatchToProps
   )(Landingpage)
   
