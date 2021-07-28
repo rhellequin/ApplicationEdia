@@ -94,7 +94,28 @@ router.get('/domains', async function(req, res, next) {
     console.log ('\x1b[31m%s\x1b[0m','=============== > GET Domains Not Found')
     res.json({result: false})
   }
+});
+
+// GET pour les Territoires :
+router.get('/territories', async function(req, res, next) {
+
+  console.log ('\x1b[34m%s\x1b[0m','=============== > GET Territories')
+ 
+  const territories =  await territoryModel.find({
+                                        "territoryId" : /[0-9]/,
+                                        "$expr": { "$lt": [ { "$strLenCP": "$territoryId" }, 3 ] }
+                                          }).sort({ territoryId: 1 })
+  
+  if (territories) {
+    res.json({result: true, territories: territories})
+  } else {
+    console.log ('\x1b[31m%s\x1b[0m','=============== > GET Territories Not Found')
+    res.json({result: false})
+  }
 })
+
+{$where: "territoryId.length > 40"} 
+
 
 
 // POST avec les paramètres pour la recherche :
@@ -112,7 +133,7 @@ router.post('/search', async function(req, res, next){
 
 
   console.log('Filter :', filter);
-  
+
 //Find avec Populate sur les infos détails :
   const aids =  await aidModel.find(filter)
                               .populate('aidProfiles')
