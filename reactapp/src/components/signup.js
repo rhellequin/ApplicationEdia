@@ -81,7 +81,7 @@ return(
                 <p>Vérifiez vos mots de passe</p>:
                 <p></p>}
                 {tabError}
-              <Button onClick={()=> handleSubmitSignUp()} style={{width:'80px'}} type="primary">Sign-up</Button>
+              <Button onClick={()=> handleSubmitSignUp()} style={{width:'80px',  background: "#0A62D0" }} type="primary">Sign up</Button>
             </div>
 
           
