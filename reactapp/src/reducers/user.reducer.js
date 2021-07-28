@@ -9,8 +9,8 @@ export default function (user={}, action){
         return{}
     }
 
-    else {
-        console.log('error')
+    
+    else {  
         return user
     }
 }
