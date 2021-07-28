@@ -2,6 +2,7 @@ import React, {useState, useEffect } from 'react';
 import {Input, Typography, Space, Layout, Text, Button, Col, Row  } from 'antd'; 
 import Nav from './nav';
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
+import {Link, Redirect} from 'react-router-dom';
 
 // composant de test :
 import TestEngine from './testengine';
@@ -24,12 +25,11 @@ function SearchPage (props) {
 
     const { Header, Footer, Sider, Content } = Layout;
     const [indexOptions, setIndexOptions] = useState(0);
+    const [onResultPage, setOnResultPage] = useState(false)
         
     useEffect(() => {
     
-        //setIndexOptions(0);
-        //props.updateIndexOptions(0);
-         
+
       },[])   
 
 
@@ -57,9 +57,13 @@ function SearchPage (props) {
                 </Button>
     } 
 
+    const callResultPage = ()=> {
+      setOnResultPage(true);
+}
 
-
-
+if (onResultPage) {
+  return <Redirect to='resultPage'/>
+}
 
     return ( 
 
@@ -85,7 +89,7 @@ function SearchPage (props) {
             </Col>  
 
             <Col xs={{ span: 5, offset: 3 }} md={{ span: 5, offset: 3}}>
-              <Button color="primary" size='lg'
+              <Button color="primary" size='lg' onClick={() => callResultPage()}
                                               style={{backgroundColor: '#0A62D0',
                                                       borderRadius:'10px',
                                                       height: "60px",

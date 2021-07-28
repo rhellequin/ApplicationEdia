@@ -30,6 +30,8 @@ function Landingpage(props) {
 
 
     useEffect(() => {
+
+        
         const tb = [
         {
             composant : <Types/>,
@@ -39,22 +41,17 @@ function Landingpage(props) {
         },
         {
             composant : <Domains/>,
-            question : "Quel domaine d'aide recherchez vous ?",
-            critere : "aidDomains",
-            valeur: null
-        },
-        {
-            composant : <TestEngine/>, // <Projects/>
-            question : "TestEngine : Quels enjeux souhaitez-vous poursuivre ?",
-            critere : "aidProjects",
-            valeur: null
-        },
-        {
-            composant : <ActivitySector/>,  
             question : "Quel secteur d'activité ?",
             critere : "aidActivitySector",
             valeur: null
         },
+        {
+            composant : <Projects/>, 
+            question : "Quels enjeux souhaitez-vous poursuivre ?",
+            critere : "aidProjects",
+            valeur: null
+        },
+        
         {
             composant : <Territories/>,  
             question : "Quel est votre département ?",
@@ -74,6 +71,8 @@ function Landingpage(props) {
             valeur: null
         }]
     
+    
+        
         // Dans le Store :
         props.initSearchOptions(tb);
         // Indice du tableau de recherche :
@@ -81,6 +80,9 @@ function Landingpage(props) {
         // Compteur de recherche :
         props.updateNumberOfAids(0);
         
+
+
+
       }, [])
 
 

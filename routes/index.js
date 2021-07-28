@@ -53,11 +53,9 @@ router.get('/aidsearch', async function(req, res, next) {
 // GET pour les Types :
 router.get('/types', async function(req, res, next) {
 
-  let types = []
-  
   console.log ('\x1b[34m%s\x1b[0m','=============== > GET Types')
 
-  types =  await typeModel.find().sort({ typeName: 1 })
+  const types =  await typeModel.find().sort({ typeName: 1 })
 
   if (types) {
     res.json({result: true, types: types})
@@ -70,11 +68,9 @@ router.get('/types', async function(req, res, next) {
 // GET pour les Projets :
 router.get('/projects', async function(req, res, next) {
 
-  let projects = []
-  
   console.log ('\x1b[34m%s\x1b[0m','=============== > GET Projects')
  
-  projects =  await projectModel.find().sort({ projectName: 1 })
+  const projects =  await projectModel.find().sort({ projectName: 1 })
 
   if (projects) {
     res.json({result: true, projects: projects})
@@ -84,6 +80,21 @@ router.get('/projects', async function(req, res, next) {
   }
 })
 
+
+// GET pour les Projets :
+router.get('/domains', async function(req, res, next) {
+
+  console.log ('\x1b[34m%s\x1b[0m','=============== > GET Domains')
+ 
+  const domains =  await domainModel.find().sort({ domainName: 1 })
+
+  if (domains) {
+    res.json({result: true, domains: domains})
+  } else {
+    console.log ('\x1b[31m%s\x1b[0m','=============== > GET Domains Not Found')
+    res.json({result: false})
+  }
+})
 
 
 // POST avec les paramètres pour la recherche :
@@ -99,6 +110,9 @@ router.post('/search', async function(req, res, next){
     }
   }
 
+
+  console.log('Filter :', filter);
+  
 //Find avec Populate sur les infos détails :
   const aids =  await aidModel.find(filter)
                               .populate('aidProfiles')
