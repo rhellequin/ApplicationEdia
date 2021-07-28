@@ -1,6 +1,8 @@
 import React, {useState, useEffect } from 'react';
 import {connect} from 'react-redux';
-import SearchAids from './searchaids'
+import SearchAids from './searchaids';
+import CountAids from './countaids';
+
 import 'antd/dist/antd.css';
 import {Input, Typography, Card, Col, Row, List, Divider } from 'antd'; 
 
@@ -74,6 +76,7 @@ function Projects (props) {
         const n = aids.length;
         props.updateNumberOfAids(n);
         setNumberOfAids(n);
+        console.log('aids :',aids )
     }
 
 // Gestion du marquage projet :
@@ -105,7 +108,7 @@ function Projects (props) {
     return (
 
         <Row style={{justifyContent: "center"}}>
-          <p style={{color:'#ff33e0', textAlign: 'left'}}>Déjà {numberOfAids} aides!</p> 
+          <CountAids numberOfAids={numberOfAids}/>
           
           <List style={{backgroundColor: "white", width:"600px"}}
               size="small"
