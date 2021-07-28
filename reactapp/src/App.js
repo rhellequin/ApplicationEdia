@@ -11,6 +11,7 @@ import ResultPage from './components/resultPage'
 import SigninPage from './components/signin'
 import SignupPage from './components/signup'
 import TestEngine from './components/testengine'
+import Apptest from './components/modaltest'
 import UserAccount from './components/useraccount'
 
 
@@ -40,6 +41,8 @@ function App() {
          <Route exact path="/resultPage" component={ResultPage} />
          <Route exact path="/signin" component={SigninPage} />
          <Route exact path="/signup" component={SignupPage} />
+         <Route exact path="/test" component={TestEngine} />
+         <Route exact path="/modaltest" component={Apptest} />
          <Route exact path="/test" component={TestEngine} />         
          <Route exact path="/useraccount" component={UserAccount} />
 

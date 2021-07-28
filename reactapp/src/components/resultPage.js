@@ -11,7 +11,8 @@ import { AppstoreOutlined,
   HomeOutlined } from '@ant-design/icons';
 import 'antd/dist/antd.css';
 import Avatar from 'antd/lib/avatar/avatar';
-import { attachTypeApi } from 'antd/lib/message';
+import Bouton from './Bouton';
+import {connect} from 'react-redux';
 
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -19,23 +20,18 @@ const { Header, Content, Footer, Sider } = Layout;
 
 
 
-function ResultPage () {
+function ResultPage (props) {
 
   const [ResultList, setResultList] = useState([])
 
-  const [isModalVisible, setIsModalVisible] = useState(false);
+  
 
-  const showModal = () => {
-    setIsModalVisible(true);
-  };
+  var importResult = props.aids.map((aid, i) => ({
+  name: aid.aidName, financeur:aid.aidFunders[0].funderName, montant:aid.aidAmount, niveauAide: aid.aidLevel.levelName, 
+  }));
+  
 
-  const handleOk = () => {
-    setIsModalVisible(false);
-  };
 
-  const handleCancel = () => {
-    setIsModalVisible(false);
-  };
 
  var ListEssai=[
     {name: 'TROP COOL', montant:'5000', financeur:'Cresus', niveauAide:'local', diff:'2', delai: '6 mois', logo:'../images/pinguin.png'},
@@ -45,9 +41,9 @@ function ResultPage () {
 
       useEffect(() => {
         var resultat = async () => {
-          ListEssai.sort( compare1 );
-          console.log('useffect', ListEssai);
-          setResultList(ListEssai) 
+          importResult.sort( compare1 );
+          console.log('useffect', importResult);
+          setResultList(importResult) 
         }
     
         resultat()
@@ -114,33 +110,33 @@ function compare5( a, b ) {
 
   // Tri
   var tri1 = async () => {
-    ListEssai.sort( compare1 );
-    console.log('ListEssai', ListEssai);
-    setResultList(ListEssai) 
+    importResult.sort( compare1 );
+    console.log('importResult', importResult);
+    setResultList(importResult) 
   }
 
   var tri2 = async () => {
-    ListEssai.sort( compare2 );
-    console.log('ListEssai', ListEssai);
-    setResultList(ListEssai)
+    importResult.sort( compare2 );
+    console.log('importResult', importResult);
+    setResultList(importResult)
   }
 
   var tri3 = async () => {
-    ListEssai.sort( compare3 );
-    console.log('ListEssai', ListEssai);
-    setResultList(ListEssai)
+    importResult.sort( compare3 );
+    console.log('importResult', importResult);
+    setResultList(importResult)
   }
 
   var tri4 = async () => {
-    ListEssai.sort( compare4 );
-    console.log('ListEssai', ListEssai);
-    setResultList(ListEssai)
+    importResult.sort( compare4 );
+    console.log('importResult', importResult);
+    setResultList(importResult)
   }
 
   var tri5= async () => {
-    ListEssai.sort( compare5 );
-    console.log('ListEssai', ListEssai);
-    setResultList(ListEssai)
+    importResult.sort( compare5 );
+    console.log('importResult', importResult);
+    setResultList(importResult)
   }
   
  
@@ -251,6 +247,7 @@ function compare5( a, b ) {
                   Délai d'obtention
           </Menu.Item>
           
+          
         </Menu>
      
     
@@ -320,25 +317,8 @@ function compare5( a, b ) {
                             flexDirection:'row',
                             justifyContent:'center',
                                         alignContent:'center',}}>
-                            <Button color="primary" size='lg' onClick={showModal}
-                                        style={{backgroundColor: '#0A62D0',
-                                                 borderRadius:'10px',
-                                                 width:'309px',
-                                                 height: "67px",
-                                                color: 'white',
-                                                textAlign: 'center',
-                                                fontFamily: 'Alata',
-                                                fontSize:'30px'
-                                            
-                                                }}>
-                            En savoir +
-                
-                            </Button>
-                            <Modal title={aide.name} visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
-        <p>{aide.financeur}</p>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-      </Modal>
+                            
+<Bouton />
                             </Row>
                             
                             
@@ -370,4 +350,13 @@ function compare5( a, b ) {
 
 
 }
-export default ResultPage;
+
+function mapStateToProps(state) {
+  return { searchOptions: state.searchOptions, indexOptions: state.indexOptions, numberOfAids: state.numberOfAids, aids: state.aids  }
+ }
+
+
+export default connect(
+  mapStateToProps,
+  null
+ )(ResultPage);
