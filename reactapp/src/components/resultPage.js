@@ -24,19 +24,14 @@ function ResultPage (props) {
 
   const [ResultList, setResultList] = useState([])
 
-  const [isModalVisible, setIsModalVisible] = useState(false);
+  
 
-  const showModal = () => {
-    setIsModalVisible(true);
-  };
+  var importResult = props.aids.map((aid, i) => ({
+  name: aid.aidName, financeur:aid.aidFunders[0].funderName, montant:aid.aidAmount, niveauAide: aid.aidLevel.levelName, 
+  }));
+  
 
-  const handleOk = () => {
-    setIsModalVisible(false);
-  };
 
-  const handleCancel = () => {
-    setIsModalVisible(false);
-  };
 
  var ListEssai=[
     {name: 'TROP COOL', montant:'5000', financeur:'Cresus', niveauAide:'local', diff:'2', delai: '6 mois', logo:'../images/pinguin.png'},
@@ -46,9 +41,9 @@ function ResultPage (props) {
 
       useEffect(() => {
         var resultat = async () => {
-          ListEssai.sort( compare1 );
-          console.log('useffect', ListEssai);
-          setResultList(ListEssai) 
+          importResult.sort( compare1 );
+          console.log('useffect', importResult);
+          setResultList(importResult) 
         }
     
         resultat()
@@ -115,33 +110,33 @@ function compare5( a, b ) {
 
   // Tri
   var tri1 = async () => {
-    ListEssai.sort( compare1 );
-    console.log('ListEssai', ListEssai);
-    setResultList(ListEssai) 
+    importResult.sort( compare1 );
+    console.log('importResult', importResult);
+    setResultList(importResult) 
   }
 
   var tri2 = async () => {
-    ListEssai.sort( compare2 );
-    console.log('ListEssai', ListEssai);
-    setResultList(ListEssai)
+    importResult.sort( compare2 );
+    console.log('importResult', importResult);
+    setResultList(importResult)
   }
 
   var tri3 = async () => {
-    ListEssai.sort( compare3 );
-    console.log('ListEssai', ListEssai);
-    setResultList(ListEssai)
+    importResult.sort( compare3 );
+    console.log('importResult', importResult);
+    setResultList(importResult)
   }
 
   var tri4 = async () => {
-    ListEssai.sort( compare4 );
-    console.log('ListEssai', ListEssai);
-    setResultList(ListEssai)
+    importResult.sort( compare4 );
+    console.log('importResult', importResult);
+    setResultList(importResult)
   }
 
   var tri5= async () => {
-    ListEssai.sort( compare5 );
-    console.log('ListEssai', ListEssai);
-    setResultList(ListEssai)
+    importResult.sort( compare5 );
+    console.log('importResult', importResult);
+    setResultList(importResult)
   }
   
  
@@ -357,7 +352,7 @@ function compare5( a, b ) {
 }
 
 function mapStateToProps(state) {
-  return { countToDisplay: state.count }
+  return { searchOptions: state.searchOptions, indexOptions: state.indexOptions, numberOfAids: state.numberOfAids, aids: state.aids  }
  }
 
 
