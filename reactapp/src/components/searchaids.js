@@ -4,7 +4,11 @@
 
     async function  SearchAids   (tb) {
 
-        const param = JSON.stringify(tb);
+        const listFilter = tb.map ((e,i) => {
+            return {critere: e.critere, valeur: e.valeur}
+        })
+        const param = JSON.stringify(listFilter);
+
         const data = await fetch('/search', {
             method: 'POST',
             headers: {'Content-Type': 'application/x-www-form-urlencoded'},

@@ -28,28 +28,11 @@ function Landingpage(props) {
 
     const [onCallSearch, setOnCallSearch] = useState(false)
 
-/*
+
     useEffect(() => {
-        async function loadSources(){
-          console.log(props.token)
-        }
-        // loadSources();
+
         
-      }, [])
-
-*/
-
-// Action Click sur Recherche :
-    const callSearchPage = ()=> {
-
-        setOnCallSearch(true);
-}
-
-
-
-
-
-    const tb = [
+        const tb = [
         {
             composant : <Types/>,
             question : "Quel type d'aide recherchez vous ?",
@@ -63,8 +46,8 @@ function Landingpage(props) {
             valeur: null
         },
         {
-            composant : <TestEngine/>, // <Projects/>
-            question : "TestEngine : Quels enjeux souhaitez-vous poursuivre ?",
+            composant : <Projects/>, 
+            question : "Quels enjeux souhaitez-vous poursuivre ?",
             critere : "aidProjects",
             valeur: null
         },
@@ -94,14 +77,28 @@ function Landingpage(props) {
         }]
     
     
-        console.log('Avant le store :', tb);
-
+        
         // Dans le Store :
         props.initSearchOptions(tb);
         // Indice du tableau de recherche :
         props.updateIndexOptions(0);
         // Compteur de recherche :
         props.updateNumberOfAids(0);
+        
+
+
+
+      }, [])
+
+
+
+// Action Click sur Recherche :
+    const callSearchPage = ()=> {
+        setOnCallSearch(true);
+}
+
+
+    
 
 
 // Call de la page de recherche :

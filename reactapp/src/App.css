@@ -84,9 +84,11 @@ h1{
     margin: 40px;
 }
 
-.Button {
-  background-color: blue;
-}
+/* .PersonnalInfo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+} */
 
 .question{
   text-align: center;
@@ -102,4 +104,6 @@ h1{
   letter-spacing: -0.015em;
   color: white;
 }
+
+
 

@@ -12,6 +12,8 @@ import SigninPage from './components/signin'
 import SignupPage from './components/signup'
 import TestEngine from './components/testengine'
 import Apptest from './components/modaltest'
+import UserAccount from './components/useraccount'
+
 
 
 
@@ -19,12 +21,13 @@ import user from './reducers/user.reducer';
 import searchOptions from  './reducers/searchoptions';
 import numberOfAids from  './reducers/numberofaids';
 import indexOptions from  './reducers/indexoptions';
+import aids from './reducers/aids';
 
 import {Provider} from 'react-redux';
 import {createStore, combineReducers} from 'redux';
 
 
-const store = createStore(combineReducers({user, searchOptions, numberOfAids, indexOptions}));
+const store = createStore(combineReducers({user, searchOptions, numberOfAids, indexOptions, aids}));
 
 
 function App() {
@@ -40,6 +43,9 @@ function App() {
          <Route exact path="/signup" component={SignupPage} />
          <Route exact path="/test" component={TestEngine} />
          <Route exact path="/modaltest" component={Apptest} />
+         <Route exact path="/test" component={TestEngine} />         
+         <Route exact path="/useraccount" component={UserAccount} />
+
           
 
 
