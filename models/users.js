@@ -10,6 +10,7 @@ var userSchema = mongoose.Schema({
         position: String,
         phone: String,
         password: String,
+        token: String,
         userAids: [ {type:mongoose.Schema.Types.ObjectId, ref: 'aids'}],  
 
  })

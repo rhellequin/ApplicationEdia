@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react';
 
 import {Link, Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
+import Nav from './nav';
 
 
-import { Input, Typography, Space } from 'antd';
+import { Input, Typography, Space,Avatar } from 'antd';
 import { Button,Col,Row,Container,Card, CardImg, CardText, CardBody,CardTitle, CardSubtitle, Media} from 'reactstrap';
+
 
 // composant de test :
 import TestEngine from './testengine';
@@ -27,15 +29,20 @@ function Landingpage(props) {
 
     const [onCallSearch, setOnCallSearch] = useState(false)
 
+    useEffect(() => {
+        async function loadSources(){
+          console.log(props.token)
+        }
+        loadSources()
+      }, [])
 
 
 
 // Action Click sur Recherche :
     const callSearchPage = ()=> {
 
-// Tableau pour les gestion des critères de recherche et la valeur des réponses :
-    const tb = 
-    [
+
+    const tb = [
         {
             composant : <Types/>,
             question : "Quel type d'aide recherchez vous ?",
@@ -50,7 +57,7 @@ function Landingpage(props) {
         },
         {
             composant : <TestEngine/>, // <Projects/>
-            question : "Quels enjeux souhaitez-vous poursuivre ?",
+            question : "TestEngine : Quels enjeux souhaitez-vous poursuivre ?",
             critere : "aidProjects",
             valeur: null
         },
@@ -77,24 +84,20 @@ function Landingpage(props) {
             question : "Quel est l'age de votre entreprise ?",
             critere : "aidCompanyAge",
             valeur: null
-        }
-]
+        }]
+    
+    
+        // Dans le Store :
+        props.initSearchOptions(tb);
+        // Indice du tableau de recherche :
+        props.updateIndexOptions(0);
+        // Compteur de recherche :
+        props.updateNumberOfAids(0);
 
 
-// Dans le Store :
-    props.initSearchOptions(tb);
-// Indice du tableau de recherche :
-    props.updateIndexOptions(0);
-// Compteur de recherche :
-    props.updateNumberOfAids(0);
 // Call Search Page :
     setOnCallSearch(true);
 }
-
-
-
-
-
 
 // Call de la page de recherche :
 
@@ -112,16 +115,8 @@ function Landingpage(props) {
     return ( 
     
     <Container fluid={true}>
-
-        <Row style={{display:'flex',justifyContent:'center', alignItems:'center'}}>
-        <Col sm="12" md="6" lg="6" style={{display:'flex', justifyContent:'space-between',alignItems:'center'}}>
-            <img src='../images/EDIA.png'  height='120px' />
-        </Col>
-        <Col sm="12" md="6" lg="6" style={{ display:'flex',justifyContent:'flex-end', alignItems:'self-end'}}>
-            <Button outline color="primary" size='lg' style={{margin:'20px'}}>Se connecter</Button>
-            <Button color="primary" size='lg'style={{margin:'20px'}}>S'inscrire</Button>
-        </Col>
-        </Row>
+    <Nav/>
+        
 
         <Row fluid={true} style={{display:'flex', flexDirection:'row',alignItems:'center'}}>
         <Col sm="12" md="6" lg="6" style={{ display:'flex', flexDirection:'column',marginTop:'30px',justifyContent:'center', alignItems:'center'}} >
@@ -267,7 +262,9 @@ function Landingpage(props) {
     )
 }
 
-
+function mapStateToProps(state){
+    return { token: state.user.token, firstName: state.user.firstName }
+  }
 
 
 function mapDispatchToProps(dispatch){
@@ -280,14 +277,12 @@ function mapDispatchToProps(dispatch){
         
       updateNumberOfAids: function(n) {
         dispatch({type: 'updateNumberOfAids', numberOfAids: n})}
-  
-      
-      
+
     }
   }
   
   export default connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps
   )(Landingpage)
   
