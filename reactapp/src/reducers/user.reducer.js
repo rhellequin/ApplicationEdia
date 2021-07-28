@@ -1,7 +1,11 @@
 export default function (user={}, action){
-    if (action.type == 'login'){
+    console.log('user')
+    console.log(action)
+    if (action.type === 'login'){
+        console.log(action.token,'jesuisreduceur')
         return {token: action.token, firstName: action.firstName};
-    } else if(action.type=='disconnect'){
+    } else if(action.type ==='disconnect'){
+
         return{}
     }
 

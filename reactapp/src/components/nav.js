@@ -29,13 +29,12 @@ function Nav (props) {
     <Col sm="12" md="6" lg="6" style={{ display:'flex',flexDirection:'column',justifyContent:'center', alignItems:'flex-end'}}>
         <Avatar size={64} icon={<UserOutlined />} />
         <p style={{fontSize:20,fontWeight:'bold'}}>Welcome {props.firstName}</p> 
-        <p onClick={()=> props.reinitialise()} >Deconnexion</p>
+        <Link><Button onClick={()=> props.reinitialise()} outline color="primary" size='lg' style={{margin:'20px'}} >Deconnexion</Button></Link>
     </Col>
-
 :
     <Col sm="12" md="6" lg="6" style={{ display:'flex', justifyContent:'flex-end', alignItems:'self-end'}}>
-        <Link to='/signup'><Button  outline color="primary" size='lg' style={{margin:'20px'}}>Se connecter</Button></Link>
-        <Link to='/signin'><Button color="primary" size='lg'style={{margin:'20px'}}>S'inscrire</Button></Link>
+        <Link to='/signin'><Button  outline color="primary" size='lg' style={{margin:'20px'}}>Se connecter</Button></Link>
+        <Link to='/signup'><Button color="primary" size='lg'style={{margin:'20px'}}>S'inscrire</Button></Link>
     </Col>
 }
 </Row>

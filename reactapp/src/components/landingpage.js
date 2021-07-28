@@ -4,7 +4,6 @@ import {Link, Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 import Nav from './nav';
 
-
 import { Input, Typography, Space,Avatar } from 'antd';
 import { Button,Col,Row,Container,Card, CardImg, CardText, CardBody,CardTitle, CardSubtitle, Media} from 'reactstrap';
 
@@ -122,7 +121,7 @@ if (onCallSearch) {
 
         <Row fluid={true} style={{display:'flex', flexDirection:'row',alignItems:'center'}}>
         <Col sm="12" md="6" lg="6" style={{ display:'flex', flexDirection:'column',marginTop:'30px',justifyContent:'center', alignItems:'center'}} >
-            <h1 style={{textAlign:'left', marginBottom:'10px',fontWeight:'bold' ,fontSize:70, fontFamily:''}}>La bonne aide  au bon moment pour votre PME</h1>
+            <h1 style={{textAlign:'left', marginBottom:'10px',fontWeight:'bold' ,fontSize:70, fontFamily:'Spartan'}}>La bonne aide  au bon moment pour votre PME</h1>
             <h5 style={{marginBottom:'10px'}}>Notre algorithme trouve l'aide qu'il vous faut en fonction de vos enjeux !</h5>
             <Button color="primary" size='lg' style={{width:'30%', marginTop:'15px'}} onClick={() => callSearchPage()} >Rechercher</Button>
         </Col>
@@ -153,7 +152,7 @@ if (onCallSearch) {
 {/* MEDIA  */}
         <Row style={{margin:'60px 0 60px 0'}}>
             <Col sm="12" style={{display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center',marginTop:'60px'}}>
-            <h1 style={{fontSize:50, fontWeight:'bold'}}>Fonctionnalités</h1>
+            <h1 style={{fontSize:50, fontWeight:'bold',fontFamily:'Spartan'}}>Fonctionnalités</h1>
             <h5 style={{fontSize:20}}>Vos recherches d’aides publiques deviennent</h5>
             </Col>
         </Row>
@@ -162,7 +161,7 @@ if (onCallSearch) {
             <Media style={{display:'flex',alignItems:'center'}}>
                 <Media object src="../images/yellow.png" alt="Icon with a robot" style={{marginRight:'20px'}}/>
                 <Media body> 
-                    <Media heading style={{fontSize:40}}>INTELLIGENTES</Media>
+                    <Media heading style={{fontSize:40,fontFamily:'Spartan',fontWeight:'Bold'}}>INTELLIGENTES</Media>
                     <Media style={{fontSize:20}} >En quelques clics</Media>
                     <Media >Nous vous posons quelques questions et notre algorithme s'occupe du reste pour trouver les aides qui correspondent au mieux aux besoins de votre entreprise.</Media>
                 </Media>
@@ -170,7 +169,7 @@ if (onCallSearch) {
 
             <Media style={{display:'flex',alignItems:'center'}}>
                 <Media body> 
-                    <Media heading style={{fontSize:40,textAlign:'right'}}>EXHAUSTIVES</Media>
+                    <Media heading style={{fontSize:40,textAlign:'right',fontFamily:'Spartan',fontWeight:'Bold'}}>EXHAUSTIVES</Media>
                     <Media style={{fontSize:20,textAlign:'right'}} >La puissance du big data</Media>
                     <Media style={{textAlign:'right'}}>Notre algorithme se charge de parcourir l'ensemble des dispositifs d'aides en France et en Europe. Vous êtes assuré(e) de ne manquer aucune aide publique pour développer votre entreprise.</Media>
                 </Media>
@@ -180,7 +179,7 @@ if (onCallSearch) {
             <Media style={{display:'flex',alignItems:'center'}}>
                 <Media object src="../images/blue.png" alt="Icon with a robot" style={{marginRight:'20px'}}/>
                 <Media body> 
-                    <Media heading style={{fontSize:40}}>AUTOMATISEES</Media>
+                    <Media heading style={{fontSize:40,fontFamily:'Spartan',fontWeight:'Bold'}}>AUTOMATISEES</Media>
                     <Media style={{fontSize:20}} >C'est un match !</Media>
                     <Media >Plus besoin de vérifier de manière régulière les nouveaux dispositifs d'aides. Une notification vous est envoyée quand une aide correspond à vos critères.</Media>
                 </Media>
@@ -192,7 +191,7 @@ if (onCallSearch) {
 {/* CARTES CONTACT */}
         <Row style={{margin:'60px 0 60px 0'}}>
             <Col sm="12" style={{display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center',marginTop:'60px'}}>
-            <h1 style={{fontSize:50, fontWeight:'bold'}}>Nos clients</h1>
+            <h1 style={{fontSize:50, fontWeight:'bold',fontFamily:'Spartan'}}>Nos clients</h1>
             <h5 style={{fontSize:20}}>Ils et elles nous ont fait confiance</h5>
             </Col>
         </Row>

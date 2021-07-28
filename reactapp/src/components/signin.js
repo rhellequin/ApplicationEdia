@@ -24,6 +24,7 @@ function SigninPage(props) {
           props.connectFunction(body.token,body.firstName);
           setIsLogin(true);
           console.log('body.result', body)
+          console.log(body.result)
         } else {
           setListErrorsUp(body.error)
         }
