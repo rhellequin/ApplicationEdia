@@ -134,18 +134,15 @@ router.get('/profiles', async function(req, res, next) {
 // POST avec les paramètres pour la recherche :
 router.post('/search', async function(req, res, next){
 
+ 
+
   const parameters = JSON.parse(req.body.parameters);
   
   let filter = {};
 // construction du filter :
   for (let i=0;i<parameters.length;i++) {
     if (parameters[i].valeur != null) {  
-      if (parameters[i].critere == "aidNumberOfWorker") {
-        filter[parameters[i].critere] = "{$regex: /" + parameters[i].valeur + "/i}"   
-      } else {
         filter[parameters[i].critere] = parameters[i].valeur
-      }
-      filter[parameters[i].critere] = parameters[i].valeur
     }
   }
 
@@ -171,6 +168,38 @@ router.post('/search', async function(req, res, next){
   res.json({result: false})
   }
 })
+
+
+// POST avec les paramètres pour la recherche :
+router.post('/updateaids', async function(req, res, next){
+
+  const aids =  await aidModel.find();
+  let nbOfAidsUpdated = 0;
+  let changing = false;
+  for (let i=0;i<10;i++) {
+
+    for (let j=0;j<aids[i].aidNumberOfWorker.length;j++) {
+      aids[i].aidNumberOfWorker[j] = aids[i].aidNumberOfWorker[j].trim();
+      changing = true;
+    }
+    if (changing) {
+      const aid = aidModel.updateOne({_id: aids[i]}, {aidNumberOfWorker: aids[i].aidNumberOfWorker} )
+      changing = false;
+      nbOfAidsUpdated++;
+    }
+    
+
+  }
+
+
+
+
+
+
+  res.json({nbOfAidsUpdated : nbOfAidsUpdated})
+  
+})
+
 
 
 module.exports = router;

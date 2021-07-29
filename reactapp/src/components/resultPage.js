@@ -146,23 +146,7 @@ function compare5( a, b ) {
     console.log('importResult', importResult);
     setResultList(importResult)
   }
-<<<<<<< HEAD
-  
-  var addUserAid= async()=>{
-setAddingAid(true)
-  }
-
-  if(addingAid){
-    var colorStar = {color: '#e74c3c'}
-  } else {
-    var colorStar = {}
-  }
-
-
-
-=======
    
->>>>>>> 2ec8c0aa2968bd6d8040039c06ce346a87027d4a
 
 
   return ( 
@@ -309,7 +293,7 @@ setAddingAid(true)
                             
                             <p ><FontAwesomeIcon icon={faStar}
                             style={{fontSize:'32px',
-                            color:'#F3D849'}}  onClick={()=>addUserAid()}/></p>
+                            color:'#F3D849'}}  /></p>
 
                             </Row>
                             <Row style={{justifyContent:'center',
