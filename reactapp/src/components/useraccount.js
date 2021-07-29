@@ -2,12 +2,19 @@
 import React, { useState, useEffect } from 'react';
 import { Input, Typography, Space, Menu, Form } from 'antd';
 import { } from '@ant-design/icons'
-import { Button, Col, Row, Container, Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Media } from 'reactstrap';
+import { Button, Col, Row, Container, Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Media} from 'reactstrap';
+import { Nav } from 'react-bootstrap';
+
 import { Link, Redirect } from "react-router-dom";
 import { connect } from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Layout from 'antd/lib/layout/layout';
-import Nav from './nav';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHeart,faDownload, faStar,faCog,faUser, faHouseUser, faVideo} from '@fortawesome/free-solid-svg-icons'
+
+import '../components/useraccount.css'
+import  './useraccount.css'
+import Navigation from './navigation';
 import {
     HomeFilled,
     StarFilled,
@@ -18,8 +25,9 @@ import {
 } from '@ant-design/icons';
 import '../components/useraccount.css'
 import { propTypes } from 'react-bootstrap/esm/Image';
-import signup from './signup';
-//import { data } from 'jquery';
+import Signup from './signup';
+// import { data } from 'jquery';
+// import { data } from 'jquery';
 
 var souvenirParent
 
@@ -65,7 +73,7 @@ function UserAccount(props) {
 if (isLogin == false)
             return (
                 <Container>
-                    <Nav handleClickParent={detectLogin} />
+                    <Navigation handleClickParent={detectLogin} />
                     <Row style={{ width: '100%', display: 'flex', alignItems: 'center' }}>
                         <Col style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
 

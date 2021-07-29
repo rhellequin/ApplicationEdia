@@ -127,10 +127,16 @@ router.post('/search', async function(req, res, next){
 // construction du filter :
   for (let i=0;i<parameters.length;i++) {
     if (parameters[i].valeur != null) {  
+      if (parameters[i].critere == "aidNumberOfWorker") {
+        filter[parameters[i].critere] = "{$regex: /" + parameters[i].valeur + "/i}"   
+      } else {
+        filter[parameters[i].critere] = parameters[i].valeur
+      }
       filter[parameters[i].critere] = parameters[i].valeur
     }
   }
 
+ // { aidNumberOfWorker: { $regex: /10-49/i } }  
 
   console.log('Filter :', filter);
 

@@ -1,6 +1,6 @@
 import React, {useState, useEffect } from 'react';
 import {Input, Typography, Space, Layout, Text, Button, Col, Row  } from 'antd'; 
-import Nav from './nav';
+import Navigation from './navigation';
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 import {Link, Redirect} from 'react-router-dom';
 
@@ -69,7 +69,7 @@ if (onResultPage) {
 
       <div>
         <Layout>
-          <Nav/>
+          <Navigation/>
           <Row>
             <Content
               style={{ 
@@ -78,17 +78,15 @@ if (onResultPage) {
                 marginLeft: '15px',
                 marginRight: '15px' 
                 }}>
-              <h1 class='question'>{props.searchOptions[indexOptions].question}</h1>
+              <p className='Question'>{props.searchOptions[indexOptions].question}</p>
               {props.searchOptions[indexOptions].composant}
             </Content>
           </Row>
 
           <Row>           
-            <Col xs={{ span: 1, offset: 10 }} md={{ span: 6, offset: 10 }}>           
-                      {buttonContinuer}
-            </Col>  
+             
 
-            <Col xs={{ span: 5, offset: 3 }} md={{ span: 5, offset: 3}}>
+            {/* <Col xs={{ span: 5, offset: 3 }} md={{ span: 5, offset: 3}}>
               <Button color="primary" size='lg' onClick={() => callResultPage()}
                                               style={{backgroundColor: '#0A62D0',
                                                       borderRadius:'10px',
@@ -99,10 +97,31 @@ if (onResultPage) {
                                                       }}>
                       Voir les aides
               </Button>
-            </Col>
+            </Col> */}
       
           </Row>
         </Layout>
+        <Col>
+
+        <Col xs={{ span: 2, offset: 5 }} md={{ span: 9, offset: 10 }} >
+                      {buttonContinuer}
+                    
+                      <Button color="primary" size='lg' onClick={() => callResultPage()}
+                                              style={{backgroundColor: '#0A62D0',
+                                                      borderRadius:'10px',
+                                                      height: "60px",
+                                                      fontSize: '16px',
+                                                      color: 'white',
+                                                      
+                                                  
+                                                      }}>
+                      Voir les aides
+                      </Button>   
+        </Col>
+            
+            
+            </Col> 
+           
       </div>
 );
         

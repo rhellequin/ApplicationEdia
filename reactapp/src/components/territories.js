@@ -3,15 +3,40 @@ import {connect} from 'react-redux';
 
 
 import 'antd/dist/antd.css';
-import {Input, Typography, Card, Col, Row } from 'antd'; 
-import { Menu, Dropdown, Button, message, Space, Tooltip } from 'antd';
-import { DownOutlined, UserOutlined } from '@ant-design/icons';
+
+import {
+  Typography,
+  Col,
+  Row,
+  Menu,
+  Dropdown,
+  Space,
+  Form,
+  Input,
+  Button,
+  Radio,
+  Select,
+  Cascader,
+  DatePicker,
+  InputNumber,
+  TreeSelect,
+  Switch,
+  message,
+} from 'antd';
+
+
+import SearchAids from './searchaids'
+import CountAids from './countaids'
 
 
 function Territories (props) {
 
-     
-    const [projects, setProjects] = useState([]);
+    const { Text, Link } = Typography;
+
+    const [territoryName, setTerritoryName] = useState();
+    const [territories, setTerritories] = useState([]);
+    const [territory, setTerritory] = useState();
+
     const [numberOfAids, setNumberOfAids] = useState(0);
         
     useEffect(() => {
@@ -36,70 +61,64 @@ function Territories (props) {
 
 // Appel de la recherche :
 const runSearch = async (i) => {
-        
-  setISelected(i); // pour gérer le marquage du projet sélectionné :
-
+  
   let parameters = [...props.searchOptions]
-  parameters[props.indexOptions].valeur = projects[i]._id
+  parameters[props.indexOptions].valeur = territories[i]._id
   const aids = await SearchAids(parameters);
 
 // Mise à jour du Store :
-    props.updateSearchOptions(props.indexOptions,projects[i]._id);
+    props.updateSearchOptions(props.indexOptions,territories[i]._id);
     props.updateAids(aids);        
     const n = aids.length;
     props.updateNumberOfAids(n);
     setNumberOfAids(n);
     console.log('aids :',aids )
 }
+ 
+const inputDept =  (value) => {
+ 
+    setTerritory(value);
+    console.log('inputDept :', value)
 
-// Gestion du marquage projet :
+  }
+  
 
-let colorTextSelected = "White"
-let colorBgSelected = "purple"
-let colorText = "black"
-let colorBg = "white"
+const searchDept = async () => {
+ 
+  const index = territories.findIndex((d) => d.territoryId == territory)
+  if (index < 0) {
+    message.error("Département inconnu")
+    setTerritoryName('');
+  } else {
+    setTerritoryName(territories[index].territoryName);
+    runSearch(index);
+  }
+} 
 
-const dataItem = territories.map ((t,i)=>( 
-      {i: i, dept: t.territoryId, name: t.territoryName, colorText : colorText, colorBg: colorBg} 
-      ));
 
-
-if (iSelected>=0) {
-  dataItem[iSelected].colorText = colorTextSelected
-  dataItem[iSelected].colorBg=colorBgSelected   
-}
-
-// <Divider  orientation="center" style={{}}>Choisir dans la liste</Divider>
 
 return (
   <div>
     <CountAids numberOfAids={numberOfAids}/>
     <Row style={{justifyContent: "center"}}>
-      <List style={{backgroundColor: "white", width:"600px"}}
-          size="small"
-          pagination={{
-            onChange: page => {
-              console.log(page);
-              },
-            pageSize: 10,
-            }}
+    <Form
+       
+        layout="horizontal"  
+      >
+        <Form.Item label="Votre département   ">
+          <InputNumber placeholder="01" value={territory} onChange={inputDept} />
+          <Text type="success" style={{marginLeft: '15px'}} >{territoryName}</Text>
+        </Form.Item>
+        <Form.Item >
+            <Button onClick={searchDept}>OK</Button>
+        </Form.Item>
+      </Form>
 
-            bordered
-            dataSource={dataItem}
-            renderItem={item => (
-
-          <List.Item>
-            <Typography.Text  
-              style={{color: item.colorText, backgroundColor: item.colorBg}}
-              onClick={() => {runSearch(item.i)}}
-              >{item.name}</Typography.Text>  
-          </List.Item>
-        )}
-      />
     </Row>
   </div>
-)
-}
+)}
+
+
 
 
 

@@ -6,7 +6,7 @@ import 'antd/dist/antd.css';
 
 import Types from './types'
 import TestEngine from './testengine';
-import Nav from './nav';
+import Navigation from './navigation';
 
 /*
     Composant pour tester la communication avec le back 
@@ -25,7 +25,7 @@ function WelcomeEdia () {
 
     return ( 
         <div>
-            <Nav/>
+            <Navigation/>
             {moduleQuestion}
 
         </div>

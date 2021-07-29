@@ -8,7 +8,7 @@ import {Link, Redirect,useLocation} from 'react-router-dom';
 
 
 
-function Nav (props) {
+function Navigation (props) {
    
 const location = useLocation()
 console.log(location.pathname)
@@ -31,9 +31,10 @@ var handleClick=()=>{
         <div style={{ display:'flex',flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
             <Link to='/useraccount'><Avatar size={64} icon={<UserOutlined />} /></Link>
             <p style={{fontSize:20,fontWeight:'bold'}}>Welcome {props.firstName}</p> 
+            <p></p>
         </div>
     </Col>
-:
+: 
     <Col sm="12" md="6" lg="6" style={{ display:'flex', justifyContent:'flex-end', alignItems:'center'}}>
         <Link to='/signin'><Button  outline color="primary" size='lg' style={{margin:'20px'}}>Se connecter</Button></Link>
         <Link to='/signup'><Button color="primary" size='lg'style={{margin:'20px'}}>S'inscrire</Button></Link>
@@ -59,4 +60,4 @@ export default connect(
     mapStateToProps,
     mapDispatchToProps,
     
-    )(Nav)    
+    )(Navigation)    

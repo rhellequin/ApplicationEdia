@@ -92,7 +92,7 @@ console.log('runSearch', i)
 
     {dataItem.map((item,i) => (
                 
-                    <Col span={8} key={i}>
+                    <Col span={6} key={i}>
                     <Card bordered={false} 
                       onClick={() => runSearch(i)}
                       style={{ 
