@@ -149,15 +149,15 @@ function compare5( a, b ) {
     setResultList(importResult)
   }
   
-  var addUserAid= async(name,id)=>{
-
+  var addUserAid= async(aide,id)=>{
 
  var copyList=[...ResultList]
  copyList=copyList.map((aide,i)=>{
 if(aide.favorite==undefined ){
-  if(aide.name==name){
+  if(aide.id==id){
 
     return {...aide,favorite:true}
+
 }
 else {
   return {...aide,favorite:false}
@@ -165,26 +165,25 @@ else {
 }
 }
 else{
-  if(aide.name==name){
+  if(aide.id==id){
     return {...aide,favorite: !aide.favorite}
   }
   else {
     return {...aide,favorite: aide.favorite}
   }
 }
-})
+ })
 setResultList(copyList)
-console.log(id,'name')
-console.log(importResult, 'resultlist')
-if(name==true){
-console.log('je suis',name)
-const response = await fetch('/add-favorite', {
-  method: 'POST',
-  headers: {'Content-Type':'application/x-www-form-urlencoded'},
-  body: `favorite=${name}`
+console.log(copyList, 'resultlist')
 
-})}
-  
+    console.log(id)
+    const data = await fetch('/add-favorite', {
+      method: 'POST',
+      headers: {'Content-Type':'application/x-www-form-urlencoded'},
+      body: `id=${id}&token=${props.token}&favorite=${aide.favorite}`
+    })  
+    const response = await data.json();
+    console.log(response,'response')
 }
 
  
@@ -221,7 +220,7 @@ const response = await fetch('/add-favorite', {
             
             
             <p ><FontAwesomeIcon icon={faStar}
-            style={colorStar}  onClick={()=>addUserAid(aide.name,aide._id)}/></p>
+            style={colorStar}  onClick={()=>addUserAid(aide,aide.id)}/></p>
 
             </Row>
             <Row style={{justifyContent:'center',
@@ -448,7 +447,7 @@ const response = await fetch('/add-favorite', {
 }
 
 function mapStateToProps(state) {
-  return { searchOptions: state.searchOptions, indexOptions: state.indexOptions, numberOfAids: state.numberOfAids, aids: state.aids  }
+  return { searchOptions: state.searchOptions, indexOptions: state.indexOptions, numberOfAids: state.numberOfAids, aids: state.aids, token: state.user.token}
  }
 
 
