@@ -1,6 +1,6 @@
 import React, {useState, useEffect } from 'react';
 import {Input, Typography, Space, Layout, Text, Button, Col, Row, Breadcrumb, Menu, Card, Tag, Badge, Modal } from 'antd'; 
-import Nav from './nav';
+import Navigation from './navigation';
 import { AppstoreOutlined,
   MenuUnfoldOutlined,
   MenuFoldOutlined,
@@ -148,7 +148,7 @@ function compare5( a, b ) {
 
         
 <Layout>
-<Nav/>
+<Navigation/>
 <Col md={{ span: 8, offset: 14 }}>
         <div style={{
           backgroundColor:'#E0E5E9',

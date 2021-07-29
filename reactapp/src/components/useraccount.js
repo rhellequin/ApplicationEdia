@@ -1,22 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { Input, Typography, Space, Menu, Form } from 'antd';
 import { } from '@ant-design/icons'
-import { Button, Col, Row, Container, Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Media } from 'reactstrap';
+import { Button, Col, Row, Container, Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Media} from 'reactstrap';
+import { Nav } from 'react-bootstrap';
+
 import { Link, Redirect } from "react-router-dom";
 import { connect } from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Layout from 'antd/lib/layout/layout';
-import Nav from './nav';
-import {
-    HomeFilled,
-    StarFilled,
-    UserOutlined,
-    DownloadOutlined,
-    SettingOutlined,
-    PoweroffOutlined,
-  } from '@ant-design/icons';
+import Navigation from './navigation';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHeart,faDownload, faStar,faCog,faUser, faHouseUser, faVideo} from '@fortawesome/free-solid-svg-icons'
+
   import '../components/useraccount.css'
 import { propTypes } from 'react-bootstrap/esm/Image';
+import  './useraccount.css'
 
 
 
@@ -29,26 +27,27 @@ function UserAccount(props) {
         setIsLogin(true);
       }
 
-if(isLogin==false)
+if(isLogin==false){
 return (
 <Container>
-    <Nav handleClickParent={detectLogin}/>
-    <Row  style={{width:'100%',display:'flex',alignItems:'center'}}>
-        <Col style={{display:'flex', alignItems:'center', justifyContent:'space-between'}}>
-            
-            <Menu className='menu' >
-                <Menu.Item className="active-icon-on-menu" key="1" icon={<HomeFilled style={{fontSize:'30px',textAlign:'center'}}/>}/>
-                <Menu.Item  className="active-icon-on-menu"key="2" icon={<StarFilled style={{fontSize:'30px',textAlign:'center'}}/>}/>
-                <Menu.Item className="active-icon-on-menu" key="3" icon={<UserOutlined style={{fontSize:'30px',textAlign:'center'}}/>}/>
-                <Menu.Item className="active-icon-on-menu" key="4" icon={<DownloadOutlined style={{fontSize:'30px',textAlign:'center'}}/>}/>
-                <Menu.Item  className="active-icon-on-menu"key="5" icon={<SettingOutlined style={{fontSize:'30px',textAlign:'center'}}/>}/>
-                <Menu.Item  className="active-icon-on-menu"key="6" icon={<PoweroffOutlined style={{fontSize:'30px',textAlign:'center'}}/>}/>
-            </Menu>
+    <Navigation handleClickParent={detectLogin}/>
+    <Row  style={{width:'100%',display:'flex',alignItems:'center', justifyContent:'center', margin:'30px 0 50px 0'}}>
+        
+    
+        <Nav variant="tabs" style={{width:'50%'}} >
+            <Nav.Item>
+                <Nav.Link eventKey="link-1">Favoris</Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+                <Nav.Link eventKey="link-2">Données perso</Nav.Link>
+            </Nav.Item>
+        </Nav>
 
+    </Row>
+    <Row>
         <Col className="colonne" >
             <h3>Bonjour {props.firstName}</h3>
             <h5>Vous avez 90% de profile complété</h5>
-        </Col>
         </Col>
 
         <Col className="colonne" >
@@ -56,8 +55,8 @@ return (
         <h5 style={{textAlign:'left'}}>Duclos</h5>
         </Col>
 
-        <Row style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around' }}>
-                <Row>
+        <Row style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around', margin:'50px 0 0 0' }}>
+                <Row style={{margin:'0 0 50px 0'}}>
                     <h1>Mes informations personnelles</h1>
                 </Row>
                 <Col style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
@@ -99,7 +98,7 @@ return (
     </Row>
 </Container>
 )
-else if( isLogin== true){
+}else if( isLogin== true){
     return(<Redirect to='/landingpage' />)
 }
 

@@ -8,7 +8,7 @@ import {Link, Redirect,useLocation} from 'react-router-dom';
 
 
 
-function Nav (props) {
+function Navigation (props) {
    
 const location = useLocation()
 console.log(location.pathname)
@@ -59,4 +59,4 @@ export default connect(
     mapStateToProps,
     mapDispatchToProps,
     
-    )(Nav)    
+    )(Navigation)    

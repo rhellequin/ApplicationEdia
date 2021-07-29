@@ -7,6 +7,9 @@
     "heroku-postbuild": "cd reactapp && npm install && npm run build"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.35",
+    "@fortawesome/free-solid-svg-icons": "^5.15.3",
+    "@fortawesome/react-fontawesome": "^0.1.14",
     "bcrypt": "^5.0.1",
     "bootstrap": "^5.0.2",
     "cookie-parser": "~1.4.4",
