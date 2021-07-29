@@ -9,16 +9,12 @@ import { Link, Redirect } from "react-router-dom";
 import { connect } from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Layout from 'antd/lib/layout/layout';
-<<<<<<< HEAD
-import Navigation from './navigation';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart,faDownload, faStar,faCog,faUser, faHouseUser, faVideo} from '@fortawesome/free-solid-svg-icons'
 
-  import '../components/useraccount.css'
-import { propTypes } from 'react-bootstrap/esm/Image';
+import '../components/useraccount.css'
 import  './useraccount.css'
-=======
-import Nav from './nav';
+import Navigation from './navigation';
 import {
     HomeFilled,
     StarFilled,
@@ -30,12 +26,8 @@ import {
 import '../components/useraccount.css'
 import { propTypes } from 'react-bootstrap/esm/Image';
 import signup from './signup';
-<<<<<<< HEAD
 import { data } from 'jquery';
->>>>>>> 00079fad4ea95ae067f44b53fe7af35804b035de
-=======
 // import { data } from 'jquery';
->>>>>>> 8ac76205610e02420087ddf0f4daf98a28dd1330
 
 var souvenirParent
 
@@ -54,84 +46,6 @@ function UserAccount(props) {
 
     var detectLogin = () => {
         setIsLogin(true);
-<<<<<<< HEAD
-      }
-
-if(isLogin==false){
-return (
-<Container>
-    <Navigation handleClickParent={detectLogin}/>
-    <Row  style={{width:'100%',display:'flex',alignItems:'center', justifyContent:'center', margin:'30px 0 50px 0'}}>
-        
-    
-        <Nav variant="tabs" style={{width:'50%'}} >
-            <Nav.Item>
-                <Nav.Link eventKey="link-1">Favoris</Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-                <Nav.Link eventKey="link-2">Données perso</Nav.Link>
-            </Nav.Item>
-        </Nav>
-
-    </Row>
-    <Row>
-        <Col className="colonne" >
-            <h3>Bonjour {props.firstName}</h3>
-            <h5>Vous avez 90% de profile complété</h5>
-        </Col>
-
-        <Col className="colonne" >
-        <h3 style={{textAlign:'left'}} >Dirigeant de l'entreprise</h3>
-        <h5 style={{textAlign:'left'}}>Duclos</h5>
-        </Col>
-
-        <Row style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around', margin:'50px 0 0 0' }}>
-                <Row style={{margin:'0 0 50px 0'}}>
-                    <h1>Mes informations personnelles</h1>
-                </Row>
-                <Col style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
-
-                    <Form>
-                        <Row>
-                            <Form.Item style={{ width: '345px' }} label="">
-                                <Input placeholder="Prénom" />
-                            </Form.Item>
-                            <Form.Item style={{ width: '345px' }} label="">
-                                <Input placeholder="Nom" />
-                            </Form.Item>
-                        </Row>
-                        <Row>
-                            <Form.Item style={{ width: '345px' }} label="">
-                                <Input placeholder="Téléphone" />
-                            </Form.Item>
-                            <Form.Item style={{ width: '345px' }} label="">
-                                <Input placeholder="Mail" />
-                            </Form.Item>
-                        </Row>
-                        <Row>
-                            <Form.Item style={{ width: '345px' }} label="">
-                                <Input placeholder="Entreprise" />
-                            </Form.Item>
-                            <Form.Item style={{ width: '345px' }} label="">
-                                <Input placeholder="Siret" />
-                            </Form.Item>
-                            <Form.Item style={{ width: '345px' }} label="">
-                                <Input placeholder="Fonction" />
-                            </Form.Item>
-                        </Row>
-                        <Form.Item>
-                            <Button style={{ width: '100px', background: "#0A62D0", }} type="primary">Enregister</Button>
-                        </Form.Item>
-                    </Form>
-                </Col>
-            </Row>
-    </Row>
-</Container>
-)
-}else if( isLogin== true){
-    return(<Redirect to='/landingpage' />)
-}
-=======
     }
 
     // Création d’une fonction qui va nous permettre d’incrémenter notre état
@@ -159,7 +73,7 @@ return (
 if (isLogin == false)
             return (
                 <Container>
-                    <Nav handleClickParent={detectLogin} />
+                    <Navigation handleClickParent={detectLogin} />
                     <Row style={{ width: '100%', display: 'flex', alignItems: 'center' }}>
                         <Col style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
 
@@ -229,7 +143,6 @@ if (isLogin == false)
         else if (isLogin == true) {
             return (<Redirect to='/landingpage' />)
         }
->>>>>>> 00079fad4ea95ae067f44b53fe7af35804b035de
 
 }
 
