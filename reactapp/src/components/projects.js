@@ -81,10 +81,10 @@ function Projects (props) {
 
 // Gestion du marquage projet :
 
-    let colorTextSelected = "White"
-    let colorBgSelected = "purple"
-    let colorText = "black"
-    let colorBg = "white"
+let colorTextSelected = "black"
+let colorBgSelected = "#F3D849"
+let colorText = 'black'
+let colorBg =  'white'
   
     const dataItem = projects.map ((p,i)=>( 
           {i: i, name: p.projectName, domain: p.projectDomain, colorText : colorText, colorBg: colorBg} 

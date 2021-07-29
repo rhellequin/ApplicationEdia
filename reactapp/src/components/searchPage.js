@@ -50,9 +50,9 @@ function SearchPage (props) {
                           onClick={() => callNext()}
                           style={{backgroundColor: '#0A62D0',
                                   borderRadius:'10px',
-                                  fontSize: '32px',
+                                  height: "60px",
+                                  fontSize: '24px',
                                   color: 'white',
-                                  height: "60px"
                                   }}>
                     Continuer
                     <RightOutlined />   
@@ -72,48 +72,39 @@ if (onResultPage) {
       <div>
         <Layout>
           <Navigation/>
-          <Row>
-            <Content
-              style={{ 
-                backgroundColor: '#E0E5E9',
-                height: '490px',
-                marginLeft: '15px',
-                marginRight: '15px' 
+          
+            <Content style={{ 
+                              backgroundColor: '#E0E5E9',
+                              height: '490px',
+                              marginLeft: '15px',
+                              marginRight: '15px' 
                 }}>
-              <p className='Question'>{props.searchOptions[indexOptions].question}</p>
-              {props.searchOptions[indexOptions].composant}
-            </Content>
-          </Row>
-
-          <Row>           
+                  <p className='Question'>{props.searchOptions[indexOptions].question}</p>
+                   {props.searchOptions[indexOptions].composant}
+              
+              
              
-
-            {/* <Col xs={{ span: 5, offset: 3 }} md={{ span: 5, offset: 3}}>
-              <Button color="primary" size='lg' onClick={() => callResultPage()}
-                                              style={{backgroundColor: '#0A62D0',
-                                                      borderRadius:'10px',
-                                                      height: "60px",
-                                                      fontSize: '16px',
-                                                      color: 'white',
-                                                  
-                                                      }}>
-                      Voir les aides
-              </Button>
-            </Col> */}
-      
-          </Row>
+            </Content>
+          
+        
         </Layout>
         <Col>
 
-        <Col xs={{ span: 2, offset: 5 }} md={{ span: 9, offset: 10 }} >
+        <Col xs={{ span: 2, offset: 5 }} md={{ span: 9, offset: 11 }} style={{
+          display:'flex',
+          flexDirection:'row',
+          justifyContent:'space-between',
+          marginTop:'20px'
+        }} >
                       {buttonContinuer}
                     
                       <Button color="primary" size='lg' onClick={() => callResultPage()}
                                               style={{backgroundColor: '#0A62D0',
                                                       borderRadius:'10px',
                                                       height: "60px",
-                                                      fontSize: '16px',
+                                                      fontSize: '24px',
                                                       color: 'white',
+                                                      
                                                       
                                                   
                                                       }}>

@@ -13,7 +13,7 @@ opacity: props.visible ? '1' : '0'
 
 }}
 >
-<button onClick={props.cache}>X</button>
+<button onClick={props.cache} className="Boutonexit">X</button>
 <div className='Divhaut'>
 <img className='Divhautgauche'src='../images/pinguin.png'  height='150px'  />
  
@@ -28,10 +28,19 @@ opacity: props.visible ? '1' : '0'
          
          
      }}>
+         <div>
+         <h5 className='Details'>Type d'aide: </h5>
          <p className='Details'>Subvention</p>
-         <p className='Details'>Diffulté très faible</p>
+         </div>
+         <div>
+         <h5 className='Details'>Diffulté: </h5>
+         <p className='Details'>très faible</p>
+         </div>
+         <div>
+         <h5 className='Details'>Délai d'obtention: </h5>
          <p className='Details'>1 mois</p>
-         <p className='Details'>autre</p>
+         </div>
+        
      </div>
  </div>
 
