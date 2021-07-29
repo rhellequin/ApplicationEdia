@@ -12,6 +12,7 @@ var funderModel = require('../models/funders');
 var thirdPartyModel = require('../models/thirdparties');
 var territoryModel = require('../models/territories');
 var profileModel = require('../models/profiles');
+var userModel = require('../models/users')
 const { Mongoose } = require('mongoose');
 
 
@@ -19,6 +20,78 @@ const { Mongoose } = require('mongoose');
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Edia BackEnd' });
 });
+
+
+/* GET home page. */
+router.post('/add-favorite', async function(req, res, next) {
+
+var user =  await userModel.findOne({token: req.body.token})
+var tab=user.userAids
+
+console.log(req.body.favorite,'favorite')
+
+
+if(req.body.favorite==true){ 
+  console.log('ajout')
+
+  tab.push(req.body.id)
+  
+  var updatedUser= await userModel.updateOne({token:req.body.token},{userAids: tab  })
+  }
+
+  else if(req.body.favorite==false){ 
+  
+    console.log('supp')
+  index=user.userAids.findIndex((e)=>e==req.body.id)
+  console.log(index,'indx')
+  if(index>=0){
+    tab.splice(index,1)
+    var updatedUser= await userModel.updateOne({token:req.body.token},{userAids: tab})
+  }
+}
+
+  else if(req.body.favorite==undefined){ 
+  
+    console.log('supp')
+  index=user.userAids.findIndex((e)=>e==req.body.id)
+  console.log(index,'indx')
+  if(index>=0){
+    tab.splice(index,1)
+    var updatedUser= await userModel.updateOne({token:req.body.token},{userAids: tab})
+  }
+
+
+  
+}/*
+if(user==null){
+  res.json({result:false})
+} 
+else if(user!= null){
+
+  if(req.body.favorite){
+  tab.push(req.body.id)
+  console.log('id', req.body.id)
+var updatedUser= await userModel.updateOne({token:req.body.token},{userAids: tab  })
+  }
+
+  else if (req.body.favorite===false){
+  index=user.userAids.findIndex((e)=>e==req.body.id)
+  console.log(index,'indx')
+  if(index>=0){
+    tab.splice(index,1)
+    var updatedUser= await userModel.updateOne({token:req.body.token},{userAids: tab})
+  }
+  }
+  res.json({result: true,user: user })
+}
+
+*/
+res.json({result: true,user: user });
+})
+
+
+
+
 
 
 // GET info globale pour une aide :
