@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import {Link, Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
-import Nav from './nav';
+import Navigation from './navigation';
 
 import { Input, Typography, Space,Avatar } from 'antd';
 import { Button,Col,Row,Container,Card, CardImg, CardText, CardBody,CardTitle, CardSubtitle, Media} from 'reactstrap';
@@ -109,7 +109,7 @@ if (onCallSearch) {
     
     <Container fluid={true}>
     
-        <Nav/>
+        <Navigation/>
 
         <Row fluid={true} style={{display:'flex', flexDirection:'row',alignItems:'center'}}>
         <Col sm="12" md="6" lg="6" style={{ display:'flex', flexDirection:'column',marginTop:'30px',justifyContent:'center', alignItems:'center'}} >

@@ -1,6 +1,6 @@
 import React, {useState, useEffect } from 'react';
 import {Input, Typography, Space, Layout, Text, Button, Col, Row  } from 'antd'; 
-import Nav from './nav';
+import Navigation from './navigation';
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 import {Link, Redirect} from 'react-router-dom';
 
@@ -69,7 +69,7 @@ if (onResultPage) {
 
       <div>
         <Layout>
-          <Nav/>
+          <Navigation/>
           <Row>
             <Content
               style={{ 
