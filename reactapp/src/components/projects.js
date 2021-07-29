@@ -106,10 +106,9 @@ function Projects (props) {
 // <Divider  orientation="center" style={{}}>Choisir dans la liste</Divider>
 
     return (
-
+      <div>
+        <CountAids numberOfAids={numberOfAids}/>
         <Row style={{justifyContent: "center"}}>
-          <CountAids numberOfAids={numberOfAids}/>
-          
           <List style={{backgroundColor: "white", width:"600px"}}
               size="small"
               pagination={{
@@ -132,7 +131,7 @@ function Projects (props) {
             )}
           />
         </Row>
-
+      </div>
     )
 }
 
