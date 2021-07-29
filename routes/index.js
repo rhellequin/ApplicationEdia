@@ -53,11 +53,9 @@ router.get('/aidsearch', async function(req, res, next) {
 // GET pour les Types :
 router.get('/types', async function(req, res, next) {
 
-  let types = []
-  
   console.log ('\x1b[34m%s\x1b[0m','=============== > GET Types')
 
-  types =  await typeModel.find().sort({ typeName: 1 })
+  const types =  await typeModel.find().sort({ typeName: 1 })
 
   if (types) {
     res.json({result: true, types: types})
@@ -70,11 +68,9 @@ router.get('/types', async function(req, res, next) {
 // GET pour les Projets :
 router.get('/projects', async function(req, res, next) {
 
-  let projects = []
-  
   console.log ('\x1b[34m%s\x1b[0m','=============== > GET Projects')
  
-  projects =  await projectModel.find().sort({ projectName: 1 })
+  const projects =  await projectModel.find().sort({ projectName: 1 })
 
   if (projects) {
     res.json({result: true, projects: projects})
@@ -83,6 +79,42 @@ router.get('/projects', async function(req, res, next) {
     res.json({result: false})
   }
 })
+
+
+// GET pour les Projets :
+router.get('/domains', async function(req, res, next) {
+
+  console.log ('\x1b[34m%s\x1b[0m','=============== > GET Domains')
+ 
+  const domains =  await domainModel.find().sort({ domainName: 1 })
+
+  if (domains) {
+    res.json({result: true, domains: domains})
+  } else {
+    console.log ('\x1b[31m%s\x1b[0m','=============== > GET Domains Not Found')
+    res.json({result: false})
+  }
+});
+
+// GET pour les Territoires :
+router.get('/territories', async function(req, res, next) {
+
+  console.log ('\x1b[34m%s\x1b[0m','=============== > GET Territories')
+ 
+  const territories =  await territoryModel.find({
+                                        "territoryId" : /[0-9]/,
+                                        "$expr": { "$lt": [ { "$strLenCP": "$territoryId" }, 3 ] }
+                                          }).sort({ territoryId: 1 })
+  
+  if (territories) {
+    res.json({result: true, territories: territories})
+  } else {
+    console.log ('\x1b[31m%s\x1b[0m','=============== > GET Territories Not Found')
+    res.json({result: false})
+  }
+})
+
+{$where: "territoryId.length > 40"} 
 
 
 
@@ -98,6 +130,9 @@ router.post('/search', async function(req, res, next){
       filter[parameters[i].critere] = parameters[i].valeur
     }
   }
+
+
+  console.log('Filter :', filter);
 
 //Find avec Populate sur les infos détails :
   const aids =  await aidModel.find(filter)

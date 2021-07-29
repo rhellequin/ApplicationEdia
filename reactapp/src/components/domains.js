@@ -1,5 +1,7 @@
 import React, {useState, useEffect } from 'react';
 import {connect} from 'react-redux';
+import SearchAids from './searchaids';
+import CountAids from './countaids';
 
 
 import 'antd/dist/antd.css';
@@ -10,107 +12,125 @@ import { DownOutlined, UserOutlined } from '@ant-design/icons';
 
 function Domains (props) {
 
-     
-    const [projects, setProjects] = useState([]);
+    const [iSelected, setISelected] = useState(-1)
+    const [domains, setDomains] = useState([]);
     const [numberOfAids, setNumberOfAids] = useState(0);
         
     useEffect(() => {
          
-        const FindProjects = async () => {
-            const data = await fetch("/projects", {
+        const FindDomains= async () => {
+            const data = await fetch("/domains", {
                 method: 'GET',
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'},    
             })
             const body = await data.json()
             if (body.result) {
-                setProjects(body.projects);
+                const tb = filterDomains(body.domains);
+                setDomains(tb);
             }
         }
-
         setNumberOfAids(props.numberOfAids);
-
-
-        FindProjects();
-         
+        FindDomains();
       },[])   
     
 
     const { Text, Link } = Typography;
 
-
-
-
-    const handleMenuClick = async (elem) => {
+// Appel de la recherche :
+const runSearch = async (i) => {
         
-    // Store la valeur saisie pour le critère :
-        props.updateSearchOptions(props.indexOptions,projects[elem.key]._id);
+  setISelected(i); // pour gérer le marquage du projet sélectionné :
+
+  let parameters = [...props.searchOptions]
+  parameters[props.indexOptions].valeur = domains[i].domainId;
+  const aids = await SearchAids(parameters);
+
+// Mise à jour du Store :
+    props.updateSearchOptions(props.indexOptions,domains[i].domainId);
+    props.updateAids(aids);        
+    const n = aids.length;
+    props.updateNumberOfAids(n);
+    setNumberOfAids(n);
+   
+  }
 
 
-    // POST de la recherche :    
-        const param = JSON.stringify(props.searchOptions)
-        const data = await fetch('/search', {
-            method: 'POST',
-            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-            body: `parameters=${param}`
-            })
-        const body = await data.json();
-        if(body.result){
+// On limite les projects qui sont présents sur les aides sélectionnées :
+const filterDomains = (tb) => {
 
-// Store des aids trouvées :
-            props.updateAids(body.aids);
-// Store du compteur d'aides :         
-            const n = body.aids.length;
-            props.updateNumberOfAids(n);
-            setNumberOfAids(n);
+console.log('filterDomains aids ',props.aids )
+console.log('filterDomains domains ', tb)
 
 
-            console.log("Aids : ", body.aids)
-        }
-
-    }
+  let domains = [];
+  
+  for (let i=0;i<tb.length;i++) {
+      let domainFound = false;
+      for (let j=0;j<props.aids.length && (!domainFound);j++) {        
+        if (tb[i].domainId == props.aids[j].aidActivitySector) {
+           domainFound = true;
+           domains.push(tb[i])
+         }
+      }
+  } 
+  return domains;
+}
 
 
 
-    const tb = projects.map((projet,i) => (
-                <Menu.Item key={i} icon={<UserOutlined />}>{projet.projectName}</Menu.Item>
-    ));
 
 
+// Gestion du marquage projet :
+  let colorTextSelected = "White"
+  let colorBgSelected = "purple"
+  let colorText = 'white'
+  let colorBg =  '#0A62D0'
 
-    const menu = (
-        <Menu onClick={handleMenuClick}>
-          {tb}
-        </Menu>
-      );
+const dataItem = domains.map ((d,i)=>( 
+      {i: i, name: d.domainName, colorText : colorText, colorBg: colorBg} 
+      ));
 
+
+if (iSelected>=0) {
+  dataItem[iSelected].colorText = colorTextSelected
+  dataItem[iSelected].colorBg=colorBgSelected   
+}
 
 
     return (
 
-    <Row>
-        <Col span={8} offset="4">
-            <Space wrap>
-            <Dropdown.Button  overlay={menu} style={{marginLeft:"0px"}} >
-                Projets
-            </Dropdown.Button>
-            </Space>
-            <Card title="Compteur Aids " bordered={true} 
-                    style={{ 
-                        backgroundColor: '#0A62D0', 
-                        marginRight: '15px',
-                        marginLeft: '15px',
-                        marginTop: '15px',
-                        marginBottom: '15px',
-                        textAlign: 'center',
-                        fontFamily: 'Alata',
-                        borderRadius: '10px',
-                        fontSize: '18px',
-                        color: 'white'
-                    }}>
-                {numberOfAids}
-            </Card> 
-        </Col>
-    </Row>
+      <div className="site-card-wrapper">
+          <CountAids numberOfAids={numberOfAids}/>       
+          <Row gutter={16}>
+
+          {dataItem.map((item,i) => (
+                      
+                          <Col span={8} key={i}>
+                          <Card bordered={false} 
+                            onClick={() => runSearch(i)}
+                            style={{ 
+                              marginRight: '15px',
+                              marginLeft: '15px',
+                              marginTop: '15px',
+                              marginBottom: '15px',
+                              textAlign: 'center',
+                              fontFamily: 'Alata',
+                              borderRadius: '10px',
+                              fontSize: '18px',
+                              color: item.colorText,
+                              backgroundColor: item.colorBg, 
+
+
+                              }}>
+                                  {item.name}
+                          </Card>
+                          </Col>
+
+                    ))}
+            </Row>  
+          
+        </div>   
+
     )
 
 
@@ -120,7 +140,7 @@ function Domains (props) {
 
 
 function mapStateToProps(state) {
-  return { searchOptions: state.searchOptions, indexOptions: state.indexOptions, numberOfAids: state.numberOfAids  }
+  return { searchOptions: state.searchOptions, indexOptions: state.indexOptions, numberOfAids: state.numberOfAids, aids: state.aids  }
  }
 
 function mapDispatchToProps(dispatch){

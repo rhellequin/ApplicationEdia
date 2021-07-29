@@ -41,8 +41,8 @@ function Landingpage(props) {
         },
         {
             composant : <Domains/>,
-            question : "Quel domaine d'aide recherchez vous ?",
-            critere : "aidDomains",
+            question : "Quel secteur d'activité ?",
+            critere : "aidActivitySector",
             valeur: null
         },
         {
@@ -51,12 +51,7 @@ function Landingpage(props) {
             critere : "aidProjects",
             valeur: null
         },
-        {
-            composant : <ActivitySector/>,  
-            question : "Quel secteur d'activité ?",
-            critere : "aidActivitySector",
-            valeur: null
-        },
+        
         {
             composant : <Territories/>,  
             question : "Quel est votre département ?",
