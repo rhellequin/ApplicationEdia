@@ -30,8 +30,12 @@ import {
 import '../components/useraccount.css'
 import { propTypes } from 'react-bootstrap/esm/Image';
 import signup from './signup';
+<<<<<<< HEAD
 import { data } from 'jquery';
 >>>>>>> 00079fad4ea95ae067f44b53fe7af35804b035de
+=======
+// import { data } from 'jquery';
+>>>>>>> 8ac76205610e02420087ddf0f4daf98a28dd1330
 
 var souvenirParent
 
