@@ -42,7 +42,7 @@ function UserAccount(props) {
     const [userEmail, setUserEmail] = useState("");
     const [userCompany, setUserCompany] = useState("");
     const [userSiret, setUserSiret] = useState("");
-    const [userRole, setUserRole] = useState("");
+    const [userPosition, setUserPosition] = useState("");
 
     var detectLogin = () => {
         setIsLogin(true);
@@ -56,7 +56,7 @@ function UserAccount(props) {
         const data = await fetch("/users/update", {
             method: "POST",
             headers: { "Content-Type": "application/w-www-form-urlencoded" },
-            body: `firstnameFromFront=${userFirstName}&lastnameFromFront=${userLastName}&phoneFromFront=${userPhone}&emailFromFront=${userEmail}&companyFromFront=${userCompany}&siretFromFront=${userSiret}&roleFromFront=${userRole}`
+            body: `firstnameFromFront=${userFirstName}&lastnameFromFront=${userLastName}&phoneFromFront=${userPhone}&emailFromFront=${userEmail}&companyFromFront=${userCompany}&siretFromFront=${userSiret}&positionFromFront=${userPosition}`
         })
         const body = await data.json
 
@@ -106,29 +106,29 @@ if (isLogin == false)
                                 <Form>
                                     <Row>
                                         <Form.Item style={{ width: '345px' }} label="">
-                                            <Input onChange={(e) => setUserFirstName(e.target.value)} placeholder="Prénom" />
+                                            <Input onChange={(e) => setUserFirstName(e.target.value)} value={userFirstName} placeholder="Prénom" />
                                         </Form.Item>
                                         <Form.Item style={{ width: '345px' }} label="">
-                                            <Input onChange={(e) => setUserLastName(e.target.value)} placeholder="Nom" />
-                                        </Form.Item>
-                                    </Row>
-                                    <Row>
-                                        <Form.Item style={{ width: '345px' }} label="">
-                                            <Input onChange={(e) => setUserPhone(e.target.value)} placeholder="Téléphone" />
-                                        </Form.Item>
-                                        <Form.Item style={{ width: '345px' }} label="">
-                                            <Input onChange={(e) => setUserEmail(e.target.value)} placeholder="Mail" />
+                                            <Input onChange={(e) => setUserLastName(e.target.value)} value={userLastName} placeholder="Nom" />
                                         </Form.Item>
                                     </Row>
                                     <Row>
                                         <Form.Item style={{ width: '345px' }} label="">
-                                            <Input onChange={(e) => setUserCompany(e.target.value)} placeholder="Entreprise" />
+                                            <Input onChange={(e) => setUserPhone(e.target.value)} value={userPhone} placeholder="Téléphone" />
                                         </Form.Item>
                                         <Form.Item style={{ width: '345px' }} label="">
-                                            <Input onChange={(e) => setUserSiret(e.target.value)} placeholder="Siret" />
+                                            <Input onChange={(e) => setUserEmail(e.target.value)} value={userEmail} placeholder="Mail" />
+                                        </Form.Item>
+                                    </Row>
+                                    <Row>
+                                        <Form.Item style={{ width: '345px' }} label="">
+                                            <Input onChange={(e) => setUserCompany(e.target.value)} value={userCompany} placeholder="Entreprise" />
                                         </Form.Item>
                                         <Form.Item style={{ width: '345px' }} label="">
-                                            <Input onChange={(e) => setUserRole(e.target.value)} placeholder="Fonction" />
+                                            <Input onChange={(e) => setUserSiret(e.target.value)} value={userSiret} placeholder="Siret" />
+                                        </Form.Item>
+                                        <Form.Item style={{ width: '345px' }} label="">
+                                            <Input onChange={(e) => setUserPosition(e.target.value)} value={userPosition} placeholder="Fonction" />
                                         </Form.Item>
                                     </Row>
                                     <Form.Item>

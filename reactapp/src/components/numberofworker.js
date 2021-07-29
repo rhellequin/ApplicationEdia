@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import 'antd/dist/antd.css';
 import {Input, Typography, Card, Col, Row } from 'antd'; 
 import { Menu, Dropdown, Button, message, Space, Tooltip } from 'antd';
-import { DownOutlined, UserOutlined } from '@ant-design/icons';
+// import { DownOutlined, UserOutlined } from '@ant-design/icons';
 
 
 function NumberOfWorker (props) {
