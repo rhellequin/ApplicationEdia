@@ -114,7 +114,7 @@ router.get('/territories', async function(req, res, next) {
   }
 })
 
-{$where: "territoryId.length > 40"} 
+
 
 
 

@@ -16,132 +16,116 @@ function Territories (props) {
         
     useEffect(() => {
          
-        const FindProjects = async () => {
-            const data = await fetch("/projects", {
+        const FindTerritories = async () => {
+            const data = await fetch("/territories", {
                 method: 'GET',
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'},    
             })
             const body = await data.json()
             if (body.result) {
-                setProjects(body.projects);
+                setTerritories(body.territories);
             }
         }
-
         setNumberOfAids(props.numberOfAids);
-
-
-        FindProjects();
-         
+        FindTerritories();
       },[])   
     
 
-    const { Text, Link } = Typography;
 
 
 
-
-    const handleMenuClick = async (elem) => {
+// Appel de la recherche :
+const runSearch = async (i) => {
         
-    // Store la valeur saisie pour le critère :
-        props.updateSearchOptions(props.indexOptions,projects[elem.key]._id);
+  setISelected(i); // pour gérer le marquage du projet sélectionné :
+
+  let parameters = [...props.searchOptions]
+  parameters[props.indexOptions].valeur = projects[i]._id
+  const aids = await SearchAids(parameters);
+
+// Mise à jour du Store :
+    props.updateSearchOptions(props.indexOptions,projects[i]._id);
+    props.updateAids(aids);        
+    const n = aids.length;
+    props.updateNumberOfAids(n);
+    setNumberOfAids(n);
+    console.log('aids :',aids )
+}
+
+// Gestion du marquage projet :
+
+let colorTextSelected = "White"
+let colorBgSelected = "purple"
+let colorText = "black"
+let colorBg = "white"
+
+const dataItem = territories.map ((t,i)=>( 
+      {i: i, dept: t.territoryId, name: t.territoryName, colorText : colorText, colorBg: colorBg} 
+      ));
 
 
-    // POST de la recherche :    
-        const param = JSON.stringify(props.searchOptions)
-        const data = await fetch('/search', {
-            method: 'POST',
-            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-            body: `parameters=${param}`
-            })
-        const body = await data.json();
-        if(body.result){
+if (iSelected>=0) {
+  dataItem[iSelected].colorText = colorTextSelected
+  dataItem[iSelected].colorBg=colorBgSelected   
+}
 
-// Store des aids trouvées :
-            props.updateAids(body.aids);
-// Store du compteur d'aides :         
-            const n = body.aids.length;
-            props.updateNumberOfAids(n);
-            setNumberOfAids(n);
+// <Divider  orientation="center" style={{}}>Choisir dans la liste</Divider>
 
+return (
+  <div>
+    <CountAids numberOfAids={numberOfAids}/>
+    <Row style={{justifyContent: "center"}}>
+      <List style={{backgroundColor: "white", width:"600px"}}
+          size="small"
+          pagination={{
+            onChange: page => {
+              console.log(page);
+              },
+            pageSize: 10,
+            }}
 
-            console.log("Aids : ", body.aids)
-        }
+            bordered
+            dataSource={dataItem}
+            renderItem={item => (
 
-    }
-
-
-
-    const tb = projects.map((projet,i) => (
-                <Menu.Item key={i} icon={<UserOutlined />}>{projet.projectName}</Menu.Item>
-    ));
-
-
-
-    const menu = (
-        <Menu onClick={handleMenuClick}>
-          {tb}
-        </Menu>
-      );
-
-
-
-    return (
-
-    <Row>
-        <Col span={8} offset="4">
-            <Space wrap>
-            <Dropdown.Button  overlay={menu} style={{marginLeft:"0px"}} >
-                Projets
-            </Dropdown.Button>
-            </Space>
-            <Card title="Compteur Aids " bordered={true} 
-                    style={{ 
-                        backgroundColor: '#0A62D0', 
-                        marginRight: '15px',
-                        marginLeft: '15px',
-                        marginTop: '15px',
-                        marginBottom: '15px',
-                        textAlign: 'center',
-                        fontFamily: 'Alata',
-                        borderRadius: '10px',
-                        fontSize: '18px',
-                        color: 'white'
-                    }}>
-                {numberOfAids}
-            </Card> 
-        </Col>
+          <List.Item>
+            <Typography.Text  
+              style={{color: item.colorText, backgroundColor: item.colorBg}}
+              onClick={() => {runSearch(item.i)}}
+              >{item.name}</Typography.Text>  
+          </List.Item>
+        )}
+      />
     </Row>
-    )
-
-
-
+  </div>
+)
 }
 
 
 
 function mapStateToProps(state) {
-  return { searchOptions: state.searchOptions, indexOptions: state.indexOptions, numberOfAids: state.numberOfAids  }
- }
+return { searchOptions: state.searchOptions, indexOptions: state.indexOptions, numberOfAids: state.numberOfAids, aids: state.aids  }
+}
 
 function mapDispatchToProps(dispatch){
-  return {
-    updateSearchOptions: function(i,val) {
-      dispatch({type: 'updateSearchOptions', index: i, valeur: val})},
-      
-    updateIndexOptions: function(i) {
-      dispatch({type: 'updateIndexOptions', indexOptions: i})},
-      
-    updateNumberOfAids: function(n) {
-      dispatch({type: 'updateNumberOfAids', numberOfAids: n})},
-      
-      updateAids: function(aids) {
-        dispatch({type: 'updateAids', aids: aids})}
+return {
+updateSearchOptions: function(i,val) {
+  dispatch({type: 'updateSearchOptions', index: i, valeur: val})},
+  
+updateIndexOptions: function(i) {
+  dispatch({type: 'updateIndexOptions', indexOptions: i})},
+  
+updateNumberOfAids: function(n) {
+  dispatch({type: 'updateNumberOfAids', numberOfAids: n})},
+  
+  updateAids: function(aids) {
+    dispatch({type: 'updateAids', aids: aids})}
 
-    
-  }
+
+}
 }
 
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+mapStateToProps,
+mapDispatchToProps
 )(Territories)
