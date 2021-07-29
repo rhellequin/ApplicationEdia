@@ -84,8 +84,9 @@ h1{
     margin: 40px;
 }
 
-.question{
+.Question{
   text-align: center;
+  font-size: 40px;
   
 }
 
