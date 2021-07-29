@@ -21,6 +21,18 @@ router.get('/', function(req, res, next) {
 });
 
 
+/* GET home page. */
+router.get('/add-favorite', async function(req, res, next) {
+
+var aid =  await aidModel.findOne({aidId: aidId})
+
+  res.json({result: false})
+});
+
+
+
+
+
 // GET info globale pour une aide :
 router.get('/aidsearch', async function(req, res, next) {
 
