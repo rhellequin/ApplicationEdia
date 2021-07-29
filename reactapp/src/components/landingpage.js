@@ -18,7 +18,8 @@ import Projects from './projects';
 import ActivitySector from './activitysector';
 import Territories from './territories';
 import NumberOfWorker from './numberofworker';
-import CompanyAge from './companyage'; 
+import CompanyAge from './companyage';
+import Profiles from './profiles'; 
 
 
 
@@ -56,6 +57,13 @@ function Landingpage(props) {
             composant : <Territories/>,  
             question : "Quel est votre département ?",
             critere : "aidTerritories",
+            valeur: null
+        },
+
+        {
+            composant : <Profiles/>,
+            question : "Quel est le profil de votre entreprise?",
+            critere : "aidProfiles",
             valeur: null
         },
         {

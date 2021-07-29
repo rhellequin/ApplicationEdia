@@ -116,7 +116,20 @@ router.get('/territories', async function(req, res, next) {
 
 
 
+// GET pour les profiles :
+router.get('/profiles', async function(req, res, next) {
 
+  console.log ('\x1b[34m%s\x1b[0m','=============== > GET Types')
+
+  const profiles =  await profileModel.find().sort({ profileName: 1 })
+
+  if (profiles) {
+    res.json({result: true, profiles: profiles})
+  } else {
+    console.log ('\x1b[31m%s\x1b[0m','=============== > GET Types Not Found')
+    res.json({result: false})
+  }
+})
 
 // POST avec les paramètres pour la recherche :
 router.post('/search', async function(req, res, next){

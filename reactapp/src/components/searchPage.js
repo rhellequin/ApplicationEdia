@@ -14,7 +14,9 @@ import Projects from './projects';
 import ActivitySector from './activitysector';
 import Territories from './territories';
 import NumberOfWorker from './numberofworker';
-import CompanyAge from './companyage'; 
+import CompanyAge from './companyage';
+import Profiles from './profiles'; 
+
 
 
 import {connect} from 'react-redux';
