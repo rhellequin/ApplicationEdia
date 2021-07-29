@@ -19,7 +19,7 @@ import {
 import '../components/useraccount.css'
 import { propTypes } from 'react-bootstrap/esm/Image';
 import signup from './signup';
-import { data } from 'jquery';
+// import { data } from 'jquery';
 
 var souvenirParent
 
