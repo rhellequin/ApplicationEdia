@@ -13,6 +13,10 @@ import 'antd/dist/antd.css';
 import Avatar from 'antd/lib/avatar/avatar';
 import Bouton from './Bouton';
 import {connect} from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faStar } from '@fortawesome/free-solid-svg-icons'
+
+
 
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -23,7 +27,7 @@ const { Header, Content, Footer, Sider } = Layout;
 function ResultPage (props) {
 
   const [ResultList, setResultList] = useState([])
-
+  const [addingAid, setAddingAid] = useState (false)
   
 
   var importResult = props.aids.map((aid, i) => ({
@@ -139,7 +143,20 @@ function compare5( a, b ) {
     setResultList(importResult)
   }
   
- 
+  var addUserAid= async()=>{
+setAddingAid(true)
+  }
+
+  if(addingAid){
+    var colorStar = {color: '#e74c3c'}
+  } else {
+    var colorStar = {}
+  }
+
+
+
+
+
   return ( 
 
         
@@ -289,9 +306,9 @@ function compare5( a, b ) {
                             <p>{aide.montant} €</p>
                             </div>
                             
-                            <p ><StarOutlined style={{
-                            fontSize:'32px',
-                            color:'#F3D849'}}/></p>
+                            <p ><FontAwesomeIcon icon={faStar}
+                            style={{fontSize:'32px',
+                            color:'#F3D849'}}  onClick={()=>addUserAid()}/></p>
 
                             </Row>
                             <Row style={{
