@@ -22,15 +22,12 @@ router.get('/', function(req, res, next) {
 });
 
 
-/* GET home page. */
+/* POST add aid to favorite. */
 router.post('/add-favorite', async function(req, res, next) {
 
 var user =  await userModel.findOne({token: req.body.token})
-var tab=user.userAids
-
-console.log(user.userAids)
-
-if(user==null|| user.userAids ==null){
+console.log(user)
+if(user==null){
   res.json({result:false})
 } 
 else if(user!= null){
@@ -38,37 +35,31 @@ else if(user!= null){
 if(req.body.favorite=='true'){ 
   console.log('ajout')
 
-  tab.push(req.body.id)
+  user.userAids.push(req.body.id)
   
-  var updatedUser= await userModel.updateOne({token:req.body.token},{userAids: tab  })
-  }
+  var updatedUser= await userModel.updateOne({token:req.body.token},{userAids: user.userAids  })
+}
 
-  else if(req.body.favorite=='false'){ 
+  else if(req.body.favorite=='false'&& user.userAids!==null){ 
     
   index=user.userAids.findIndex((e)=>e==req.body.id)
   console.log(index,'indx')
   if(index>=0){
-    tab.splice(index,1)
-    var updatedUser= await userModel.updateOne({token:req.body.token},{userAids: tab})
-  }
-
+    user.userAids.splice(index,1)
+    var updatedUser= await userModel.updateOne({token:req.body.token},{userAids: user.userAids})
+  }}
+  res.json({result: true,user: user });
 }
-
-//   else if(req.body.favorite=='undefined'){ 
-  
-//     console.log('supp')
-//   index=user.userAids.findIndex((e)=>e==req.body.id)
-//   console.log(index,'indx')
-//   if(index>=0){
-//     tab.splice(index,1)
-//     var updatedUser= await userModel.updateOne({token:req.body.token},{userAids: tab})
-//   } 
-// }
-}
-res.json({result: true,user: user });
 })
 
 
+/* POST favorite add from user account page. */
+router.post('/useraid-favorite', async function(req, res, next) {
+
+  var user =  await userModel.findOne({token: req.body.token})
+ console.log(user)
+    res.json({result: true,userAids: user.userAids });
+  })
 
 
 
