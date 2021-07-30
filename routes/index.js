@@ -28,10 +28,14 @@ router.post('/add-favorite', async function(req, res, next) {
 var user =  await userModel.findOne({token: req.body.token})
 var tab=user.userAids
 
-console.log(req.body.favorite,'favorite')
+console.log(user.userAids)
 
+if(user==null|| user.userAids ==null){
+  res.json({result:false})
+} 
+else if(user!= null){
 
-if(req.body.favorite==true){ 
+if(req.body.favorite=='true'){ 
   console.log('ajout')
 
   tab.push(req.body.id)
@@ -39,53 +43,28 @@ if(req.body.favorite==true){
   var updatedUser= await userModel.updateOne({token:req.body.token},{userAids: tab  })
   }
 
-  else if(req.body.favorite==false){ 
-  
-    console.log('supp')
+  else if(req.body.favorite=='false'){ 
+    
   index=user.userAids.findIndex((e)=>e==req.body.id)
   console.log(index,'indx')
   if(index>=0){
     tab.splice(index,1)
     var updatedUser= await userModel.updateOne({token:req.body.token},{userAids: tab})
   }
+
 }
 
-  else if(req.body.favorite==undefined){ 
+//   else if(req.body.favorite=='undefined'){ 
   
-    console.log('supp')
-  index=user.userAids.findIndex((e)=>e==req.body.id)
-  console.log(index,'indx')
-  if(index>=0){
-    tab.splice(index,1)
-    var updatedUser= await userModel.updateOne({token:req.body.token},{userAids: tab})
-  }
-
-
-  
-}/*
-if(user==null){
-  res.json({result:false})
-} 
-else if(user!= null){
-
-  if(req.body.favorite){
-  tab.push(req.body.id)
-  console.log('id', req.body.id)
-var updatedUser= await userModel.updateOne({token:req.body.token},{userAids: tab  })
-  }
-
-  else if (req.body.favorite===false){
-  index=user.userAids.findIndex((e)=>e==req.body.id)
-  console.log(index,'indx')
-  if(index>=0){
-    tab.splice(index,1)
-    var updatedUser= await userModel.updateOne({token:req.body.token},{userAids: tab})
-  }
-  }
-  res.json({result: true,user: user })
+//     console.log('supp')
+//   index=user.userAids.findIndex((e)=>e==req.body.id)
+//   console.log(index,'indx')
+//   if(index>=0){
+//     tab.splice(index,1)
+//     var updatedUser= await userModel.updateOne({token:req.body.token},{userAids: tab})
+//   } 
+// }
 }
-
-*/
 res.json({result: true,user: user });
 })
 
@@ -189,20 +168,7 @@ router.get('/territories', async function(req, res, next) {
 
 {$where: "territoryId.length > 40"} 
 
-// GET pour les profiles :
-router.get('/profiles', async function(req, res, next) {
 
-  console.log ('\x1b[34m%s\x1b[0m','=============== > GET Types')
-
-  const profiles =  await profileModel.find().sort({ profileName: 1 })
-
-  if (profiles) {
-    res.json({result: true, profiles: profiles})
-  } else {
-    console.log ('\x1b[31m%s\x1b[0m','=============== > GET Types Not Found')
-    res.json({result: false})
-  }
-})
 
 // POST avec les paramètres pour la recherche :
 router.post('/search', async function(req, res, next){

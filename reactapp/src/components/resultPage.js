@@ -10,6 +10,7 @@ import { AppstoreOutlined,
   StarOutlined,
   HomeOutlined } from '@ant-design/icons';
 import 'antd/dist/antd.css';
+import{Redirect} from "react-router-dom";
 import Avatar from 'antd/lib/avatar/avatar';
 import Bouton from './Bouton';
 import {connect} from 'react-redux';
@@ -174,17 +175,30 @@ else{
 }
  })
 setResultList(copyList)
-console.log(copyList, 'resultlist')
+
+var newFavorite
+if(aide.favorite==undefined || aide.favorite==false){
+  newFavorite=true
+}
+else if(aide.favorite==true){
+  newFavorite=false
+}
 
     console.log(id)
     const data = await fetch('/add-favorite', {
       method: 'POST',
       headers: {'Content-Type':'application/x-www-form-urlencoded'},
-      body: `id=${id}&token=${props.token}&favorite=${aide.favorite}`
+      body: `id=${id}&token=${props.token}&favorite=${newFavorite}`
     })  
     const response = await data.json();
-    console.log(response,'response')
-}
+    console.log(response.result)
+    
+    if (response.result==false){
+      
+      return <Redirect to='/signin' />
+    }
+    
+  }
 
  
 
