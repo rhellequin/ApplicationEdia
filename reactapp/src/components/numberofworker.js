@@ -17,11 +17,9 @@ function NumberOfWorker (props) {
     const { Search } = Input;
     const { Text } = Typography;
         
-   
-
     useEffect(() => {
       
-        var dataWorker =['micro','-5','-10','-15', '10-49', '50-249', '250 et plus' ];
+        var dataWorker =['micro','-5','-10','-15', ' 10-49', '50-249', '250 et plus' ];
         setAidNumberOfWorker(dataWorker);
         setNumberOfAids(props.numberOfAids);
          
@@ -140,6 +138,5 @@ function NumberOfWorker (props) {
           mapStateToProps,
           mapDispatchToProps
         )(NumberOfWorker)
-        
         
         
