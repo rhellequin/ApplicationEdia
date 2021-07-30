@@ -120,7 +120,20 @@ router.get('/projects', async function(req, res, next) {
     res.json({result: false})
   }
 })
+// GET pour les profiles :
+router.get('/profiles', async function(req, res, next) {
 
+  console.log ('\x1b[34m%s\x1b[0m','=============== > GET Types')
+
+  const profiles =  await profileModel.find().sort({ profileName: 1 })
+
+  if (profiles) {
+    res.json({result: true, profiles: profiles})
+  } else {
+    console.log ('\x1b[31m%s\x1b[0m','=============== > GET Types Not Found')
+    res.json({result: false})
+  }
+})
 
 // GET pour les Projets :
 router.get('/domains', async function(req, res, next) {
