@@ -21,7 +21,7 @@ function CompanyAge (props) {
 
     useEffect(() => {
       
-        var dataCompanyAge =['- de 3 ans',' + de 3 ans'];
+        var dataCompanyAge =['- de 3 ans','+ de 3 ans'];
         setAidCompanyAge(dataCompanyAge);
         setNumberOfAids(props.numberOfAids);
          
