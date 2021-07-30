@@ -55,7 +55,6 @@ if(req.body.favorite=='true'){
 
 /* POST favorite add from user account page. */
 router.post('/useraid-favorite', async function(req, res, next) {
-
   var user =  await userModel.findOne({token: req.body.token})
   console.log(user.userAids,'userAids')
   var tab=[]
@@ -133,7 +132,20 @@ router.get('/projects', async function(req, res, next) {
     res.json({result: false})
   }
 })
+// GET pour les profiles :
+router.get('/profiles', async function(req, res, next) {
 
+  console.log ('\x1b[34m%s\x1b[0m','=============== > GET Types')
+
+  const profiles =  await profileModel.find().sort({ profileName: 1 })
+
+  if (profiles) {
+    res.json({result: true, profiles: profiles})
+  } else {
+    console.log ('\x1b[31m%s\x1b[0m','=============== > GET Types Not Found')
+    res.json({result: false})
+  }
+})
 
 // GET pour les Projets :
 router.get('/domains', async function(req, res, next) {
@@ -168,12 +180,14 @@ router.get('/territories', async function(req, res, next) {
   }
 })
 
-{$where: "territoryId.length > 40"} 
+
 
 
 
 // POST avec les paramètres pour la recherche :
 router.post('/search', async function(req, res, next){
+
+ 
 
   const parameters = JSON.parse(req.body.parameters);
   
@@ -181,10 +195,11 @@ router.post('/search', async function(req, res, next){
 // construction du filter :
   for (let i=0;i<parameters.length;i++) {
     if (parameters[i].valeur != null) {  
-      filter[parameters[i].critere] = parameters[i].valeur
+        filter[parameters[i].critere] = parameters[i].valeur
     }
   }
 
+ // { aidNumberOfWorker: { $regex: /10-49/i } }  
 
   console.log('Filter :', filter);
 
@@ -206,6 +221,72 @@ router.post('/search', async function(req, res, next){
   res.json({result: false})
   }
 })
+
+
+
+
+// POST avec les paramètres pour la recherche :
+router.post('/filariane', async function(req, res, next){
+
+ 
+
+  const parameters = JSON.parse(req.body.parameters);
+
+  console.log('parameters :',parameters);
+
+  
+  for (let i=0;i<parameters.length;i++) {
+    if (parameters[i].valeur != null) {  
+
+      if (parameters[i].critere == 'aidTypes')  {
+        const bd = await typeModel.findOne ({_id: parameters[i].valeur})
+        if (bd!=null) {
+          parameters[i].name = bd.typeName;
+        } else {
+          parameters[i].name = 'Not Found';
+        }
+      } else if (parameters[i].critere == 'aidProfiles') {
+        const bd = await profileModel.findOne ({_id: parameters[i].valeur})
+        if (bd!=null) {
+          parameters[i].name = bd.profileName;
+        } else {
+          parameters[i].name = 'Not Found';
+        }
+      } else if (parameters[i].critere == 'aidActivitySector') {
+        const bd = await domainModel.findOne ({domainId: parameters[i].valeur})
+        if (bd!=null) {
+          parameters[i].name = bd.domainName;
+        } else {
+          parameters[i].name = 'Not Found';
+        }
+      } else if (parameters[i].critere == 'aidProjects') {
+        const bd = await projectModel.findOne ({_id: parameters[i].valeur})
+        if (bd!=null) {
+          parameters[i].name = bd.projectName;
+        } else {
+          parameters[i].name = 'Not Found';
+        }
+      } else {
+        parameters[i].name = parameters[i].valeur
+      }
+
+    
+    }
+  }
+ 
+
+
+
+  if (true) {
+    console.log ('\x1b[34m%s\x1b[0m','=============== > POST filariane' )
+  res.json({result: true, filAriane: parameters})
+  } else {
+    console.log ('\x1b[31m%s\x1b[0m','=============== > POST filariane')
+  res.json({result: false})
+  }
+})
+
+
 
 
 module.exports = router;

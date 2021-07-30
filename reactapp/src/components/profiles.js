@@ -58,8 +58,8 @@ console.log('runSearch', i)
     
    // Gestion du marquage projet :
 
-   let colorTextSelected = "White"
-   let colorBgSelected = "purple"
+   let colorTextSelected = "black"
+   let colorBgSelected = "#F3D849"
    let colorText = 'white'
    let colorBg =  '#0A62D0'
 
@@ -94,14 +94,14 @@ console.log('runSearch', i)
                     <Card bordered={false} 
                       onClick={() => runSearch(i)}
                       style={{ 
-                        marginRight: '15px',
-                        marginLeft: '15px',
-                        marginTop: '15px',
-                        marginBottom: '15px',
+                        marginRight: '8px',
+                        marginLeft: '8px',
+                        marginTop: '8px',
+                        marginBottom: '8px',
                         textAlign: 'center',
                         fontFamily: 'Alata',
                         borderRadius: '10px',
-                        fontSize: '18px',
+                        fontSize: '16px',
                         color: item.colorText,
                         backgroundColor: item.colorBg, 
 

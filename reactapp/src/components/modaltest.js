@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import Bouton from './Bouton';
+
+import './test.css';
+import './modaltest.css';
 
 function Apptest(props){
 
@@ -29,10 +31,28 @@ function Apptest(props){
      }
 
     return (
-        <div>
-<button onClick={ ()=>rollingClic() }>Clic</button>
-<p>{rollDice}</p>
-        </div>
+
+        <div className='Sidebar'>
+
+            <ul className='SidebarList'>
+                <li className='row'><div>icone</div><div>Tri 1</div></li>
+                <li className='row'><div>icone</div><div>Tri 2</div></li>
+                <li className='row'><div>icone</div><div>Tri 3</div></li>
+                <li className='row'><div>icone</div><div>Tri 4</div></li>
+                <li className='row'><div>icone</div><div>Tri 5</div></li>
+            </ul>
+
+            {/* <button onClick={ ()=>rollingClic() }>Clic</button>
+<p>{rollDice}</p> */}
+ </div>
+
+
+
+
+
+
+
+       
     )
 
 

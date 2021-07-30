@@ -31,7 +31,10 @@ function UserAccount(props) {
     const [userEmail, setUserEmail] = useState("");
     const [userCompany, setUserCompany] = useState("");
     const [userSiret, setUserSiret] = useState("");
-    const [userRole, setUserRole] = useState("");
+    const [userPosition, setUserPosition] = useState("");
+    const [userAids, setUserAids] = useState("");
+
+
     const [userExists, setUserExists] = useState(false)
     const [favori, setFavori]= useState(false)
     const [donnee,setDonnee]= useState()
@@ -40,21 +43,59 @@ function UserAccount(props) {
     
 
 
+
+    useEffect(() => {
+        const findUser = async() => {
+            const data = await fetch(`users/infouser`, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'},  
+                body: `token=${props.token}`
+        })
+        const result = await data.json();
+        console.log('resul :', result, );
+        if (result.result) {
+           
+                setUserFirstName(result.user.firstName);
+                setUserLastName(result.user.lastName);
+                setUserPhone(result.user.phone);
+                setUserEmail(result.user.email);
+                setUserCompany(result.user.company);
+                setUserSiret(result.user.siret);
+                setUserPosition(result.user.position);
+                setUserAids(result.user.userAids);
+            }   else {
+                console.log('pas trouve le user sur token :', props.token)
+            } 
+        }
+        findUser();
+      },[])
+
+
+
+
+
+
+
+
+
+
+
     var detectLogin = () => {
         setIsLogin(true);
     }
 
+
+
+
+
     var handleSubmitUserInfo = async () => {
         const data = await fetch("/users/update", {
             method: "POST",
-            headers: { "Content-Type": "application/w-www-form-urlencoded" },
-            body: `firstnameFromFront=${userFirstName}&lastnameFromFront=${userLastName}&phoneFromFront=${userPhone}&emailFromFront=${userEmail}&companyFromFront=${userCompany}&siretFromFront=${userSiret}&roleFromFront=${userRole}`
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'},  
+            body: `token=${props.token}&firstnameFromFront=${userFirstName}&lastnameFromFront=${userLastName}&phoneFromFront=${userPhone}&emailFromFront=${userEmail}&companyFromFront=${userCompany}&siretFromFront=${userSiret}&positionFromFront=${userPosition}`
         })
-        const body = await data.json
-
-        if (body.result == true) {
-            setUserExists(true)
-        }
+        const result = await data.json();
+        console.log('resul :', result, );
 
     }
 
@@ -72,11 +113,13 @@ function UserAccount(props) {
         setFavList(response.userAids)
       } 
 
+    // var favoriteList= response.userAids.map((aide,i))
 
-}
+}   
 
 
 if (isLogin==false){
+
 return (
 <Container>
     <Navigation handleClickParent={detectLogin}/>
@@ -85,10 +128,10 @@ return (
     
         <Nav variant="tabs" style={{width:'50%'}} >
             <Nav.Item>
-                <Nav.Link eventKey="link-1"onClick={()=>{setFavori(false);setDonnee(true)}}>Données perso</Nav.Link>
+                <Nav.Link eventKey="link-1"onClick={()=>{setFavori(false);setDonnee(false)}}>Favoris</Nav.Link>
             </Nav.Item>
             <Nav.Item>
-                <Nav.Link eventKey="link-2" onClick={()=>{setFavori(true);setDonnee(false);handleFavorite()}} >Favoris</Nav.Link>
+                <Nav.Link eventKey="link-2" onClick={()=>{setFavori(true);setDonnee(true);handleFavorite(props.token)}} >Données perso</Nav.Link>
             </Nav.Item>
         </Nav>
 
@@ -113,39 +156,39 @@ return (
                 <Col style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
 
 
-                    <Form>
-                        <Row>
-                            <Form.Item style={{ width: '345px' }} label="">
-                                <Input onChange={(e) => setUserFirstName(e.target.value)} placeholder="Prénom" />
-                            </Form.Item>
-                            <Form.Item style={{ width: '345px' }} label="">
-                                <Input onChange={(e) => setUserLastName(e.target.value)} placeholder="Nom" />
-                            </Form.Item>
-                        </Row>
-                        <Row>
-                            <Form.Item style={{ width: '345px' }} label="">
-                                <Input onChange={(e) => setUserPhone(e.target.value)} placeholder="Téléphone" />
-                            </Form.Item>
-                            <Form.Item style={{ width: '345px' }} label="">
-                                <Input onChange={(e) => setUserEmail(e.target.value)} placeholder="Mail" />
-                            </Form.Item>
-                        </Row>
-                        <Row>
-                            <Form.Item style={{ width: '345px' }} label="">
-                                <Input onChange={(e) => setUserCompany(e.target.value)} placeholder="Entreprise" />
-                            </Form.Item>
-                            <Form.Item style={{ width: '345px' }} label="">
-                                <Input onChange={(e) => setUserSiret(e.target.value)} placeholder="Siret" />
-                            </Form.Item>
-                            <Form.Item style={{ width: '345px' }} label="">
-                                <Input onChange={(e) => setUserRole(e.target.value)} placeholder="Fonction" />
-                            </Form.Item>
-                        </Row>
-                        <Form.Item>
-                            <Button onClick={() => handleSubmitUserInfo()} style={{ width: '100px', background: "#0A62D0", }} type="primary">Enregister</Button>
+                <Form>
+                    <Row>
+                        <Form.Item style={{ width: '345px' }} label="">
+                            <Input onChange={(e) => setUserFirstName(e.target.value)} placeholder="Prénom" value={userFirstName}/>
                         </Form.Item>
-                    </Form>
-                </Col>
+                        <Form.Item style={{ width: '345px' }} label="">
+                            <Input onChange={(e) => setUserLastName(e.target.value)} placeholder="Nom" value={userLastName}/>
+                        </Form.Item>
+                    </Row>
+                    <Row>
+                        <Form.Item style={{ width: '345px' }} label="">
+                            <Input onChange={(e) => setUserPhone(e.target.value)} placeholder="Téléphone" value={userPhone}/>
+                        </Form.Item>
+                        <Form.Item style={{ width: '345px' }} label="">
+                            <Input onChange={(e) => setUserEmail(e.target.value)} placeholder="Mail" value={userEmail}/>
+                        </Form.Item>
+                    </Row>
+                    <Row>
+                        <Form.Item style={{ width: '345px' }} label="">
+                            <Input onChange={(e) => setUserCompany(e.target.value)} placeholder="Entreprise" value={userCompany}/>
+                        </Form.Item>
+                        <Form.Item style={{ width: '345px' }} label="">
+                            <Input onChange={(e) => setUserSiret(e.target.value)} placeholder="Siret" value={userSiret}/>
+                        </Form.Item>
+                        <Form.Item style={{ width: '345px' }} label="">
+                            <Input onChange={(e) => setUserPosition(e.target.value)} placeholder="Fonction" value={userPosition}/>
+                        </Form.Item>
+                    </Row>
+                    <Form.Item>
+                        <Button onClick={() => handleSubmitUserInfo()} style={{ width: '100px', background: "#0A62D0", }} type="primary">Enregister</Button>
+                    </Form.Item>
+                </Form>
+            </Col>
         </Row>
     :
     <Row  style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around', margin:'50px 0 0 0' }}>   
@@ -262,7 +305,8 @@ favList.map((aide,i) =>{
 
 </Container>
 )
-}else if( isLogin== true){
+}
+else if( isLogin== true){
     return(<Redirect to='/landingpage' />)
 }
 

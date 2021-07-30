@@ -81,10 +81,10 @@ console.log('filterDomains domains ', tb)
 
 
 // Gestion du marquage projet :
-  let colorTextSelected = "White"
-  let colorBgSelected = "purple"
-  let colorText = 'white'
-  let colorBg =  '#0A62D0'
+let colorTextSelected = "black"
+let colorBgSelected = "#F3D849"
+let colorText = 'white'
+let colorBg =  '#0A62D0'
 
 const dataItem = domains.map ((d,i)=>( 
       {i: i, name: d.domainName, colorText : colorText, colorBg: colorBg} 

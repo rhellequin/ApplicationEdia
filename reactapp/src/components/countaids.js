@@ -1,7 +1,7 @@
 import React from 'react';
+import {Input, Typography, Space, Layout, Text, Button, Col, Row, Breadcrumb, Menu, Card, Tag, Badge, Modal } from 'antd'; 
  
- 
-import { Button,Col,Row,Container,Card, CardImg, CardText, CardBody,CardTitle, CardSubtitle, Media} from 'reactstrap';
+
  
 
 function CountAids (props) {
@@ -10,14 +10,17 @@ function CountAids (props) {
 
        
         <div style={{
-              backgroundColor:'#E0E5E9',
-              width:'600px',
-              height:'73px',
-              textAlign: 'center',
+           backgroundColor: '#E0E5E9',
+           position: 'absolute',
+           top:'74px',
+           right:'15px',
+            textAlign: 'center',
+            width:'400px',
               fontFamily: 'Alata',
-              fontSize: '30px',
+              fontSize: '28px',
               borderRadius:'10px',
-              marginLeft:'5px'
+              marginLeft:'5px',
+            
               }}>
               {props.numberOfAids} aides disponibles
         </div>

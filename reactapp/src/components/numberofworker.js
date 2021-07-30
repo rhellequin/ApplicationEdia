@@ -19,7 +19,7 @@ function NumberOfWorker (props) {
         
     useEffect(() => {
       
-        var dataWorker =['micro','-5','-10','-15', ' 10-49', '50-249', '250 et plus' ];
+        var dataWorker =['micro','-5','-10','-15', '10-49', '50-249', '250 et plus' ];
         setAidNumberOfWorker(dataWorker);
         setNumberOfAids(props.numberOfAids);
          
@@ -46,9 +46,8 @@ function NumberOfWorker (props) {
           }
             
            // Gestion du marquage projet :
-        
-           let colorTextSelected = "White"
-           let colorBgSelected = "purple"
+           let colorTextSelected = "black"
+           let colorBgSelected = "#F3D849"
            let colorText = 'white'
            let colorBg =  '#0A62D0'
         
