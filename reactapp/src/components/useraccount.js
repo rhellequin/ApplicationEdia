@@ -35,6 +35,7 @@ function UserAccount(props) {
     const [userExists, setUserExists] = useState(false)
     const [favori, setFavori]= useState(false)
     const [donnee,setDonnee]= useState(false)
+    const [favList,setFavList]= useState([])
 
     var detectLogin = () => {
         setIsLogin(true);
@@ -63,10 +64,15 @@ function UserAccount(props) {
         })  
     const response = await data.json();
     console.log(response.userAids)
+    setFavList(response.userAids)
 
-    var favoriteList= response.userAids.map((aide,i))
-
-    }
+}
+    var favoriteList= favList.map((aide,i) =>{
+        if(favList!=null)
+        return(
+            <p>yes+{aide}</p>
+        ) 
+    })
 
 if (isLogin==false){
 return (
@@ -80,7 +86,7 @@ return (
                 <Nav.Link eventKey="link-1"onClick={()=>{setFavori(false);setDonnee(true)}}>Favoris</Nav.Link>
             </Nav.Item>
             <Nav.Item>
-                <Nav.Link eventKey="link-2" onClick={()=>{setFavori(true);setDonnee(false);handleFavorite(props.token)}} >Données perso</Nav.Link>
+                <Nav.Link eventKey="link-2" onClick={()=>{setFavori(true);setDonnee(false);handleFavorite()}} >Données perso</Nav.Link>
             </Nav.Item>
         </Nav>
 
@@ -95,6 +101,8 @@ return (
         <h3 style={{textAlign:'left'}} >Dirigeant de l'entreprise</h3>
         <h5 style={{textAlign:'left'}}>Duclos</h5>
         </Col>
+    </Row>
+{ donnee == true ?
 
         <Row style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around', margin:'50px 0 0 0' }}>
                 <Row style={{margin:'0 0 50px 0'}}>
@@ -102,47 +110,51 @@ return (
                 </Row>
                 <Col style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
 
-{ donnee == true ?
 
-                <Form>
-                    <Row>
-                        <Form.Item style={{ width: '345px' }} label="">
-                            <Input onChange={(e) => setUserFirstName(e.target.value)} placeholder="Prénom" />
+                    <Form>
+                        <Row>
+                            <Form.Item style={{ width: '345px' }} label="">
+                                <Input onChange={(e) => setUserFirstName(e.target.value)} placeholder="Prénom" />
+                            </Form.Item>
+                            <Form.Item style={{ width: '345px' }} label="">
+                                <Input onChange={(e) => setUserLastName(e.target.value)} placeholder="Nom" />
+                            </Form.Item>
+                        </Row>
+                        <Row>
+                            <Form.Item style={{ width: '345px' }} label="">
+                                <Input onChange={(e) => setUserPhone(e.target.value)} placeholder="Téléphone" />
+                            </Form.Item>
+                            <Form.Item style={{ width: '345px' }} label="">
+                                <Input onChange={(e) => setUserEmail(e.target.value)} placeholder="Mail" />
+                            </Form.Item>
+                        </Row>
+                        <Row>
+                            <Form.Item style={{ width: '345px' }} label="">
+                                <Input onChange={(e) => setUserCompany(e.target.value)} placeholder="Entreprise" />
+                            </Form.Item>
+                            <Form.Item style={{ width: '345px' }} label="">
+                                <Input onChange={(e) => setUserSiret(e.target.value)} placeholder="Siret" />
+                            </Form.Item>
+                            <Form.Item style={{ width: '345px' }} label="">
+                                <Input onChange={(e) => setUserRole(e.target.value)} placeholder="Fonction" />
+                            </Form.Item>
+                        </Row>
+                        <Form.Item>
+                            <Button onClick={() => handleSubmitUserInfo()} style={{ width: '100px', background: "#0A62D0", }} type="primary">Enregister</Button>
                         </Form.Item>
-                        <Form.Item style={{ width: '345px' }} label="">
-                            <Input onChange={(e) => setUserLastName(e.target.value)} placeholder="Nom" />
-                        </Form.Item>
-                    </Row>
-                    <Row>
-                        <Form.Item style={{ width: '345px' }} label="">
-                            <Input onChange={(e) => setUserPhone(e.target.value)} placeholder="Téléphone" />
-                        </Form.Item>
-                        <Form.Item style={{ width: '345px' }} label="">
-                            <Input onChange={(e) => setUserEmail(e.target.value)} placeholder="Mail" />
-                        </Form.Item>
-                    </Row>
-                    <Row>
-                        <Form.Item style={{ width: '345px' }} label="">
-                            <Input onChange={(e) => setUserCompany(e.target.value)} placeholder="Entreprise" />
-                        </Form.Item>
-                        <Form.Item style={{ width: '345px' }} label="">
-                            <Input onChange={(e) => setUserSiret(e.target.value)} placeholder="Siret" />
-                        </Form.Item>
-                        <Form.Item style={{ width: '345px' }} label="">
-                            <Input onChange={(e) => setUserRole(e.target.value)} placeholder="Fonction" />
-                        </Form.Item>
-                    </Row>
-                    <Form.Item>
-                        <Button onClick={() => handleSubmitUserInfo()} style={{ width: '100px', background: "#0A62D0", }} type="primary">Enregister</Button>
-                    </Form.Item>
-                </Form>
+                    </Form>
+                </Col>
+        </Row>
     :
-    null
+                <Form>
+                <Row>
+                    {favoriteList}
+                    
+                </Row>
+                </Form>
 
 } 
-                </Col>
-            </Row>
-    </Row>
+
 </Container>
 )
 }else if( isLogin== true){

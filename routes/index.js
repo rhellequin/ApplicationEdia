@@ -57,7 +57,20 @@ if(req.body.favorite=='true'){
 router.post('/useraid-favorite', async function(req, res, next) {
 
   var user =  await userModel.findOne({token: req.body.token})
- console.log(user)
+  var error=[]
+  console.log(user.userAids,'userAids')
+  var tab=[]
+
+ if(user.userAids == null){
+  error.push('No aids saved yet');
+ }
+ else{
+  for(var i=0;i<user.userAids.length;i++){
+    tab.push(await aidModel.findOne({_id: user.userAids[i]}))
+
+  }
+console.log(tab,'tab')
+ }
     res.json({result: true,userAids: user.userAids });
   })
 

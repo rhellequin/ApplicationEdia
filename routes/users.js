@@ -30,7 +30,7 @@ var newUserSave = await newUserInfo.save();
 res.json({newUserSave})
 })
 
-router.post('/add', function(req, res, next) {
+router.post('/add', async function(req, res, next) {
   var addUserInfo = new userModel ({
     firstName: req.body.firstnameFromFront,
     lastName: req.body.lastnameFromFront,

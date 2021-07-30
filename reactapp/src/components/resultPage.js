@@ -20,12 +20,12 @@ import { faStar } from '@fortawesome/free-solid-svg-icons'
 
 
 
-// const { Header, Content, Footer, Sider } = Layout;
+const { Header, Content, Footer, Sider } = Layout;
 
 
 
 
-// function ResultPage (props) {
+function ResultPage (props) {
 
   const [ResultList, setResultList] = useState([])
   const [addingAid, setAddingAid] = useState (false)
@@ -323,7 +323,7 @@ return(
 
 if(isLogin==true){
 
-  return ( 
+return ( 
 
         
 <Layout>
@@ -464,9 +464,9 @@ if(isLogin==true){
   )
 }       
 
+}
 
 
-// }
 
 function mapStateToProps(state) {
   return { searchOptions: state.searchOptions, indexOptions: state.indexOptions, numberOfAids: state.numberOfAids, aids: state.aids, token: state.user.token}
