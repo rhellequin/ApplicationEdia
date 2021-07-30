@@ -289,14 +289,10 @@ return(
             textAlign: 'center',
             fontFamily: 'Alata',
             fontSize:'18px',
-            
-            
            }}>
               <p>Difficulté d'obtention: {aide.diff}</p>
               <p>Délai d'obtention:{aide.delai}</p>
               </div>
-            
-            
             </Row>
             <Row style={{
             
@@ -306,15 +302,9 @@ return(
             alignContent: "flex-end",
             marginBottom:'auto',
             height:'100px',
-            }}>
-            
+            }}>       
 <Bouton />
             </Row>
-            
-            
-            
-            
-           
     </Card>
     </Col>
     )

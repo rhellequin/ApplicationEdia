@@ -4,7 +4,7 @@ import { Input, Typography, Space, Menu, Form } from 'antd';
 import { } from '@ant-design/icons'
 import { Button, Col, Row, Container, Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Media} from 'reactstrap';
 import { Nav } from 'react-bootstrap';
-
+import Bouton from './Bouton';
 import { Link, Redirect } from "react-router-dom";
 import { connect } from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -34,8 +34,11 @@ function UserAccount(props) {
     const [userRole, setUserRole] = useState("");
     const [userExists, setUserExists] = useState(false)
     const [favori, setFavori]= useState(false)
-    const [donnee,setDonnee]= useState(false)
+    const [donnee,setDonnee]= useState()
     const [favList,setFavList]= useState([])
+    const [isAid,setIsAid]= useState(false)
+    
+
 
     var detectLogin = () => {
         setIsLogin(true);
@@ -63,16 +66,15 @@ function UserAccount(props) {
         body: `token=${props.token}`
         })  
     const response = await data.json();
-    console.log(response.userAids)
-    setFavList(response.userAids)
+    
+    if (response.result === true){
+        setIsAid(true);
+        setFavList(response.userAids)
+      } 
+
 
 }
-    var favoriteList= favList.map((aide,i) =>{
-        if(favList!=null)
-        return(
-            <p>yes+{aide}</p>
-        ) 
-    })
+
 
 if (isLogin==false){
 return (
@@ -83,10 +85,10 @@ return (
     
         <Nav variant="tabs" style={{width:'50%'}} >
             <Nav.Item>
-                <Nav.Link eventKey="link-1"onClick={()=>{setFavori(false);setDonnee(true)}}>Favoris</Nav.Link>
+                <Nav.Link eventKey="link-1"onClick={()=>{setFavori(false);setDonnee(true)}}>Données perso</Nav.Link>
             </Nav.Item>
             <Nav.Item>
-                <Nav.Link eventKey="link-2" onClick={()=>{setFavori(true);setDonnee(false);handleFavorite()}} >Données perso</Nav.Link>
+                <Nav.Link eventKey="link-2" onClick={()=>{setFavori(true);setDonnee(false);handleFavorite()}} >Favoris</Nav.Link>
             </Nav.Item>
         </Nav>
 
@@ -102,7 +104,7 @@ return (
         <h5 style={{textAlign:'left'}}>Duclos</h5>
         </Col>
     </Row>
-{ donnee == true ?
+{ donnee === true ?
 
         <Row style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around', margin:'50px 0 0 0' }}>
                 <Row style={{margin:'0 0 50px 0'}}>
@@ -146,13 +148,116 @@ return (
                 </Col>
         </Row>
     :
-                <Form>
-                <Row>
-                    {favoriteList}
-                    
-                </Row>
-                </Form>
+    <Row  style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around', margin:'50px 0 0 0' }}>   
 
+{isAid ?
+
+favList.map((aide,i) =>{
+       
+        return(
+            <Col sm="12" md="4" lg="4"  key={i}>
+                
+    <Card  bordered={false} style={{ 
+        backgroundColor: '#E0E5E9',
+        margin: '15px',
+        borderRadius:'30px',
+        height:'600px',
+        display:'flex',
+        flexDirection:'column'
+
+                            
+        }}>
+            <Row style={{
+              display:'flex',
+              flexDirection:'row',
+               alignSelf: "flex-start",
+              justifyContent:'space-between',
+              height:'80px',
+            }}>
+              
+            <img src={aide.logo}  height='80px' />
+
+            <p ><FontAwesomeIcon icon={faStar}
+            style=''  /></p>
+
+            </Row>
+            <Row style={{justifyContent:'center',
+            alignItems: 'center',
+            fontFamily: 'Alata',
+            fontSize:'30px',
+            textAlign: 'center',
+           
+            display:'flex',
+            flexDirection:'column',
+            height:'200px'
+           
+            }}>
+
+            
+            <div style={{
+            marginBottom:'10px'
+           
+            }}>{aide.aidName}</div>
+            <div>{aide.aidAmount} €</div>
+            
+            </Row>
+            <Row style={{
+            display:'flex',
+            flexDirection:'column',
+            justifyContent:'space-around',
+            textAlign: 'center',
+            fontFamily: 'Alata',
+           
+            height:'30%',
+            height:'170px',
+           }}>
+              <div style={{
+            display:'flex',
+            flexDirection:'row',
+            justifyContent:'space-between',
+            textAlign: 'center',
+            fontFamily: 'Alata',
+            fontSize:'18px',
+            
+           }}>
+              <p>{aide.financeur}</p>
+              <p>{aide.aidForm}</p>
+              
+              </div>
+              <div style={{
+            display:'flex',
+            flexDirection:'row',
+            justifyContent:'space-between',
+            textAlign: 'center',
+            fontFamily: 'Alata',
+            fontSize:'18px',
+           }}>
+              <p>Difficulté d'obtention: {aide.diff}</p>
+              <p>Délai d'obtention:{aide.aidId}</p>
+              </div>
+            </Row>
+            <Row style={{
+            
+            justifyContent:'center',
+           
+            
+            alignContent: "flex-end",
+            marginBottom:'auto',
+            height:'100px',
+            }}>       
+<Bouton />
+    
+            </Row>
+    </Card>
+    </Col>
+
+) 
+})
+
+:
+<div>Pas de favorite</div>
+}
+</Row>
 } 
 
 </Container>
