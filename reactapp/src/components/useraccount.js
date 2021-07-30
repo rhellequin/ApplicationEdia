@@ -64,7 +64,7 @@ function UserAccount(props) {
     const response = await data.json();
     console.log(response.userAids)
 
-    var favoriteList= response.userAids.map((aide,i))
+    // var favoriteList= response.userAids.map((aide,i))
 
     }
 

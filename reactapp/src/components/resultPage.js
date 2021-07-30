@@ -20,12 +20,12 @@ import { faStar } from '@fortawesome/free-solid-svg-icons'
 
 
 
-// const { Header, Content, Footer, Sider } = Layout;
+const { Header, Content, Footer, Sider } = Layout;
 
 
 
 
-// function ResultPage (props) {
+function ResultPage (props) {
 
   const [ResultList, setResultList] = useState([])
   const [addingAid, setAddingAid] = useState (false)
@@ -34,7 +34,7 @@ import { faStar } from '@fortawesome/free-solid-svg-icons'
 
   
 
-  var importResult = props.aids.map((aid, i) => ({
+  var importResult = props.aids.map((aid, i) => ({
   id: aid._id, name: aid.aidName, financeur:aid.aidFunders[0].funderName, montant:aid.aidAmount, niveauAide: aid.aidLevel.levelName, logo:'../images/pinguin.png', diff:'facile',delai: '6 mois'
   }));
   
@@ -466,7 +466,7 @@ if(isLogin==true){
 
 
 
-// }
+}
 
 function mapStateToProps(state) {
   return { searchOptions: state.searchOptions, indexOptions: state.indexOptions, numberOfAids: state.numberOfAids, aids: state.aids, token: state.user.token}
