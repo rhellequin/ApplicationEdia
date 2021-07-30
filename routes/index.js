@@ -55,9 +55,7 @@ if(req.body.favorite=='true'){
 
 /* POST favorite add from user account page. */
 router.post('/useraid-favorite', async function(req, res, next) {
-
   var user =  await userModel.findOne({token: req.body.token})
- console.log(user)
     res.json({result: true,userAids: user.userAids });
   })
 
