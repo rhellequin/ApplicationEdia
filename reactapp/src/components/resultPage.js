@@ -1,22 +1,3 @@
-<<<<<<< HEAD
-// import React, {useState, useEffect } from 'react';
-// import {Input, Typography, Space, Layout, Text, Button, Col, Row, Breadcrumb, Menu, Card, Tag, Badge, Modal } from 'antd'; 
-// import Navigation from './navigation';
-// import { AppstoreOutlined,
-//   MenuUnfoldOutlined,
-//   MenuFoldOutlined,
-//   PieChartOutlined,
-//   DesktopOutlined, 
-//   ContainerOutlined,
-//   StarOutlined,
-//   HomeOutlined } from '@ant-design/icons';
-// import 'antd/dist/antd.css';
-// import Avatar from 'antd/lib/avatar/avatar';
-// import Bouton from './Bouton';
-// import {connect} from 'react-redux';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import { faStar } from '@fortawesome/free-solid-svg-icons'
-=======
 import React, {useState, useEffect } from 'react';
 import {Input, Typography, Space, Layout, Text, Button, Col, Row, Breadcrumb, Menu, Card, Tag, Badge, Modal } from 'antd'; 
 import Navigation from './navigation';
@@ -35,7 +16,6 @@ import Bouton from './Bouton';
 import {connect} from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
->>>>>>> 5a70ccb12df815cb0525891b2e711c7ef0ded1a5
 
 
 
@@ -47,15 +27,6 @@ import { faStar } from '@fortawesome/free-solid-svg-icons'
 
 // function ResultPage (props) {
 
-<<<<<<< HEAD
-//   const [ResultList, setResultList] = useState([])
-//   const [addingAid, setAddingAid] = useState (false)
-  
-
-//   var importResult = props.aids.map((aid, i) => ({
-//   name: aid.aidName, financeur:aid.aidFunders[0].funderName, montant:aid.aidAmount, niveauAide: aid.aidLevel.levelName, logo:'../images/pinguin.png', diff:'facile',delai: '6 mois'
-//   }));
-=======
   const [ResultList, setResultList] = useState([])
   const [addingAid, setAddingAid] = useState (false)
   const [addList, setAddList] = useState([])
@@ -65,7 +36,6 @@ import { faStar } from '@fortawesome/free-solid-svg-icons'
   var importResult = props.aids.map((aid, i) => ({
   id: aid._id, name: aid.aidName, financeur:aid.aidFunders[0].funderName, montant:aid.aidAmount, niveauAide: aid.aidLevel.levelName, logo:'../images/pinguin.png', diff:'facile',delai: '6 mois'
   }));
->>>>>>> 5a70ccb12df815cb0525891b2e711c7ef0ded1a5
   
 
 
@@ -160,27 +130,6 @@ import { faStar } from '@fortawesome/free-solid-svg-icons'
 //     console.log('importResult', importResult);
 //     setResultList(importResult)
     
-<<<<<<< HEAD
-//   }
-
-//   var tri3 = async () => {
-//     importResult.sort( compare3 );
-//     console.log('importResult', importResult);
-//     setResultList(importResult)
-//   }
-
-//   var tri4 = async () => {
-//     importResult.sort( compare4 );
-//     console.log('importResult', importResult);
-//     setResultList(importResult)
-//   }
-
-//   var tri5= async () => {
-//     importResult.sort( compare5 );
-//     console.log('importResult', importResult);
-//     setResultList(importResult)
-//   }  
-=======
   }
 
   var tri3 = async () => {
@@ -369,7 +318,6 @@ else if(aide.favorite==true){
     )
           })
 
->>>>>>> 5a70ccb12df815cb0525891b2e711c7ef0ded1a5
 
 
 //   return ( 
@@ -489,122 +437,8 @@ else if(aide.favorite==true){
 //     <div className="site-card-wrapper">
 //     <Row gutter={16}>
 
-<<<<<<< HEAD
-//     {ResultList.map((aide,i) => (
-                
-//                     <Col span={12} key={i}>
-//                     <Card  bordered={false} style={{ 
-//                         backgroundColor: '#E0E5E9',
-//                         margin: '15px',
-//                         borderRadius:'30px',
-//                         height:'600px',
-//                         display:'flex',
-//                         flexDirection:'column'
-
-                                            
-//                         }}>
-//                             <Row style={{
-//                               display:'flex',
-//                               flexDirection:'row',
-//                                alignSelf: "flex-start",
-//                               justifyContent:'space-between',
-//                               height:'80px',
-//                             }}>
-                              
-//                             <img src={aide.logo}  height='80px' />
-
-                            
-                            
-//                             <p ><FontAwesomeIcon icon={faStar}
-//                             style={{fontSize:'32px',
-//                             color:'#F3D849'}}  onClick={()=>addUserAid()}/></p>
-
-//                             </Row>
-//                             <Row style={{justifyContent:'center',
-//                             alignItems: 'center',
-//                             fontFamily: 'Alata',
-//                             fontSize:'30px',
-//                             textAlign: 'center',
-                           
-//                             display:'flex',
-//                             flexDirection:'column',
-//                             height:'200px'
-                           
-//                             }}>
-
-                            
-//                             <div style={{
-//                             marginBottom:'10px'
-                           
-//                             }}>{aide.name}</div>
-//                             <div>{aide.montant} €</div>
-                            
-//                             </Row>
-//                             <Row style={{
-//                             display:'flex',
-//                             flexDirection:'column',
-//                             justifyContent:'space-around',
-//                             textAlign: 'center',
-//                             fontFamily: 'Alata',
-                           
-//                             height:'30%',
-//                             height:'170px',
-//                            }}>
-//                               <div style={{
-//                             display:'flex',
-//                             flexDirection:'row',
-//                             justifyContent:'space-between',
-//                             textAlign: 'center',
-//                             fontFamily: 'Alata',
-//                             fontSize:'18px',
-                            
-//                            }}>
-//                               <p>{aide.financeur}</p>
-//                               <p>{aide.niveauAide}</p>
-                              
-//                               </div>
-//                               <div style={{
-//                             display:'flex',
-//                             flexDirection:'row',
-//                             justifyContent:'space-between',
-//                             textAlign: 'center',
-//                             fontFamily: 'Alata',
-//                             fontSize:'18px',
-                            
-                            
-//                            }}>
-//                               <p>Difficulté d'obtention: {aide.diff}</p>
-//                               <p>Délai d'obtention:{aide.delai}</p>
-//                               </div>
-                            
-                            
-//                             </Row>
-//                             <Row style={{
-                            
-//                             justifyContent:'center',
-                           
-                            
-//                             alignContent: "flex-end",
-//                             marginBottom:'auto',
-//                             height:'100px',
-//                             }}>
-                            
-// <Bouton />
-//                             </Row>
-                            
-                            
-                            
-                            
-                           
-//                     </Card>
-//                     </Col>
-
-//               ))}
-//        </Row>  
-=======
 {displayList}
        </Row>  
->>>>>>> 5a70ccb12df815cb0525891b2e711c7ef0ded1a5
     
 //   </div> 
 
@@ -626,15 +460,9 @@ else if(aide.favorite==true){
 
 // }
 
-<<<<<<< HEAD
-// function mapStateToProps(state) {
-//   return { searchOptions: state.searchOptions, indexOptions: state.indexOptions, numberOfAids: state.numberOfAids, aids: state.aids  }
-//  }
-=======
 function mapStateToProps(state) {
   return { searchOptions: state.searchOptions, indexOptions: state.indexOptions, numberOfAids: state.numberOfAids, aids: state.aids, token: state.user.token}
  }
->>>>>>> 5a70ccb12df815cb0525891b2e711c7ef0ded1a5
 
 
 // export default connect(
