@@ -16,6 +16,7 @@ import {connect} from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 import './resultPage.css';
+import domains from './domains';
 
 
 
@@ -29,11 +30,15 @@ function ResultPage (props) {
 
   const [ResultList, setResultList] = useState([])
   const [addingAid, setAddingAid] = useState (false)
+ 
+
   
 
   var importResult = props.aids.map((aid, i) => ({
-  name: aid.aidName, financeur:aid.aidFunders[0].funderName, montant:aid.aidAmount, niveauAide: aid.aidLevel.levelName, logo:'../images/pinguin.png', diff:'facile',delai: '6 mois'
-  }));
+  name: aid.aidName, financeur:aid.aidFunders[0].funderName, montant:aid.aidAmount, niveauAide: aid.aidLevel.levelName, logo:'../images/pinguin.png', diff:'facile',delai: '6 mois',
+  type: aid.aidTypes[0].typeName, domaine: aid.aidActivitySector[0], enjeux: aid.aidProjects[0].projectName, profile:aid.aidProfiles[0].profileName, effectif:aid.aidNumberOfWorker[0], age: aid.aidCompanyAge[0], 
+territoire: aid.aidTerritories[0]
+}));
   
 
 
@@ -48,12 +53,19 @@ function ResultPage (props) {
         var resultat = async () => {
           importResult.sort( compare1 );
           console.log('useffect', importResult);
-          setResultList(importResult);  
+          setResultList(importResult);
+          
         }
         resultat()
       }, [])
 
-
+      {ResultList.map((aide,i) => (
+                       
+        <div><img src='../images/1.png'  />type d'aide:{aide.type}</div> 
+       
+      
+))}               
+   
 
 //fonctions de tri
       //Tri critère 1
@@ -156,8 +168,7 @@ setAddingAid(true)
   }
 
 
-
-
+  
 
   return ( 
 
@@ -178,15 +189,19 @@ setAddingAid(true)
           534 aides disponibles
         </div>
 </Col>
-<Col md={{ span: 24 }} style={{display: 'flex',
-                                          flex:'direction',
-                                          backgroundColor:'aqua'}}>
-  <div><img src='../images/1.png'  />question 1</div>
-  <div><img src='../images/2.png'  />question 2</div>
-  <div><img src='../images/3.png'  />question 3</div>
-  <div><img src='../images/4.png'  />question 4</div>
-  <div><img src='../images/5.png'  />question 5</div>
-  <div><img src='../images/6.png'  />question 6</div>
+
+
+   
+            
+         
+            
+<Col md={{ span: 24 }} className='Ariane' >
+  <div><img src='../images/1.png'  />type d'aide: </div>
+  <div><img src='../images/2.png'  />domaine d'aide: </div>
+  <div><img src='../images/3.png'  />enjeux: </div>
+  <div><img src='../images/4.png'  />secteur d'activité:</div>
+  <div><img src='../images/5.png'  />département:</div>
+  <div><img src='../images/6.png'  />effectif: </div>
   <div><img src='../images/7.png'  />question 7</div>
 
 
@@ -240,12 +255,16 @@ setAddingAid(true)
 
     <Content >
       
+
+
+
     <div className="site-card-wrapper">
     <Row gutter={16}>
 
     {ResultList.map((aide,i) => (
                 
                     <Col span={12} key={i}>
+                      
                     <Card  bordered={false} style={{ 
                         backgroundColor: '#E0E5E9',
                         margin: '15px',
