@@ -11,9 +11,43 @@ router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
 
-/*router.post('/update', async function(req, res, next) { 
-}
- update informations utilisateur*/
+/*update informations utilisateur*/
+
+router.post('/update', async function(req, res, next) { 
+  var newUserInfo = new userModel ({
+  firstName: req.body.firstnameFromFront,
+  lastName: req.body.lastnameFromFront,
+  email: req.body.phoneFromFront,
+  phone: req.body.emailFromFront,
+  company: req.body.companyFromFront,
+  siret: req.body.siretFromFront,
+  position: req.body.positionFromFront
+
+})
+
+var newUserSave = await newUserInfo.save();
+
+res.json({newUserSave})
+})
+
+router.post('/add', function(req, res, next) {
+  var addUserInfo = new userModel ({
+    firstName: req.body.firstnameFromFront,
+    lastName: req.body.lastnameFromFront,
+    email: req.body.phoneFromFront,
+    phone: req.body.emailFromFront,
+    company: req.body.companyFromFront,
+    siret: req.body.siretFromFront,
+    position: req.body.positionFromFront
+  })
+
+  const found = userModel.find(token);
+
+  var addUserInfo  = await addUserInfo.findByIdAndUpdate();
+
+  res.json({addUserInfo })
+
+})
 
 
 /* POST sign up. */
@@ -40,6 +74,9 @@ router.post('/sign-up', async function(req, res, next) {
       lastName:user.lastName,
       email: user.email,
       phone:user.phone,
+      company:"",
+      position:"",
+      siret:"",
       password: hash,
       token: uid2(32)
     });
