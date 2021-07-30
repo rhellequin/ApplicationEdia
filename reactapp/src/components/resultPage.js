@@ -17,6 +17,7 @@ import {connect} from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 import './resultPage.css';
+import CountAids from './countaids'
 
 
 
@@ -32,12 +33,11 @@ function ResultPage (props) {
   const [addingAid, setAddingAid] = useState (false)
   const [addList, setAddList] = useState([])
   const [isLogin,setIsLogin]= useState(true)
+  const [numberOfAids, setNumberOfAids] = useState(0);
 
   
 
-  var importResult = props.aids.map((aid, i) => ({
-  id: aid._id, name: aid.aidName, financeur:aid.aidFunders[0].funderName, montant:aid.aidAmount, niveauAide: aid.aidLevel.levelName, logo:'../images/pinguin.png', diff:'facile',delai: '6 mois'
-  }));
+ 
   
 
   var importResult = props.aids.map((aid, i) => ({
@@ -52,6 +52,7 @@ function ResultPage (props) {
           importResult.sort( compare1 );
           console.log('useffect', importResult);
           setResultList(importResult);
+          setNumberOfAids(props.numberOfAids);
           
         }
         resultat()
@@ -211,6 +212,7 @@ else if(aide.favorite==true){
 return(
                 
     <Col span={12} key={i}>
+      <CountAids numberOfAids={numberOfAids}/>
     <Card  bordered={false} style={{ 
         backgroundColor: '#E0E5E9',
         margin: '15px',
@@ -326,20 +328,7 @@ if(isLogin==true){
         
 <Layout>
 <Navigation/>
-<Col md={{ span: 8, offset: 14 }}>
-        <div style={{
-          backgroundColor:'#E0E5E9',
-          width:'600px',
-          height:'73px',
-          textAlign: 'center',
-          fontFamily: 'Alata',
-          fontSize: '30px',
-          borderRadius:'10px',
-          marginLeft:'5px'
-        }}>
-          534 aides disponibles
-        </div>
-</Col>
+<CountAids numberOfAids={numberOfAids}/>
 
 
    
