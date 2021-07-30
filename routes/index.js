@@ -213,5 +213,68 @@ router.post('/search', async function(req, res, next){
 
 
 
+// POST avec les paramètres pour la recherche :
+router.post('/filariane', async function(req, res, next){
+
+ 
+
+  const parameters = JSON.parse(req.body.parameters);
+
+  console.log('parameters :',parameters);
+
+  
+  for (let i=0;i<parameters.length;i++) {
+    if (parameters[i].valeur != null) {  
+
+      if (parameters[i].critere == 'aidTypes')  {
+        const bd = await typeModel.findOne ({_id: parameters[i].valeur})
+        if (bd!=null) {
+          parameters[i].name = bd.typeName;
+        } else {
+          parameters[i].name = 'Not Found';
+        }
+      } else if (parameters[i].critere == 'aidProfiles') {
+        const bd = await profileModel.findOne ({_id: parameters[i].valeur})
+        if (bd!=null) {
+          parameters[i].name = bd.profileName;
+        } else {
+          parameters[i].name = 'Not Found';
+        }
+      } else if (parameters[i].critere == 'aidActivitySector') {
+        const bd = await domainModel.findOne ({domainId: parameters[i].valeur})
+        if (bd!=null) {
+          parameters[i].name = bd.domainName;
+        } else {
+          parameters[i].name = 'Not Found';
+        }
+      } else if (parameters[i].critere == 'aidProjects') {
+        const bd = await projectModel.findOne ({_id: parameters[i].valeur})
+        if (bd!=null) {
+          parameters[i].name = bd.projectName;
+        } else {
+          parameters[i].name = 'Not Found';
+        }
+      } else {
+        parameters[i].name = parameters[i].valeur
+      }
+
+    
+    }
+  }
+ 
+
+
+
+  if (true) {
+    console.log ('\x1b[34m%s\x1b[0m','=============== > POST filariane' )
+  res.json({result: true, filAriane: parameters})
+  } else {
+    console.log ('\x1b[31m%s\x1b[0m','=============== > POST filariane')
+  res.json({result: false})
+  }
+})
+
+
+
 
 module.exports = router;

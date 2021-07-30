@@ -19,7 +19,7 @@ import { faStar } from '@fortawesome/free-solid-svg-icons'
 import './resultPage.css';
 
 
-
+import FilAriane from './filariane'
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -52,9 +52,16 @@ function ResultPage (props) {
           importResult.sort( compare1 );
           console.log('useffect', importResult);
           setResultList(importResult);
-          
+
+
+          const filAriane = await FilAriane(props.searchOptions);
+          console.log('filAriane ', filAriane);
         }
         resultat()
+
+
+
+
       }, [])
 
       
@@ -412,117 +419,13 @@ if(isLogin==true){
     <div className="site-card-wrapper">
     <Row gutter={16}>
 
-    {ResultList.map((aide,i) => (
-                
-                    <Col span={12} key={i}>
-                      
-                    <Card  bordered={false} style={{ 
-                        backgroundColor: '#E0E5E9',
-                        margin: '15px',
-                        borderRadius:'30px',
-                        height:'600px',
-                        display:'flex',
-                        flexDirection:'column'
 
-                                            
-                        }}>
-                            <Row style={{
-                              display:'flex',
-                              flexDirection:'row',
-                               alignSelf: "flex-start",
-                              justifyContent:'space-between',
-                              height:'80px',
-                            }}>
-                              
-                            <img src={aide.logo}  height='80px' />
 
-                            
-                            
-                            <p ><FontAwesomeIcon icon={faStar}
-                            style={{fontSize:'32px',
-                            color:'#F3D849'}}  onClick={()=>addUserAid()}/></p>
 
-                            </Row>
-                            <Row style={{justifyContent:'center',
-                            alignItems: 'center',
-                            fontFamily: 'Alata',
-                            fontSize:'30px',
-                            textAlign: 'center',
-                           
-                            display:'flex',
-                            flexDirection:'column',
-                            height:'200px'
-                           
-                            }}>
 
-                            
-                            <div style={{
-                            marginBottom:'10px'
-                           
-                            }}>{aide.name}</div>
-                            <div>{aide.montant} €</div>
-                            
-                            </Row>
-                            <Row style={{
-                            display:'flex',
-                            flexDirection:'column',
-                            justifyContent:'space-around',
-                            textAlign: 'center',
-                            fontFamily: 'Alata',
-                           
-                            height:'30%',
-                            height:'170px',
-                           }}>
-                              <div style={{
-                            display:'flex',
-                            flexDirection:'row',
-                            justifyContent:'space-between',
-                            textAlign: 'center',
-                            fontFamily: 'Alata',
-                            fontSize:'18px',
-                            
-                           }}>
-                              <p>{aide.financeur}</p>
-                              <p>{aide.niveauAide}</p>
-                              
-                              </div>
-                              <div style={{
-                            display:'flex',
-                            flexDirection:'row',
-                            justifyContent:'space-between',
-                            textAlign: 'center',
-                            fontFamily: 'Alata',
-                            fontSize:'18px',
-                            
-                            
-                           }}>
-                              <p>Difficulté d'obtention: {aide.diff}</p>
-                              <p>Délai d'obtention:{aide.delai}</p>
-                              </div>
-                            
-                            
-                            </Row>
-                            <Row style={{
-                            
-                            justifyContent:'center',
-                           
-                            
-                            alignContent: "flex-end",
-                            marginBottom:'auto',
-                            height:'100px',
-                            }}>
-                            
-<Bouton />
-                            </Row>
-                            
-                            
-                            
-                            
-                           
-                    </Card>
-                    </Col>
 
-              ))}
+
+
 {displayList}
        </Row>  
     
