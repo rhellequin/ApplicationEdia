@@ -77,10 +77,10 @@ return (
     
         <Nav variant="tabs" style={{width:'50%'}} >
             <Nav.Item>
-                <Nav.Link eventKey="link-1"onClick={()=>{setFavori(false);setDonnee(true)}}>Favoris</Nav.Link>
+                <Nav.Link eventKey="link-1"onClick={()=>{setFavori(false);setDonnee(false)}}>Favoris</Nav.Link>
             </Nav.Item>
             <Nav.Item>
-                <Nav.Link eventKey="link-2" onClick={()=>{setFavori(true);setDonnee(false);handleFavorite(props.token)}} >Données perso</Nav.Link>
+                <Nav.Link eventKey="link-2" onClick={()=>{setFavori(true);setDonnee(true);handleFavorite(props.token)}} >Données perso</Nav.Link>
             </Nav.Item>
         </Nav>
 
