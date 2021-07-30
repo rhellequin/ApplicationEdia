@@ -15,6 +15,7 @@ import Bouton from './Bouton';
 import {connect} from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
+import './resultPage.css';
 
 
 
@@ -37,21 +38,18 @@ function ResultPage (props) {
 
 
 
- var ListEssai=[
-    {name: 'TROP COOL', montant:'5000', financeur:'Cresus', niveauAide:'local', diff:'2', delai: '6 mois', logo:'../images/pinguin.png'},
-    {name: "BESOIN d'ARGENT", montant:'2000', financeur:'Rockfeller', niveauAide:'départemental', diff:'3', delai:'3 mois', logo:'../images/pinguin.png'},
-    {name: 'NEED HELP', montant:'8000', financeur:'Jeff Bezos', niveauAide:'européen', diff:'1', delai:'2 mois', logo:'../images/pinguin.png' },
-      ]
+//  var ListEssai=[
+//     {name: 'TROP COOL', montant:'5000', financeur:'Cresus', niveauAide:'local', diff:'2', delai: '6 mois', logo:'../images/pinguin.png'},
+//     {name: "BESOIN d'ARGENT", montant:'2000', financeur:'Rockfeller', niveauAide:'départemental', diff:'3', delai:'3 mois', logo:'../images/pinguin.png'},
+//     {name: 'NEED HELP', montant:'8000', financeur:'Jeff Bezos', niveauAide:'européen', diff:'1', delai:'2 mois', logo:'../images/pinguin.png' },
+//       ]
 
       useEffect(() => {
         var resultat = async () => {
           importResult.sort( compare1 );
           console.log('useffect', importResult);
-          setResultList(importResult);
-         
-          
+          setResultList(importResult);  
         }
-    
         resultat()
       }, [])
 
@@ -180,53 +178,20 @@ setAddingAid(true)
           534 aides disponibles
         </div>
 </Col>
-<Breadcrumb style={{
-          fontFamily: 'Alata',
-          fontSize: '30px',
-          
-         
-        }}>
-    
-    <Breadcrumb.Item >
-    <a href="">
-    <HomeOutlined /></a>
-    </Breadcrumb.Item>
-    <Breadcrumb.Item>
-    <span style={{
-                              backgroundColor:'yellow',
-                              width:'50px',
-                              height:'50px',
-                              textAlign: 'center',
-                              fontFamily: 'Alata',
-                              fontSize: '30px',
-                              borderRadius:'50px',
-                              marginLeft:'5px'
-                              
-                            }}>1</span>
-      <a href=""><span>Réponse 1</span></a>
-    </Breadcrumb.Item>
-    <Breadcrumb.Item>
-    <span>2</span><a href="">Réponse 2</a>
-    </Breadcrumb.Item>
-    <Breadcrumb.Item>
-    <span>3</span><a href="">Réponse 3</a>
-    </Breadcrumb.Item>
-    <Breadcrumb.Item>
-    <span>4</span><a href="">Réponse 4</a>
-    </Breadcrumb.Item>
-    <Breadcrumb.Item>
-    <span>5</span><a href="">Réponse 5</a>
-    </Breadcrumb.Item>
-    <Breadcrumb.Item>
-    <span>6</span><a href="">Réponse 6</a>
-    </Breadcrumb.Item>
-    <Breadcrumb.Item>
-    <span>7</span><a href="">Réponse 7</a>
-    </Breadcrumb.Item>
-  </Breadcrumb>
-<div>
+<Col md={{ span: 24 }} style={{display: 'flex',
+                                          flex:'direction',
+                                          backgroundColor:'aqua'}}>
+  <div><img src='../images/1.png'  />question 1</div>
+  <div><img src='../images/2.png'  />question 2</div>
+  <div><img src='../images/3.png'  />question 3</div>
+  <div><img src='../images/4.png'  />question 4</div>
+  <div><img src='../images/5.png'  />question 5</div>
+  <div><img src='../images/6.png'  />question 6</div>
+  <div><img src='../images/7.png'  />question 7</div>
 
-</div>
+
+</Col>
+
 
   <Layout>
     <Sider style={{ backgroundColor:'#E0E5E9'}}>
