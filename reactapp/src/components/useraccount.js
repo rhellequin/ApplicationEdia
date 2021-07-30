@@ -54,6 +54,18 @@ function UserAccount(props) {
 
     }
 
+    var handleFavorite = async () =>{
+
+    const data = await fetch('/useraid-favorite', {
+        method: 'POST',
+        headers: {'Content-Type':'application/x-www-form-urlencoded'},
+        body: `token=${props.token}`
+        })  
+    const response = await data.json();
+    console.log(response.userAids)
+
+    }
+
 if (isLogin==false){
 return (
 <Container>
@@ -66,7 +78,7 @@ return (
                 <Nav.Link eventKey="link-1"onClick={()=>{setFavori(false);setDonnee(true)}}>Favoris</Nav.Link>
             </Nav.Item>
             <Nav.Item>
-                <Nav.Link eventKey="link-2" onClick={()=>{setFavori(true);setDonnee(false)}} >Données perso</Nav.Link>
+                <Nav.Link eventKey="link-2" onClick={()=>{setFavori(true);setDonnee(false);handleFavorite(props.token)}} >Données perso</Nav.Link>
             </Nav.Item>
         </Nav>
 
