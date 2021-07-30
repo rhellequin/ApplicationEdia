@@ -20,7 +20,7 @@ import './resultPage.css';
 import CountAids from './countaids'
 
 
-
+import FilAriane from './filariane'
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -54,8 +54,16 @@ function ResultPage (props) {
           setResultList(importResult);
           setNumberOfAids(props.numberOfAids);
           
+
+
+          const filAriane = await FilAriane(props.searchOptions);
+          console.log('filAriane ', filAriane);
         }
         resultat()
+
+
+
+
       }, [])
 
       
@@ -406,8 +414,16 @@ if(isLogin==true){
 
     <div className="site-card-wrapper">
     <Row gutter={16}>
-      {displayList}
-      </Row>  
+
+
+
+
+
+
+
+
+{displayList}
+       </Row>  
     
   </div> 
 
