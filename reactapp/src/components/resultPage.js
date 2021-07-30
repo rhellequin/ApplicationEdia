@@ -30,6 +30,7 @@ function ResultPage (props) {
   const [ResultList, setResultList] = useState([])
   const [addingAid, setAddingAid] = useState (false)
   const [addList, setAddList] = useState([])
+  const [isLogin,setIsLogin]= useState(true)
 
   
 
@@ -192,10 +193,9 @@ else if(aide.favorite==true){
     })  
     const response = await data.json();
     console.log(response.result)
-    
+
     if (response.result==false){
-      
-      return <Redirect to='/signin' />
+      setIsLogin(false)
     }
     
   }
@@ -208,7 +208,9 @@ else if(aide.favorite==true){
     } else {
       var colorStar = {color:'black'}
     }
-    return(
+
+
+return(
                 
     <Col span={12} key={i}>
     <Card  bordered={false} style={{ 
@@ -319,6 +321,7 @@ else if(aide.favorite==true){
           })
 
 
+if(isLogin==true){
 
   return ( 
 
@@ -454,7 +457,12 @@ else if(aide.favorite==true){
 
 );
         
-       
+} else {
+  return(
+<Redirect to='/signin'/>
+
+  )
+}       
 
 
 
