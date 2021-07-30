@@ -1,6 +1,6 @@
 import React, {useState, useEffect } from 'react';
 import {connect} from 'react-redux';
-import {Input, Typography, Space, Button, Icon, Card, Col, Row } from 'antd'; 
+import {Input, Typography, Space, Button, Icon, Card, Col, Row, message } from 'antd'; 
 import 'antd/dist/antd.css';
 
 import SearchAids from './searchaids'
@@ -54,12 +54,14 @@ console.log('runSearch', i)
         const n = aids.length;
         props.updateNumberOfAids(n);
         setNumberOfAids(n);
+
+        message.info(n + " aides trouvées")
   }
     
    // Gestion du marquage projet :
 
-   let colorTextSelected = "White"
-   let colorBgSelected = "purple"
+   let colorTextSelected = "black"
+   let colorBgSelected = "#F3D849"
    let colorText = 'white'
    let colorBg =  '#0A62D0'
 

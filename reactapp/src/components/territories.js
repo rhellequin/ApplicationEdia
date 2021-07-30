@@ -3,145 +3,148 @@ import {connect} from 'react-redux';
 
 
 import 'antd/dist/antd.css';
-import {Input, Typography, Card, Col, Row } from 'antd'; 
-import { Menu, Dropdown, Button, message, Space, Tooltip } from 'antd';
-import { DownOutlined, UserOutlined } from '@ant-design/icons';
+
+import {
+  Typography,
+  Col,
+  Row,
+  Menu,
+  Dropdown,
+  Space,
+  Form,
+  Input,
+  Button,
+  Radio,
+  Select,
+  Cascader,
+  DatePicker,
+  InputNumber,
+  TreeSelect,
+  Switch,
+  message,
+} from 'antd';
+
+
+import SearchAids from './searchaids'
+import CountAids from './countaids'
 
 
 function Territories (props) {
 
-     
-    const [projects, setProjects] = useState([]);
+    const { Text, Link } = Typography;
+
+    const [territoryName, setTerritoryName] = useState();
+    const [territories, setTerritories] = useState([]);
+    const [territory, setTerritory] = useState();
+
     const [numberOfAids, setNumberOfAids] = useState(0);
         
     useEffect(() => {
          
-        const FindProjects = async () => {
-            const data = await fetch("/projects", {
+        const FindTerritories = async () => {
+            const data = await fetch("/territories", {
                 method: 'GET',
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'},    
             })
             const body = await data.json()
             if (body.result) {
-                setProjects(body.projects);
+                setTerritories(body.territories);
             }
         }
-
         setNumberOfAids(props.numberOfAids);
-
-
-        FindProjects();
-         
+        FindTerritories();
       },[])   
     
 
-    const { Text, Link } = Typography;
 
 
 
+// Appel de la recherche :
+const runSearch = async (i) => {
+  
+  let parameters = [...props.searchOptions]
+  parameters[props.indexOptions].valeur = territories[i]._id
+  const aids = await SearchAids(parameters);
 
-    const handleMenuClick = async (elem) => {
-        
-    // Store la valeur saisie pour le critère :
-        props.updateSearchOptions(props.indexOptions,projects[elem.key]._id);
-
-
-    // POST de la recherche :    
-        const param = JSON.stringify(props.searchOptions)
-        const data = await fetch('/search', {
-            method: 'POST',
-            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-            body: `parameters=${param}`
-            })
-        const body = await data.json();
-        if(body.result){
-
-// Store des aids trouvées :
-            props.updateAids(body.aids);
-// Store du compteur d'aides :         
-            const n = body.aids.length;
-            props.updateNumberOfAids(n);
-            setNumberOfAids(n);
-
-
-            console.log("Aids : ", body.aids)
-        }
-
-    }
-
-
-
-    const tb = projects.map((projet,i) => (
-                <Menu.Item key={i} icon={<UserOutlined />}>{projet.projectName}</Menu.Item>
-    ));
-
-
-
-    const menu = (
-        <Menu onClick={handleMenuClick}>
-          {tb}
-        </Menu>
-      );
-
-
-
-    return (
-
-    <Row>
-        <Col span={8} offset="4">
-            <Space wrap>
-            <Dropdown.Button  overlay={menu} style={{marginLeft:"0px"}} >
-                Projets
-            </Dropdown.Button>
-            </Space>
-            <Card title="Compteur Aids " bordered={true} 
-                    style={{ 
-                        backgroundColor: '#0A62D0', 
-                        marginRight: '15px',
-                        marginLeft: '15px',
-                        marginTop: '15px',
-                        marginBottom: '15px',
-                        textAlign: 'center',
-                        fontFamily: 'Alata',
-                        borderRadius: '10px',
-                        fontSize: '18px',
-                        color: 'white'
-                    }}>
-                {numberOfAids}
-            </Card> 
-        </Col>
-    </Row>
-    )
-
-
-
+// Mise à jour du Store :
+    props.updateSearchOptions(props.indexOptions,territories[i]._id);
+    props.updateAids(aids);        
+    const n = aids.length;
+    props.updateNumberOfAids(n);
+    setNumberOfAids(n);
+    console.log('aids :',aids )
 }
+ 
+const inputDept =  (value) => {
+ 
+    setTerritory(value);
+    console.log('inputDept :', value)
+
+  }
+  
+
+const searchDept = async () => {
+ 
+  const index = territories.findIndex((d) => d.territoryId == territory)
+  if (index < 0) {
+    message.error("Département inconnu")
+    setTerritoryName('');
+  } else {
+    setTerritoryName(territories[index].territoryName);
+    runSearch(index);
+  }
+} 
+
+
+
+return (
+  <div>
+    <CountAids numberOfAids={numberOfAids}/>
+    <Row style={{justifyContent: "center"}}>
+    <Form
+       
+        layout="horizontal"  
+      >
+        <Form.Item label="Votre département   ">
+          <InputNumber placeholder="01" value={territory} onChange={inputDept} />
+          <Text type="success" style={{marginLeft: '15px'}} >{territoryName}</Text>
+        </Form.Item>
+        <Form.Item >
+            <Button onClick={searchDept}>OK</Button>
+        </Form.Item>
+      </Form>
+
+    </Row>
+  </div>
+)}
+
+
 
 
 
 function mapStateToProps(state) {
-  return { searchOptions: state.searchOptions, indexOptions: state.indexOptions, numberOfAids: state.numberOfAids  }
- }
+return { searchOptions: state.searchOptions, indexOptions: state.indexOptions, numberOfAids: state.numberOfAids, aids: state.aids  }
+}
 
 function mapDispatchToProps(dispatch){
-  return {
-    updateSearchOptions: function(i,val) {
-      dispatch({type: 'updateSearchOptions', index: i, valeur: val})},
-      
-    updateIndexOptions: function(i) {
-      dispatch({type: 'updateIndexOptions', indexOptions: i})},
-      
-    updateNumberOfAids: function(n) {
-      dispatch({type: 'updateNumberOfAids', numberOfAids: n})},
-      
-      updateAids: function(aids) {
-        dispatch({type: 'updateAids', aids: aids})}
+return {
+updateSearchOptions: function(i,val) {
+  dispatch({type: 'updateSearchOptions', index: i, valeur: val})},
+  
+updateIndexOptions: function(i) {
+  dispatch({type: 'updateIndexOptions', indexOptions: i})},
+  
+updateNumberOfAids: function(n) {
+  dispatch({type: 'updateNumberOfAids', numberOfAids: n})},
+  
+  updateAids: function(aids) {
+    dispatch({type: 'updateAids', aids: aids})}
 
-    
-  }
+
+}
 }
 
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+mapStateToProps,
+mapDispatchToProps
 )(Territories)

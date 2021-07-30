@@ -46,9 +46,8 @@ function NumberOfWorker (props) {
           }
             
            // Gestion du marquage projet :
-        
-           let colorTextSelected = "White"
-           let colorBgSelected = "purple"
+           let colorTextSelected = "black"
+           let colorBgSelected = "#F3D849"
            let colorText = 'white'
            let colorBg =  '#0A62D0'
         

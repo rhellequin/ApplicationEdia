@@ -81,10 +81,10 @@ function Projects (props) {
 
 // Gestion du marquage projet :
 
-    let colorTextSelected = "White"
-    let colorBgSelected = "purple"
-    let colorText = "black"
-    let colorBg = "white"
+let colorTextSelected = "black"
+let colorBgSelected = "#F3D849"
+let colorText = 'black'
+let colorBg =  'white'
   
     const dataItem = projects.map ((p,i)=>( 
           {i: i, name: p.projectName, domain: p.projectDomain, colorText : colorText, colorBg: colorBg} 
@@ -106,10 +106,9 @@ function Projects (props) {
 // <Divider  orientation="center" style={{}}>Choisir dans la liste</Divider>
 
     return (
-
+      <div>
+        <CountAids numberOfAids={numberOfAids}/>
         <Row style={{justifyContent: "center"}}>
-          <CountAids numberOfAids={numberOfAids}/>
-          
           <List style={{backgroundColor: "white", width:"600px"}}
               size="small"
               pagination={{
@@ -132,7 +131,7 @@ function Projects (props) {
             )}
           />
         </Row>
-
+      </div>
     )
 }
 

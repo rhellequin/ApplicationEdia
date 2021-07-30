@@ -20,7 +20,7 @@ var handleClick=()=>{
 
     return ( 
    
-<Row style={{display:'flex',justifyContent:'center', alignItems:'center'}}>       
+<Row style={{display:'flex',justifyContent:'center', alignItems:'flex-start'}}>       
     <Col sm="12" md="6" lg="6" style={{display:'flex', justifyContent:'space-between',alignItems:'center'}}>
         <img src='../images/EDIA.png'  height='120px' />
     </Col>
@@ -30,14 +30,14 @@ var handleClick=()=>{
         <Link><Button onClick={()=> {props.reinitialise(); handleClick()}} outline color="primary" size='lg' style={{margin:'20px'}} >Deconnexion</Button></Link>
         <div style={{ display:'flex',flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
             <Link to='/useraccount'><Avatar size={64} icon={<UserOutlined />} /></Link>
-            <p style={{fontSize:20,fontWeight:'bold'}}>Welcome {props.firstName}</p> 
+            <p style={{fontSize:18,fontWeight:'bold'}}>Welcome {props.firstName}</p> 
             <p></p>
         </div>
     </Col>
 : 
-    <Col sm="12" md="6" lg="6" style={{ display:'flex', justifyContent:'flex-end', alignItems:'center'}}>
-        <Link to='/signin'><Button  outline color="primary" size='lg' style={{margin:'20px'}}>Se connecter</Button></Link>
-        <Link to='/signup'><Button color="primary" size='lg'style={{margin:'20px'}}>S'inscrire</Button></Link>
+    <Col sm="12" md="8" lg="6"  style={{ display:'flex', justifyContent:'flex-end', alignItems:'center'}}>
+        <Link to='/signin'><Button  outline color="primary" size='lg' style={{margin:'20px', width:'177px'}}>Se connecter</Button></Link>
+        <Link to='/signup'><Button color="primary" size='lg'style={{margin:'20px', width:'177px'}}>S'inscrire</Button></Link>
     </Col>
 }
 </Row>

@@ -55,9 +55,7 @@ if(req.body.favorite=='true'){
 
 /* POST favorite add from user account page. */
 router.post('/useraid-favorite', async function(req, res, next) {
-
   var user =  await userModel.findOne({token: req.body.token})
- console.log(user)
     res.json({result: true,userAids: user.userAids });
   })
 
@@ -122,7 +120,20 @@ router.get('/projects', async function(req, res, next) {
     res.json({result: false})
   }
 })
+// GET pour les profiles :
+router.get('/profiles', async function(req, res, next) {
 
+  console.log ('\x1b[34m%s\x1b[0m','=============== > GET Types')
+
+  const profiles =  await profileModel.find().sort({ profileName: 1 })
+
+  if (profiles) {
+    res.json({result: true, profiles: profiles})
+  } else {
+    console.log ('\x1b[31m%s\x1b[0m','=============== > GET Types Not Found')
+    res.json({result: false})
+  }
+})
 
 // GET pour les Projets :
 router.get('/domains', async function(req, res, next) {
@@ -157,12 +168,14 @@ router.get('/territories', async function(req, res, next) {
   }
 })
 
-{$where: "territoryId.length > 40"} 
+
 
 
 
 // POST avec les paramètres pour la recherche :
 router.post('/search', async function(req, res, next){
+
+ 
 
   const parameters = JSON.parse(req.body.parameters);
   
@@ -170,10 +183,11 @@ router.post('/search', async function(req, res, next){
 // construction du filter :
   for (let i=0;i<parameters.length;i++) {
     if (parameters[i].valeur != null) {  
-      filter[parameters[i].critere] = parameters[i].valeur
+        filter[parameters[i].critere] = parameters[i].valeur
     }
   }
 
+ // { aidNumberOfWorker: { $regex: /10-49/i } }  
 
   console.log('Filter :', filter);
 
@@ -195,6 +209,9 @@ router.post('/search', async function(req, res, next){
   res.json({result: false})
   }
 })
+
+
+
 
 
 module.exports = router;
