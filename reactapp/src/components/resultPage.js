@@ -16,7 +16,7 @@ import {connect} from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 import './resultPage.css';
-import domains from './domains';
+
 
 
 
@@ -37,17 +37,9 @@ function ResultPage (props) {
   var importResult = props.aids.map((aid, i) => ({
   name: aid.aidName, financeur:aid.aidFunders[0].funderName, montant:aid.aidAmount, niveauAide: aid.aidLevel.levelName, logo:'../images/pinguin.png', diff:'facile',delai: '6 mois',
   type: aid.aidTypes[0].typeName, domaine: aid.aidActivitySector[0], enjeux: aid.aidProjects[0].projectName, profile:aid.aidProfiles[0].profileName, effectif:aid.aidNumberOfWorker[0], age: aid.aidCompanyAge[0], 
-territoire: aid.aidTerritories[0]
+
 }));
   
-
-
-
-//  var ListEssai=[
-//     {name: 'TROP COOL', montant:'5000', financeur:'Cresus', niveauAide:'local', diff:'2', delai: '6 mois', logo:'../images/pinguin.png'},
-//     {name: "BESOIN d'ARGENT", montant:'2000', financeur:'Rockfeller', niveauAide:'départemental', diff:'3', delai:'3 mois', logo:'../images/pinguin.png'},
-//     {name: 'NEED HELP', montant:'8000', financeur:'Jeff Bezos', niveauAide:'européen', diff:'1', delai:'2 mois', logo:'../images/pinguin.png' },
-//       ]
 
       useEffect(() => {
         var resultat = async () => {
@@ -59,13 +51,7 @@ territoire: aid.aidTerritories[0]
         resultat()
       }, [])
 
-      {ResultList.map((aide,i) => (
-                       
-        <div><img src='../images/1.png'  />type d'aide:{aide.type}</div> 
-       
       
-))}               
-   
 
 //fonctions de tri
       //Tri critère 1
@@ -196,7 +182,7 @@ setAddingAid(true)
          
             
 <Col md={{ span: 24 }} className='Ariane' >
-  <div><img src='../images/1.png'  />type d'aide: </div>
+  <div><img src='../images/1.png'  />type d'aide:{ResultList.type} </div>
   <div><img src='../images/2.png'  />domaine d'aide: </div>
   <div><img src='../images/3.png'  />enjeux: </div>
   <div><img src='../images/4.png'  />secteur d'activité:</div>
