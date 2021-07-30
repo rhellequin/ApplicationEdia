@@ -11,9 +11,67 @@ router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
 
-/*router.post('/update', async function(req, res, next) { 
-}
- update informations utilisateur*/
+/*update informations utilisateur*/
+router.post('/update', async function(req, res, next) { 
+
+  var newUserInfo =  await userModel.updateOne (
+                        {token : req.body.token},
+                        {
+                        firstName: req.body.firstnameFromFront,
+                        lastName: req.body.lastnameFromFront,
+                        email: req.body.emailFromFront,
+                        phone: req.body.phoneFromFront,
+                        company: req.body.companyFromFront,
+                        siret: req.body.siretFromFront,
+                        position: req.body.positionFromFront
+                      }
+                      );
+res.json({result: true})
+})
+
+
+
+
+/* POST Lecture info perso user. */
+router.post('/infouser', async function(req, res, next) {
+  var user = await userModel.findOne({ token: req.body.token });
+  if (user != null) {
+    const resUSer = {
+        firstName: user.firstName,
+        lastName:  user.lastName,
+        email:  user.email,
+        siret:  user.siret,
+        company:  user.company,
+        position:  user.position,
+        phone:  user.phone,
+        userAids:  user.userAids,  
+    }
+    res.json({result: true, user: resUSer});
+  } else {
+    res.json({result: false});
+  }
+});
+
+
+
+// router.post('/add', function(req, res, next) {
+//   var addUserInfo = new userModel ({
+//     firstName: req.body.firstnameFromFront,
+//     lastName: req.body.lastnameFromFront,
+//     email: req.body.phoneFromFront,
+//     phone: req.body.emailFromFront,
+//     company: req.body.companyFromFront,
+//     siret: req.body.siretFromFront,
+//     position: req.body.positionFromFront
+//   })
+
+//   const async found = userModel.find(token);
+
+//   var addUserInfo  = await addUserInfo.findByIdAndUpdate();
+
+//   res.json({addUserInfo })
+
+// })
 
 
 /* POST sign up. */
@@ -22,8 +80,7 @@ router.post('/sign-up', async function(req, res, next) {
   var error = [];
   var result = false;
   var match = await userModel.findOne({ email: user.email });
-  console.log(user)
-  
+ 
   if (match !== null){
     error.push('Email déjà associé à un compte');
   } else if (
@@ -40,12 +97,14 @@ router.post('/sign-up', async function(req, res, next) {
       lastName:user.lastName,
       email: user.email,
       phone:user.phone,
+      company:"",
+      position:"",
+      siret:"",
       password: hash,
       token: uid2(32)
     });
     var user = await newUser.save();
     result = true
-    console.log(result)
   } 
   res.json({result, token: user.token,firstName:user.firstName, error})
 });
@@ -53,9 +112,11 @@ router.post('/sign-up', async function(req, res, next) {
 
 /* POST sign in. */
 router.post('/sign-in', async function(req, res, next) {
-  var user = await userModel.findOne({ email: req.body.email });
+  
+  var user = await userModel.findOne({email: req.body.email});
   var result = false;
   var error = [];
+  
   if (req.body.email == '' || req.body.password == ''){
     error.push('Champ manquant')
   }
@@ -69,8 +130,13 @@ router.post('/sign-in', async function(req, res, next) {
   else { 
     error.push('Mot de passe incorrect');
   };
-  console.log(result)
-  res.json({result, token: user.token,firstName: user.firstName, error});
+
+
+  if (result) {
+    res.json({result, token: user.token,firstName: user.firstName});
+  } else {
+    res.json({result, error})
+  } 
 });
 
 module.exports = router;
