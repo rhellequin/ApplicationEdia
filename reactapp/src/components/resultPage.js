@@ -10,6 +10,7 @@ import { AppstoreOutlined,
   StarOutlined,
   HomeOutlined } from '@ant-design/icons';
 import 'antd/dist/antd.css';
+import{Redirect} from "react-router-dom";
 import Avatar from 'antd/lib/avatar/avatar';
 import Bouton from './Bouton';
 import {connect} from 'react-redux';
@@ -29,10 +30,13 @@ function ResultPage (props) {
 
   const [ResultList, setResultList] = useState([])
   const [addingAid, setAddingAid] = useState (false)
+  const [addList, setAddList] = useState([])
+  const [isLogin,setIsLogin]= useState(true)
+
   
 
-  var importResult = props.aids.map((aid, i) => ({
-  name: aid.aidName, financeur:aid.aidFunders[0].funderName, montant:aid.aidAmount, niveauAide: aid.aidLevel.levelName, logo:'../images/pinguin.png', diff:'facile',delai: '6 mois'
+  var importResult = props.aids.map((aid, i) => ({
+  id: aid._id, name: aid.aidName, financeur:aid.aidFunders[0].funderName, montant:aid.aidAmount, niveauAide: aid.aidLevel.levelName, logo:'../images/pinguin.png', diff:'facile',delai: '6 mois'
   }));
   
 
@@ -145,19 +149,177 @@ function compare5( a, b ) {
     setResultList(importResult)
   }
   
-  var addUserAid= async()=>{
-setAddingAid(true)
+  var addUserAid= async(aide,id)=>{
+
+ var copyList=[...ResultList]
+ copyList=copyList.map((aide,i)=>{
+if(aide.favorite==undefined ){
+  if(aide.id==id){
+
+    return {...aide,favorite:true}
+
+}
+else {
+  return {...aide,favorite:false}
+
+}
+}
+else{
+  if(aide.id==id){
+    return {...aide,favorite: !aide.favorite}
+  }
+  else {
+    return {...aide,favorite: aide.favorite}
+  }
+}
+ })
+setResultList(copyList)
+
+var newFavorite
+if(aide.favorite==undefined || aide.favorite==false){
+  newFavorite=true
+}
+else if(aide.favorite==true){
+  newFavorite=false
+}
+
+    console.log(id)
+    const data = await fetch('/add-favorite', {
+      method: 'POST',
+      headers: {'Content-Type':'application/x-www-form-urlencoded'},
+      body: `id=${id}&token=${props.token}&favorite=${newFavorite}`
+    })  
+    const response = await data.json();
+    console.log(response.result)
+
+    if (response.result==false){
+      setIsLogin(false)
+    }
+    
   }
 
-  if(addingAid){
-    var colorStar = {color: '#e74c3c'}
-  } else {
-    var colorStar = {}
-  }
+ 
+
+  var displayList = ResultList.map((aide,i) => {
+    if(aide.favorite ==true){
+      var colorStar = {color: 'yellow'}
+    } else {
+      var colorStar = {color:'black'}
+    }
 
 
+return(
+                
+    <Col span={12} key={i}>
+    <Card  bordered={false} style={{ 
+        backgroundColor: '#E0E5E9',
+        margin: '15px',
+        borderRadius:'30px',
+        height:'600px',
+        display:'flex',
+        flexDirection:'column'
+
+                            
+        }}>
+            <Row style={{
+              display:'flex',
+              flexDirection:'row',
+               alignSelf: "flex-start",
+              justifyContent:'space-between',
+              height:'80px',
+            }}>
+              
+            <img src={aide.logo}  height='80px' />
+
+            
+            
+            <p ><FontAwesomeIcon icon={faStar}
+            style={colorStar}  onClick={()=>addUserAid(aide,aide.id)}/></p>
+
+            </Row>
+            <Row style={{justifyContent:'center',
+            alignItems: 'center',
+            fontFamily: 'Alata',
+            fontSize:'30px',
+            textAlign: 'center',
+           
+            display:'flex',
+            flexDirection:'column',
+            height:'200px'
+           
+            }}>
+
+            
+            <div style={{
+            marginBottom:'10px'
+           
+            }}>{aide.name}</div>
+            <div>{aide.montant} €</div>
+            
+            </Row>
+            <Row style={{
+            display:'flex',
+            flexDirection:'column',
+            justifyContent:'space-around',
+            textAlign: 'center',
+            fontFamily: 'Alata',
+           
+            height:'30%',
+            height:'170px',
+           }}>
+              <div style={{
+            display:'flex',
+            flexDirection:'row',
+            justifyContent:'space-between',
+            textAlign: 'center',
+            fontFamily: 'Alata',
+            fontSize:'18px',
+            
+           }}>
+              <p>{aide.financeur}</p>
+              <p>{aide.niveauAide}</p>
+              
+              </div>
+              <div style={{
+            display:'flex',
+            flexDirection:'row',
+            justifyContent:'space-between',
+            textAlign: 'center',
+            fontFamily: 'Alata',
+            fontSize:'18px',
+            
+            
+           }}>
+              <p>Difficulté d'obtention: {aide.diff}</p>
+              <p>Délai d'obtention:{aide.delai}</p>
+              </div>
+            
+            
+            </Row>
+            <Row style={{
+            
+            justifyContent:'center',
+           
+            
+            alignContent: "flex-end",
+            marginBottom:'auto',
+            height:'100px',
+            }}>
+            
+<Bouton />
+            </Row>
+            
+            
+            
+            
+           
+    </Card>
+    </Col>
+    )
+          })
 
 
+if(isLogin==true){
 
   return ( 
 
@@ -243,116 +405,7 @@ setAddingAid(true)
     <div className="site-card-wrapper">
     <Row gutter={16}>
 
-    {ResultList.map((aide,i) => (
-                
-                    <Col span={12} key={i}>
-                    <Card  bordered={false} style={{ 
-                        backgroundColor: '#E0E5E9',
-                        margin: '15px',
-                        borderRadius:'30px',
-                        height:'600px',
-                        display:'flex',
-                        flexDirection:'column'
-
-                                            
-                        }}>
-                            <Row style={{
-                              display:'flex',
-                              flexDirection:'row',
-                               alignSelf: "flex-start",
-                              justifyContent:'space-between',
-                              height:'80px',
-                            }}>
-                              
-                            <img src={aide.logo}  height='80px' />
-
-                            
-                            
-                            <p ><FontAwesomeIcon icon={faStar}
-                            style={{fontSize:'32px',
-                            color:'#F3D849'}}  onClick={()=>addUserAid()}/></p>
-
-                            </Row>
-                            <Row style={{justifyContent:'center',
-                            alignItems: 'center',
-                            fontFamily: 'Alata',
-                            fontSize:'30px',
-                            textAlign: 'center',
-                           
-                            display:'flex',
-                            flexDirection:'column',
-                            height:'200px'
-                           
-                            }}>
-
-                            
-                            <div style={{
-                            marginBottom:'10px'
-                           
-                            }}>{aide.name}</div>
-                            <div>{aide.montant} €</div>
-                            
-                            </Row>
-                            <Row style={{
-                            display:'flex',
-                            flexDirection:'column',
-                            justifyContent:'space-around',
-                            textAlign: 'center',
-                            fontFamily: 'Alata',
-                           
-                            height:'30%',
-                            height:'170px',
-                           }}>
-                              <div style={{
-                            display:'flex',
-                            flexDirection:'row',
-                            justifyContent:'space-between',
-                            textAlign: 'center',
-                            fontFamily: 'Alata',
-                            fontSize:'18px',
-                            
-                           }}>
-                              <p>{aide.financeur}</p>
-                              <p>{aide.niveauAide}</p>
-                              
-                              </div>
-                              <div style={{
-                            display:'flex',
-                            flexDirection:'row',
-                            justifyContent:'space-between',
-                            textAlign: 'center',
-                            fontFamily: 'Alata',
-                            fontSize:'18px',
-                            
-                            
-                           }}>
-                              <p>Difficulté d'obtention: {aide.diff}</p>
-                              <p>Délai d'obtention:{aide.delai}</p>
-                              </div>
-                            
-                            
-                            </Row>
-                            <Row style={{
-                            
-                            justifyContent:'center',
-                           
-                            
-                            alignContent: "flex-end",
-                            marginBottom:'auto',
-                            height:'100px',
-                            }}>
-                            
-<Bouton />
-                            </Row>
-                            
-                            
-                            
-                            
-                           
-                    </Card>
-                    </Col>
-
-              ))}
+{displayList}
        </Row>  
     
   </div> 
@@ -369,14 +422,19 @@ setAddingAid(true)
 
 );
         
-       
+} else {
+  return(
+<Redirect to='/signin'/>
+
+  )
+}       
 
 
 
 }
 
 function mapStateToProps(state) {
-  return { searchOptions: state.searchOptions, indexOptions: state.indexOptions, numberOfAids: state.numberOfAids, aids: state.aids  }
+  return { searchOptions: state.searchOptions, indexOptions: state.indexOptions, numberOfAids: state.numberOfAids, aids: state.aids, token: state.user.token}
  }
 
 

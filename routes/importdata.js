@@ -453,6 +453,40 @@ router.get('/aidinfo', async function(req, res, next) {
 })
 
 
+
+// POST avec les paramètres pour la recherche :
+router.post('/updateaids', async function(req, res, next){
+
+  const aids =  await aidModel.find();
+  let nbOfAidsUpdated = 0;
+  let changing = false;
+  for (let i=0;i<1;i++) {
+
+    for (let j=0;j<aids[i].aidNumberOfWorker.length;j++) {
+      aids[i].aidNumberOfWorker[j] = aids[i].aidNumberOfWorker[j].trim();
+      console.log(aids[i].aidNumberOfWorker[j])
+      changing = true;
+    }
+    if (changing) {
+      
+      aids[i].aidNumberOfWorker.push('4 workers');
+      const aid = aidModel.updateOne({aidId: aids[i].aidId}, {aidNumberOfWorker: aids[i].aidNumberOfWorker} ).exec();
+      
+      console.log('aid :', aid)
+       
+      changing = false;
+      nbOfAidsUpdated++;
+    }
+    
+
+  }
+
+
+
+  res.json({nbOfAidsUpdated : nbOfAidsUpdated})
+  
+})
+
 //Test Route :
 router.post('/test', function(req, res, next) {
 

@@ -44,7 +44,7 @@ function SearchPage (props) {
     
 // Si on n'est pas sur la dernière page : 
     let buttonContinuer ='';
-    if (indexOptions < 6) {
+    if (indexOptions < (props.searchOptions.length - 1)) {
       buttonContinuer = 
               <Button color="primary" size='md'
                           onClick={() => callNext()}

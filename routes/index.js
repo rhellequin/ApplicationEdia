@@ -12,6 +12,7 @@ var funderModel = require('../models/funders');
 var thirdPartyModel = require('../models/thirdparties');
 var territoryModel = require('../models/territories');
 var profileModel = require('../models/profiles');
+var userModel = require('../models/users')
 const { Mongoose } = require('mongoose');
 
 
@@ -19,6 +20,46 @@ const { Mongoose } = require('mongoose');
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Edia BackEnd' });
 });
+
+
+/* POST add aid to favorite. */
+router.post('/add-favorite', async function(req, res, next) {
+
+var user =  await userModel.findOne({token: req.body.token})
+console.log(user)
+if(user==null){
+  res.json({result:false})
+} 
+else if(user!= null){
+
+if(req.body.favorite=='true'){ 
+  console.log('ajout')
+
+  user.userAids.push(req.body.id)
+  
+  var updatedUser= await userModel.updateOne({token:req.body.token},{userAids: user.userAids  })
+}
+
+  else if(req.body.favorite=='false'&& user.userAids!==null){ 
+    
+  index=user.userAids.findIndex((e)=>e==req.body.id)
+  console.log(index,'indx')
+  if(index>=0){
+    user.userAids.splice(index,1)
+    var updatedUser= await userModel.updateOne({token:req.body.token},{userAids: user.userAids})
+  }}
+  res.json({result: true,user: user });
+}
+})
+
+
+/* POST favorite add from user account page. */
+router.post('/useraid-favorite', async function(req, res, next) {
+  var user =  await userModel.findOne({token: req.body.token})
+    res.json({result: true,userAids: user.userAids });
+  })
+
+
 
 
 // GET info globale pour une aide :
@@ -114,25 +155,14 @@ router.get('/territories', async function(req, res, next) {
   }
 })
 
-{$where: "territoryId.length > 40"} 
 
-// GET pour les profiles :
-router.get('/profiles', async function(req, res, next) {
 
-  console.log ('\x1b[34m%s\x1b[0m','=============== > GET Types')
 
-  const profiles =  await profileModel.find().sort({ profileName: 1 })
-
-  if (profiles) {
-    res.json({result: true, profiles: profiles})
-  } else {
-    console.log ('\x1b[31m%s\x1b[0m','=============== > GET Types Not Found')
-    res.json({result: false})
-  }
-})
 
 // POST avec les paramètres pour la recherche :
 router.post('/search', async function(req, res, next){
+
+ 
 
   const parameters = JSON.parse(req.body.parameters);
   
@@ -140,10 +170,11 @@ router.post('/search', async function(req, res, next){
 // construction du filter :
   for (let i=0;i<parameters.length;i++) {
     if (parameters[i].valeur != null) {  
-      filter[parameters[i].critere] = parameters[i].valeur
+        filter[parameters[i].critere] = parameters[i].valeur
     }
   }
 
+ // { aidNumberOfWorker: { $regex: /10-49/i } }  
 
   console.log('Filter :', filter);
 
@@ -165,6 +196,9 @@ router.post('/search', async function(req, res, next){
   res.json({result: false})
   }
 })
+
+
+
 
 
 module.exports = router;
