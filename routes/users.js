@@ -30,24 +30,24 @@ var newUserSave = await newUserInfo.save();
 res.json({newUserSave})
 })
 
-router.post('/add', function(req, res, next) {
-  var addUserInfo = new userModel ({
-    firstName: req.body.firstnameFromFront,
-    lastName: req.body.lastnameFromFront,
-    email: req.body.phoneFromFront,
-    phone: req.body.emailFromFront,
-    company: req.body.companyFromFront,
-    siret: req.body.siretFromFront,
-    position: req.body.positionFromFront
-  })
+// router.post('/add', function(req, res, next) {
+//   var addUserInfo = new userModel ({
+//     firstName: req.body.firstnameFromFront,
+//     lastName: req.body.lastnameFromFront,
+//     email: req.body.phoneFromFront,
+//     phone: req.body.emailFromFront,
+//     company: req.body.companyFromFront,
+//     siret: req.body.siretFromFront,
+//     position: req.body.positionFromFront
+//   })
 
-  const found = userModel.find(token);
+//   const async found = userModel.find(token);
 
-  var addUserInfo  = await addUserInfo.findByIdAndUpdate();
+//   var addUserInfo  = await addUserInfo.findByIdAndUpdate();
 
-  res.json({addUserInfo })
+//   res.json({addUserInfo })
 
-})
+// })
 
 
 /* POST sign up. */
