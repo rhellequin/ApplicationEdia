@@ -150,13 +150,8 @@ function mapStateToProps(state) {
     return { token: state.user.token, firstName: state.user.firstName }
 }
 
-
 export default connect(
     mapStateToProps,
     null,
 
 )(UserAccount)
-
-
-
-
