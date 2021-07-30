@@ -263,7 +263,7 @@ setAddingAid(true)
           <Menu.Item onClick={() => tri4()} key="4" style={{color:'black'}}>
                     Difficulté d'obtention
           </Menu.Item>
-          <Menu.Item  onClick={() => tri5()} key="5" >
+          <Menu.Item  onClick={() => tri5()} key="5" style={{color:'black'}}>
                   Délai d'obtention
           </Menu.Item>
           
