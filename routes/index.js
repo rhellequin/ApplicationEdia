@@ -259,7 +259,7 @@ router.post('/filariane', async function(req, res, next){
       }
 
     
-    }
+    } else { parameters[i].name = ''}
   }
  
 

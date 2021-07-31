@@ -35,11 +35,12 @@ function Apptest(props){
         <div className='Sidebar'>
 
             <ul className='SidebarList'>
-                <li className='row'><div>icone</div><div>Tri 1</div></li>
-                <li className='row'><div>icone</div><div>Tri 2</div></li>
-                <li className='row'><div>icone</div><div>Tri 3</div></li>
-                <li className='row'><div>icone</div><div>Tri 4</div></li>
-                <li className='row'><div>icone</div><div>Tri 5</div></li>
+            
+                <li className='Row'><img src='../images/euro.png' id="IconeTri" /><div id="Title">Montant</div></li>
+                <li className='Row'><img src='../images/administrateur.png' id="IconeTri" /><div id="Title">Financeur</div></li>
+                <li className='Row'><img src='../images/geographie.png' id="IconeTri" /><div id="Title">Niveau de l'aide</div></li>
+                <li className='Row'><img src='../images/difficulty.png' id="IconeTri" /><div id="Title">Difficulté</div></li>
+                <li className='Row'><img src='../images/delais.png' id="IconeTri" /><div id="Title">Délais d'obtention</div></li>
             </ul>
 
             {/* <button onClick={ ()=>rollingClic() }>Clic</button>

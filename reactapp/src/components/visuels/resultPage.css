@@ -1,0 +1,187 @@
+.Ariane{
+    margin-top: 10px;
+    
+    padding-bottom: 20px;
+    display:flex;
+    flex-flow: row wrap;
+    flex: 1 1 0;
+    margin-left: 20px 
+    
+}
+
+.CritAid{
+    margin-right: 20px;
+    flex: 1 1 auto;
+    margin-bottom: 5px;
+    display: flex;
+    flex-direction: row;
+}
+
+.CritQuestion{
+font-weight: bold;
+font-size: 18px;
+margin-right: 10px;
+margin-left: 10px
+
+}
+
+.Sidebar{
+    height: max-content;
+    width:20%;
+    background-color: #E0E5E9;
+    border-radius: 20px;
+    margin-bottom: 15px;
+    margin-left: 20px 
+}
+
+.SidebarList{
+    height: auto;
+    padding:0;
+    width:100%;
+    background-color: #E0E5E9;
+}
+
+.SidebarList .Row{
+width: 100%;
+height: 60px;
+list-style-type: none;
+margin: 0%;
+place-items: center;
+display: flex;
+flex-direction: row;
+color: black;
+justify-content: center;
+align-items: center;
+font-weight: bold;
+transition: ease-out 0.3s;
+outline:none;
+position: relative;
+z-index: 1;
+}
+
+.SidebarList .Row:before {
+   transition: 0.5s all ease;
+   position: absolute;
+   top: 0;
+   left: 50%;
+   right: 50%;
+   bottom: 0;
+   opacity: 0;
+   content:"";
+   background-color: #0A62D0 ;
+
+   
+
+    }
+
+
+
+#active{
+    background-color: #0A62D0 !important ;
+}
+
+
+
+.Row:hover:before{
+   transition: 0.5s all ease;
+   z-index:-1;
+   left: 0;
+   right:0;
+   opacity: 1;
+   
+}
+
+.Row:hover{
+    cursor: pointer;
+    background-color: #F3D849;
+}
+
+
+
+#IconeTri {
+     
+       margin-left: 50px;
+       margin-right: 25px;   
+        place-items: center;
+        height: 32px;
+        width: 32px;
+   
+}
+
+#Title{
+    flex:70%;
+}
+
+.Mapper{
+ 
+width: 80%;
+max-height: calc(100vh);
+    overflow-y: auto;
+}
+
+
+.CardAid{
+    background-color: #E0E5E9;
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-bottom: 30px;
+    border-radius:30px;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    border-style: none;
+}
+
+
+.CardRang1{
+    display: flex;
+    flex-direction: row;
+    align-self: flex-start;
+    justify-content: space-between;
+    height: 80px
+}
+
+.CardAidName{
+    display: flex;
+    flex-direction: column;
+    font-size: 30px;
+    justify-content: center;
+    height: 200px;
+    font-family: Alata;
+    text-align: center;
+    align-items: center;
+}
+
+.CardAidInfo{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    text-align: center;
+    font-family: Alata;
+    height: 30%;
+}
+           
+.CardAidInfoSup{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: center;
+    font-family: Alata;
+    font-size: 18px;
+}
+           
+.CardAidInfoInf{
+    display: flex;
+    flex-direction:row;
+    justify-content:space-between;
+    text-align: center;
+    font-family: Alata;
+    font-size: 18px;
+}           
+
+.CardAidbouton{
+    justify-content: center;
+    align-content: flex-end;
+    margin-bottom: auto;
+    height: 100px;
+}         
