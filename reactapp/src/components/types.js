@@ -5,6 +5,9 @@ import 'antd/dist/antd.css';
 
 import SearchAids from './searchaids'
 import CountAids from './countaids'
+import SpinSearch from './spinsearch'
+
+
 
 /*
     Composant pour tester la communication avec le back 
@@ -17,11 +20,15 @@ function Types (props) {
     const [aidTypes, setAidTypes] = useState([]);
     const [numberOfAids, setNumberOfAids] = useState(0);
     const [iSelected, setISelected] = useState(-1)
+ 
+    const [isSpinning,setIsSpinning] = useState(false);
+   
 
     const { Search } = Input;
     const { Text } = Typography;
 
     useEffect(() => {
+
         const findTypes = async() => {
             const data = await fetch(`/types`, {
                 method: 'GET',
@@ -32,14 +39,28 @@ function Types (props) {
                 setAidTypes(body.types);
             }
         }
-        setNumberOfAids(props.numberOfAids);
-        findTypes()    
+
+        const countAllAids = async() => {
+          const data = await fetch(`countallaids`, {
+              method: 'GET',
+              headers: {'Content-Type': 'application/x-www-form-urlencoded'},    
+          })
+          const body = await data.json()
+          if (body.result) {
+              setNumberOfAids(body.countAllAids)
+          }
+        }
+        setIsSpinning(true);
+        //setNumberOfAids(props.numberOfAids);
+        findTypes();
+        countAllAids();
+        setIsSpinning(false);
+        
       },[])
 
   const runSearch = async (i) => {
       
-console.log('runSearch', i)
-
+    setIsSpinning(true);
     setISelected(i); // pour gérer le marquage du projet sélectionné :
 
     // Appel recherche :
@@ -54,8 +75,9 @@ console.log('runSearch', i)
         const n = aids.length;
         props.updateNumberOfAids(n);
         setNumberOfAids(n);
+        setIsSpinning(false);
 
-        message.info(n + " aides trouvées")
+        
   }
     
    // Gestion du marquage projet :
@@ -86,8 +108,9 @@ console.log('runSearch', i)
 
 <div className="site-card-wrapper">
     <CountAids numberOfAids={numberOfAids}/>
+    <SpinSearch isSpinning={isSpinning}/>
 
-               
+
     <Row gutter={16}>
 
     {dataItem.map((item,i) => (
