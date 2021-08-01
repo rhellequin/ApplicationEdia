@@ -23,6 +23,8 @@ import FilAriane from './filariane'
 
 const { Header, Content, Footer, Sider } = Layout;
 
+const { Header, Content, Footer, Sider } = Layout;
+
 
 
 
@@ -294,14 +296,10 @@ return(
             textAlign: 'center',
             fontFamily: 'Alata',
             fontSize:'18px',
-            
-            
            }}>
               <p>Difficulté d'obtention: {aide.diff}</p>
               <p>Délai d'obtention:{aide.delai}</p>
               </div>
-            
-            
             </Row>
             <Row style={{
             
@@ -311,15 +309,9 @@ return(
             alignContent: "flex-end",
             marginBottom:'auto',
             height:'100px',
-            }}>
-            
+            }}>       
 <Bouton />
             </Row>
-            
-            
-            
-            
-           
     </Card>
     </Col>
     )
@@ -328,7 +320,7 @@ return(
 
 if(isLogin==true){
 
-  return ( 
+return ( 
 
         
 <Layout>
@@ -450,9 +442,9 @@ if(isLogin==true){
   )
 }       
 
-
-
 }
+
+
 
 function mapStateToProps(state) {
   return { searchOptions: state.searchOptions, indexOptions: state.indexOptions, numberOfAids: state.numberOfAids, aids: state.aids, token: state.user.token}
