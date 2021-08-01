@@ -15,6 +15,7 @@ import CountAids from './countaids'
 import FilAriane from './filariane'
 
 
+
 function ResultPage (props) {
 
   const [ResultList, setResultList] = useState([])
@@ -24,20 +25,46 @@ function ResultPage (props) {
   const [numberOfAids, setNumberOfAids] = useState(0);
   const [filAr, setFilAr] = useState([])
   const [ids, setIds] = useState({})
-  const [id1, setId1] = useState('')
-  const [id2, setId2] = useState('')
-  const [id3, setId3] = useState('')
-  const [id4, setId4] = useState('')
-  const [id5, setId5] = useState('')
+  const [rollDiceLogo, setRollDiceLogo] = useState('')
+  const [rollDiceMontant, setRollDiceMontant] = useState('')
+  const [rollDiceDiff, setRollDiceDiff] = useState('')
+  const [rollDiceDelai, setRollDiceDelai] = useState('')
 
   var importResult = props.aids.map((aid, i) => ({
-  name: aid.aidName, financeur:aid.aidFunders[0].funderName, montant:aid.aidAmount, niveauAide: aid.aidLevel.levelName, logo:'../images/pinguin.png', diff:'facile',delai: '6 mois',
+  name: aid.aidName, financeur:aid.aidFunders[0].funderName, montant:aid.aidMountant, niveauAide: aid.aidLevel.levelName, logo:'../images/pinguin.png', diff:'facile',delai: '6 mois',
 
 }));
 
 var idlist ={id1:"", id2:"", id3:"", id4:"", id5:""}
-  
-console.log(filAr)
+
+var tirageLogo = (Math.floor( Math.random() * 10 ) +1);
+var tirageMontant = (Math.floor( Math.random() * 10 ) +1);
+var tirageDiff = (Math.floor( Math.random() * 10 ) +1);
+var tirageDelai = (Math.floor( Math.random() * 10 ) +1);
+
+var affichageMontant=rollDiceMontant*1000
+
+var affichageDiff=''
+        if(rollDiceDiff<4){affichageDiff='facile'}
+        else if(rollDiceDiff>=4 || rollDiceDiff <8){affichageDiff='moyenne'}
+        else if(rollDiceDiff>=8){affichageDiff='difficile'}
+
+var affichageDelai=''
+        if(rollDiceDelai<4){affichageDelai='- de 1 mois'}
+        else if(rollDiceDelai>=4 || rollDiceDelai <8){affichageDelai='entre 1 et 3 mois'}
+        else if(rollDiceDelai>=8){affichageDelai='entre 3 et 6 mois'}
+
+var affichageLogo=''
+        if(rollDiceLogo==1){affichageLogo='../images/logo1.jpg'}
+        else if(rollDiceLogo==2){affichageLogo='../images/logo2.jpg'}
+        else if(rollDiceLogo==3){affichageLogo='../images/logo3.jpg'}
+        else if(rollDiceLogo==4){affichageLogo='../images/logo4.jpg'}
+        else if(rollDiceLogo==5){affichageLogo='../images/logo5.jpg'}
+        else if(rollDiceLogo==6){affichageLogo='../images/logo6.jpg'}
+        else if(rollDiceLogo==7){affichageLogo='../images/logo7.jpg'}
+        else if(rollDiceLogo==8){affichageLogo='../images/logo8.jpg'}
+        else if(rollDiceLogo==9){affichageLogo='../images/logo9.jpg'}
+        else if(rollDiceLogo==10){affichageLogo='../images/logo10.jpg'}
 
       useEffect(() => {
           var resultat = async () => {
@@ -52,6 +79,10 @@ console.log(filAr)
           const filAriane = await FilAriane(props.searchOptions);
           setFilAr(filAriane);
           setIds(idlist)
+          setRollDiceLogo(tirageLogo)
+          setRollDiceMontant(tirageMontant)
+          setRollDiceDiff(tirageDiff)
+          setRollDiceDelai(tirageDelai)   
         }
         resultat()
 
@@ -175,12 +206,13 @@ console.log(filAr)
 
 return(
                 
-    <Col span={12} key={i}>
+    <Col xs={{ span: 24, offset: 0 }} md={{ span: 8, offset: 0 }} key={i}>
      
         <Card  className='CardAid'>
                 
                 <Row  className='CardRang1'>
-                      <img src={aide.logo} alt='' height='80px' />
+                      {/* <img src={aide.logo} alt='' height='80px' /> */}
+                      <img src={affichageLogo} alt='' height='80px' />
                       <p><FontAwesomeIcon icon={faStar}
                           style={colorStar}
                           onClick={()=>addUserAid(aide,aide.id)}/>
@@ -189,7 +221,10 @@ return(
       
                 <Row className='CardAidName'>
                       <div style={{marginBottom:'10px'}}>{aide.name}</div>
-                      <div>{aide.montant} €</div>
+                </Row>
+                
+                <Row className='CardAidMontant'>
+                      <div>{affichageMontant}€</div>
                 </Row>
 
                 <Row className='CardAidInfo' >
@@ -199,8 +234,8 @@ return(
                       </div>
               
                       <div className='CardAidInfoInf' >
-                          <p>Difficulté d'obtention: {aide.diff}</p>
-                          <p>Délai d'obtention:{aide.delai}</p>
+                          <p>Difficulté d'obtention: {affichageDiff}</p>
+                          <p>Délai d'obtention:{affichageDelai}</p>
                       </div>
                 </Row>
               

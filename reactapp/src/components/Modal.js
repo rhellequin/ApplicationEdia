@@ -1,6 +1,6 @@
 import React from 'react';
-import './Modal.css';
-import'./Bouton.css';
+import './visuels/Modal.css';
+import './visuels/Bouton.css';
 
 
 export default function Modal (props){
