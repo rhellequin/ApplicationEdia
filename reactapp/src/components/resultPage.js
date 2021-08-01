@@ -23,8 +23,6 @@ import FilAriane from './filariane'
 
 const { Header, Content, Footer, Sider } = Layout;
 
-const { Header, Content, Footer, Sider } = Layout;
-
 
 
 
@@ -35,7 +33,6 @@ function ResultPage (props) {
   const [addList, setAddList] = useState([])
   const [isLogin,setIsLogin]= useState(true)
 
-  
 
   var importResult = props.aids.map((aid, i) => ({
   id: aid._id, name: aid.aidName, financeur:aid.aidFunders[0].funderName, montant:aid.aidAmount, niveauAide: aid.aidLevel.levelName, logo:'../images/pinguin.png', diff:'facile',delai: '6 mois'
