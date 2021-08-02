@@ -497,8 +497,7 @@ router.post('/updateamount', async function(req, res, next){
     const aid =  await aidModel.updateOne(
                               {aidId: aids[i].aidId}, 
                               {aidAmount: amount} ); 
-                              
-    console.log ('Amount :', amount);                   
+                                           
     nbOfAidsUpdated++;
     
   }

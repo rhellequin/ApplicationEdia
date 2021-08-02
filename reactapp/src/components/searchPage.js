@@ -8,6 +8,7 @@ import {Link, Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 import 'antd/dist/antd.css';
 
+import FilAriane from './filariane';
 
 function SearchPage (props) {
 
@@ -62,16 +63,12 @@ function SearchPage (props) {
 
 
 
-    const callResultPage = ()=> {
+    const callResultPage = async ()=> {
 
-     
-      if (props.numberOfAids < 200  && props.numberOfAids > 0 ) {
-        setOnResultPage(true);
-      } else if  (props.numberOfAids >= 200) {
-        openNotification();
-      }
-
-      
+      const filAriane = await FilAriane(props.searchOptions);
+      props.updateFilAriane(filAriane);
+      console.log('SearchPage filAriane =', filAriane)
+      setOnResultPage(true);
 }
 
 
@@ -156,7 +153,10 @@ function mapDispatchToProps(dispatch){
       dispatch({type: 'updateIndexOptions', indexOptions: i})},
       
     updateNumberOfAids: function(n) {
-      dispatch({type: 'updateNumberOfAids', numberOfAids: n})}   
+      dispatch({type: 'updateNumberOfAids', numberOfAids: n})},
+    
+    updateFilAriane: function(f) {
+        dispatch({type: 'updateFilAriane', filAriane: f})}   
   }
 }
 

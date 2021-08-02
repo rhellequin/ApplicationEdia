@@ -2,7 +2,7 @@ import React, {useState, useEffect } from 'react';
 import {connect} from 'react-redux';
 import{Redirect} from "react-router-dom";
 
-import {Col, Row,Card} from 'antd'; 
+import {Col, Row,Card, Typography} from 'antd'; 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 
@@ -11,13 +11,13 @@ import './visuels/resultPage.css';
 
 import Navigation from './navigation';
 import Bouton from './Bouton';
-import CountAids from './countaids'
-import FilAriane from './filariane'
+import CountAids from './countaids';
 
 
 
 
 function ResultPage (props) {
+ 
 
   const [ResultList, setResultList] = useState([])
   const [addingAid, setAddingAid] = useState (false)
@@ -27,32 +27,54 @@ function ResultPage (props) {
   const [filAr, setFilAr] = useState([])
   const [ids, setIds] = useState({})
   const [rollDiceLogo, setRollDiceLogo] = useState('')
-  const [rollDiceMontant, setRollDiceMontant] = useState('')
+   
   const [rollDiceDiff, setRollDiceDiff] = useState('')
   const [rollDiceDelai, setRollDiceDelai] = useState('')
   
+  const { Text, Link } = Typography;
 
+  useEffect(() => {
 
+    var resultat = async () => {
+            importResult.sort(function compareMountant( a, b ) {
+            if ( a.montant < b.montant ){return -1;}
+            if ( a.montant > b.montant ){return 1;}
+            return 0;});
+    
+    setResultList(importResult);
+    setNumberOfAids(props.numberOfAids);
+
+   
+    setIds(idlist)
+    setRollDiceLogo(tirageLogo)  
+    setRollDiceDiff(tirageDiff)
+    setRollDiceDelai(tirageDelai)
+   
+   
+  }
+  resultat();
+
+}, [])
  
 
+console.log('props.filAriane :', props.filAriane);
+
+
+
+
 var importResult = props.aids.map((aid, i) => ({
-    name: aid.aidName, financeur: aid.aidFunders[0] == !undefined ?  aid.aidFunders[0].funderName : '', montant:aid.aidMountant, niveauAide: aid.aidLevel.levelName, logo:'../images/pinguin.png', diff:'facile',delai: '6 mois',
+    name: aid.aidName, financeur: aid.aidFunders[0] == !undefined ?  aid.aidFunders[0].funderName : '', montant:aid.aidAmount, niveauAide: aid.aidLevel.levelName, logo:'../images/pinguin.png', diff:'facile',delai: '6 mois',
 
 }));
-
 
 
 
 var idlist ={id1:"", id2:"", id3:"", id4:"", id5:""}
 
 var tirageLogo = (Math.floor( Math.random() * 10 ) +1);
-var tirageMontant = (Math.floor( Math.random() * 10 ) +1);
 var tirageDiff = (Math.floor( Math.random() * 10 ) +1);
 var tirageDelai = (Math.floor( Math.random() * 10 ) +1);
 
-
-
-var affichageMontant=rollDiceMontant*1000
 
 var affichageDiff=''
         if(rollDiceDiff<4){affichageDiff='facile'}
@@ -79,32 +101,7 @@ var affichageLogo=''
        
        
 
-      useEffect(() => {
-          var resultat = async () => {
-                  importResult.sort(function compareMountant( a, b ) {
-                  if ( a.montant < b.montant ){return -1;}
-                  if ( a.montant > b.montant ){return 1;}
-                  return 0;});
-          console.log('useffect', importResult);
-          setResultList(importResult);
-          setNumberOfAids(props.numberOfAids);
-
-          const filAriane = await FilAriane(props.searchOptions);
-          setFilAr(filAriane);
-          setIds(idlist)
-          setRollDiceLogo(tirageLogo)
-          setRollDiceMontant(tirageMontant)
-          setRollDiceDiff(tirageDiff)
-          setRollDiceDelai(tirageDelai)
-         
-         
-        }
-        resultat()
-
-      }, [])
       
-     
-      console.log('myID', ids)
       // Fonctions de tri
       var TrierParMontant = async () => {
         
@@ -193,8 +190,6 @@ var affichageLogo=''
                 else if(aide.favorite==true){
                       newFavorite=false}
 
-            console.log(id)
-            
             const data = await fetch('/add-favorite', {
                         method: 'POST',
                         headers: {'Content-Type':'application/x-www-form-urlencoded'},
@@ -209,6 +204,8 @@ var affichageLogo=''
       }
 
  
+
+
 
             var displayList = ResultList.map((aide,i) => {
                             if(aide.favorite ==true){
@@ -228,7 +225,7 @@ return(
                 <Row  className='CardRang1'>
                       {/* <img src={aide.logo} alt='' height='80px' /> */}
                       <img src={affichageLogo} alt='' height='80px' />
-                      <div className='CardAidMontant'>{affichageMontant}€</div>
+                      <div className='CardAidMontant'>{aide.montant}€</div>
                       <p><FontAwesomeIcon icon={faStar}
                           style={colorStar}
                           onClick={()=>addUserAid(aide,aide.id)}/>
@@ -278,6 +275,7 @@ return(
     )
           })
 
+const displayFilAriane = props.filAriane.map((fil,i) => {<Text underline>{props.filAriane[i].name}  </Text>});
 
 if(isLogin==true){
 
@@ -289,17 +287,22 @@ if(isLogin==true){
   <Navigation/>
 
   <CountAids numberOfAids={numberOfAids}/>
+
+
   <Col md={{ span: 24 }} className='Ariane' >
       
-      <div className='CritAid'><div className='CritQuestion'>Type d'aide: </div>Exonération de charges sociales </div>
-      <div className='CritAid'><div className='CritQuestion'>/ Secteur d'activité: </div>Economie</div>
-      <div className='CritAid'><div className='CritQuestion'>/ Enjeux: </div>Connaître les exonérations fiscales</div>
-      <div className='CritAid'><div className='CritQuestion'>/ Département: </div>Loire-Atlantique: </div>
-      <div className='CritAid'><div className='CritQuestion'>Profil de l'entreprise: </div>Autres services, professions libérales</div>
-      <div className='CritAid'><div className='CritQuestion'>Effectifs: </div>+ de 250</div>
-      <div className='CritAid'><div className='CritQuestion'>Age de l'entreprise: </div>moins de 3 ans
-      </div>
+  <Row>
+      {displayFilAriane}
+  </Row>
 
+      <div className='CritAid'><div className='CritQuestion'>Type d'aide: </div>{props.filAriane[0].name}</div>
+      <div className='CritAid'><div className='CritQuestion'>/ Secteur d'activité: </div>{props.filAriane[1].name}</div>
+      <div className='CritAid'><div className='CritQuestion'>/ Enjeux: </div>{props.filAriane[2].name}</div>
+      <div className='CritAid'><div className='CritQuestion'>/ Département: </div>{props.filAriane[3].name}</div>
+      <div className='CritAid'><div className='CritQuestion'>Profil de l'entreprise: </div>{props.filAriane[4].name}</div>
+      <div className='CritAid'><div className='CritQuestion'>Effectifs: </div>{props.filAriane[5].name}</div>
+      <div className='CritAid'><div className='CritQuestion'>Age de l'entreprise: </div>{props.filAriane[6].name}</div>
+ 
   </Col>
 
   <div style={{display:'flex', flexDirection: 'row'}}>                                          
@@ -315,11 +318,11 @@ if(isLogin==true){
           </div>
    
         
-              <div className='Mapper'>
-                  <Row>
-                      {displayList}
-                  </Row>  
-              </div> 
+            <div className='Mapper'>
+                <Row>
+                    {displayList}
+                </Row>  
+            </div> 
         
   </div> 
 </div>
@@ -331,7 +334,14 @@ if(isLogin==true){
 }
 
 function mapStateToProps(state) {
-  return { searchOptions: state.searchOptions, indexOptions: state.indexOptions, numberOfAids: state.numberOfAids, aids: state.aids, token: state.user.token}}
+  return { 
+        searchOptions: state.searchOptions, 
+        indexOptions: state.indexOptions, 
+        numberOfAids: state.numberOfAids, 
+        aids: state.aids, 
+        token: state.user.token, 
+        filAriane: state.filAriane
+        }}
 
 export default connect(
   mapStateToProps,

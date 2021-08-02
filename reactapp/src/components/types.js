@@ -79,8 +79,6 @@ function Types (props) {
         
   }
     
-  console.log('isSpinning :', isSpinning);
-
    // Gestion du marquage projet :
 
    let colorTextSelected = "black"
