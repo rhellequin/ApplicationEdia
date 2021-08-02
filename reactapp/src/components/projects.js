@@ -2,6 +2,7 @@ import React, {useState, useEffect } from 'react';
 import {connect} from 'react-redux';
 import SearchAids from './searchaids';
 import CountAids from './countaids';
+import SpinSearch from './spinsearch';
 
 import 'antd/dist/antd.css';
 import {Input, Typography, Card, Col, Row, List, Divider } from 'antd'; 
@@ -11,7 +12,9 @@ function Projects (props) {
 
     const [projects, setProjects] = useState([]);
     const [numberOfAids, setNumberOfAids] = useState(0);
-    const [iSelected, setISelected] = useState(-1)
+    const [iSelected, setISelected] = useState(-1);
+    const [isSpinning,setIsSpinning] = useState(false);   
+
         
     const { Text, Link } = Typography;
 
@@ -64,6 +67,7 @@ function Projects (props) {
 // Appel de la recherche :
     const runSearch = async (i) => {
         
+      setIsSpinning(true); // Affichage Spin de recherche
       setISelected(i); // pour gérer le marquage du projet sélectionné :
 
       let parameters = [...props.searchOptions]
@@ -76,7 +80,7 @@ function Projects (props) {
         const n = aids.length;
         props.updateNumberOfAids(n);
         setNumberOfAids(n);
-        console.log('aids :',aids )
+        setIsSpinning(false); 
     }
 
 // Gestion du marquage projet :
@@ -108,6 +112,8 @@ let colorBg =  'white'
     return (
       <div>
         <CountAids numberOfAids={numberOfAids}/>
+        <SpinSearch isSpinning={isSpinning}/>
+        
         <Row style={{justifyContent: "center"}}>
           <List style={{backgroundColor: "white", width:"600px"}}
               size="small"

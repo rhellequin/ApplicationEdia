@@ -2,6 +2,9 @@ import React, {useState, useEffect } from 'react';
 import {connect} from 'react-redux';
 import SearchAids from './searchaids';
 import CountAids from './countaids';
+import SpinSearch from './spinsearch';
+
+
 
 
 import 'antd/dist/antd.css';
@@ -14,7 +17,8 @@ function Domains (props) {
     const [iSelected, setISelected] = useState(-1)
     const [domains, setDomains] = useState([]);
     const [numberOfAids, setNumberOfAids] = useState(0);
-        
+    const [isSpinning,setIsSpinning] = useState(false);   
+
     useEffect(() => {
          
         const FindDomains= async () => {
@@ -38,6 +42,7 @@ function Domains (props) {
 // Appel de la recherche :
 const runSearch = async (i) => {
         
+  setIsSpinning(true); // Affichage Spin de recherche
   setISelected(i); // pour gérer le marquage du projet sélectionné :
 
   let parameters = [...props.searchOptions]
@@ -50,7 +55,7 @@ const runSearch = async (i) => {
     const n = aids.length;
     props.updateNumberOfAids(n);
     setNumberOfAids(n);
-   
+    setIsSpinning(false);
   }
 
 
@@ -99,7 +104,9 @@ if (iSelected>=0) {
     return (
 
       <div className="site-card-wrapper">
-          <CountAids numberOfAids={numberOfAids}/>       
+          <CountAids numberOfAids={numberOfAids}/>     
+          <SpinSearch isSpinning={isSpinning}/>
+            
           <Row gutter={16}>
 
           {dataItem.map((item,i) => (
