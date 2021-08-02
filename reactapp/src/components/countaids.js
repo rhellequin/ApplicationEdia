@@ -15,8 +15,5 @@ function CountAids (props) {
         </div>
         
     )}
- 
-
-
 export default CountAids;
      
