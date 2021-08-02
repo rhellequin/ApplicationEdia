@@ -22,7 +22,7 @@ var handleClick=()=>{
    
 <Row style={{display:'flex',justifyContent:'center', alignItems:'flex-start'}}>       
     <Col sm="12" md="6" lg="6" style={{display:'flex', justifyContent:'space-between',alignItems:'center'}}>
-        <img src='../images/EDIA.png'  height='120px' />
+    <Link to='/landingpage'><img src='../images/EDIA.png'  height='120px' /></Link>
     </Col>
 
 {props.token?

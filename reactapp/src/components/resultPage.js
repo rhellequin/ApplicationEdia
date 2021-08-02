@@ -15,8 +15,6 @@ import CountAids from './countaids'
 import FilAriane from './filariane'
 
 
-
-
 function ResultPage (props) {
 
   const [ResultList, setResultList] = useState([])
@@ -33,11 +31,8 @@ function ResultPage (props) {
  
   
 
-
- 
-
-var importResult = props.aids.map((aid, i) => ({
-    name: aid.aidName, financeur: aid.aidFunders[0] == !undefined ?  aid.aidFunders[0].funderName : '', montant:aid.aidMountant, niveauAide: aid.aidLevel.levelName, logo:'../images/pinguin.png', diff:'facile',delai: '6 mois',
+  var importResult = props.aids.map((aid, i) => ({
+  id: aid._id, name: aid.aidName, financeur:aid.aidFunders[0].funderName, montant:aid.aidMountant, niveauAide: aid.aidLevel.levelName, logo:'../images/pinguin.png', diff:'facile',delai: '6 mois',
 
 }));
 
@@ -106,7 +101,6 @@ var affichageLogo=''
       }, [])
       
      
-      console.log('myID', ids)
       // Fonctions de tri
       var TrierParMontant = async () => {
         
@@ -117,7 +111,6 @@ var affichageLogo=''
                           return 0;}
                   );
                   
-                  console.log('importResult', importResult);
                   setIds({id1:"active", id2:"inactive", id3:"inactive", id4:"inactive", id5:"inactive"})
                   
                   setResultList(importResult)};
@@ -130,7 +123,6 @@ var affichageLogo=''
                           return 0;}
                   );
                   setIds({id1:"inactive", id2:"active", id3:"inactive", id4:"inactive", id5:"inactive"})
-                  console.log('importResult', importResult);
                   setResultList(importResult)}
 
       var TrierParNiveauAide = async () => {
@@ -141,7 +133,6 @@ var affichageLogo=''
                           return 0;}
                   );
                   setIds({id1:"inactive", id2:"inactive", id3:"active", id4:"inactive", id5:"inactive"})
-                  console.log('importResult', importResult);
                   setResultList(importResult)}
 
       var TrierParDifficulte = async () => {
@@ -152,7 +143,6 @@ var affichageLogo=''
                           return 0;}
                   );
                   setIds({id1:"inactive", id2:"inactive", id3:"inactive", id4:"active", id5:"inactive"})
-                  console.log('importResult', importResult);
                   setResultList(importResult)}
 
       var TrierParDelai= async () => {
@@ -163,7 +153,6 @@ var affichageLogo=''
                           return 0;}
                   );
                   setIds({id1:"inactive", id2:"inactive", id3:"inactive", id4:"inactive", id5:"active"})
-                  console.log('importResult', importResult);
                   setResultList(importResult)}
   
 
@@ -188,6 +177,7 @@ var affichageLogo=''
                           }
                 })
             setResultList(copyList)
+            console.log(id,'idqlsdkjlqskd')
 
             var newFavorite
                 if(aide.favorite==undefined || aide.favorite==false){

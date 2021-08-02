@@ -1,8 +1,8 @@
 // Import de la fonction (hook d'état)
 import React, { useState, useEffect } from 'react';
-import { Input, Typography, Space, Menu, Form } from 'antd';
+import { Input, Typography, Space, Menu, Form, Col, Row,Card } from 'antd';
 import { } from '@ant-design/icons'
-import { Button, Col, Row, Container, Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Media} from 'reactstrap';
+import { Button, Container, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Media} from 'reactstrap';
 import { Nav } from 'react-bootstrap';
 import Bouton from './Bouton';
 import { Link, Redirect } from "react-router-dom";
@@ -16,6 +16,7 @@ import { faHeart,faDownload, faStar,faCog,faUser, faHouseUser, faVideo} from '@f
 
 import  './visuels/useraccount.css'
 import signup from './signup';
+import './visuels/resultPage.css';
 
 
 var souvenirParent
@@ -40,6 +41,8 @@ function UserAccount(props) {
     const [donnee,setDonnee]= useState()
     const [favList,setFavList]= useState([])
     const [isAid,setIsAid]= useState(false)
+    const [resultList, setResultList] = useState([])
+    const[percentage,setPercentage] = useState()
     
 
 
@@ -52,7 +55,7 @@ function UserAccount(props) {
                 body: `token=${props.token}`
         })
         const result = await data.json();
-        console.log('resul :', result, );
+        console.log(result)
         if (result.result) {
            
                 setUserFirstName(result.user.firstName);
@@ -63,21 +66,23 @@ function UserAccount(props) {
                 setUserSiret(result.user.siret);
                 setUserPosition(result.user.position);
                 setUserAids(result.user.userAids);
-            }   else {
-                console.log('pas trouve le user sur token :', props.token)
+                setIsAid(true);
+                setFavList(result.user.userAids)
             } 
+        
+        
+        const pourcentage2= [userFirstName, userLastName, userPhone, userEmail,userCompany,userSiret]
+        var count= 0
+        
+        for(var i=0; i<pourcentage2.length; i++){
+            if(data[i]!=''){
+                count =count + 100/7
+            }
         }
-        findUser();
-      },[])
 
-
-
-
-
-
-
-
-
+        setPercentage(count)
+    }
+        findUser(); },[])
 
 
     var detectLogin = () => {
@@ -95,27 +100,46 @@ function UserAccount(props) {
             body: `token=${props.token}&firstnameFromFront=${userFirstName}&lastnameFromFront=${userLastName}&phoneFromFront=${userPhone}&emailFromFront=${userEmail}&companyFromFront=${userCompany}&siretFromFront=${userSiret}&positionFromFront=${userPosition}`
         })
         const result = await data.json();
-        console.log('resul :', result, );
 
     }
 
-    var handleFavorite = async () =>{
+   
 
-    const data = await fetch('/useraid-favorite', {
-        method: 'POST',
-        headers: {'Content-Type':'application/x-www-form-urlencoded'},
-        body: `token=${props.token}`
-        })  
+
+//ajout favoris au lcik sur etoile
+var addUserAid= async(aide,id)=>{
+    var copyList=[...favList]
+        copyList=copyList.map((aide,i)=>{
+            if(aide.favorite==undefined ){
+                if(aide.id==id){
+                return {...aide,favorite:false}}
+            }    
+        })
+
+    var newFavorite
+        if(aide.favorite==undefined || aide.favorite==false){
+              newFavorite=false}
+        else if(aide.favorite==true){
+              newFavorite=false}
+
+        const data = await fetch('/add-favorite', {
+                method: 'POST',
+                headers: {'Content-Type':'application/x-www-form-urlencoded'},
+                body: `id=${aide}&token=${props.token}&favorite=${newFavorite}`
+                })  
     const response = await data.json();
     
-    if (response.result === true){
-        setIsAid(true);
-        setFavList(response.userAids)
-      } 
+    if (response.result==false){
+        setIsLogin(false)}
+    else {
+        setFavList(response.user.userAids)
+    }
+            
+} 
 
-    // var favoriteList= response.userAids.map((aide,i))
 
-}   
+
+
 
 
 if (isLogin==false){
@@ -131,15 +155,15 @@ return (
                 <Nav.Link eventKey="link-1"onClick={()=>{setFavori(false);setDonnee(false)}}>Favoris</Nav.Link>
             </Nav.Item>
             <Nav.Item>
-                <Nav.Link eventKey="link-2" onClick={()=>{setFavori(true);setDonnee(true);handleFavorite(props.token)}} >Données perso</Nav.Link>
+                <Nav.Link eventKey="link-2" onClick={()=>{setFavori(true);setDonnee(true)}} >Données perso</Nav.Link>
             </Nav.Item>
         </Nav>
 
     </Row>
-    <Row>
+    <Row style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around', margin:'50px 0 0 0' }}>
         <Col className="colonne" >
             <h3>Bonjour {props.firstName}</h3>
-            <h5>Vous avez 90% de profile complété</h5>
+            <h5>Vous avez {percentage}% de profile complété</h5>
         </Col>
 
         <Col className="colonne" >
@@ -196,103 +220,49 @@ return (
 {isAid ?
 
 favList.map((aide,i) =>{
-       
-        return(
-            <Col sm="12" md="4" lg="4"  key={i}>
-                
-    <Card  bordered={false} style={{ 
-        backgroundColor: '#E0E5E9',
-        margin: '15px',
-        borderRadius:'30px',
-        height:'600px',
-        display:'flex',
-        flexDirection:'column'
 
-                            
-        }}>
-            <Row style={{
-              display:'flex',
-              flexDirection:'row',
-               alignSelf: "flex-start",
-              justifyContent:'space-between',
-              height:'80px',
-            }}>
-              
-            <img src={aide.logo}  height='80px' />
 
-            <p ><FontAwesomeIcon icon={faStar}
-            style=''  /></p>
-
-            </Row>
-            <Row style={{justifyContent:'center',
-            alignItems: 'center',
-            fontFamily: 'Alata',
-            fontSize:'30px',
-            textAlign: 'center',
-           
-            display:'flex',
-            flexDirection:'column',
-            height:'200px'
-           
-            }}>
-
-            
-            <div style={{
-            marginBottom:'10px'
-           
-            }}>{aide.aidName}</div>
-            <div>{aide.aidAmount} €</div>
-            
-            </Row>
-            <Row style={{
-            display:'flex',
-            flexDirection:'column',
-            justifyContent:'space-around',
-            textAlign: 'center',
-            fontFamily: 'Alata',
-           
-            height:'30%',
-            height:'170px',
-           }}>
-              <div style={{
-            display:'flex',
-            flexDirection:'row',
-            justifyContent:'space-between',
-            textAlign: 'center',
-            fontFamily: 'Alata',
-            fontSize:'18px',
-            
-           }}>
-              <p>{aide.financeur}</p>
-              <p>{aide.aidForm}</p>
-              
-              </div>
-              <div style={{
-            display:'flex',
-            flexDirection:'row',
-            justifyContent:'space-between',
-            textAlign: 'center',
-            fontFamily: 'Alata',
-            fontSize:'18px',
-           }}>
-              <p>Difficulté d'obtention: {aide.diff}</p>
-              <p>Délai d'obtention:{aide.aidId}</p>
-              </div>
-            </Row>
-            <Row style={{
-            
-            justifyContent:'center',
-           
-            
-            alignContent: "flex-end",
-            marginBottom:'auto',
-            height:'100px',
-            }}>       
-<Bouton />
+    return(
+        <Col xs={{ span: 24, offset: 0 }} md={{ span: 8, offset: 0 }} key={i}>
+     
+            <Card  className='CardAid'>
+                    
+                    <Row  className='CardRang1'>
+                          {/* <img src={aide.logo} alt='' height='80px' /> */}
+                          <img  alt='' height='80px' />
+                          <p><FontAwesomeIcon icon={faStar}
+                                style={{color:'yellow'}} onClick={()=>addUserAid(aide,aide.id)}
+                              />
+                          </p>
+                    </Row>
+          
+                    <Row className='CardAidName'>
+                          <div style={{marginBottom:'10px'}}>Essai</div>
+                    </Row>
+                    
+                    <Row className='CardAidMontant'>
+                          <div>Essai€</div>
+                    </Row>
     
-            </Row>
-    </Card>
-    </Col>
+                    <Row className='CardAidInfo' >
+                          <div className='CardAidInfoSup'>
+                              <p>Essai</p>
+                              <p>Essai</p>
+                          </div>
+                  
+                          <div className='CardAidInfoInf' >
+                              <p>Difficulté d'obtention: Essai</p>
+                              <p>Délai d'obtention:Essai</p>
+                          </div>
+                    </Row>
+                  
+                    <Row className='CardAidbouton'>          
+                          <Bouton />
+                    </Row>
+                      
+            </Card>
+    
+        </Col>
 
 ) 
 })
