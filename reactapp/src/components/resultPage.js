@@ -34,7 +34,7 @@ function ResultPage (props) {
  
 
 var importResult = props.aids.map((aid, i) => ({
-    name: aid.aidName, financeur: aid.aidFunders[0] == !undefined ?  aid.aidFunders[0].funderName : '', montant:aid.aidMountant, niveauAide: aid.aidLevel.levelName, logo:'../images/pinguin.png', diff:'facile',delai: '6 mois',
+    name: aid.aidName, financeur: aid.aidFunders[0] == !undefined ?  aid.aidFunders[0].funderName : '', montant:aid.aidAmount, niveauAide: aid.aidLevel.levelName, logo:'../images/pinguin.png', diff:'facile',delai: '6 mois',
 
 }));
 
@@ -226,7 +226,7 @@ return(
                 <Row  className='CardRang1'>
                       {/* <img src={aide.logo} alt='' height='80px' /> */}
                       <img src={affichageLogo} alt='' height='80px' />
-                      <div className='CardAidMontant'>{affichageMontant}€</div>
+                      <div className='CardAidMontant'>{aide.montant}€</div>
                       <p><FontAwesomeIcon icon={faStar}
                           style={colorStar}
                           onClick={()=>addUserAid(aide,aide.id)}/>
@@ -243,23 +243,23 @@ return(
 
                 <Row className='CardAidInfo' >
                       <div className='CardAidInfoSup'>
-                      <div className='Critere'>
+                      <div className='Criteres'>
                           <div className='ask'>Financeur:</div>
                           <p className='ans'>{aide.financeur}</p>
                           </div>
-                        <div className='Critere'>
+                        <div className='Criteres'>
                         <div className='ask'>Niveau de l'aide</div>
                         <div className='ans'>{aide.niveauAide}</div>
                           </div>
                       </div>
               
                       <div className='CardAidInfoInf' >
-                      <div className='Critere'>
+                      <div className='Criteres'>
                       <div className='ask'>Difficulté d'obtention: </div>
                       <div className='ans'>{affichageDiff}</div>
 
                           </div>
-                          <div className='Critere'>    
+                          <div className='Criteres'>    
                           <div className='ask'>Délai d'obtention:</div>
                           <div className='ans'> {affichageDelai}</div>
                           </div>
