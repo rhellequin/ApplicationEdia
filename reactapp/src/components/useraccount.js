@@ -4,7 +4,7 @@ import { Input, Typography, Space, Menu, Form } from 'antd';
 import { } from '@ant-design/icons'
 import { Button, Col, Row, Container, Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Media} from 'reactstrap';
 import { Nav } from 'react-bootstrap';
-
+import Bouton from './Bouton';
 import { Link, Redirect } from "react-router-dom";
 import { connect } from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -37,7 +37,11 @@ function UserAccount(props) {
 
     const [userExists, setUserExists] = useState(false)
     const [favori, setFavori]= useState(false)
-    const [donnee,setDonnee]= useState(false)
+    const [donnee,setDonnee]= useState()
+    const [favList,setFavList]= useState([])
+    const [isAid,setIsAid]= useState(false)
+    
+
 
 
     useEffect(() => {
@@ -103,13 +107,19 @@ function UserAccount(props) {
         body: `token=${props.token}`
         })  
     const response = await data.json();
-    console.log(response.userAids)
+    
+    if (response.result === true){
+        setIsAid(true);
+        setFavList(response.userAids)
+      } 
 
     // var favoriteList= response.userAids.map((aide,i))
 
-    }
+}   
+
 
 if (isLogin==false){
+
 return (
 <Container>
     <Navigation handleClickParent={detectLogin}/>
@@ -136,6 +146,8 @@ return (
         <h3 style={{textAlign:'left'}} >Dirigeant de l'entreprise</h3>
         <h5 style={{textAlign:'left'}}>Duclos</h5>
         </Col>
+    </Row>
+{ donnee === true ?
 
         <Row style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around', margin:'50px 0 0 0' }}>
                 <Row style={{margin:'0 0 50px 0'}}>
@@ -143,7 +155,6 @@ return (
                 </Row>
                 <Col style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
 
-{ donnee == true ?
 
                 <Form>
                     <Row>
@@ -177,16 +188,125 @@ return (
                         <Button onClick={() => handleSubmitUserInfo()} style={{ width: '100px', background: "#0A62D0", }} type="primary">Enregister</Button>
                     </Form.Item>
                 </Form>
+            </Col>
+        </Row>
     :
-    null
+    <Row  style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around', margin:'50px 0 0 0' }}>   
 
-} 
-                </Col>
+{isAid ?
+
+favList.map((aide,i) =>{
+       
+        return(
+            <Col sm="12" md="4" lg="4"  key={i}>
+                
+    <Card  bordered={false} style={{ 
+        backgroundColor: '#E0E5E9',
+        margin: '15px',
+        borderRadius:'30px',
+        height:'600px',
+        display:'flex',
+        flexDirection:'column'
+
+                            
+        }}>
+            <Row style={{
+              display:'flex',
+              flexDirection:'row',
+               alignSelf: "flex-start",
+              justifyContent:'space-between',
+              height:'80px',
+            }}>
+              
+            <img src={aide.logo}  height='80px' />
+
+            <p ><FontAwesomeIcon icon={faStar}
+            style=''  /></p>
+
             </Row>
-    </Row>
+            <Row style={{justifyContent:'center',
+            alignItems: 'center',
+            fontFamily: 'Alata',
+            fontSize:'30px',
+            textAlign: 'center',
+           
+            display:'flex',
+            flexDirection:'column',
+            height:'200px'
+           
+            }}>
+
+            
+            <div style={{
+            marginBottom:'10px'
+           
+            }}>{aide.aidName}</div>
+            <div>{aide.aidAmount} €</div>
+            
+            </Row>
+            <Row style={{
+            display:'flex',
+            flexDirection:'column',
+            justifyContent:'space-around',
+            textAlign: 'center',
+            fontFamily: 'Alata',
+           
+            height:'30%',
+            height:'170px',
+           }}>
+              <div style={{
+            display:'flex',
+            flexDirection:'row',
+            justifyContent:'space-between',
+            textAlign: 'center',
+            fontFamily: 'Alata',
+            fontSize:'18px',
+            
+           }}>
+              <p>{aide.financeur}</p>
+              <p>{aide.aidForm}</p>
+              
+              </div>
+              <div style={{
+            display:'flex',
+            flexDirection:'row',
+            justifyContent:'space-between',
+            textAlign: 'center',
+            fontFamily: 'Alata',
+            fontSize:'18px',
+           }}>
+              <p>Difficulté d'obtention: {aide.diff}</p>
+              <p>Délai d'obtention:{aide.aidId}</p>
+              </div>
+            </Row>
+            <Row style={{
+            
+            justifyContent:'center',
+           
+            
+            alignContent: "flex-end",
+            marginBottom:'auto',
+            height:'100px',
+            }}>       
+<Bouton />
+    
+            </Row>
+    </Card>
+    </Col>
+
+) 
+})
+
+:
+<div>Pas de favorite</div>
+}
+</Row>
+} 
+
 </Container>
 )
-}else if( isLogin== true){
+}
+else if( isLogin== true){
     return(<Redirect to='/landingpage' />)
 }
 

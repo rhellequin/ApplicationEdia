@@ -2,7 +2,7 @@
 // Appel de la recherche : POST vers le backend :
 //==============================================
 
-    async function  SearchAids   (tb) {
+async function  SearchAids   (tb) {
 
         const listFilter = tb.map ((e,i) => {
             return {critere: e.critere, valeur: e.valeur}
@@ -22,6 +22,5 @@
             return aids;
         }
     };
-
     export default SearchAids;
 
