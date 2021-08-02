@@ -4,19 +4,18 @@
 
 import React from 'react';
 import { Spin, Space } from 'antd';
+import './visuels/countaids.css';
 
 function SpinSearch (props) {
    
     return (  
-        <row style={{
-                    position: "absolute",
-                    top: "80px",
-                    left: "800px"}}>        
-                <Spin size="small" spinning={props.isSpinning}/>
-                <Spin size="medium" spinning={props.isSpinning}/>
-                <Spin size="large" spinning={props.isSpinning}/>
+     
 
-        </row>
+<row className='BarreLoader'>        
+
+<Spin size="large" spinning={props.isSpinning}/>
+
+</row>
     )}
  
 
