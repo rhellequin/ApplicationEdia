@@ -14,11 +14,6 @@ import Bouton from './Bouton';
 import CountAids from './countaids'
 import FilAriane from './filariane'
 
-const { Header, Content, Footer, Sider } = Layout;
-
-
-
-
 
 function ResultPage (props) {
 
