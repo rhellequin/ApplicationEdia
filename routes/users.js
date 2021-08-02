@@ -31,7 +31,6 @@ res.json({result: true})
 
 
 
-<<<<<<< HEAD
 // router.post('/add', async function(req, res, next) {
 //   var addUserInfo = new userModel ({
 //     firstName: req.body.firstnameFromFront,
@@ -42,12 +41,13 @@ res.json({result: true})
 //     siret: req.body.siretFromFront,
 //     position: req.body.positionFromFront
 //   })
-=======
->>>>>>> 1603d2ccd826eb960dd0eb048d6e62f01c2ab508
 
 /* POST Lecture info perso user. */
 router.post('/infouser', async function(req, res, next) {
-  var user = await userModel.findOne({ token: req.body.token });
+  
+  var user = await userModel.findOne({ token: req.body.token }).populate('userAids').exec();
+  var tab=[]
+
   if (user != null) {
     const resUSer = {
         firstName: user.firstName,
@@ -59,7 +59,11 @@ router.post('/infouser', async function(req, res, next) {
         phone:  user.phone,
         userAids:  user.userAids,  
     }
-    res.json({result: true, user: resUSer});
+    for(var i=0;i<user.userAids.length;i++){
+      tab.push(await aidModel.findOne({_id: user.userAids[i]}))
+    }
+
+    res.json({result: true, user: resUSer,userAids: tab});
   } else {
     res.json({result: false});
   }
