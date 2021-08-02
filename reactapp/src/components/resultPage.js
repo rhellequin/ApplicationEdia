@@ -16,6 +16,7 @@ import FilAriane from './filariane'
 
 
 
+
 function ResultPage (props) {
 
   const [ResultList, setResultList] = useState([])
@@ -29,11 +30,16 @@ function ResultPage (props) {
   const [rollDiceMontant, setRollDiceMontant] = useState('')
   const [rollDiceDiff, setRollDiceDiff] = useState('')
   const [rollDiceDelai, setRollDiceDelai] = useState('')
+  
+
 
   var importResult = props.aids.map((aid, i) => ({
-  name: aid.aidName, financeur:aid.aidFunders[0].funderName, montant:aid.aidMountant, niveauAide: aid.aidLevel.levelName, logo:'../images/pinguin.png', diff:'facile',delai: '6 mois',
+  name: aid.aidName, financeur:aid.aidFunders[0].funderName, montant:aid.aidMountant, niveauAide: aid.aidLevel.levelName, logo:'../images/pinguin.png', diff:'facile',delai: '6 mois', logoEssai:''
 
 }));
+
+
+
 
 var idlist ={id1:"", id2:"", id3:"", id4:"", id5:""}
 
@@ -41,6 +47,8 @@ var tirageLogo = (Math.floor( Math.random() * 10 ) +1);
 var tirageMontant = (Math.floor( Math.random() * 10 ) +1);
 var tirageDiff = (Math.floor( Math.random() * 10 ) +1);
 var tirageDelai = (Math.floor( Math.random() * 10 ) +1);
+
+
 
 var affichageMontant=rollDiceMontant*1000
 
@@ -66,6 +74,9 @@ var affichageLogo=''
         else if(rollDiceLogo==9){affichageLogo='../images/logo9.jpg'}
         else if(rollDiceLogo==10){affichageLogo='../images/logo10.jpg'}
 
+       
+       
+
       useEffect(() => {
           var resultat = async () => {
                   importResult.sort(function compareMountant( a, b ) {
@@ -82,7 +93,9 @@ var affichageLogo=''
           setRollDiceLogo(tirageLogo)
           setRollDiceMontant(tirageMontant)
           setRollDiceDiff(tirageDiff)
-          setRollDiceDelai(tirageDelai)   
+          setRollDiceDelai(tirageDelai)
+         
+         
         }
         resultat()
 
@@ -213,6 +226,7 @@ return(
                 <Row  className='CardRang1'>
                       {/* <img src={aide.logo} alt='' height='80px' /> */}
                       <img src={affichageLogo} alt='' height='80px' />
+                      <div className='CardAidMontant'>{affichageMontant}€</div>
                       <p><FontAwesomeIcon icon={faStar}
                           style={colorStar}
                           onClick={()=>addUserAid(aide,aide.id)}/>
@@ -223,19 +237,32 @@ return(
                       <div style={{marginBottom:'10px'}}>{aide.name}</div>
                 </Row>
                 
-                <Row className='CardAidMontant'>
+                {/* <Row className='CardAidMontant'>
                       <div>{affichageMontant}€</div>
-                </Row>
+                </Row> */}
 
                 <Row className='CardAidInfo' >
                       <div className='CardAidInfoSup'>
-                          <p>{aide.financeur}</p>
-                          <p>{aide.niveauAide}</p>
+                      <div className='Critere'>
+                          <div className='ask'>Financeur:</div>
+                          <p className='ans'>{aide.financeur}</p>
+                          </div>
+                        <div className='Critere'>
+                        <div className='ask'>Niveau de l'aide</div>
+                        <div className='ans'>{aide.niveauAide}</div>
+                          </div>
                       </div>
               
                       <div className='CardAidInfoInf' >
-                          <p>Difficulté d'obtention: {affichageDiff}</p>
-                          <p>Délai d'obtention:{affichageDelai}</p>
+                      <div className='Critere'>
+                      <div className='ask'>Difficulté d'obtention: </div>
+                      <div className='ans'>{affichageDiff}</div>
+
+                          </div>
+                          <div className='Critere'>    
+                          <div className='ask'>Délai d'obtention:</div>
+                          <div className='ans'> {affichageDelai}</div>
+                          </div>
                       </div>
                 </Row>
               
@@ -262,13 +289,13 @@ if(isLogin==true){
   <CountAids numberOfAids={numberOfAids}/>
   <Col md={{ span: 24 }} className='Ariane' >
       
-      <div className='CritAid'><img src='../images/1.png' alt='' /><div className='CritQuestion'>Type d'aide: </div>Exonération de charges sociales </div>
-      <div className='CritAid'><img src='../images/2.png' alt='' /><div className='CritQuestion'>Secteur d'activité: </div>Economie</div>
-      <div className='CritAid'><img src='../images/3.png' alt='' /><div className='CritQuestion'>Enjeux: </div>Connaître les exonérations fiscales</div>
-      <div className='CritAid'><img src='../images/4.png' alt='' /><div className='CritQuestion'>Département: </div>Loire-Atlantique: </div>
-      <div className='CritAid'><img src='../images/5.png' alt='' /><div className='CritQuestion'>Profil de l'entreprise: </div>Autres services, professions libérales</div>
-      <div className='CritAid'><img src='../images/6.png' alt='' /><div className='CritQuestion'>Effectifs: </div>+ de 250</div>
-      <div className='CritAid'><img src='../images/7.png' alt='' /><div className='CritQuestion'>Age de l'entreprise: </div>moins de 3 ans
+      <div className='CritAid'><div className='CritQuestion'>Type d'aide: </div>Exonération de charges sociales </div>
+      <div className='CritAid'><div className='CritQuestion'>/ Secteur d'activité: </div>Economie</div>
+      <div className='CritAid'><div className='CritQuestion'>/ Enjeux: </div>Connaître les exonérations fiscales</div>
+      <div className='CritAid'><div className='CritQuestion'>/ Département: </div>Loire-Atlantique: </div>
+      <div className='CritAid'><div className='CritQuestion'>Profil de l'entreprise: </div>Autres services, professions libérales</div>
+      <div className='CritAid'><div className='CritQuestion'>Effectifs: </div>+ de 250</div>
+      <div className='CritAid'><div className='CritQuestion'>Age de l'entreprise: </div>moins de 3 ans
       </div>
 
   </Col>

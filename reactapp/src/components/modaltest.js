@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 
 import Loading from './Loading.js';
-import Clock from './Clock.js';
+
 import './visuels/modaltest.css';
 
 function Apptest(props){
@@ -52,12 +52,7 @@ function Apptest(props){
 
 <div>
 
-{isLoading==true?
-    <Loading/>:
-    <Clock/>
 
-
-}
 
 </div>
 
