@@ -3,8 +3,9 @@ import {connect} from 'react-redux';
 import 'antd/dist/antd.css';
 import {Input, Typography, Card, Col, Row } from 'antd'; 
 
-import SearchAids from './searchaids'
-import CountAids from './countaids'
+import SearchAids from './searchaids';
+import CountAids from './countaids';
+import SpinSearch from './spinsearch';
 
 
 
@@ -13,6 +14,7 @@ function CompanyAge (props) {
     const [aidCompanyAge, setAidCompanyAge] = useState([]);
     const [numberOfAids, setNumberOfAids] = useState(0);
     const [iSelected, setISelected] = useState(-1)
+    const [isSpinning,setIsSpinning] = useState(false); 
 
     const { Search } = Input;
     const { Text } = Typography;
@@ -27,118 +29,102 @@ function CompanyAge (props) {
          
       },[])   
     
-      const runSearch = async (i) => {
+    const runSearch = async (i) => {
+
+          setIsSpinning(true); // Affichage Spin de recherche
+          setISelected(i); // pour gérer le marquage du projet sélectionné :
       
-        console.log('runSearch', i)
-        
-            setISelected(i); // pour gérer le marquage du projet sélectionné :
-        
-            // Appel recherche :
-                let parameters = [...props.searchOptions]
-                parameters[props.indexOptions].valeur = aidCompanyAge[i]
-                const aids = await SearchAids(parameters);
-            // Mise à jour du critère dans le store :
-                props.updateSearchOptions(props.indexOptions,aidCompanyAge[i]);
-            // Store des aids trouvées :
-                props.updateAids(aids);
-            // Store du compteur d'aides :         
-                const n = aids.length;
-                props.updateNumberOfAids(n);
-                setNumberOfAids(n);
-          }
+      // Appel recherche :
+          let parameters = [...props.searchOptions]
+          parameters[props.indexOptions].valeur = aidCompanyAge[i]
+          const aids = await SearchAids(parameters);
+      // Mise à jour du critère dans le store :
+          props.updateSearchOptions(props.indexOptions,aidCompanyAge[i]);
+      // Store des aids trouvées :
+          props.updateAids(aids);
+      // Store du compteur d'aides :         
+          const n = aids.length;
+          props.updateNumberOfAids(n);
+          setNumberOfAids(n);
+          setIsSpinning(false);
+      }
             
-           // Gestion du marquage projet :
-        
-           let colorTextSelected = "White"
-           let colorBgSelected = "purple"
-           let colorText = 'white'
-           let colorBg =  '#0A62D0'
-        
-        
-           const dataItem = aidCompanyAge.map ((companyage,i)=>( 
-            {i: i, name: companyage, colorText : colorText, colorBg: colorBg} 
-            ));
-        
-        
-            if (iSelected>=0) {  console.log('iSelected ',iSelected)
-              dataItem[iSelected].colorText = colorTextSelected
-              dataItem[iSelected].colorBg=colorBgSelected   
-            }
-            
-        
-            console.log(dataItem)
-        
-        
-        // <h1 class='question' style={{color:'#ff33e0'}}>Déjà {numberOfAids} aides!</h1> 
-            return ( 
+  // Gestion du marquage projet :
+  let colorTextSelected = "black"
+  let colorBgSelected = "#F3D849"
+  let colorText = 'white'
+  let colorBg =  '#0A62D0'
+
+    const dataItem = aidCompanyAge.map ((companyage,i)=>( 
+    {i: i, name: companyage, colorText : colorText, colorBg: colorBg} 
+    ));
+
+    if (iSelected>=0) {  console.log('iSelected ',iSelected)
+      dataItem[iSelected].colorText = colorTextSelected
+      dataItem[iSelected].colorBg=colorBgSelected   
+    }
+          
+           
+return (     
+  <div className="site-card-wrapper">
+    <CountAids numberOfAids={numberOfAids}/>
+    <SpinSearch isSpinning={isSpinning}/>
                 
-        
-        <div className="site-card-wrapper">
-            <CountAids numberOfAids={numberOfAids}/>
-        
-                       
-            <Row gutter={16}>
-        
-            {dataItem.map((item,i) => (
-                        
-                            <Col span={6} key={i}>
-                            <Card bordered={false} 
-                              onClick={() => runSearch(i)}
-                              style={{ 
-                                marginRight: '15px',
-                                marginLeft: '15px',
-                                marginTop: '15px',
-                                marginBottom: '15px',
-                                textAlign: 'center',
-                                fontFamily: 'Alata',
-                                borderRadius: '10px',
-                                fontSize: '18px',
-                                color: item.colorText,
-                                backgroundColor: item.colorBg, 
-        
-        
-                                }}>
-                                    {item.name}
-                            </Card>
-                            </Col>
-        
-                      ))}
-               </Row>  
-            
-          </div>   
-        
-                )
+    <Row gutter={16}>
+      {dataItem.map((item,i) => (
+                  
+        <Col span={6} key={i}>
+          <Card bordered={false} 
+            onClick={() => runSearch(i)}
+            style={{ 
+                  marginRight: '15px',
+                  marginLeft: '15px',
+                  marginTop: '15px',
+                  marginBottom: '15px',
+                  textAlign: 'center',
+                  fontFamily: 'Alata',
+                  borderRadius: '10px',
+                  fontSize: '18px',
+                  color: item.colorText,
+                  backgroundColor: item.colorBg, 
+                  }}>
+            {item.name}
+          </Card>
+        </Col>    
+      ))}
+    </Row>  
+  </div>)
         
         
-        }
+}
         
         
         
-        function mapStateToProps(state) {
-          return { searchOptions: state.searchOptions, indexOptions: state.indexOptions, numberOfAids: state.numberOfAids  }
-         }
+  function mapStateToProps(state) {
+    return { searchOptions: state.searchOptions, indexOptions: state.indexOptions, numberOfAids: state.numberOfAids  }
+    }
+  
+  function mapDispatchToProps(dispatch){
+    return {
+      updateSearchOptions: function(i,val) {
+        dispatch({type: 'updateSearchOptions', index: i, valeur: val})},
         
-        function mapDispatchToProps(dispatch){
-          return {
-            updateSearchOptions: function(i,val) {
-              dispatch({type: 'updateSearchOptions', index: i, valeur: val})},
-              
-            updateIndexOptions: function(i) {
-              dispatch({type: 'updateIndexOptions', indexOptions: i})},
-              
-            updateNumberOfAids: function(n) {
-              dispatch({type: 'updateNumberOfAids', numberOfAids: n})},
-              
-              updateAids: function(aids) {
-                dispatch({type: 'updateAids', aids: aids})}
+      updateIndexOptions: function(i) {
+        dispatch({type: 'updateIndexOptions', indexOptions: i})},
         
-            
-          }
-        }
+      updateNumberOfAids: function(n) {
+        dispatch({type: 'updateNumberOfAids', numberOfAids: n})},
         
-        export default connect(
-          mapStateToProps,
-          mapDispatchToProps
-        )(CompanyAge)
+        updateAids: function(aids) {
+          dispatch({type: 'updateAids', aids: aids})}
+  
+      
+    }
+  }
+        
+  export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(CompanyAge)
         
         

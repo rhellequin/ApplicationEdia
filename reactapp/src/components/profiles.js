@@ -3,8 +3,9 @@ import {connect} from 'react-redux';
 import {Input, Typography, Space, Button, Icon, Card, Col, Row } from 'antd'; 
 import 'antd/dist/antd.css';
 
-import SearchAids from './searchaids'
-import CountAids from './countaids'
+import SearchAids from './searchaids';
+import CountAids from './countaids';
+import SpinSearch from './spinsearch';
 
 /*
     Composant pour tester la communication avec le back 
@@ -16,7 +17,8 @@ function Profiles (props) {
 
     const [aidProfiles, setAidProfiles] = useState([]);
     const [numberOfAids, setNumberOfAids] = useState(0);
-    const [iSelected, setISelected] = useState(-1)
+    const [iSelected, setISelected] = useState(-1);
+    const [isSpinning,setIsSpinning] = useState(false);
 
     const { Search } = Input;
     const { Text } = Typography;
@@ -37,9 +39,8 @@ function Profiles (props) {
       },[])
 
   const runSearch = async (i) => {
-      
-console.log('runSearch', i)
 
+    setIsSpinning(true); // Affichage Spin de recherche
     setISelected(i); // pour gérer le marquage du projet sélectionné :
 
     // Appel recherche :
@@ -54,6 +55,7 @@ console.log('runSearch', i)
         const n = aids.length;
         props.updateNumberOfAids(n);
         setNumberOfAids(n);
+        setIsSpinning(false); 
   }
     
    // Gestion du marquage projet :
@@ -83,7 +85,9 @@ console.log('runSearch', i)
         
 
 <div className="site-card-wrapper">
+    
     <CountAids numberOfAids={numberOfAids}/>
+    <SpinSearch isSpinning={isSpinning}/>
 
                
     <Row gutter={16}>
