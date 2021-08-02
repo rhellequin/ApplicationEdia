@@ -4,7 +4,7 @@ import {Link, Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 import Navigation from './navigation';
 
-import { Input, Typography, Space,Avatar } from 'antd';
+
 import { Button,Col,Row,Container,Card, CardImg, CardText, CardBody,CardTitle, CardSubtitle, Media} from 'reactstrap';
 
 

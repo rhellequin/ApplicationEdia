@@ -13,8 +13,8 @@ import Navigation from './navigation';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart,faDownload, faStar,faCog,faUser, faHouseUser, faVideo} from '@fortawesome/free-solid-svg-icons'
 
-import '../components/useraccount.css'
-import  './useraccount.css'
+
+import  './visuels/useraccount.css'
 import signup from './signup';
 
 
