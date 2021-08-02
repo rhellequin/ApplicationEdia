@@ -182,6 +182,12 @@ router.get('/territories', async function(req, res, next) {
 
 
 
+// GET le nombre d'aides au total  :
+router.get('/countallaids', async function(req, res, next){
+  const n =  await aidModel.countDocuments();
+  res.json({result: true, countAllAids: n});
+});
+
 
 
 // POST avec les paramètres pour la recherche :
@@ -228,13 +234,8 @@ router.post('/search', async function(req, res, next){
 // POST avec les paramètres pour la recherche :
 router.post('/filariane', async function(req, res, next){
 
- 
-
   const parameters = JSON.parse(req.body.parameters);
 
-  console.log('parameters :',parameters);
-
-  
   for (let i=0;i<parameters.length;i++) {
     if (parameters[i].valeur != null) {  
 
@@ -267,16 +268,12 @@ router.post('/filariane', async function(req, res, next){
           parameters[i].name = 'Not Found';
         }
       } else {
-        parameters[i].name = parameters[i].valeur
+        parameters[i].name = parameters[i].valeur;
       }
-
-    
+    } else {
+      parameters[i].name = '';
     }
   }
- 
-
-
-
   if (true) {
     console.log ('\x1b[34m%s\x1b[0m','=============== > POST filariane' )
   res.json({result: true, filAriane: parameters})
@@ -285,8 +282,5 @@ router.post('/filariane', async function(req, res, next){
   res.json({result: false})
   }
 })
-
-
-
 
 module.exports = router;
