@@ -30,6 +30,7 @@ function ResultPage (props) {
   const [rollDiceMontant, setRollDiceMontant] = useState('')
   const [rollDiceDiff, setRollDiceDiff] = useState('')
   const [rollDiceDelai, setRollDiceDelai] = useState('')
+ 
   
 
 
@@ -96,6 +97,7 @@ var affichageLogo=''
           setRollDiceMontant(tirageMontant)
           setRollDiceDiff(tirageDiff)
           setRollDiceDelai(tirageDelai)
+          
          
          
         }
@@ -221,7 +223,7 @@ var affichageLogo=''
 
 return(
                 
-    <Col xs={{ span: 24, offset: 0 }} md={{ span: 8, offset: 0 }} key={i}>
+    <Col xs={{ span: 24, offset: 0 }}  md={{ span: 24, offset: 0 }} lg={{ span: 8, offset: 0 }}key={i}>
      
         <Card  className='CardAid'>
                 
@@ -245,23 +247,23 @@ return(
 
                 <Row className='CardAidInfo' >
                       <div className='CardAidInfoSup'>
-                      <div className='Critere'>
+                      <div className='Criteres'>
                           <div className='ask'>Financeur:</div>
                           <p className='ans'>{aide.financeur}</p>
                           </div>
-                        <div className='Critere'>
+                        <div className='Criteres'>
                         <div className='ask'>Niveau de l'aide</div>
                         <div className='ans'>{aide.niveauAide}</div>
                           </div>
                       </div>
               
                       <div className='CardAidInfoInf' >
-                      <div className='Critere'>
+                      <div className='Criteres'>
                       <div className='ask'>Difficulté d'obtention: </div>
                       <div className='ans'>{affichageDiff}</div>
 
                           </div>
-                          <div className='Critere'>    
+                          <div className='Criteres'>    
                           <div className='ask'>Délai d'obtention:</div>
                           <div className='ans'> {affichageDelai}</div>
                           </div>
@@ -294,7 +296,7 @@ if(isLogin==true){
       <div className='CritAid'><div className='CritQuestion'>Type d'aide: </div>Exonération de charges sociales </div>
       <div className='CritAid'><div className='CritQuestion'>/ Secteur d'activité: </div>Economie</div>
       <div className='CritAid'><div className='CritQuestion'>/ Enjeux: </div>Connaître les exonérations fiscales</div>
-      <div className='CritAid'><div className='CritQuestion'>/ Département: </div>Loire-Atlantique: </div>
+      <div className='CritAid'><div className='CritQuestion'>/ Département: </div>Loire-Atlantique</div>
       <div className='CritAid'><div className='CritQuestion'>Profil de l'entreprise: </div>Autres services, professions libérales</div>
       <div className='CritAid'><div className='CritQuestion'>Effectifs: </div>+ de 250</div>
       <div className='CritAid'><div className='CritQuestion'>Age de l'entreprise: </div>moins de 3 ans

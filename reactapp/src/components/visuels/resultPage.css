@@ -1,9 +1,11 @@
+
 .Ariane{
     
     margin-left: 10px;
     display:flex;
     flex-flow: row wrap;
     flex: 1 1 0;
+    font-family: Alata;
     
     
 }
@@ -19,7 +21,7 @@
 
 .CritQuestion{
 font-weight: bold;
-font-size: 18px;
+font-size: 14px;
 margin-right: 10px;
 
 }
@@ -33,6 +35,7 @@ margin-right: 10px;
     margin-bottom: 15px;
     margin-left: 20px;
     box-shadow: 0 0 10px rgb(0, 0, 0, 1); 
+    font-family: Alata;
 }
 
 .SidebarList{
@@ -133,13 +136,14 @@ max-height: calc(100vh);
     flex-direction: column;
     border-style: none;
     box-shadow: 0 0 10px rgb(0, 0, 0, 1);
-    height: 640px;
+    height: 500px;
     justify-content: space-between;
+    font-family: Alata;
 }
 
 
 .CardRang1{
-    height:70px;
+    height:60px;
     display: flex;
     flex-direction: row;
     align-self: flex-start;
@@ -148,8 +152,8 @@ max-height: calc(100vh);
 }
 
 .CardAidName{
-    height:160px; 
-    font-size: 24px;
+    height:120px; 
+    font-size: 18px;
     font-weight: bold;
     justify-content: center;
     font-family: Alata;
@@ -161,9 +165,9 @@ max-height: calc(100vh);
 }
 
 .CardAidMontant{
-    height:60px;
+    height:50px;
    width: 180px;
-    font-size: 30px;
+    font-size: 24px;
    
     
    text-align: center;
@@ -176,7 +180,7 @@ max-height: calc(100vh);
 }
 
 .CardAidInfo{
-    margin-top: 30px;
+    margin-top: 20px;
     height:220px;
     display: flex;
     flex-direction: column;
@@ -190,10 +194,11 @@ max-height: calc(100vh);
 .CardAidInfoSup{
     display: flex;
     flex-direction: column;
-   
+    justify-content:space-between;
     text-align: center;
     font-family: Alata;
-    font-size: 18px;
+    font-size: 14px;
+    padding: 20px;
 }
            
 .CardAidInfoInf{
@@ -202,16 +207,16 @@ max-height: calc(100vh);
     justify-content:space-between;
     text-align: center;
     font-family: Alata;
-    font-size: 18px;
+    font-size: 14px;
     padding: 20px;
 }     
 
-.Critere{
+.Criteres{
     display: flex;
     flex-direction:column;
     text-align: start;
     width: 100px;
-    height: 100px;
+    height: 60px;
     margin-bottom: 20px;
     
 }  
@@ -225,7 +230,8 @@ display: flex;
 .ans{
     display: flex;
     flex-direction: column;
-    align-items: baseline
+    align-items: baseline;
+     font-family: Alata;
     }
 
 .CardAidbouton{
@@ -233,5 +239,7 @@ display: flex;
     justify-content: center;
     align-content: flex-end;
     margin-bottom: 0;
+    font-family: Alata;
+    
   
 }         

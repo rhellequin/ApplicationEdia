@@ -12,6 +12,7 @@ montre = () => {
 this.setState({
     visible: true
 })
+
 }
 
 cache = () => {
@@ -28,6 +29,7 @@ cache = () => {
                 <Modal
                 visible={this.state.visible}
                 cache={this.cache}
+                
                 />
             </div>
         )
