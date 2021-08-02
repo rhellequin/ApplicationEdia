@@ -1,6 +1,6 @@
 import React from 'react';
-import './Modal.css';
-import'./Bouton.css';
+import './visuels/Modal.css';
+import './visuels/Bouton.css';
 
 
 export default function Modal (props){
@@ -15,7 +15,7 @@ opacity: props.visible ? '1' : '0'
 >
 <button onClick={props.cache} className="Boutonexit">X</button>
 <div className='Divhaut'>
-<img className='Divhautgauche'src='../images/pinguin.png'  height='150px'  />
+<img className='Divhautgauche'src='../images/pinguin.png'  height='150px' alt='' />
  
 <div className='Divhautdroite'>
      <div>
@@ -33,7 +33,7 @@ opacity: props.visible ? '1' : '0'
          <p className='Details'>Subvention</p>
          </div>
          <div>
-         <h5 className='Details'>Diffulté: </h5>
+         <h5 className='Details'>Difficulté: </h5>
          <p className='Details'>très faible</p>
          </div>
          <div>
@@ -79,12 +79,12 @@ inférieur à 50 M€, soit un total de bilan n'excédant pas 43 M€. Elle doit
     <h3>Critères d’éligibilité</h3>
     <div className='Hline'></div>
     <p className='Critere'> Nombre de salariés</p>
-    <p className='Critere'><img src='../images/checked.png'  />Chiffre d’affaires</p>
-    <p className='Critere'><img src='../images/checked.png'  />Pas de licenciement économique dans les 6 derniers mois</p>
-    <p className='Critere'><img src='../images/checked.png'  />Entreprises implantées en France enregistrées au registre du Commerce et des Sociétés ou au Répertoire des Métiers</p>
-    <p className='Critere'><img src='../images/cancel.png'  />À jour des versements fiscaux et sociaux</p>
-    <p className='Critere'><img src='../images/cancel.png'  />Situation financière saine</p>
-    <p className='Critere'><img src='../images/cancel.png'  />Sous réserve d'un niveau de fonds propres sufisant</p>
+    <p className='Critere'><img src='../images/checked.png' alt='' />Chiffre d’affaires</p>
+    <p className='Critere'><img src='../images/checked.png'  alt=''/>Pas de licenciement économique dans les 6 derniers mois</p>
+    <p className='Critere'><img src='../images/checked.png' alt='' />Entreprises implantées en France enregistrées au registre du Commerce et des Sociétés ou au Répertoire des Métiers</p>
+    <p className='Critere'><img src='../images/cancel.png'  alt=''/>À jour des versements fiscaux et sociaux</p>
+    <p className='Critere'><img src='../images/cancel.png' alt='' />Situation financière saine</p>
+    <p className='Critere'><img src='../images/cancel.png' alt='' />Sous réserve d'un niveau de fonds propres sufisant</p>
     <h3>Modalités</h3>
     <div className='Hline'></div>
     <p className='Critere'>L'aide est octroyée sous forme de subvention variable selon la nature de l'investissement :

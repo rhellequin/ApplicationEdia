@@ -6,7 +6,7 @@ import {Input, Typography, Card, Col, Row } from 'antd';
 import SearchAids from './searchaids'
 import CountAids from './countaids'
 
-const {Meta} = Card;
+
 
 function CompanyAge (props) {
   
