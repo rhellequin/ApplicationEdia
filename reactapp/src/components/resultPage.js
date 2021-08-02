@@ -29,8 +29,10 @@ function ResultPage (props) {
   const [rollDiceDiff, setRollDiceDiff] = useState('')
   const [rollDiceDelai, setRollDiceDelai] = useState('')
 
-  var importResult = props.aids.map((aid, i) => ({
-  name: aid.aidName, financeur:aid.aidFunders[0].funderName, montant:aid.aidMountant, niveauAide: aid.aidLevel.levelName, logo:'../images/pinguin.png', diff:'facile',delai: '6 mois',
+ 
+
+var importResult = props.aids.map((aid, i) => ({
+    name: aid.aidName, financeur: aid.aidFunders[0] == !undefined ?  aid.aidFunders[0].funderName : '', montant:aid.aidMountant, niveauAide: aid.aidLevel.levelName, logo:'../images/pinguin.png', diff:'facile',delai: '6 mois',
 
 }));
 

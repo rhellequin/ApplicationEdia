@@ -20,8 +20,7 @@ function Types (props) {
     const [aidTypes, setAidTypes] = useState([]);
     const [numberOfAids, setNumberOfAids] = useState(0);
     const [iSelected, setISelected] = useState(-1)
- 
-    const [isSpinning,setIsSpinning] = useState(false);
+    const [isSpinning,setIsSpinning] = useState(true);
    
 
     const { Search } = Input;
@@ -50,8 +49,8 @@ function Types (props) {
               setNumberOfAids(body.countAllAids)
           }
         }
+
         setIsSpinning(true);
-        //setNumberOfAids(props.numberOfAids);
         findTypes();
         countAllAids();
         setIsSpinning(false);
@@ -80,6 +79,8 @@ function Types (props) {
         
   }
     
+  console.log('isSpinning :', isSpinning);
+
    // Gestion du marquage projet :
 
    let colorTextSelected = "black"
@@ -93,7 +94,7 @@ function Types (props) {
     ));
 
 
-    if (iSelected>=0) {  console.log('iSelected ',iSelected)
+    if (iSelected>=0) {  
       dataItem[iSelected].colorText = colorTextSelected
       dataItem[iSelected].colorBg=colorBgSelected   
     }

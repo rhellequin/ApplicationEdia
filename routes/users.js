@@ -30,6 +30,8 @@ res.json({result: true})
 })
 
 
+
+
 /* POST Lecture info perso user. */
 router.post('/infouser', async function(req, res, next) {
   var user = await userModel.findOne({ token: req.body.token });
