@@ -11,7 +11,7 @@ function SpinSearch (props) {
         <row style={{
                     position: "absolute",
                     top: "80px",
-                    left: "1200px"}}>        
+                    left: "800px"}}>        
                 <Spin size="small" spinning={props.isSpinning}/>
                 <Spin size="medium" spinning={props.isSpinning}/>
                 <Spin size="large" spinning={props.isSpinning}/>
