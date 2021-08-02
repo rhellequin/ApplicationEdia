@@ -31,19 +31,16 @@ res.json({result: true})
 
 
 
-<<<<<<< HEAD
-router.post('/add', async function(req, res, next) {
-  var addUserInfo = new userModel ({
-    firstName: req.body.firstnameFromFront,
-    lastName: req.body.lastnameFromFront,
-    email: req.body.phoneFromFront,
-    phone: req.body.emailFromFront,
-    company: req.body.companyFromFront,
-    siret: req.body.siretFromFront,
-    position: req.body.positionFromFront
-  })
-=======
->>>>>>> 98e1a2fbd82a3f94d65977319642447e347ab82d
+// router.post('/add', async function(req, res, next) {
+//   var addUserInfo = new userModel ({
+//     firstName: req.body.firstnameFromFront,
+//     lastName: req.body.lastnameFromFront,
+//     email: req.body.phoneFromFront,
+//     phone: req.body.emailFromFront,
+//     company: req.body.companyFromFront,
+//     siret: req.body.siretFromFront,
+//     position: req.body.positionFromFront
+//   })
 
 /* POST Lecture info perso user. */
 router.post('/infouser', async function(req, res, next) {

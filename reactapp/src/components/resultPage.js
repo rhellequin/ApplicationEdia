@@ -23,7 +23,6 @@ import FilAriane from './filariane'
 
 const { Header, Content, Footer, Sider } = Layout;
 
-const { Header, Content, Footer, Sider } = Layout;
 
 
 
