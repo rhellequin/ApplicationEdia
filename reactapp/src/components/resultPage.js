@@ -96,8 +96,6 @@ var affichageLogo=''
         else if(rollDiceLogo==9){affichageLogo='../images/logo9.jpg'}
         else if(rollDiceLogo==10){affichageLogo='../images/logo10.jpg'}
 
-       
-       
 
       
       // Fonctions de tri
@@ -221,7 +219,7 @@ return(
                       <img src={affichageLogo} alt='' height='80px' />
                       <div className='CardAidMontant'>{aide.montant}€</div>
                       <p><FontAwesomeIcon icon={faStar}
-                          style={colorStar}
+                          style={colorStar} size='2x'
                           onClick={()=>addUserAid(aide,aide.id)}/>
                       </p>
                 </Row>
@@ -230,10 +228,6 @@ return(
                       <div style={{marginBottom:'10px'}}>{aide.name}</div>
                 </Row>
                 
-                {/* <Row className='CardAidMontant'>
-                      <div>{affichageMontant}€</div>
-                </Row> */}
-
                 <Row className='CardAidInfo' >
                       <div className='CardAidInfoSup'>
                       <div className='Critere'>
