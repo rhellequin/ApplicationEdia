@@ -1,57 +1,128 @@
 import React, {useState, useEffect} from 'react';
-
+import Modal from 'react-modal'
 //import Loading from './Loading.js';
 //import Clock from './Clock.js';
 import './visuels/modaltest.css';
+import './visuels/Modal.css';
+import './visuels/Bouton.css';
+
+Modal.setAppElement('#root')
 
 function Apptest(props){
 
-    const [isLoading, setIsLoading] = useState (true)
-
-    const [rollDice, setRollDice] = useState('')
-    var tirage = (Math.floor( Math.random() * 10 ) +1);
-    
-    
-    var rollingClic = ()=> {
-        var tirage = (Math.floor( Math.random() * 7 ) +1);
-        if (tirage==1){setRollDice(<img src='../images/1.png' alt='' />)}
-        else if(tirage==2) {setRollDice(<img src='../images/2.png' alt='' />)}
-        else if(tirage==3) {setRollDice(<img src='../images/3.png' alt='' />)}
-        else if(tirage==4) {setRollDice(<img src='../images/4.png' alt='' />)}
-        else if(tirage==5) {setRollDice(<img src='../images/5.png' alt='' />)}
-        else if(tirage==6) {setRollDice(<img src='../images/6.png' alt='' />)}
-        else if(tirage==7) {setRollDice(<img src='../images/7.png' alt='' />)}
-        
-
-
-        
-        console.log(rollDice)
-      
-     }
-    
-     var tirage = (Math.floor( Math.random() * 7 ) +1);
-
-
-     if (tirage==1){<img src='../images/1.png' alt='' />}
-        else if(tirage==2) {<img src='../images/2.png' alt='' />}
-        else if(tirage==3) {<img src='../images/3.png' alt='' />}
-        else if(tirage==4) {<img src='../images/4.png' alt='' />}
-        else if(tirage==5) {<img src='../images/5.png' alt='' />}
-        else if(tirage==6) {<img src='../images/6.png' alt='' />}
-        else if(tirage==7) {<img src='../images/7.png' alt='' />} 
-
-
-        useEffect(() => {
-            setTimeout(() =>{
-                setIsLoading(false);
-            }, 2500)
-          
-        })
+    const [modalIsOpen, setModalIsOpen] = useState (false)
+ var test='test'
 
     return (
 
 <div>
+    <button onClick={() =>setModalIsOpen(true)}>Open the modal</button>
 
+<Modal isOpen={modalIsOpen} onRequestClose={() =>setModalIsOpen(false)} style={{overlay:{backgroundColor:'grey'
+}},
+{content:{backgroundColor:'orange',overflow: 'auto',position: 'absolute',
+top: '40px',
+left: '40px',
+right: '40px',
+bottom: '40px',
+}}}>
+<div>
+<div className='Divhaut'>
+<img className='Divhautgauche'src='../images/pinguin.png'  height='150px' alt='' />
+ 
+<div className='Divhautdroite'>
+     <div>
+     <h2  >{test}</h2>
+     <h4>1000 à  2000 €</h4>
+     </div>
+     <div style={{
+         display: 'flex',
+         flexDirection: 'row',
+         
+         
+     }}>
+         <div>
+         <h5 className='Details'>Type d'aide: </h5>
+         <p className='Details'>Subvention</p>
+         </div>
+         <div>
+         <h5 className='Details'>Difficulté: </h5>
+         <p className='Details'>très faible</p>
+         </div>
+         <div>
+         <h5 className='Details'>Délai d'obtention: </h5>
+         <p className='Details'>1 mois</p>
+         </div>
+        
+     </div>
+ </div>
+
+</div>
+
+
+
+
+
+
+
+</div>
+<div style={{
+    display:'flex',
+    flexDirection:'row',
+    
+}}>
+    <div className='Colonnegauche'>
+    <h5>Organisme financeur</h5>
+    <p>Pôle Emplois</p>
+    <h5>Stratégie</h5>
+    <p>iRecrutement</p>
+    <h5>Département</h5>
+    <p>Bouches-du-Rhône</p>
+    <h5>Lien de l’organisme</h5>
+    <p>https://www.bpifrance.fr/nos-solutions/innovation</p>
+    </div>
+    <div>
+    <h3>Bénéficiaires</h3>
+    <div className='Hline'></div>
+    <p className='Critere'>Publics visés par le dispositif :
+TPE, PME(1) et ETI(2) qui recrutent :
+en contrat de travail, un jeune de niveau bac+2 minimum, diplômé depuis moins de 2 ans et pour une
+mission d’au moins 1 an
+en contrat d’apprentissage ou de professionnalisation (pour une  durée de 10 mois minimum), un
+jeune déjà diplômé de niveau bac+2 et en cours de formation pour un niveau bac+3 ou plus
+
+(1) Selon la défnition européenne de la PME : entreprise de moins de 250 salariés déclarant soit un CA annuel
+inférieur à 50 M€, soit un total de bilan n'excédant pas 43 M€. Elle doit être indépendante, c'est-à-dire ne pas
+être détenue à plus de 25 % par une ou plusieurs entités qui ne sont pas des PME.
+ 
+(2) Jusqu'à 5.000 salariés</p>
+    <h3>Critères d’éligibilité</h3>
+    <div className='Hline'></div>
+    <p className='Critere'> Nombre de salariés</p>
+    <p className='Critere'><img src='../images/checked.png' alt='' />Chiffre d’affaires</p>
+    <p className='Critere'><img src='../images/checked.png'  alt=''/>Pas de licenciement économique dans les 6 derniers mois</p>
+    <p className='Critere'><img src='../images/checked.png' alt='' />Entreprises implantées en France enregistrées au registre du Commerce et des Sociétés ou au Répertoire des Métiers</p>
+    <p className='Critere'><img src='../images/cancel.png'  alt=''/>À jour des versements fiscaux et sociaux</p>
+    <p className='Critere'><img src='../images/cancel.png' alt='' />Situation financière saine</p>
+    <p className='Critere'><img src='../images/cancel.png' alt='' />Sous réserve d'un niveau de fonds propres sufisant</p>
+    <h3>Modalités</h3>
+    <div className='Hline'></div>
+    <p className='Critere'>L'aide est octroyée sous forme de subvention variable selon la nature de l'investissement :
+Pour les études préalables et les actions complémentaires : la subvention est plafonnée à 50 000 € par
+bénéfciaire et par projet. Le taux maximum sera défni en fonction de la taille de l’entreprise et du régime
+d’aides. 
+Pour les investissements : le taux maximum sera défni en fonction de la taille de l’entreprise et du régime
+d’aides. </p>
+<div className='Barreboutons'>
+                <button className='Bouton2'>TELECHARGER FICHE</button>
+                <button className='Bouton2'>PARTAGER FICHE</button>
+                <button className='Bouton2'>NOUS CONTACTER </button>
+                </div>
+    </div>
+   
+</div>
+
+</Modal>
 
 </div>
 

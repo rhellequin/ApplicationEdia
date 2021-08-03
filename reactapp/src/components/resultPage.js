@@ -32,7 +32,7 @@ function ResultPage (props) {
   
 
   var importResult = props.aids.map((aid, i) => ({
-  id: aid._id, name: aid.aidName, financeur:aid.aidFunders[0].funderName, montant:aid.aidMountant, niveauAide: aid.aidLevel.levelName, logo:'../images/pinguin.png', diff:'facile',delai: '6 mois',
+  id: aid._id, name: aid.aidName, financeur:aid.aidFunders[0].funderName, montant:aid.aidAmount, niveauAide: aid.aidLevel.levelName, logo:'../images/pinguin.png', diff:'facile',delai: '6 mois',
 
 }));
 
@@ -220,7 +220,7 @@ return(
                 <Row  className='CardRang1'>
                       {/* <img src={aide.logo} alt='' height='80px' /> */}
                       <img src={affichageLogo} alt='' height='80px' />
-                      <div className='CardAidMontant'>{affichageMontant}€</div>
+                      <div className='CardAidMontant'>{aide.montant}€</div>
                       <p><FontAwesomeIcon icon={faStar}
                           style={colorStar}
                           onClick={()=>addUserAid(aide,aide.id)}/>
