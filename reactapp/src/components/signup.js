@@ -3,6 +3,8 @@ import { Input, Typography, Space } from 'antd';
 import { Button,Col,Row,Container,Card, CardImg, CardText, CardBody,CardTitle, CardSubtitle, Media} from 'reactstrap';
 import{Link,Redirect} from "react-router-dom";
 import {connect} from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTimesCircle,faCheckCircle} from '@fortawesome/free-solid-svg-icons'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function SignupPage(props) {
@@ -11,6 +13,7 @@ function SignupPage(props) {
     const [listErrorsUp, setListErrorsUp] = useState([]);
     const [visibility, setVisibility]= useState(false)
     const [validEmail, setValidEmail] = useState(false)
+    const [validPhone, setValidPhone] = useState(false)
     const [user, setUser]= useState({
         firstName: "",
         lastName:"",
@@ -21,7 +24,7 @@ function SignupPage(props) {
     })
 
     var handleSubmitSignUp = async () => {
-      if(visibility==false && validEmail==true){
+      if(visibility==true && validEmail==true && validPhone ==true){
       var requete = await fetch('/users/sign-up',{
           method: 'POST',
           headers: {'Content-Type':'application/x-www-form-urlencoded'},
@@ -39,25 +42,71 @@ function SignupPage(props) {
     }
 
     var ValidateEmail= (email) => {
-    var emailformat = /\S+@\S+\.\S+/;
+    var emailformat = /\S+@\S+\.\S+/
+    var emailTest= false
     if (email.match(emailformat)) {
-     setValidEmail(true) }
+     var emailTest=true }
     else {
-      setValidEmail(false)
+      var emailTest=false
     }
-    console.log(validEmail)
-    console.log(email)
+    setValidEmail(emailTest)
     }
     
-      var handleChange = (name,value) => {
-        setUser({...user, [name]: value })
-        if(value!==user.password){         
-          setVisibility(true)
-        } else{
-          setVisibility(false)
-          
-        }
+    var ValidatePhone=(phone)=>{
+      var valid = false
+      for(var i=1; i<(phone.length-1); i++){
+        if(typeof phone[i]!='number'){
+          valid =false 
+        }  
       }
+
+      if((phone[0]=='+' && phone.length==12) || (phone[0]=='0' && phone.length==10)) {
+        valid=true
+      }
+    setValidPhone(valid)
+    console.log(validPhone)
+    }
+  
+    var handleChange = (name,value) => {
+      setUser({...user, [name]: value })
+    }
+
+    var ValidatePassword = (name,value)=>{
+      var test = false
+      setUser({...user, [name]: value })
+
+      if(value!==user.password){         
+        test=false
+      } else {
+        test=true
+      }
+      setVisibility(test)
+    }
+
+    if(visibility==false){
+    var color = {color: 'red'}
+    var icon = faTimesCircle
+    } else{
+    var color = {color: 'green'}
+    var icon = faCheckCircle
+    }
+
+    if(validEmail==false){
+      var colorEmail = {color: 'red'}
+      var iconEmail = faTimesCircle
+      } else{
+      var colorEmail = {color: 'green'}
+      var iconEmail = faCheckCircle
+      }
+    if(validPhone==false){
+      var colorPhone = {color: 'red'}
+      var iconPhone = faTimesCircle
+      } else{
+      var colorPhone = {color: 'green'}
+      var iconPhone = faCheckCircle
+      }
+
+    
 
       var tabError = listErrorsUp.map((error, i) => {
         return(<p style={{color:"red"}}>{error}</p>)
@@ -69,20 +118,28 @@ return(
 <div className="Login-page" >
             {/* SIGN-UP*/}
             <div className="Sign">
+              <div style={{display:'flex', alignItems:'center'}}>
+                <FontAwesomeIcon style={colorEmail} icon={iconEmail} size='lg'/>
                 <Input name="email" onChange={(e)=> {handleChange(e.target.name, e.target.value);ValidateEmail(e.target.value)}} value={user.email} className="Signup-input" placeholder="email" />
-                <Input name="firstName" onChange={(e) => handleChange(e.target.name, e.target.value)} value={user.firstName} className="Signup-input" placeholder='Prénom' />
+              </div>
+              <div style={{display:'flex', alignItems:'center',marginLeft:'20px'}}>
+                <Input  name="firstName" onChange={(e) => handleChange(e.target.name, e.target.value)} value={user.firstName} className="Signup-input" placeholder='Prénom' />
+              </div> 
+              <div style={{display:'flex', alignItems:'center',marginLeft:'20px'}}>
                 <Input name="lastName" onChange={(e)=> handleChange(e.target.name, e.target.value)} value={user.lastName} className="Signup-input" placeholder='Nom' />
-                <Input name="phone" onChange={(e)=> handleChange(e.target.name, e.target.value)} value={user.phone} className="Signup-input" placeholder="Téléphone" />
+              </div>
+              <div style={{display:'flex', alignItems:'center'}}>
+                <FontAwesomeIcon style={colorPhone} icon={iconPhone} size='lg'/>  
+                <Input name="phone" onChange={(e)=> {handleChange(e.target.name, e.target.value);ValidatePhone(e.target.value)}} value={user.phone} className="Signup-input" placeholder="Téléphone" />
+              </div>
+              <div style={{display:'flex', alignItems:'center'}}>
+                <FontAwesomeIcon style={color} icon={icon} size='lg'/>
                 <Input name="password" onChange={(e)=> handleChange(e.target.name, e.target.value)} value={user.password} type='password'className="Signup-input" placeholder="Mot de passe" />
-                <Input name="password2"  onChange={(e) => handleChange(e.target.name, e.target.value)} value={user.password2} type='password' className="Signup-input" placeholder="Répéter mot de passe" />
-                {visibility?
-                <p>No match between the 2 passwords</p>:
-                <p></p>
-                }
-                {validEmail?
-                <p></p>:
-                <p>Format d'email non reconnu</p>
-                }
+              </div>
+              <div style={{display:'flex', alignItems:'center'}}>
+                <FontAwesomeIcon  style={color} icon={icon} size='lg'/>
+                <Input name="password2"  onChange={(e) => {handleChange(e.target.name, e.target.value);ValidatePassword(e.target.name, e.target.value)}} value={user.password2} type='password' className="Signup-input" placeholder="Répéter mot de passe" />
+              </div>
                 
                 {tabError}
               <Button onClick={()=> handleSubmitSignUp()} style={{  background: "#0A62D0"}} type="primary">Sign up</Button>
