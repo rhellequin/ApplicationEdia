@@ -112,7 +112,7 @@ if (onResultPage) {
                               marginLeft: '15px',
                               marginRight: '15px' 
                 }}>
-                  <p className='Question'>{props.searchOptions[indexOptions].question}</p>
+                  <p>{props.searchOptions[indexOptions].question}</p>
                    {props.searchOptions[indexOptions].composant}
               
               

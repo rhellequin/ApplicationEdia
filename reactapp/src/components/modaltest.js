@@ -11,21 +11,13 @@ Modal.setAppElement('#root')
 function Apptest(props){
   
 
-
-    
-    const months = ['../images/logo1.jpg', '../images/logo.jpg', '../images/logo3.jpg', '../images/logo4.jpg', '../images/logo5.jpg', '../images/logo6.jpg', '../images/logo8.jpg', '../images/logo9.jpg', '../images/logo10.jpg'];
-
-const random = Math.floor(Math.random() * ['../images/logo1.jpg', '../images/logo.jpg', '../images/logo3.jpg', '../images/logo4.jpg', '../images/logo5.jpg', '../images/logo6.jpg', '../images/logo8.jpg', '../images/logo9.jpg', '../images/logo10.jpg'].length);
-console.log(months[random]);
-
-
     const [modalIsOpen, setModalIsOpen] = useState (false)
- var test='test'
+
 
     return (
 
 <div>
-    <button onClick={() =>setModalIsOpen(true)}>Open the modal</button>
+    <button className='Bouton' onClick={() =>setModalIsOpen(true)}>Open the modal</button>
 
 <Modal isOpen={modalIsOpen} onRequestClose={() =>setModalIsOpen(false)} style={{overlay:{backgroundColor:'grey'
 }},
@@ -41,7 +33,7 @@ bottom: '40px',
  
 <div className='Divhautdroite'>
      <div>
-     <h2  >{test}</h2>
+     <h2  >Super Aide</h2>
      <h4>1000 à  2000 €</h4>
      </div>
      <div style={{
@@ -158,3 +150,4 @@ d’aides. </p>
 }
 
 export default Apptest
+

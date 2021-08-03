@@ -10,6 +10,8 @@
     width: 40vw;
     height: 67px;
     max-width: 180px;
+    font-size: 18px;
+    font-weight: bold;
 
 }
 
@@ -25,6 +27,7 @@
     width: 200px;
     height: 67px;
     margin: 10px;
+    
     
 
 }
