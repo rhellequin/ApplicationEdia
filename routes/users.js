@@ -9,7 +9,7 @@ var uid2 = require('uid2');
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   res.send('respond with a resource');
-});
+}); 
 
 /*update informations utilisateur*/
 router.post('/update', async function(req, res, next) { 
@@ -34,7 +34,10 @@ res.json({result: true})
 
 /* POST Lecture info perso user. */
 router.post('/infouser', async function(req, res, next) {
-  var user = await userModel.findOne({ token: req.body.token });
+  
+  var user = await userModel.findOne({ token: req.body.token }).populate('userAids').exec();
+  var tab=[]
+
   if (user != null) {
     const resUSer = {
         firstName: user.firstName,
@@ -46,7 +49,11 @@ router.post('/infouser', async function(req, res, next) {
         phone:  user.phone,
         userAids:  user.userAids,  
     }
-    res.json({result: true, user: resUSer});
+    for(var i=0;i<user.userAids.length;i++){
+      tab.push(await aidModel.findOne({_id: user.userAids[i]}))
+    }
+
+    res.json({result: true, user: resUSer,userAids: tab});
   } else {
     res.json({result: false});
   }

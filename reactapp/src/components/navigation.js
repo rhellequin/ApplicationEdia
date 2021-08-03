@@ -22,7 +22,7 @@ var handleClick=()=>{
    
 <Row style={{display:'flex',justifyContent:'center', alignItems:'flex-start'}}>       
     <Col sm="12" md="6" lg="6" style={{display:'flex', justifyContent:'space-between',alignItems:'center'}}>
-        <img src='../images/EDIA.png'  height='120px' />
+    <Link to='/landingpage'><img src='../images/petit-logo-150x94-transparent.png'/></Link>
     </Col>
 
 {props.token?
@@ -37,7 +37,7 @@ var handleClick=()=>{
 : 
     <Col sm="12" md="8" lg="6"  style={{ display:'flex', justifyContent:'flex-end', alignItems:'center'}}>
         <Link to='/signin'><Button  outline color="primary" size='lg' style={{margin:'20px', width:'177px'}}>Se connecter</Button></Link>
-        <Link to='/signup'><Button color="primary" size='lg'style={{margin:'20px', width:'177px'}}>S'inscrire</Button></Link>
+        <Link to='/signup'><Button  color="primary" size='lg' style={{margin:'20px', width:'177px'}}>S'inscrire</Button></Link>
     </Col>
 }
 </Row>
