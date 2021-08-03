@@ -9,6 +9,15 @@ import './visuels/Bouton.css';
 Modal.setAppElement('#root')
 
 function Apptest(props){
+  
+
+
+    
+    const months = ['../images/logo1.jpg', '../images/logo.jpg', '../images/logo3.jpg', '../images/logo4.jpg', '../images/logo5.jpg', '../images/logo6.jpg', '../images/logo8.jpg', '../images/logo9.jpg', '../images/logo10.jpg'];
+
+const random = Math.floor(Math.random() * ['../images/logo1.jpg', '../images/logo.jpg', '../images/logo3.jpg', '../images/logo4.jpg', '../images/logo5.jpg', '../images/logo6.jpg', '../images/logo8.jpg', '../images/logo9.jpg', '../images/logo10.jpg'].length);
+console.log(months[random]);
+
 
     const [modalIsOpen, setModalIsOpen] = useState (false)
  var test='test'

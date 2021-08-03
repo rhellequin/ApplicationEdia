@@ -28,11 +28,12 @@ function ResultPage (props) {
   const [rollDiceMontant, setRollDiceMontant] = useState('')
   const [rollDiceDiff, setRollDiceDiff] = useState('')
   const [rollDiceDelai, setRollDiceDelai] = useState('')
+
  
   
 
   var importResult = props.aids.map((aid, i) => ({
-  id: aid._id, name: aid.aidName, financeur:aid.aidFunders[0].funderName, montant:aid.aidAmount, niveauAide: aid.aidLevel.levelName, logo:'../images/pinguin.png', diff:'facile',delai: '6 mois',
+  id: aid._id, name: aid.aidName, financeur:aid.aidFunders[0].funderName, montant:aid.aidAmount, niveauAide: aid.aidLevel.levelName, logo: aid.aidLogo, diff: aid.aidDiff, delai: aid.aidDelai
 
 }));
 
@@ -48,32 +49,35 @@ var tirageDelai = (Math.floor( Math.random() * 10 ) +1);
 
 
 
-var affichageMontant=rollDiceMontant*1000
+console.log('importResult',importResult)
+console.log('ResultList',ResultList)
 
-var affichageDiff=''
-        if(rollDiceDiff<4){affichageDiff='facile'}
-        else if(rollDiceDiff>=4 || rollDiceDiff <8){affichageDiff='moyenne'}
-        else if(rollDiceDiff>=8){affichageDiff='difficile'}
+// var affichageMontant=rollDiceMontant*1000
 
-var affichageDelai=''
-        if(rollDiceDelai<4){affichageDelai='- de 1 mois'}
-        else if(rollDiceDelai>=4 || rollDiceDelai <8){affichageDelai='entre 1 et 3 mois'}
-        else if(rollDiceDelai>=8){affichageDelai='entre 3 et 6 mois'}
+// var affichageDiff=''
+//         if(rollDiceDiff<4){affichageDiff='facile'}
+//         else if(rollDiceDiff>=4 || rollDiceDiff <8){affichageDiff='moyenne'}
+//         else if(rollDiceDiff>=8){affichageDiff='difficile'}
 
-var affichageLogo=''
-        if(rollDiceLogo==1){affichageLogo='../images/logo1.jpg'}
-        else if(rollDiceLogo==2){affichageLogo='../images/logo2.jpg'}
-        else if(rollDiceLogo==3){affichageLogo='../images/logo3.jpg'}
-        else if(rollDiceLogo==4){affichageLogo='../images/logo4.jpg'}
-        else if(rollDiceLogo==5){affichageLogo='../images/logo5.jpg'}
-        else if(rollDiceLogo==6){affichageLogo='../images/logo6.jpg'}
-        else if(rollDiceLogo==7){affichageLogo='../images/logo7.jpg'}
-        else if(rollDiceLogo==8){affichageLogo='../images/logo8.jpg'}
-        else if(rollDiceLogo==9){affichageLogo='../images/logo9.jpg'}
-        else if(rollDiceLogo==10){affichageLogo='../images/logo10.jpg'}
+// var affichageDelai=''
+//         if(rollDiceDelai<4){affichageDelai='- de 1 mois'}
+//         else if(rollDiceDelai>=4 || rollDiceDelai <8){affichageDelai='entre 1 et 3 mois'}
+//         else if(rollDiceDelai>=8){affichageDelai='entre 3 et 6 mois'}
+
+
+//         if(aide.logo==1){affichageLogo='../images/logo1.jpg'}
+//         else if(aide.logo==2){affichageLogo='../images/logo2.jpg'}
+//         else if(aide.logo==3){affichageLogo='../images/logo3.jpg'}
+//         else if(aide.logo==4){affichageLogo='../images/logo4.jpg'}
+//         else if(aide.logo==5){affichageLogo='../images/logo5.jpg'}
+//         else if(aide.logo==6){affichageLogo='../images/logo6.jpg'}
+//         else if(aide.logo==7){affichageLogo='../images/logo7.jpg'}
+//         else if(aide.logo==8){affichageLogo='../images/logo8.jpg'}
+//         else if(aide.logo==9){affichageLogo='../images/logo9.jpg'}
+//         else if(aide.logo==10){affichageLogo='../images/logo10.jpg'}
 
        
-       
+     
 
       useEffect(() => {
           var resultat = async () => {
@@ -88,10 +92,8 @@ var affichageLogo=''
           const filAriane = await FilAriane(props.searchOptions);
           setFilAr(filAriane);
           setIds(idlist)
-          setRollDiceLogo(tirageLogo)
-          setRollDiceMontant(tirageMontant)
-          setRollDiceDiff(tirageDiff)
-          setRollDiceDelai(tirageDelai)
+          
+          
           
          
          
@@ -218,8 +220,8 @@ return(
         <Card  className='CardAid'>
                 
                 <Row  className='CardRang1'>
-                      {/* <img src={aide.logo} alt='' height='80px' /> */}
-                      <img src={affichageLogo} alt='' height='80px' />
+                      <img src={aide.logo} alt='' height='80px' />
+
                       <div className='CardAidMontant'>{aide.montant}€</div>
                       <p><FontAwesomeIcon icon={faStar}
                           style={colorStar}
@@ -250,12 +252,12 @@ return(
                       <div className='CardAidInfoInf' >
                       <div className='Criteres'>
                       <div className='ask'>Difficulté d'obtention: </div>
-                      <div className='ans'>{affichageDiff}</div>
+                      <div className='ans'>{aide.diff}</div>
 
                           </div>
                           <div className='Criteres'>    
                           <div className='ask'>Délai d'obtention:</div>
-                          <div className='ans'> {affichageDelai}</div>
+                          <div className='ans'> {aide.delai}</div>
                           </div>
                       </div>
                 </Row>

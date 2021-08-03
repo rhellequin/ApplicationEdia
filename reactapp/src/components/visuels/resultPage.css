@@ -82,6 +82,7 @@ z-index: 1;
 
 #active{
     background-color: #0A62D0 !important ;
+    color:white;
 }
 
 
@@ -120,7 +121,7 @@ z-index: 1;
  
 width: 80%;
 max-height: calc(100vh);
-    overflow-y: auto;
+overflow-y: auto;
 }
 
 
@@ -160,7 +161,7 @@ max-height: calc(100vh);
     text-align: center;
     align-items: center;
     text-overflow: "-";
-    margin-top: 10px;
+    margin-top: 20px;
     
 }
 

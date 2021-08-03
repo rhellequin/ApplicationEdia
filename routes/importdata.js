@@ -18,6 +18,7 @@ var funderModel = require('../models/funders');
 var thirdPartyModel = require('../models/thirdparties');
 var territoryModel = require('../models/territories');
 var profileModel = require('../models/profiles');
+const { allowedNodeEnvironmentFlags } = require('process');
 
 
 // Chargement du fichier, lecture et mise en tableau des data :
@@ -265,6 +266,9 @@ const ImportAids = async (tb) => {
         aidCondition: tb[i].aidCondition,
         aidAmountDescription: tb[i].aidAmountDescription,
         aidAmount: 0,
+        aidLogo: 0,
+        aidDiff: 0,
+        aidDelai: 0,
         aidBeneficiary: tb[i].aidBeneficiary,
         aidValidationYear: tb[i].aidValidationYear,
         aidLevel: levels,
@@ -494,19 +498,93 @@ router.post('/updateamount', async function(req, res, next){
   for (let i=0;i<aids.length;i++) {
 
     var amount = (Math.floor( Math.random() * 10 ) +1) * 1000;
+  
+
     const aid =  await aidModel.updateOne(
                               {aidId: aids[i].aidId}, 
-                              {aidAmount: amount} ); 
+                              {aidAmount: amount},
                               
-    console.log ('Amount :', amount);                   
+                              ); 
+                              
+                   
     nbOfAidsUpdated++;
     
   }
   res.json({nbOfAidsUpdated : nbOfAidsUpdated})
 });
 
+router.post('/updatelogo', async function(req, res, next){
+  let nbOfAidsUpdated = 0;
+  
+  const aids =  await aidModel.find();
+  for (let i=0;i<aids.length;i++) {
 
+    const logos = ['../images/logo1.jpg', '../images/logo2.jpg', '../images/logo3.jpg', '../images/logo4.jpg', '../images/logo5.jpg', '../images/logo6.jpg',  '../images/logo7.jpg', '../images/logo8.jpg', '../images/logo9.jpg', '../images/logo10.jpg'];
 
+    const randomLogo = Math.floor(Math.random() * logos.length);
+ 
+    
+    const aid =  await aidModel.updateOne(
+                              {aidId: aids[i].aidId}, 
+                              {aidLogo: logos[randomLogo]},
+                            
+                              ); 
+                              
+    console.log('logos', logos[randomLogo])                 
+    nbOfAidsUpdated++;
+    
+  }
+  res.json({nbOfAidsUpdated : nbOfAidsUpdated})
+});
+
+router.post('/updatediff', async function(req, res, next){
+  let nbOfAidsUpdated = 0;
+  const aids =  await aidModel.find();
+  for (let i=0;i<aids.length;i++) {
+
+   
+    const diffs = ['facile', 'moyenne', 'difficile'];
+
+    const randomdiff = Math.floor(Math.random() * diffs.length);
+    
+    const aid =  await aidModel.updateOne(
+                              {aidId: aids[i].aidId}, 
+                              { aidDiff: diffs[randomdiff]},
+                            
+                              ); 
+                              
+                 
+    nbOfAidsUpdated++;
+    
+  }
+  res.json({nbOfAidsUpdated : nbOfAidsUpdated})
+});
+
+router.post('/updatedelai', async function(req, res, next){
+  let nbOfAidsUpdated = 0;
+  const aids =  await aidModel.find();
+  for (let i=0;i<aids.length;i++) {
+    
+    const delais = ['- de 1 mois', 'entre 1 et 3 mois', 'entre 3 et 6 mois'];
+
+    const randomdelai = Math.floor(Math.random() * delais.length);
+    
+    const aid =  await aidModel.updateOne(
+                              {aidId: aids[i].aidId}, 
+                              { aidDelai: delais[randomdelai]},
+                            
+                              ); 
+                              
+    console.log(delais[randomdelai])                 
+    
+  
+                              
+                 
+    nbOfAidsUpdated++;
+    
+  }
+  res.json({nbOfAidsUpdated : nbOfAidsUpdated})
+});
 
 //Test Route :
 router.post('/test', function(req, res, next) {
