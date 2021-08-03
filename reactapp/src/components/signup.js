@@ -9,9 +9,8 @@ function SignupPage(props) {
    
     const [isLogin, setIsLogin] = useState(false)
     const [listErrorsUp, setListErrorsUp] = useState([]);
-    const[visibility, setVisibility]= useState(false)
-    const [match,setMatch]=useState(false);
-
+    const [visibility, setVisibility]= useState(false)
+    const [validEmail, setValidEmail] = useState(false)
     const [user, setUser]= useState({
         firstName: "",
         lastName:"",
@@ -21,13 +20,8 @@ function SignupPage(props) {
         password2:'',
     })
 
-
-
-
-
-
     var handleSubmitSignUp = async () => {
-      if(visibility==false){
+      if(visibility==false && validEmail==true){
       var requete = await fetch('/users/sign-up',{
           method: 'POST',
           headers: {'Content-Type':'application/x-www-form-urlencoded'},
@@ -41,11 +35,19 @@ function SignupPage(props) {
           setListErrorsUp(response.error)
         }
       }
-      else{
-        setMatch(true)
-      }
+      
     }
 
+    var ValidateEmail= (email) => {
+    var emailformat = /\S+@\S+\.\S+/;
+    if (email.match(emailformat)) {
+     setValidEmail(true) }
+    else {
+      setValidEmail(false)
+    }
+    console.log(validEmail)
+    console.log(email)
+    }
     
       var handleChange = (name,value) => {
         setUser({...user, [name]: value })
@@ -67,21 +69,24 @@ return(
 <div className="Login-page" >
             {/* SIGN-UP*/}
             <div className="Sign">
+                <Input name="email" onChange={(e)=> {handleChange(e.target.name, e.target.value);ValidateEmail(e.target.value)}} value={user.email} className="Signup-input" placeholder="email" />
                 <Input name="firstName" onChange={(e) => handleChange(e.target.name, e.target.value)} value={user.firstName} className="Signup-input" placeholder='Prénom' />
                 <Input name="lastName" onChange={(e)=> handleChange(e.target.name, e.target.value)} value={user.lastName} className="Signup-input" placeholder='Nom' />
-                <Input name="email" onChange={(e)=> handleChange(e.target.name, e.target.value)} value={user.email} className="Signup-input" placeholder="email" />
                 <Input name="phone" onChange={(e)=> handleChange(e.target.name, e.target.value)} value={user.phone} className="Signup-input" placeholder="Téléphone" />
                 <Input name="password" onChange={(e)=> handleChange(e.target.name, e.target.value)} value={user.password} type='password'className="Signup-input" placeholder="Mot de passe" />
                 <Input name="password2"  onChange={(e) => handleChange(e.target.name, e.target.value)} value={user.password2} type='password' className="Signup-input" placeholder="Répéter mot de passe" />
                 {visibility?
-                <p>No match</p>:
+                <p>No match between the 2 passwords</p>:
                 <p></p>
                 }
-                {match?
-                <p>Vérifiez vos mots de passe</p>:
-                <p></p>}
+                {validEmail?
+                <p></p>:
+                <p>Format d'email non reconnu</p>
+                }
+                
                 {tabError}
-              <Button onClick={()=> handleSubmitSignUp()} style={{width:'80px',  background: "#0A62D0"}} type="primary">Sign up</Button>
+              <Button onClick={()=> handleSubmitSignUp()} style={{  background: "#0A62D0"}} type="primary">Sign up</Button>
+              <Link to='signin' style={{marginTop:'50px'}}> I have already got an account. Log in !  </Link>
             </div>
 
           
@@ -102,8 +107,11 @@ function mapDispatchToProps(dispatch){
     }
   }
 
+function mapStateToProps(state) {
+  return { searchOptions: state.searchOptions, indexOptions: state.indexOptions, numberOfAids: state.numberOfAids, aids: state.aids, token: state.user.token}}
+  
 
 export default connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps
    )(SignupPage);

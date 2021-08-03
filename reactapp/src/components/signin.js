@@ -11,6 +11,7 @@ function SigninPage(props) {
     const [signInPassword, setSignInPassword] = useState("");
     const [isLogin, setIsLogin] = useState(false)
     const [listErrorsUp, setListErrorsUp] = useState([]);
+    const[isResearch,setIsResearch]= useState(false)
 
     var handleSubmitSignIn = async () => {
         var data = await fetch('/users/sign-in',{
@@ -33,7 +34,6 @@ function SigninPage(props) {
         return(<p style={{color:"red"}}>{error}</p>)
       });
 
-
 if(isLogin==false){
       
 return(
@@ -41,11 +41,12 @@ return(
             
             {/* SIGN-IN */}
             <div className="Sign">
+            {tabError}
                 <Input onChange={(e)=> setSignInEmail(e.target.value)} value={signInEmail} className="Signin-input" placeholder="johndoe@gmail.com" />
                 <Input.Password onChange={(e)=> setSignInPassword(e.target.value)} value={signInPassword}  className="Signin-input" placeholder="mot de passe" />  
-              <Button onClick={()=> handleSubmitSignIn()} style={{width:'80px',  background: "#0A62D0" }} type="primary">Sign in</Button>
+              <Button onClick={()=> handleSubmitSignIn()} style={{  background: "#0A62D0" }} type="primary">Sign in</Button>
+              <Link to='signup' style={{marginTop:'50px'}}> No account yet ? </Link>
             </div>
-            {tabError}
         </div>
     );
 }
@@ -64,8 +65,11 @@ function mapDispatchToProps(dispatch){
     }
   }
 
+function mapStateToProps(state) {
+  return { searchOptions: state.searchOptions, indexOptions: state.indexOptions, numberOfAids: state.numberOfAids, aids: state.aids, token: state.user.token}}
+
 
 export default connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps
    )(SigninPage);
