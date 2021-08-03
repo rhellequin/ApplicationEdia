@@ -1,6 +1,6 @@
 import React, {useState, useEffect } from 'react';
 import {connect} from 'react-redux';
-import {Input, Typography, Space, Button, Icon, Card, Col, Row } from 'antd'; 
+import {Input, Typography, Card, Col, Row } from 'antd'; 
 import 'antd/dist/antd.css';
 
 import SearchAids from './searchaids';
@@ -19,9 +19,7 @@ function Profiles (props) {
     const [numberOfAids, setNumberOfAids] = useState(0);
     const [iSelected, setISelected] = useState(-1);
     const [isSpinning,setIsSpinning] = useState(false);
-
-    const { Search } = Input;
-    const { Text } = Typography;
+ 
 
     useEffect(() => {
         const findProfiles = async() => {
@@ -60,72 +58,57 @@ function Profiles (props) {
     
    // Gestion du marquage projet :
 
-   let colorTextSelected = "black"
-   let colorBgSelected = "#F3D849"
-   let colorText = 'white'
-   let colorBg =  '#0A62D0'
+  let colorTextSelected = "black"
+  let colorBgSelected = "#F3D849"
+  let colorText = 'white'
+  let colorBg =  '#0A62D0'
 
 
-   const dataItem = aidProfiles.map ((profile,i)=>( 
+  const dataItem = aidProfiles.map ((profile,i)=>( 
     {i: i, name: profile.profileName, colorText : colorText, colorBg: colorBg} 
-    ));
+  ));
 
 
-    if (iSelected>=0) {  console.log('iSelected ',iSelected)
-      dataItem[iSelected].colorText = colorTextSelected
-      dataItem[iSelected].colorBg=colorBgSelected   
-    }
+  if (iSelected>=0) {  console.log('iSelected ',iSelected)
+    dataItem[iSelected].colorText = colorTextSelected
+    dataItem[iSelected].colorBg=colorBgSelected   
+  }
     
 
 
 
-
-// <h1 class='question' style={{color:'#ff33e0'}}>Déjà {numberOfAids} aides!</h1> 
-    return ( 
+ 
+  return ( 
         
 
-<div className="site-card-wrapper">
+  <div className="site-card-wrapper">
     
     <CountAids numberOfAids={numberOfAids}/>
-    <SpinSearch isSpinning={isSpinning}/>
-
-               
+    <SpinSearch isSpinning={isSpinning}/>            
     <Row gutter={16}>
-
-    {dataItem.map((item,i) => (
-                
+      {dataItem.map((item,i) => (               
                     <Col span={6} key={i}>
-                    <Card bordered={false} 
-                      onClick={() => runSearch(i)}
-                      style={{ 
-                        marginRight: '8px',
-                        marginLeft: '8px',
-                        marginTop: '8px',
-                        marginBottom: '8px',
-                        textAlign: 'center',
-                        fontFamily: 'Alata',
-                        borderRadius: '10px',
-                        fontSize: '16px',
-                        color: item.colorText,
-                        backgroundColor: item.colorBg, 
-
-
-                        }}>
-                            {item.name}
-                    </Card>
+                      <Card bordered={false} 
+                        onClick={() => runSearch(i)}
+                        style={{ 
+                          marginRight: '8px',
+                          marginLeft: '8px',
+                          marginTop: '8px',
+                          marginBottom: '8px',
+                          textAlign: 'center',
+                          fontFamily: 'Alata',
+                          borderRadius: '10px',
+                          fontSize: '16px',
+                          color: item.colorText,
+                          backgroundColor: item.colorBg, 
+                          }}>
+                          {item.name}
+                      </Card>
                     </Col>
-
               ))}
-       </Row>  
-    
+       </Row>   
   </div>   
-
-        )
-
-
-}
-
-
+)}
 
 function mapStateToProps(state) {
   return { searchOptions: state.searchOptions, indexOptions: state.indexOptions, numberOfAids: state.numberOfAids  }
@@ -141,11 +124,10 @@ function mapDispatchToProps(dispatch){
       
     updateNumberOfAids: function(n) {
       dispatch({type: 'updateNumberOfAids', numberOfAids: n})},
-      
-      updateAids: function(aids) {
-        dispatch({type: 'updateAids', aids: aids})}
-
     
+    updateAids: function(aids) {
+      dispatch({type: 'updateAids', aids: aids})}
+
   }
 }
 

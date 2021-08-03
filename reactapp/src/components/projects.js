@@ -1,11 +1,15 @@
 import React, {useState, useEffect } from 'react';
+
+
 import {connect} from 'react-redux';
 import SearchAids from './searchaids';
 import CountAids from './countaids';
 import SpinSearch from './spinsearch';
 
 import 'antd/dist/antd.css';
+import './visuels/projects.css';
 import {Input, Typography, Card, Col, Row, List, Divider } from 'antd'; 
+import { Container } from 'reactstrap';
 
 
 function Projects (props) {
@@ -87,8 +91,8 @@ function Projects (props) {
 
 let colorTextSelected = "black"
 let colorBgSelected = "#F3D849"
-let colorText = 'black'
-let colorBg =  'white'
+let colorText = 'white'
+let colorBg =  '#0A62D0'
   
     const dataItem = projects.map ((p,i)=>( 
           {i: i, name: p.projectName, domain: p.projectDomain, colorText : colorText, colorBg: colorBg} 
@@ -109,35 +113,36 @@ let colorBg =  'white'
     
 // <Divider  orientation="center" style={{}}>Choisir dans la liste</Divider>
 
+
+    const gStyle = { background: '#0092ff', padding: '8px 0' };
+
+
     return (
       <div>
         <CountAids numberOfAids={numberOfAids}/>
         <SpinSearch isSpinning={isSpinning}/>
+        <div className='scroll-container'>
         
-        <Row style={{justifyContent: "center"}}>
-          <List style={{backgroundColor: "white", width:"600px"}}
-              size="small"
-              pagination={{
-                onChange: page => {
-                  console.log(page);
-                  },
-                pageSize: 10,
-                }}
-
-                bordered
+        
+       
+          <List 
+          
                 dataSource={dataItem}
                 renderItem={item => (
-
-              <List.Item>
-                <Typography.Text  
-                  style={{color: item.colorText, backgroundColor: item.colorBg}}
-                  onClick={() => {runSearch(item.i)}}
-                  >{item.name}</Typography.Text>  
-              </List.Item>
+                    <List.Item 
+                        style={{color: item.colorText, backgroundColor: item.colorBg}}
+                        onClick={() => {runSearch(item.i)}}
+                        >      
+                        <Col offset={1} span={8}>{item.domain}</Col>
+                        <Col span={14}>{item.name}</Col>
+                    </List.Item>
             )}
           />
-        </Row>
+      
       </div>
+      </div>
+
+
     )
 }
 

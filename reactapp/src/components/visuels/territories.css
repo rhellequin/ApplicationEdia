@@ -1,0 +1,26 @@
+
+.form-dept {
+    height: 350px;
+    width:  80%;
+    background-color: #0A62D0;
+    margin-left: 10%;
+    border-radius: 10px; 
+    box-shadow: 0 0 10px rgb(0, 0, 0, 1);
+    padding-top : 80px;
+    padding-left: 50px;
+    
+    
+
+  }
+  .buttonTerritory {
+
+    background-color: #0A62D0;
+    border-radius : 10px;
+    height: 60px;
+    font-size: 24px;
+    margin-left: 50px;
+      
+    color: white                                                             
+
+  }
+  

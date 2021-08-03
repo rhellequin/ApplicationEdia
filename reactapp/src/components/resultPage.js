@@ -61,7 +61,7 @@ console.log('props.filAriane :', props.filAriane);
 
 
 var importResult = props.aids.map((aid, i) => ({
-    name: aid.aidName, financeur: aid.aidFunders[0] == !undefined ?  aid.aidFunders[0].funderName : '', montant:aid.aidAmount, niveauAide: aid.aidLevel.levelName, logo:'../images/pinguin.png', diff:'facile',delai: '6 mois',
+    id: aid._id, name: aid.aidName, financeur: aid.aidFunders[0] == !undefined ?  aid.aidFunders[0].funderName : '', montant:aid.aidAmount, niveauAide: aid.aidLevel.levelName, logo:'../images/pinguin.png', diff:'facile',delai: '6 mois',
 
 }));
 
@@ -268,8 +268,17 @@ return(
     </Col>
     )
           })
+          
 
-const displayFilAriane = props.filAriane.map((fil,i) => {<Text underline>{props.filAriane[i].name}  </Text>});
+
+
+const displayFilAriane = props.filAriane.map((fil,i) => {
+    if (fil.name != '') {
+        return ( <Text underline>{fil.name} | </Text> ) 
+        }});
+
+console.log('displayFilAriane :', displayFilAriane);
+
 
 if(isLogin==true){
 
@@ -282,22 +291,12 @@ if(isLogin==true){
 
   <CountAids numberOfAids={numberOfAids}/>
 
-
-  <Col md={{ span: 24 }} className='Ariane' >
-      
-  <Row>
+  <div>
       {displayFilAriane}
-  </Row>
+  </div>
 
-      <div className='CritAid'><div className='CritQuestion'>Type d'aide: </div>{props.filAriane[0].name}</div>
-      <div className='CritAid'><div className='CritQuestion'>/ Secteur d'activité: </div>{props.filAriane[1].name}</div>
-      <div className='CritAid'><div className='CritQuestion'>/ Enjeux: </div>{props.filAriane[2].name}</div>
-      <div className='CritAid'><div className='CritQuestion'>/ Département: </div>{props.filAriane[3].name}</div>
-      <div className='CritAid'><div className='CritQuestion'>Profil de l'entreprise: </div>{props.filAriane[4].name}</div>
-      <div className='CritAid'><div className='CritQuestion'>Effectifs: </div>{props.filAriane[5].name}</div>
-      <div className='CritAid'><div className='CritQuestion'>Age de l'entreprise: </div>{props.filAriane[6].name}</div>
- 
-  </Col>
+
+
 
   <div style={{display:'flex', flexDirection: 'row'}}>                                          
       <div className='Sidebar' >

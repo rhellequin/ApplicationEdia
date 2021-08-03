@@ -87,7 +87,6 @@ function Landingpage(props) {
         props.updateIndexOptions(0);
         // Compteur de recherche :
         props.updateNumberOfAids(0);
-        
 
 
 
@@ -97,6 +96,7 @@ function Landingpage(props) {
 
 // Action Click sur Recherche :
     const callSearchPage = ()=> {
+
         setOnCallSearch(true);
 }
 

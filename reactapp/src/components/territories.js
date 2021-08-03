@@ -25,6 +25,7 @@ import {
 } from 'antd';
 
 
+import './visuels/territories.css';
 import SearchAids from './searchaids'
 import CountAids from './countaids'
 
@@ -96,25 +97,28 @@ const searchDept = async () => {
 } 
 
 
-
 return (
   <div>
     <CountAids numberOfAids={numberOfAids}/>
-    <Row style={{justifyContent: "center"}}>
-    <Form
-       
-        layout="horizontal"  
-      >
-        <Form.Item label="Votre département   ">
-          <InputNumber placeholder="01" value={territory} onChange={inputDept} />
-          <Text type="success" style={{marginLeft: '15px'}} >{territoryName}</Text>
-        </Form.Item>
-        <Form.Item >
-            <Button onClick={searchDept}>OK</Button>
-        </Form.Item>
-      </Form>
-
-    </Row>
+    <Form.Item 
+        className="form-dept"  >
+        <Text style={{textAlign:'right', marginBottom:'10px',fontWeight:'bold' ,fontSize:20, fontFamily:'Spartan', marginRight:'50px', color: 'white'}}>
+        Votre département</Text>
+        <InputNumber  
+            style={{textAlign:'right', marginBottom:'10px',fontWeight:'bold' ,fontSize:20, fontFamily:'Arial'}}
+            
+            placeholder="01" 
+            value={territory} 
+            onChange={inputDept} 
+            className="form-field"/>
+            <Text
+            style={{textAlign:'left', marginBottom:'10px',fontWeight:'bold' ,fontSize:20, fontFamily:'Spartan', marginLeft:'50px', color: 'white'}}>
+            {territoryName}</Text>
+            
+        <Button className="buttonTerritory" onClick={searchDept}>Valider </Button>  
+ 
+      </Form.Item>
+    
   </div>
 )}
 
