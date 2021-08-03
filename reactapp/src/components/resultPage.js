@@ -212,7 +212,7 @@ return(
                     
                       <div className='CardAidMontant'>{aide.montant}€</div>
                       <p><FontAwesomeIcon icon={faStar}
-                          style={colorStar}
+                          style={colorStar} size='2x'
                           onClick={()=>addUserAid(aide,aide.id)}/>
                       </p>
                 </Row>
