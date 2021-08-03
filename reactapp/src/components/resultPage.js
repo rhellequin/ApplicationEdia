@@ -1,19 +1,28 @@
 import React, {useState, useEffect } from 'react';
 import {connect} from 'react-redux';
 import{Redirect} from "react-router-dom";
+import Modal from 'react-modal'
 
 import {Col, Row,Card} from 'antd'; 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 
+
 import 'antd/dist/antd.css';
 import './visuels/resultPage.css';
+import './visuels/Modal.css';
+
+
+
+
+
 
 import Navigation from './navigation';
 import Bouton from './Bouton';
 import CountAids from './countaids'
 import FilAriane from './filariane'
 
+Modal.setAppElement('#root')
 
 function ResultPage (props) {
 
@@ -24,14 +33,15 @@ function ResultPage (props) {
   const [numberOfAids, setNumberOfAids] = useState(0);
   const [filAr, setFilAr] = useState([])
   const [ids, setIds] = useState({})
-  const [rollDiceLogo, setRollDiceLogo] = useState('')
-  const [rollDiceMontant, setRollDiceMontant] = useState('')
-  const [rollDiceDiff, setRollDiceDiff] = useState('')
-  const [rollDiceDelai, setRollDiceDelai] = useState('')
+  const [modalIsOpen, setModalIsOpen] = useState (false)
+  const [blurEffect, setBlurEffect] = useState('blurEffectOff')
+ 
+
+ 
   
 
   var importResult = props.aids.map((aid, i) => ({
-  id: aid._id, name: aid.aidName, financeur:aid.aidFunders[0].funderName, montant:aid.aidMountant, niveauAide: aid.aidLevel.levelName, logo:'../images/pinguin.png', diff:'facile',delai: '6 mois',
+  id: aid._id, name: aid.aidName, financeur:aid.aidFunders[0].funderName, montant:aid.aidAmount, niveauAide: aid.aidLevel.levelName, logo: aid.aidLogo, diff: aid.aidDiff, delai: aid.aidDelai
 
 }));
 
@@ -40,38 +50,12 @@ function ResultPage (props) {
 
 var idlist ={id1:"", id2:"", id3:"", id4:"", id5:""}
 
-var tirageLogo = (Math.floor( Math.random() * 10 ) +1);
-var tirageMontant = (Math.floor( Math.random() * 10 ) +1);
-var tirageDiff = (Math.floor( Math.random() * 10 ) +1);
-var tirageDelai = (Math.floor( Math.random() * 10 ) +1);
 
 
 
-var affichageMontant=rollDiceMontant*1000
+console.log('blurEffect',blurEffect)
 
-var affichageDiff=''
-        if(rollDiceDiff<4){affichageDiff='facile'}
-        else if(rollDiceDiff>=4 || rollDiceDiff <8){affichageDiff='moyenne'}
-        else if(rollDiceDiff>=8){affichageDiff='difficile'}
 
-var affichageDelai=''
-        if(rollDiceDelai<4){affichageDelai='- de 1 mois'}
-        else if(rollDiceDelai>=4 || rollDiceDelai <8){affichageDelai='entre 1 et 3 mois'}
-        else if(rollDiceDelai>=8){affichageDelai='entre 3 et 6 mois'}
-
-var affichageLogo=''
-        if(rollDiceLogo==1){affichageLogo='../images/logo1.jpg'}
-        else if(rollDiceLogo==2){affichageLogo='../images/logo2.jpg'}
-        else if(rollDiceLogo==3){affichageLogo='../images/logo3.jpg'}
-        else if(rollDiceLogo==4){affichageLogo='../images/logo4.jpg'}
-        else if(rollDiceLogo==5){affichageLogo='../images/logo5.jpg'}
-        else if(rollDiceLogo==6){affichageLogo='../images/logo6.jpg'}
-        else if(rollDiceLogo==7){affichageLogo='../images/logo7.jpg'}
-        else if(rollDiceLogo==8){affichageLogo='../images/logo8.jpg'}
-        else if(rollDiceLogo==9){affichageLogo='../images/logo9.jpg'}
-        else if(rollDiceLogo==10){affichageLogo='../images/logo10.jpg'}
-
-       
        
 
       useEffect(() => {
@@ -87,10 +71,10 @@ var affichageLogo=''
           const filAriane = await FilAriane(props.searchOptions);
           setFilAr(filAriane);
           setIds(idlist)
-          setRollDiceLogo(tirageLogo)
-          setRollDiceMontant(tirageMontant)
-          setRollDiceDiff(tirageDiff)
-          setRollDiceDelai(tirageDelai)
+          setBlurEffect('blurEffectOff')
+          
+          
+          
          
          
         }
@@ -98,7 +82,15 @@ var affichageLogo=''
 
       }, [])
       
-     
+var ActiverBlur = async () => {
+        setBlurEffect('blurEffectOn');
+        setModalIsOpen(true)}
+    
+var DesactiverBlur = async () => {
+            setBlurEffect('blurEffectOff');
+            setModalIsOpen(false)}
+       
+        
       // Fonctions de tri
       var TrierParMontant = async () => {
         
@@ -155,7 +147,7 @@ var affichageLogo=''
   
 
 
-  //Gestion des favoris
+
 
       var addUserAid= async(aide,id)=>{
 
@@ -211,16 +203,16 @@ var affichageLogo=''
 
 return(
                 
-    <Col xs={{ span: 24, offset: 0 }} md={{ span: 8, offset: 0 }} key={i}>
+    <Col xs={{ span: 24, offset: 0 }}  md={{ span: 24, offset: 0 }} lg={{ span: 8, offset: 0 }}key={i}>
      
-        <Card  className='CardAid'>
+        <Card  className='CardAid' >
                 
                 <Row  className='CardRang1'>
-                      {/* <img src={aide.logo} alt='' height='80px' /> */}
-                      <img src={affichageLogo} alt='' height='80px' />
+                      <img src={aide.logo} alt='' height='80px' />
+                    
                       <div className='CardAidMontant'>{aide.montant}€</div>
                       <p><FontAwesomeIcon icon={faStar}
-                          style={colorStar}
+                          style={colorStar} size='2x'
                           onClick={()=>addUserAid(aide,aide.id)}/>
                       </p>
                 </Row>
@@ -229,9 +221,7 @@ return(
                       <div style={{marginBottom:'10px'}}>{aide.name}</div>
                 </Row>
                 
-                {/* <Row className='CardAidMontant'>
-                      <div>{affichageMontant}€</div>
-                </Row> */}
+                <div className='Hline'></div>
 
                 <Row className='CardAidInfo' >
                       <div className='CardAidInfoSup'>
@@ -248,21 +238,24 @@ return(
                       <div className='CardAidInfoInf' >
                       <div className='Criteres'>
                       <div className='ask'>Difficulté d'obtention: </div>
-                      <div className='ans'>{affichageDiff}</div>
+                      <div className='ans'>{aide.diff}</div>
 
                           </div>
                           <div className='Criteres'>    
                           <div className='ask'>Délai d'obtention:</div>
-                          <div className='ans'> {affichageDelai}</div>
+                          <div className='ans'> {aide.delai}</div>
                           </div>
                       </div>
                 </Row>
               
                 <Row className='CardAidbouton'>          
-                      <Bouton />
+                <button className='Ensavoirplus' onClick={() =>ActiverBlur()}>En savoir +</button>
+
                 </Row>
                   
         </Card>
+
+
 
     </Col>
     )
@@ -274,7 +267,7 @@ if(isLogin==true){
   return ( 
 
         
-<div>
+<div id={blurEffect}>
 
   <Navigation/>
 
@@ -284,7 +277,7 @@ if(isLogin==true){
       <div className='CritAid'><div className='CritQuestion'>Type d'aide: </div>Exonération de charges sociales </div>
       <div className='CritAid'><div className='CritQuestion'>/ Secteur d'activité: </div>Economie</div>
       <div className='CritAid'><div className='CritQuestion'>/ Enjeux: </div>Connaître les exonérations fiscales</div>
-      <div className='CritAid'><div className='CritQuestion'>/ Département: </div>Loire-Atlantique: </div>
+      <div className='CritAid'><div className='CritQuestion'>/ Département: </div>Loire-Atlantique</div>
       <div className='CritAid'><div className='CritQuestion'>Profil de l'entreprise: </div>Autres services, professions libérales</div>
       <div className='CritAid'><div className='CritQuestion'>Effectifs: </div>+ de 250</div>
       <div className='CritAid'><div className='CritQuestion'>Age de l'entreprise: </div>moins de 3 ans
@@ -312,6 +305,116 @@ if(isLogin==true){
               </div> 
         
   </div> 
+  <Modal isOpen={modalIsOpen} onRequestClose={() =>DesactiverBlur()} style={{overlay:{position: 'fixed',
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      backgroundColor: 'black'
+                                    }},
+                                    {content:{backgroundColor:'white',overflow: 'auto',position: 'absolute',
+                                    left: '20%',
+                                    right: '20%',
+                                    height:'100%',
+                                    width: '60%'
+                                    }}}>
+                                    <div>
+                                    <div className='Divhaut'>
+                                    <img className='Divhautgauche'src='../images/pinguin.png'  height='150px' alt='' />
+                                    
+                                    <div className='Divhautdroite'>
+                                        <div>
+                                        <h2>Super Aide</h2>
+                                        <h4>1000 à  2000 €</h4>
+                                        </div>
+                                        <div style={{
+                                            display: 'flex',
+                                            flexDirection: 'row',
+                                            
+                                            
+     }}>
+         <div>
+         <h5 className='Details'>Type d'aide: </h5>
+         <p className='Details'>Subvention</p>
+         </div>
+         <div>
+         <h5 className='Details'>Difficulté: </h5>
+         <p className='Details'>très faible</p>
+         </div>
+         <div>
+         <h5 className='Details'>Délai d'obtention: </h5>
+         <p className='Details'>1 mois</p>
+         </div>
+        
+     </div>
+ </div>
+
+</div>
+
+
+
+
+
+
+
+</div>
+<div style={{
+    display:'flex',
+    flexDirection:'row',
+    
+}}>
+    <div className='Colonnegauche'>
+    <h5>Organisme financeur</h5>
+    <p>Pôle Emplois</p>
+    <h5>Stratégie</h5>
+    <p>iRecrutement</p>
+    <h5>Département</h5>
+    <p>Bouches-du-Rhône</p>
+    <h5>Lien de l’organisme</h5>
+    <p>https://www.bpifrance.fr/nos-solutions/innovation</p>
+    </div>
+    <div>
+    <h3>Bénéficiaires</h3>
+    <div className='Hline'></div>
+    <p className='Critere'>Publics visés par le dispositif :
+TPE, PME(1) et ETI(2) qui recrutent :
+en contrat de travail, un jeune de niveau bac+2 minimum, diplômé depuis moins de 2 ans et pour une
+mission d’au moins 1 an
+en contrat d’apprentissage ou de professionnalisation (pour une  durée de 10 mois minimum), un
+jeune déjà diplômé de niveau bac+2 et en cours de formation pour un niveau bac+3 ou plus
+
+(1) Selon la défnition européenne de la PME : entreprise de moins de 250 salariés déclarant soit un CA annuel
+inférieur à 50 M€, soit un total de bilan n'excédant pas 43 M€. Elle doit être indépendante, c'est-à-dire ne pas
+être détenue à plus de 25 % par une ou plusieurs entités qui ne sont pas des PME.
+ 
+(2) Jusqu'à 5.000 salariés</p>
+    <h3>Critères d’éligibilité</h3>
+    <div className='Hline'></div>
+    <p className='Critere'> Nombre de salariés</p>
+    <p className='Critere'><img src='../images/checked.png' alt='' />Chiffre d’affaires</p>
+    <p className='Critere'><img src='../images/checked.png'  alt=''/>Pas de licenciement économique dans les 6 derniers mois</p>
+    <p className='Critere'><img src='../images/checked.png' alt='' />Entreprises implantées en France enregistrées au registre du Commerce et des Sociétés ou au Répertoire des Métiers</p>
+    <p className='Critere'><img src='../images/cancel.png'  alt=''/>À jour des versements fiscaux et sociaux</p>
+    <p className='Critere'><img src='../images/cancel.png' alt='' />Situation financière saine</p>
+    <p className='Critere'><img src='../images/cancel.png' alt='' />Sous réserve d'un niveau de fonds propres sufisant</p>
+    <h3>Modalités</h3>
+    <div className='Hline'></div>
+    <p className='Critere'>L'aide est octroyée sous forme de subvention variable selon la nature de l'investissement :
+Pour les études préalables et les actions complémentaires : la subvention est plafonnée à 50 000 € par
+bénéfciaire et par projet. Le taux maximum sera défni en fonction de la taille de l’entreprise et du régime
+d’aides. 
+Pour les investissements : le taux maximum sera défni en fonction de la taille de l’entreprise et du régime
+d’aides. </p>
+<div className='Barreboutons'>
+                <button className='Bouton2'>TELECHARGER FICHE</button>
+                <button className='Bouton2'>PARTAGER FICHE</button>
+                <button className='Bouton2'>NOUS CONTACTER </button>
+                </div>
+    </div>
+   
+</div>
+
+</Modal>
 </div>
 
 );

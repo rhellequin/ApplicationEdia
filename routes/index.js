@@ -24,7 +24,7 @@ router.get('/', function(req, res, next) {
 
 /* POST add aid to favorite. */
 router.post('/add-favorite', async function(req, res, next) {
-
+console.log(req.body.id,'bidy')
 var user =  await userModel.findOne({token: req.body.token})
 console.log(user)
 if(user==null){
@@ -48,7 +48,8 @@ if(req.body.favorite=='true'){
     user.userAids.splice(index,1)
     var updatedUser= await userModel.updateOne({token:req.body.token},{userAids: user.userAids})
   }}
-  user =  await userModel.findOne({token: req.body.token})
+  user =  await userModel.findOne({token: req.body.token}).populate('userAids').exec()
+  console.log(user,'user')
   res.json({result: true,user: user });
 }
 })

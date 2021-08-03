@@ -1,3 +1,4 @@
+
 .Ariane{
     
     margin-left: 10px;
@@ -5,7 +6,13 @@
     /* flex-flow: row wrap; */
     display: left;
     flex: 1 1 0;
+<<<<<<< HEAD
      
+=======
+    font-family: Alata;
+    
+    
+>>>>>>> 04e1259cd779fdcca45f87c315874f7041b9e219
 }
 
 .CritAid{
@@ -19,7 +26,11 @@
 
 .CritQuestion{
 font-weight: bold;
+<<<<<<< HEAD
 font-size: 10px;
+=======
+font-size: 14px;
+>>>>>>> 04e1259cd779fdcca45f87c315874f7041b9e219
 margin-right: 10px;
 
 }
@@ -31,8 +42,9 @@ margin-right: 10px;
     border-radius: 20px;
     margin-top: 10px;
     margin-bottom: 15px;
-    margin-left: 20px;
-    box-shadow: 0 0 10px rgb(0, 0, 0, 1); 
+    margin-left: 10px;
+   
+    font-family: Alata;
 }
 
 .SidebarList{
@@ -57,7 +69,7 @@ font-weight: bold;
 transition: ease-out 0.3s;
 outline:none;
 position: relative;
-z-index: 1;
+z-index: 0;
 }
 
 .SidebarList .Row:before {
@@ -79,6 +91,7 @@ z-index: 1;
 
 #active{
     background-color: #0A62D0 !important ;
+    color:white;
 }
 
 
@@ -86,8 +99,7 @@ z-index: 1;
 .Row:hover:before{
    transition: 0.5s all ease;
    z-index:-1;
-   left: 0;
-   right:0;
+
    opacity: 1;
    
 }
@@ -117,7 +129,7 @@ z-index: 1;
  
 width: 80%;
 max-height: calc(100vh);
-    overflow-y: auto;
+overflow-y: auto;
 }
 
 
@@ -131,24 +143,43 @@ max-height: calc(100vh);
     flex: 1 1 0;
     display: flex;
     flex-direction: column;
+<<<<<<< HEAD
     border-style: none;
     box-shadow: 0 0 10px rgb(0, 0, 0, 1);
     height: 500px;
+=======
+>>>>>>> 04e1259cd779fdcca45f87c315874f7041b9e219
     justify-content: space-between;
+    border-style: none;
+   
+    height: 500px;
+    justify-content: space-;
+    font-family: Alata;
 }
 
 
 .CardRang1{
+<<<<<<< HEAD
     height:60px;
+=======
+    height:19%;
+>>>>>>> 04e1259cd779fdcca45f87c315874f7041b9e219
     display: flex;
     flex-direction: row;
     align-self: flex-start;
     justify-content: space-between;
+  
+
     
 }
 
 .CardAidName{
+<<<<<<< HEAD
     height:120px; 
+=======
+   
+    height:33%; 
+>>>>>>> 04e1259cd779fdcca45f87c315874f7041b9e219
     font-size: 18px;
     font-weight: bold;
     justify-content: center;
@@ -156,44 +187,60 @@ max-height: calc(100vh);
     text-align: center;
     align-items: center;
     text-overflow: "-";
-    margin-top: 10px;
+
+    
     
 }
 
+.Hline { width:100%; height:1px; background: black }
+
 .CardAidMontant{
+<<<<<<< HEAD
     height:50px;
    width: 180px;
     font-size: 24px;
    
     
+=======
+    height:60%;
+   width: 180px;
+    font-size: 24px;
+>>>>>>> 04e1259cd779fdcca45f87c315874f7041b9e219
    text-align: center;
     align-content: center;
-    
-    background-color: #F3D849;
+  
     border-radius: 5px;
-   
     border: 1px solid Black;
 }
 
 .CardAidInfo{
+<<<<<<< HEAD
     margin-top: 20px;
     height:220px;
+=======
+    margin-top: auto;
+    height:33%;
+>>>>>>> 04e1259cd779fdcca45f87c315874f7041b9e219
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     text-align: center;
     font-family: Alata;
     height: 30%;
-    border-top: 1px solid black;
+  
 }
            
 .CardAidInfoSup{
     display: flex;
     flex-direction: column;
-   
+    justify-content:space-between;
     text-align: center;
     font-family: Alata;
     font-size: 14px;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 04e1259cd779fdcca45f87c315874f7041b9e219
 }
            
 .CardAidInfoInf{
@@ -203,7 +250,11 @@ max-height: calc(100vh);
     text-align: center;
     font-family: Alata;
     font-size: 14px;
+<<<<<<< HEAD
     padding: 20px;
+=======
+
+>>>>>>> 04e1259cd779fdcca45f87c315874f7041b9e219
 }     
 
 .Criteres{
@@ -211,8 +262,13 @@ max-height: calc(100vh);
     flex-direction:column;
     text-align: start;
     width: 100px;
+<<<<<<< HEAD
     height: 60px;
     margin-bottom: 20px;
+=======
+
+  
+>>>>>>> 04e1259cd779fdcca45f87c315874f7041b9e219
     
 }  
 
@@ -225,12 +281,41 @@ display: flex;
 .ans{
     display: flex;
     flex-direction: column;
-    align-items: baseline
+    align-items: baseline;
+    font-family: Alata;
     }
 
 .CardAidbouton{
-    height:60px;
+    height:10%;
     justify-content: center;
     align-content: flex-end;
+<<<<<<< HEAD
     margin-bottom: 0;
 }
+=======
+   
+    font-family: Alata;
+}         
+
+.Ensavoirplus{
+    color: #fff;
+    background: #0A62D0;
+
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    width: 40%;
+    height: 100%;
+    max-width: 100%;
+    font-size: 18px;
+    font-weight: bold;
+
+
+}
+  
+
+#blurEffectOn{
+    filter: blur(4px);
+
+}
+>>>>>>> 04e1259cd779fdcca45f87c315874f7041b9e219

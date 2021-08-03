@@ -19,11 +19,10 @@ import signup from './signup';
 import './visuels/resultPage.css';
 
 
-var souvenirParent
 
 function UserAccount(props) {
 
-    const [isLogin, setIsLogin] = useState(false)
+    const [isLogin, setIsLogin] = useState(true)
 
     // Initialisation des états et de leur setteur
     const [userFirstName, setUserFirstName] = useState("");
@@ -37,17 +36,20 @@ function UserAccount(props) {
 
 
     const [userExists, setUserExists] = useState(false)
-    const [favori, setFavori]= useState(false)
-    const [donnee,setDonnee]= useState()
+    const [donnee,setDonnee]= useState(true)
     const [favList,setFavList]= useState([])
-    const [isAid,setIsAid]= useState(false)
-    const [resultList, setResultList] = useState([])
     const[percentage,setPercentage] = useState()
     
 
 
 
     useEffect(() => {
+        console.log(props.token)
+        if(props.token==undefined){
+            setIsLogin(false)
+        }
+        console.log(isLogin)
+        
         const findUser = async() => {
             const data = await fetch(`users/infouser`, {
                 method: 'POST',
@@ -55,7 +57,7 @@ function UserAccount(props) {
                 body: `token=${props.token}`
         })
         const result = await data.json();
-        console.log(result)
+        console.log(result.userAids,'result')
         if (result.result) {
            
                 setUserFirstName(result.user.firstName);
@@ -66,32 +68,15 @@ function UserAccount(props) {
                 setUserSiret(result.user.siret);
                 setUserPosition(result.user.position);
                 setUserAids(result.user.userAids);
-                setIsAid(true);
                 setFavList(result.user.userAids)
             } 
-        
-        
-        const pourcentage2= [userFirstName, userLastName, userPhone, userEmail,userCompany,userSiret]
-        var count= 0
-        
-        for(var i=0; i<pourcentage2.length; i++){
-            if(data[i]!=''){
-                count =count + 100/7
-            }
-        }
-
-        setPercentage(count)
     }
-        findUser(); },[])
+        findUser(); },[isLogin])
 
 
     var detectLogin = () => {
-        setIsLogin(true);
+        setIsLogin(false);
     }
-
-
-
-
 
     var handleSubmitUserInfo = async () => {
         const data = await fetch("/users/update", {
@@ -101,13 +86,22 @@ function UserAccount(props) {
         })
         const result = await data.json();
 
+        const pourcentage2= [userFirstName, userLastName, userPhone, userEmail,userCompany,userSiret,userPosition]
+        var count= 0
+        
+        for(var i=0; i<pourcentage2.length; i++){
+            if(pourcentage2[i]!=''){
+                count =count + 100/7
+            }
+        }
+        setPercentage(Math.floor(count))
     }
-
-   
 
 
 //ajout favoris au lcik sur etoile
 var addUserAid= async(aide,id)=>{
+    console.log(aide)
+    console.log(aide.id)
     var copyList=[...favList]
         copyList=copyList.map((aide,i)=>{
             if(aide.favorite==undefined ){
@@ -125,37 +119,33 @@ var addUserAid= async(aide,id)=>{
         const data = await fetch('/add-favorite', {
                 method: 'POST',
                 headers: {'Content-Type':'application/x-www-form-urlencoded'},
-                body: `id=${aide}&token=${props.token}&favorite=${newFavorite}`
+                body: `id=${id}&token=${props.token}&favorite=${newFavorite}`
                 })  
     const response = await data.json();
-    
+    var listCopy=[...response.user.userAids] 
     if (response.result==false){
         setIsLogin(false)}
     else {
-        setFavList(response.user.userAids)
+        setFavList(listCopy)
     }
+    console.log(favList)
             
 } 
 
-
-
-
-
-
-if (isLogin==false){
+if (isLogin==true){
 
 return (
-<Container>
+<div>
     <Navigation handleClickParent={detectLogin}/>
     <Row  style={{width:'100%',display:'flex',alignItems:'center', justifyContent:'center', margin:'30px 0 50px 0'}}>
         
     
         <Nav variant="tabs" style={{width:'50%'}} >
             <Nav.Item>
-                <Nav.Link eventKey="link-1"onClick={()=>{setFavori(false);setDonnee(false)}}>Favoris</Nav.Link>
+                <Nav.Link eventKey="link-1 "onClick={()=>setDonnee(false)}>Favoris</Nav.Link>
             </Nav.Item>
             <Nav.Item>
-                <Nav.Link eventKey="link-2" onClick={()=>{setFavori(true);setDonnee(true)}} >Données perso</Nav.Link>
+                <Nav.Link eventKey="link-2" onClick={()=>setDonnee(true)} >Données perso</Nav.Link>
             </Nav.Item>
         </Nav>
 
@@ -168,7 +158,7 @@ return (
 
         <Col className="colonne" >
         <h3 style={{textAlign:'left'}} >Dirigeant de l'entreprise</h3>
-        <h5 style={{textAlign:'left'}}>Duclos</h5>
+        <h5 style={{textAlign:'left'}}>{userCompany}</h5>
         </Col>
     </Row>
 { donnee === true ?
@@ -178,7 +168,6 @@ return (
                     <h1>Mes informations personnelles</h1>
                 </Row>
                 <Col style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
-
 
                 <Form>
                     <Row>
@@ -217,7 +206,7 @@ return (
     :
     <Row  style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around', margin:'50px 0 0 0' }}>   
 
-{isAid ?
+{favList.length>0 ?
 
 favList.map((aide,i) =>{
 
@@ -230,25 +219,21 @@ favList.map((aide,i) =>{
                     <Row  className='CardRang1'>
                           {/* <img src={aide.logo} alt='' height='80px' /> */}
                           <img  alt='' height='80px' />
-                          <p><FontAwesomeIcon icon={faStar}
-                                style={{color:'yellow'}} onClick={()=>addUserAid(aide,aide.id)}
+                          <p><FontAwesomeIcon icon={faStar} size='2x'
+                                style={{color:'yellow'}} onClick={()=>addUserAid(aide,aide._id)}
                               />
                           </p>
                     </Row>
           
                     <Row className='CardAidName'>
-                          <div style={{marginBottom:'10px'}}>Essai</div>
+                          <div style={{marginBottom:'10px'}}>{aide.name}</div>
                     </Row>
                     
-                    <Row className='CardAidMontant'>
-                          <div>Essai€</div>
+                    <Row className='CardAidMontant' >
+                          <div>{aide.aidAmount}€</div>
                     </Row>
     
                     <Row className='CardAidInfo' >
-                          <div className='CardAidInfoSup'>
-                              <p>Essai</p>
-                              <p>Essai</p>
-                          </div>
                   
                           <div className='CardAidInfoInf' >
                               <p>Difficulté d'obtention: Essai</p>
@@ -268,15 +253,15 @@ favList.map((aide,i) =>{
 })
 
 :
-<div>Pas de favorite</div>
+<p>Pas de favorite</p>
 }
 </Row>
 } 
 
-</Container>
+</div>
 )
 }
-else if( isLogin== true){
+else if( isLogin== false){
     return(<Redirect to='/landingpage' />)
 }
 
