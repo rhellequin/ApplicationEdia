@@ -502,16 +502,11 @@ router.post('/updateamount', async function(req, res, next){
 
     const aid =  await aidModel.updateOne(
                               {aidId: aids[i].aidId}, 
-<<<<<<< HEAD
-                              {aidAmount: amount} ); 
-                                           
-=======
                               {aidAmount: amount},
                               
                               ); 
                               
                    
->>>>>>> 04e1259cd779fdcca45f87c315874f7041b9e219
     nbOfAidsUpdated++;
     
   }
