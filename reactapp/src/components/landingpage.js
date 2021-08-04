@@ -114,9 +114,9 @@ function Landingpage(props) {
 
                 <Row fluid={true} style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
                     <Col sm="12" md="6" lg="6" style={{ display: 'flex', flexDirection: 'column', marginTop: '30px', justifyContent: 'center', alignItems: 'center' }} >
-                        <h1 style={{ fontSize: 50, fontWeight: 'bold', fontFamily: 'Spartan', color: "#191718", textAlign: 'left', marginBottom: '10px' }}>La bonne aide  au bon moment pour votre PME</h1>
-                        <h5 style={{ fontSize: 20, fontWeight: 'regular', fontFamily: 'Inter', color: "#191718", textAlign: 'left', marginBottom: '10px' }}>Notre algorithme trouve l'aide qu'il vous faut en fonction de vos enjeux !</h5>
-                        <Button color="primary" size='lg' style={{ fontSize: 20, fontWeight: 'regular', width: '30%', marginTop: '15px' }} onClick={() => callSearchPage()} >Rechercher</Button>
+                        <h1 style={{ fontSize: 50, fontWeight: 'bold', fontFamily: 'Spartan', color: "#191718", textAlign: 'left', margin: '4vh' }}>La bonne aide  au bon moment pour votre PME</h1>
+                        <h5 style={{ fontSize: 20, fontWeight: 'regular', fontFamily: 'Inter', color: "#191718", textAlign: 'left', margin: '1vh', width: '90vh' }}> Notre algorithme trouve l'aide qu'il vous faut en fonction de vos enjeux !</h5>
+                        <Button color="primary" size='lg' style={{ fontSize: 20, fontWeight: 'regular', width: '30vh', marginTop: '7vh' }} onClick={() => callSearchPage()} >Rechercher</Button>
                     </Col>
 
                     <Col sm="12" md="6" lg="6" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '10px' }}>
@@ -138,44 +138,44 @@ function Landingpage(props) {
 
                 <Row style={{ justifyContent: 'center', alignItems: 'center', marginTop: '30px' }}>
                     <Col sm="12" style={{ display: 'flex', justifyContent: 'center' }}>
-                        <div style={{ width: '50%', borderRadius: '10px', border: '1px solid black', textAlign: 'center' }}>En utilisant EDIA vous acceptez notre politique de cookies</div>
+                        <div style={{ width: '60vh', borderRadius: '5px', border: '1px solid #E0E5E9', textAlign: 'center' }}>En utilisant EDIA vous acceptez notre politique de cookies      X </div>
                     </Col>
                 </Row>
 
 
                 {/* MEDIA  */}
                 <Row style={{ margin: '60px 0 60px 0' }}>
-                    <Col sm="12" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', marginTop: '60px' }}>
+                    <Col sm="12" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', marginTop: '10vh' }}>
                         <div style={{ fontSize: 50, fontWeight: 'bold', fontFamily: 'Spartan', color: "#191718" }}>Fonctionnalités</div>
                         <div style={{ fontSize: 20, fontWeight: 'regular', fontFamily: 'Inter', color: "#191718" }}>Vos recherches d’aides publiques deviennent</div>
                     </Col>
                 </Row>
 
                 <Row>
-                    <Media style={{ display: 'flex', alignItems: 'center' }}>
-                        <Media object src="../images/yellow.png" alt="Icone avec une cible" style={{ marginRight: '20px' }} />
+                    <Media style={{ display: 'flex', alignItems: 'center', width: '153vh', margin: "3vh", marginLeft: '20vh' }}>
+                        <Media object src="../images/yellow.png" alt="Icone avec une cible" style={{ marginRight: '10vh' }} />
                         <Media body>
-                            <Media heading style={{ fontSize: 50, fontFamily: 'Spartan', fontWeight: 'bold', color: "#191718", textAlign: 'left' }}>INTELLIGENTES</Media>
+                            <Media heading style={{ fontSize: 50, fontFamily: 'Spartan', fontWeight: 'bold', color: "#191718", textAlign: 'left', }}>Intelligentes</Media>
                             <Media style={{ fontSize: 20, fontFamily: 'Inter', fontWeight: 'regular', color: "#191718", textAlign: 'left' }}>En quelques clics</Media>
-                            <Media style={{ fontSize: 18, fontFamily: 'Inter', fontWeight: 'regular', color: "#191718", textAlign: 'left' }}>Nous vous posons quelques questions et notre algorithme s'occupe du reste pour trouver les aides qui correspondent au mieux aux besoins de votre entreprise.</Media>
+                            <Media style={{ fontSize: 18, fontFamily: 'Inter', fontWeight: 'regular', color: "#191718", textAlign: 'justify', width: '130vh' }}>Nous vous posons quelques questions et notre algorithme s'occupe du reste pour trouver les aides qui correspondent au mieux aux besoins de votre entreprise.</Media>
                         </Media>
                     </Media>
 
-                    <Media style={{ display: 'flex', alignItems: 'center' }}>
+                    <Media style={{ display: 'flex', alignItems: 'center', width: '153vh', margin: "3vh", marginLeft: '20vh' }}>
+                        <Media object src="../images/blue.png" alt="Icone avec un robot" style={{ marginRight: '10vh' }} />
                         <Media body>
-                            <Media heading style={{ fontSize: 50, fontFamily: 'Spartan', fontWeight: 'bold', color: "#191718", textAlign: 'right', marginTop: '30px' }}>EXHAUSTIVES</Media>
-                            <Media style={{ fontSize: 20, fontFamily: 'Inter', fontWeight: 'regular', color: "#191718", textAlign: 'right' }}>La puissance du big data</Media>
-                            <Media style={{ fontSize: 18, fontFamily: 'Inter', fontWeight: 'regular', color: "#191718", textAlign: 'right' }}>Notre algorithme se charge de parcourir l'ensemble des dispositifs d'aides en France et en Europe. Vous êtes assuré(e) de ne manquer aucune aide publique pour développer votre entreprise.</Media>
+                            <Media heading style={{ fontSize: 50, fontFamily: 'Spartan', fontWeight: 'bold', color: "#191718", textAlign: 'left' }}>Exhaustives</Media>
+                            <Media style={{ fontSize: 20, fontFamily: 'Inter', fontWeight: 'regular', color: "#191718", textAlign: 'left' }}>La puissance du big data</Media>
+                            <Media style={{ fontSize: 18, fontFamily: 'Inter', fontWeight: 'regular', color: "#191718", textAlign: 'justify', width: '130vh' }}>Notre algorithme se charge de parcourir l'ensemble des dispositifs d'aides en France et en Europe. Vous êtes assuré(e) de ne manquer aucune aide publique pour développer votre entreprise.</Media>
                         </Media>
-                        <Media object src="../images/blue.png" alt="Icone avec un robot" style={{ marginLeft: '20px' }} />
                     </Media>
 
-                    <Media style={{ display: 'flex', alignItems: 'center' }}>
-                        <Media object src="../images/grey.png" alt="Icone avec un avion en papier" style={{ marginRight: '20px' }} />
+                    <Media style={{ display: 'flex', alignItems: 'center', width: '153vh', margin: "3vh", marginLeft: '20vh' }}>
+                        <Media object src="../images/grey.png" alt="Icone avec un avion en papier" style={{ marginRight: '10vh' }} />
                         <Media body>
-                            <Media heading style={{ fontSize: 50, fontFamily: 'Spartan', fontWeight: 'bold', color: "#191718", textAlign: 'left', marginTop: '30px' }}>AUTOMATISEES</Media>
-                            <Media style={{ fontSize: 20, fontFamily: 'Inter', fontWeight: 'regular', color: "#191718", textAlign: 'left' }}>C'est un match !</Media>
-                            <Media style={{ fontSize: 18, fontFamily: 'Inter', fontWeight: 'regular', color: "#191718", textAlign: 'left' }}>Plus besoin de vérifier de manière régulière les nouveaux dispositifs d'aides. Une notification vous est envoyée quand une aide correspond à vos critères.</Media>
+                            <Media heading style={{ fontSize: 50, fontFamily: 'Spartan', fontWeight: 'bold', color: "#191718", textAlign: 'left' }}>Automatisées</Media>
+                            <Media style={{ fontSize: 20, fontFamily: 'Inter', fontWeight: 'regular', color: "#191718", textAlign: 'left'}}>C'est un match !</Media>
+                            <Media style={{ fontSize: 18, fontFamily: 'Inter', fontWeight: 'regular', color: "#191718", textAlign: 'justify', width: '130vh' }}>Plus besoin de vérifier de manière régulière les nouveaux dispositifs d'aides. Une notification vous est envoyée quand une aide correspond à vos critères.</Media>
                         </Media>
                     </Media>
 
@@ -184,7 +184,7 @@ function Landingpage(props) {
 
                 {/* CARTES CONTACT */}
                 <Row style={{ margin: '60px 0 60px 0' }}>
-                    <Col sm="12" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', marginTop: '60px' }}>
+                    <Col sm="12" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', marginTop: '10vh' }}>
                         <div style={{ fontSize: 50, fontFamily: 'Spartan', fontWeight: 'bold', color: "#191718", }}>Nos clients</div>
                         <div style={{ fontSize: 20, fontFamily: 'Inter', fontWeight: 'regular', color: "#191718", }}>Ils et elles nous font confiance</div>
                     </Col>
@@ -192,41 +192,41 @@ function Landingpage(props) {
 
                 <Row >
                     <Col sm="12" md="6" lg="4">
-                        <Card style={{ display: 'flex', alignItems: 'center' }}>
+                        <Card style={{ display: 'flex', alignItems: 'center', border: '1px solid white' }}>
                             <CardImg top style={{ margin: '20px', width: "50%", justifyContent: 'center' }} src="../images/eric.png" alt="Photo d'Eric Schmidt" />
                             <CardBody style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                                 <CardTitle tag="h1" style={{ fontSize: 50, fontFamily: 'Spartan', fontWeight: 'bold', color: "#191718" }}>Eric Schmidt</CardTitle>
                                 <CardSubtitle tag="h6" className="mb-2 text-muted" style={{ fontSize: 20, fontFamily: 'Inter', fontWeight: 'regular', color: "#191718" }}>Assistant de direction - Bol'Dair</CardSubtitle>
-                                <CardText style={{ fontSize: 18, fontFamily: 'Inter', fontWeight: 'regular', color: "#191718", textAlign: 'justify' }}>Avant Edia, je passais un temps fou à rechercher les différents dispositifs d'aides publiques, et à rassembler les données pour en informer mon patron. Aujourd'hui je les retrouve en un coup d'oeil dans mon dashboard.</CardText>
+                                <CardText style={{ fontSize: 18, fontFamily: 'Inter', fontWeight: 'regular', color: "#191718", textAlign: 'center', marginTop: '7vh' }}>Avant Edia, je passais un temps fou à rechercher les différents dispositifs d'aides publiques, et à rassembler les données pour en informer mon patron. Aujourd'hui je les retrouve en un coup d'oeil dans mon dashboard.</CardText>
                             </CardBody>
                         </Card>
                     </Col>
                     <Col sm="12" md="6" lg="4">
-                        <Card style={{ display: 'flex', alignItems: 'center' }}>
+                        <Card style={{ display: 'flex', alignItems: 'center', border: '1px solid white' }}>
                             <CardImg top style={{ margin: '20px', width: "50%", justifyContent: 'center' }} src="../images/sofia.png" alt="Photo de Sofia Cantre" />
                             <CardBody style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                                 <CardTitle tag="h1" style={{ fontSize: 50, fontFamily: 'Spartan', fontWeight: 'bold', color: "#191718" }}>Sofia Cantre</CardTitle>
                                 <CardSubtitle tag="h6" className="mb-2 text-muted" style={{ fontSize: 20, fontFamily: 'Inter', fontWeight: 'regular', color: "#191718" }}>CEO - Getsy</CardSubtitle>
-                                <CardText style={{ fontSize: 18, fontFamily: 'Inter', fontWeight: 'regular', color: "#191718", textAlign: 'justify' }}>Quand j'ai créé ma startup j'ai vite été perdue pour naviguer entre les différents dispositifs d'aides publiques auxquelles mon entreprise pouvait prétendre. Aujourd'hui avec Edia, aucune opportunité ne me passe sous le nez. Je viens de bénéficier d'une aide européenne.</CardText>
+                                <CardText style={{ fontSize: 18, fontFamily: 'Inter', fontWeight: 'regular', color: "#191718", textAlign: 'center', marginTop: '7vh' }}>Quand j'ai créé ma startup j'ai vite été perdue pour naviguer entre les différents dispositifs d'aides publiques auxquelles mon entreprise pouvait prétendre. Aujourd'hui avec Edia, aucune opportunité ne me passe sous le nez. Je viens de bénéficier d'une aide européenne.</CardText>
                             </CardBody>
                         </Card>
                     </Col>
                     <Col sm="12" md="6" lg="4">
-                        <Card style={{ display: 'flex', alignItems: 'center' }}>
+                        <Card style={{ display: 'flex', alignItems: 'center', border: '1px solid white' }}>
                             <CardImg top style={{ margin: '20px', width: "50%", justifyContent: 'center' }} src="../images/jean.png" alt="Photo de Jean de Nevers" />
                             <CardBody style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                                 <CardTitle tag="h1" style={{ fontSize: 50, fontFamily: 'Spartan', fontWeight: 'bold', color: "#191718" }}>Jean de Nevers</CardTitle>
                                 <CardSubtitle tag="h6" className="mb-2 text-muted" style={{ fontSize: 20, fontFamily: 'Inter', fontWeight: 'regular', color: "#191718" }}>Chef d'entreprise - Palaison Transports</CardSubtitle>
-                                <CardText style={{ fontSize: 18, fontFamily: 'Inter', fontWeight: 'regular', textAlign: 'justify', color: "#191718" }}>Il y a un an je cherchais à conquérir de nouveaux marchés pour développer mon entreprise. Grâce à Edia j'ai entendu parler d'aides à l'embauche de la région Ile de France. Mon équipe commerciale a bien grandi depuis.</CardText>
+                                <CardText style={{ fontSize: 18, fontFamily: 'Inter', fontWeight: 'regular', textAlign: 'center', color: "#191718", marginTop: '7vh' }}>Il y a un an je cherchais à conquérir de nouveaux marchés pour développer mon entreprise. Grâce à Edia j'ai entendu parler d'aides à l'embauche de la région Ile de France. Mon équipe commerciale a bien grandi depuis.</CardText>
                             </CardBody>
                         </Card>
                     </Col>
                 </Row>
                 <Row fluid={true} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                    <Col sm="12" md="6" lg="6" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', marginTop: '100px', width: "100%" }}>
+                    <Col sm="12" md="6" lg="6" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', marginTop: '30vh', width: "100%" }}>
                         <div style={{fontSize: 50, fontFamily: 'Spartan', fontWeight: 'bold', color: "#191718"}}>Trouvez l'aide publique qu'il vous faut !</div>
-                        <div style={{fontSize: 20, fontFamily: 'Inter', fontWeight: 'regular', color: "#191718", marginTop: '15px' }}>En moins de 2 minutes 😉</div>
-                        <Button color="primary" size='lg' style={{ fontSize: 20, fontWeight: 'regular', width: '70vh', marginTop: '5vh', marginBottom:'100px' }} onClick={() => callSearchPage()}>Rechercher</Button>
+                        <div style={{fontSize: 20, fontFamily: 'Inter', fontWeight: 'regular', color: "#191718", marginTop: '5vh', marginBottom: "2vh" }}>En moins de 2 minutes 😉</div>
+                        <Button color="primary" size='lg' style={{ fontSize: 20, fontWeight: 'regular', width: '30vh', marginTop: '7vh', marginBottom: '30vh' }} onClick={() => callSearchPage()}>Rechercher</Button>
                     </Col>
                 </Row>
 
@@ -237,19 +237,19 @@ function Landingpage(props) {
                         <img src='../images/petit-logo-150x94-transparent.png' alt="Logo" style={{marginTop: '2vh'  }}/>
                     </Col>
 
-                    <Col style={{ display: 'flex', flexDirection: 'column', width:"60vh", marginTop: '10px'  }}>
+                    <Col style={{ display: 'flex', flexDirection: 'column', width:"60vh", marginTop: '3vh'  }}>
 
                         <div style={{ fontSize: 20, fontFamily: 'Inter', fontWeight: 'bold' }}>A propos</div>
                         <div style={{ fontSize: 18, fontFamily: 'Inter', fontWeight: 'regular', color: "#0A95D0"}}>Notre mission</div>
                         <div style={{ fontSize: 18, fontFamily: 'Inter', fontWeight: 'regular', color: "#191718"}}>We're hiring !</div>
                     </Col>
 
-                    <Col style= {{marginTop: '2vh'}}>
+                    <Col style= {{marginTop: '1vh'}}>
                         <div style={{ fontSize: 20, fontFamily: 'Inter', fontWeight: 'bold', marginTop: '10px'  }}>Ressources</div>
                         <div style={{ fontSize: 18, fontFamily: 'Inter', fontWeight: 'regular', color: "#191718" }}>Blog</div>
                     </Col>
 
-                    <Col style= {{marginTop: '2vh'}}>
+                    <Col style= {{marginTop: '1vh'}}>
                         <div style={{ fontSize: 20, fontFamily: 'Inter', fontWeight: 'bold', marginTop: '10px'  }}>Nous contacter</div>
                         <div style={{ fontSize: 18, fontFamily: 'Inter', fontWeight: 'regular', color: "#191718" }}>40 Rue des Boulangers</div>
                         <div style={{ fontSize: 18, fontFamily: 'Inter', fontWeight: 'regular', color: "#191718" }}>75005</div>

@@ -7,7 +7,6 @@ import {Col, Row,Card} from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 
-
 import 'antd/dist/antd.css';
 import './visuels/resultPage.css';
 import './visuels/Modal.css';

@@ -27,17 +27,17 @@ var handleClick=()=>{
 
 {props.token?
     <Col sm="12" md="6" lg="6" style={{ display:'flex',justifyContent:'flex-end', alignItems:'center'}}>
-        <Link><Button onClick={()=> {props.reinitialise(); handleClick()}} outline color="primary" size='lg' style={{margin:'20px'}} >Deconnexion</Button></Link>
+        <Link><Button onClick={()=> {props.reinitialise(); handleClick()}} outline color="primary" size='sm' style={{margin:'20px'}} >Deconnexion</Button></Link>
         <div style={{ display:'flex',flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
-            <Link to='/useraccount'><Avatar size={64} icon={<UserOutlined />} /></Link>
-            <p style={{fontSize:18,fontWeight:'bold'}}>Welcome {props.firstName}</p> 
+            <Link to='/useraccount'><Avatar size={24} icon={<UserOutlined />} style={{marginTop: '4vh', marginRight: '4vh'}} /></Link>
+            <p style={{fontSize:18,fontWeight:'bold', marginRight: '4vh'}}>{props.firstName}</p> 
             <p></p>
         </div>
     </Col>
 : 
     <Col sm="12" md="8" lg="6"  style={{ display:'flex', justifyContent:'flex-end', alignItems:'center'}}>
-        <Link to='/signin'><Button  outline color="primary" size='lg' style={{margin:'20px', width:'177px'}}>Se connecter</Button></Link>
-        <Link to='/signup'><Button  color="primary" size='lg' style={{margin:'20px', width:'177px'}}>S'inscrire</Button></Link>
+        <Link to='/signin'><Button  outline color="primary" size='sm' style={{margin:'20px', width:'177px'}}>Se connecter</Button></Link>
+        <Link to='/signup'><Button  color="primary" size='sm' style={{margin:'20px', width:'177px'}}>S'inscrire</Button></Link>
     </Col>
 }
 </Row>
