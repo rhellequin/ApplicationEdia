@@ -58,10 +58,10 @@ function Profiles (props) {
     
    // Gestion du marquage projet :
 
-  let colorTextSelected = "black"
-  let colorBgSelected = "#F3D849"
-  let colorText = 'white'
-  let colorBg =  '#0A62D0'
+   let colorTextSelected = "#ffffff"
+   let colorBgSelected = "#285fda"
+   let colorText = '#191718'
+   let colorBg =  '#ffffff'
 
 
   const dataItem = aidProfiles.map ((profile,i)=>( 
@@ -95,6 +95,7 @@ function Profiles (props) {
                           fontFamily: 'Alata',
                           borderRadius: '10px',
                           fontSize: '16px',
+                          border:'1px solid #E0E5E9',
                           color: item.colorText,
                           backgroundColor: item.colorBg, 
                           }}>

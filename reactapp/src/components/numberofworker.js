@@ -46,10 +46,10 @@ function NumberOfWorker (props) {
   }
             
   // Gestion du marquage projet :
-  let colorTextSelected = "black"
-  let colorBgSelected = "#F3D849"
-  let colorText = 'white'
-  let colorBg =  '#0A62D0'
+  let colorTextSelected = "#ffffff"
+  let colorBgSelected = "#285fda"
+  let colorText = '#191718'
+  let colorBg =  '#ffffff'
         
         
   const dataItem = aidNumberOfWorker.map ((numberofworker,i)=>( 
@@ -82,6 +82,7 @@ function NumberOfWorker (props) {
                                       fontFamily: 'Alata',
                                       borderRadius: '10px',
                                       fontSize: '18px',
+                                      border:'1px solid #E0E5E9',
                                       color: item.colorText,
                                       backgroundColor: item.colorBg, 
                                   }}>

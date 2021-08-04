@@ -85,10 +85,10 @@ console.log('filterDomains domains ', tb)
 
 
 // Gestion du marquage projet :
-let colorTextSelected = "black"
-let colorBgSelected = "#F3D849"
-let colorText = 'white'
-let colorBg =  '#0A62D0'
+let colorTextSelected = "#ffffff"
+let colorBgSelected = "#285fda"
+let colorText = '#191718'
+let colorBg =  '#ffffff'
 
 const dataItem = domains.map ((d,i)=>( 
       {i: i, name: d.domainName, colorText : colorText, colorBg: colorBg} 
@@ -114,6 +114,7 @@ if (iSelected>=0) {
                           <Col span={8} key={i}>
                           <Card bordered={false} 
                             onClick={() => runSearch(i)}
+                            className="mouseHoverChange"
                             style={{ 
                               marginRight: '15px',
                               marginLeft: '15px',
@@ -123,10 +124,9 @@ if (iSelected>=0) {
                               fontFamily: 'Alata',
                               borderRadius: '10px',
                               fontSize: '18px',
+                              border:'1px solid #E0E5E9',
                               color: item.colorText,
                               backgroundColor: item.colorBg, 
-
-
                               }}>
                                   {item.name}
                           </Card>
