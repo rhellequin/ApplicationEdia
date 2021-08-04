@@ -1,6 +1,6 @@
 import React, {useState, useEffect } from 'react';
 import {connect} from 'react-redux';
-import {Input, Typography, Space, Button, Icon, Card, Col, Row, message } from 'antd'; 
+import {Input, Typography, Card, Col, Row} from 'antd'; 
 import 'antd/dist/antd.css';
 
 import SearchAids from './searchaids'
@@ -17,133 +17,126 @@ const {Meta} = Card;
 
 function Types (props) {
 
-    const [aidTypes, setAidTypes] = useState([]);
-    const [numberOfAids, setNumberOfAids] = useState(0);
-    const [iSelected, setISelected] = useState(-1)
-    const [isSpinning,setIsSpinning] = useState(true);
-   
+  const [aidTypes, setAidTypes] = useState([]);
+  const [numberOfAids, setNumberOfAids] = useState(0);
+  const [iSelected, setISelected] = useState(-1)
+  const [isSpinning,setIsSpinning] = useState(true);
+  
 
-    const { Search } = Input;
-    const { Text } = Typography;
+  const { Search } = Input;
+  const { Text } = Typography;
 
-    useEffect(() => {
+  useEffect(() => {
 
-        const findTypes = async() => {
-            const data = await fetch(`/types`, {
-                method: 'GET',
-                headers: {'Content-Type': 'application/x-www-form-urlencoded'},    
-            })
-            const body = await data.json()
-            if (body.result) {
-                setAidTypes(body.types);
-            }
+    const findTypes = async() => {
+        const data = await fetch(`/types`, {
+            method: 'GET',
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'},    
+        })
+        const body = await data.json()
+        if (body.result) {
+            setAidTypes(body.types);
         }
+    }
 
-        const countAllAids = async() => {
-          const data = await fetch(`countallaids`, {
-              method: 'GET',
-              headers: {'Content-Type': 'application/x-www-form-urlencoded'},    
-          })
-          const body = await data.json()
-          if (body.result) {
-              setNumberOfAids(body.countAllAids)
-          }
-        }
+    const countAllAids = async() => {
+      const data = await fetch(`countallaids`, {
+          method: 'GET',
+          headers: {'Content-Type': 'application/x-www-form-urlencoded'},    
+      })
+      const body = await data.json()
+      if (body.result) {
+          setNumberOfAids(body.countAllAids)
+      }
+    }
 
-        setIsSpinning(true);
-        findTypes();
-        countAllAids();
-        setIsSpinning(false);
+    setIsSpinning(true);
+    findTypes();
+    countAllAids();
+    setIsSpinning(false);
         
-      },[])
+  },[])
 
   const runSearch = async (i) => {
       
     setIsSpinning(true);
     setISelected(i); // pour gérer le marquage du projet sélectionné :
 
-    // Appel recherche :
-        let parameters = [...props.searchOptions]
-        parameters[props.indexOptions].valeur = aidTypes[i]._id
-        const aids = await SearchAids(parameters);
-    // Mise à jour du critère dans le store :
-        props.updateSearchOptions(props.indexOptions,aidTypes[i]._id);
-    // Store des aids trouvées :
-        props.updateAids(aids);
-    // Store du compteur d'aides :         
-        const n = aids.length;
-        props.updateNumberOfAids(n);
-        setNumberOfAids(n);
-        setIsSpinning(false);
+// Appel recherche :
+    let parameters = [...props.searchOptions]
+    parameters[props.indexOptions].valeur = aidTypes[i]._id
+    const aids = await SearchAids(parameters);
+// Mise à jour du critère dans le store :
+    props.updateSearchOptions(props.indexOptions,aidTypes[i]._id);
+// Store des aids trouvées :
+    props.updateAids(aids);
+// Store du compteur d'aides :         
+    const n = aids.length;
+    props.updateNumberOfAids(n);
+    setNumberOfAids(n);
+    setIsSpinning(false);
 
         
   }
     
-  console.log('isSpinning :', isSpinning);
-
    // Gestion du marquage projet :
 
-   let colorTextSelected = "black"
-   let colorBgSelected = "#F3D849"
-   let colorText = 'white'
-   let colorBg =  '#0A62D0'
+   
+  let colorTextSelected = "white"
+  let colorBgSelected = "#285fda"
+  let colorText = 'black'
+  let colorBg =  'white'
 
 
-   const dataItem = aidTypes.map ((type,i)=>( 
-    {i: i, name: type.typeName, colorText : colorText, colorBg: colorBg} 
-    ));
+/*
+  let colorTextSelected = "black"
+  let colorBgSelected = "#F3D849"
+  let colorText = 'white'
+  let colorBg =  '#0A62D0'
+*/
 
 
-    if (iSelected>=0) {  
-      dataItem[iSelected].colorText = colorTextSelected
-      dataItem[iSelected].colorBg=colorBgSelected   
-    }
+  const dataItem = aidTypes.map ((type,i)=>( 
+  {i: i, name: type.typeName, colorText : colorText, colorBg: colorBg} 
+  ));
+
+
+  if (iSelected>=0) {  
+    dataItem[iSelected].colorText = colorTextSelected
+    dataItem[iSelected].colorBg=colorBgSelected   
+  }
     
-
-
-
-
-// <h1 class='question' style={{color:'#ff33e0'}}>Déjà {numberOfAids} aides!</h1> 
-    return ( 
+  return ( 
         
 
-<div className="site-card-wrapper">
-    <CountAids numberOfAids={numberOfAids}/>
-    <SpinSearch isSpinning={isSpinning}/>
-
-
-    <Row gutter={16}>
-
-    {dataItem.map((item,i) => (
+    <div className="site-card-wrapper">
+      <CountAids numberOfAids={numberOfAids}/>
+      <SpinSearch isSpinning={isSpinning}/>
+      <Row gutter={16}>
+          {dataItem.map((item,i) => (
                 
                     <Col span={6} key={i}>
-                    <Card bordered={false} 
-                      onClick={() => runSearch(i)}
-                      style={{ 
-                        marginRight: '15px',
-                        marginLeft: '15px',
-                        marginTop: '15px',
-                        marginBottom: '15px',
-                        textAlign: 'center',
-                        fontFamily: 'Alata',
-                        borderRadius: '10px',
-                        fontSize: '18px',
-                        color: item.colorText,
-                        backgroundColor: item.colorBg, 
-
-
-                        }}>
-                            {item.name}
-                    </Card>
+                      <Card bordered={false} 
+                        onClick={() => runSearch(i)}
+                        style={{ 
+                          marginRight: '15px',
+                          marginLeft: '15px',
+                          marginTop: '15px',
+                          marginBottom: '15px',
+                          textAlign: 'center',
+                          fontFamily: 'Inter',
+                          fontSize: '16px',
+                          borderRadius: '5px',
+                          border:'1px solid #E0E5E9',
+                          color: item.colorText,
+                          backgroundColor: item.colorBg }}>
+                              {item.name}
+                      </Card>
                     </Col>
-
               ))}
-       </Row>  
-    
+       </Row>   
   </div>   
-
-        )
-
+)
 
 }
 

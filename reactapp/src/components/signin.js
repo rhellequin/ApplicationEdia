@@ -17,7 +17,8 @@ function SigninPage(props) {
     const [validEmail,setValidEmail]= useState(false)
 
     var handleSubmitSignIn = async () => {
-        var data = await fetch('/users/sign-in',{
+      if (validEmail==true){ 
+      var data = await fetch('/users/sign-in',{
           method: 'POST',
           headers: {'Content-Type':'application/x-www-form-urlencoded'},
           body: "email=" + signInEmail + "&password=" + signInPassword
@@ -31,6 +32,7 @@ function SigninPage(props) {
         } else {
           setListErrorsUp(body.error)
         }
+      } 
       }
 
       // validation format email

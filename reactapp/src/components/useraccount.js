@@ -150,13 +150,17 @@ return (
         </Nav>
 
     </Row>
+    
+    <Row style={{border: '1px solid #E0E5E9', backgroundColor:'#E0E5E9', height:'10vh', flexDirection: 'column' }}>
+    </Row>
+    
     <Row style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around', margin:'50px 0 0 0' }}>
-        <Col className="colonne" >
+        <Col className="colonne">
             <h3>Bonjour {props.firstName}</h3>
             <h5>Vous avez {percentage}% de profile complété</h5>
         </Col>
 
-        <Col className="colonne" >
+        <Col className="colonne">
         <h3 style={{textAlign:'left'}} >Dirigeant de l'entreprise</h3>
         <h5 style={{textAlign:'left'}}>{userCompany}</h5>
         </Col>
@@ -164,14 +168,14 @@ return (
 { donnee === true ?
 
         <Row style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around', margin:'50px 0 0 0' }}>
-                <Row style={{margin:'0 0 50px 0'}}>
+                <Row style={{marginBottom:'5vh', border: '1px solid #E0E5E9'}}>
                     <h1>Mes informations personnelles</h1>
                 </Row>
                 <Col style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
 
                 <Form>
                     <Row>
-                        <Form.Item style={{ width: '345px' }} label="">
+                        <Form.Item style={{ width: '345px', marginRight: '3vh' }} label="">
                             <Input onChange={(e) => setUserFirstName(e.target.value)} placeholder="Prénom" value={userFirstName}/>
                         </Form.Item>
                         <Form.Item style={{ width: '345px' }} label="">
@@ -179,7 +183,7 @@ return (
                         </Form.Item>
                     </Row>
                     <Row>
-                        <Form.Item style={{ width: '345px' }} label="">
+                        <Form.Item style={{ width: '345px', marginRight: '3vh' }} label="">
                             <Input onChange={(e) => setUserPhone(e.target.value)} placeholder="Téléphone" value={userPhone}/>
                         </Form.Item>
                         <Form.Item style={{ width: '345px' }} label="">
@@ -187,10 +191,10 @@ return (
                         </Form.Item>
                     </Row>
                     <Row>
-                        <Form.Item style={{ width: '345px' }} label="">
+                        <Form.Item style={{ width: '345px', marginRight: '3vh' }} label="">
                             <Input onChange={(e) => setUserCompany(e.target.value)} placeholder="Entreprise" value={userCompany}/>
                         </Form.Item>
-                        <Form.Item style={{ width: '345px' }} label="">
+                        <Form.Item style={{ width: '345px', marginRight: '3vh' }} label="">
                             <Input onChange={(e) => setUserSiret(e.target.value)} placeholder="Siret" value={userSiret}/>
                         </Form.Item>
                         <Form.Item style={{ width: '345px' }} label="">
@@ -198,7 +202,7 @@ return (
                         </Form.Item>
                     </Row>
                     <Form.Item>
-                        <Button onClick={() => handleSubmitUserInfo()} style={{ width: '100px', background: "#0A62D0", }} type="primary">Enregister</Button>
+                        <Button onClick={() => handleSubmitUserInfo()} style={{ fontSize: 20, fontWeight: 'regular', width: '30vh', background: "#0A62D0",  marginTop: '4vh'  }} type="primary">Enregister</Button>
                     </Form.Item>
                 </Form>
             </Col>

@@ -10,7 +10,7 @@ var uid2 = require('uid2');
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   res.send('respond with a resource');
-});
+}); 
 
 /*update informations utilisateur*/
 router.post('/update', async function(req, res, next) { 

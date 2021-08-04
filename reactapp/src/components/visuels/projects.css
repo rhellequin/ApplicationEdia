@@ -1,0 +1,10 @@
+.scroll-container {
+    height: 55vh;
+    width:  70vw;
+    margin-left: 15%;
+    overflow: auto;
+    border-radius: 5px; 
+    border: 1px solid #E0E5E9
+    
+
+  }

@@ -3,7 +3,8 @@
     
     margin-left: 10px;
     display:flex;
-    flex-flow: row wrap;
+    /* flex-flow: row wrap; */
+    display: left;
     flex: 1 1 0;
     font-family: Alata;
     
@@ -201,7 +202,6 @@ overflow-y: auto;
     text-align: center;
     font-family: Alata;
     font-size: 14px;
-
 }
            
 .CardAidInfoInf{
@@ -211,7 +211,6 @@ overflow-y: auto;
     text-align: center;
     font-family: Alata;
     font-size: 14px;
-
 }     
 
 .Criteres{

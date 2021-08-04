@@ -19,13 +19,13 @@ import user from './reducers/user.reducer';
 import searchOptions from  './reducers/searchoptions';
 import numberOfAids from  './reducers/numberofaids';
 import indexOptions from  './reducers/indexoptions';
+import filAriane from './reducers/filariane';
 import aids from './reducers/aids';
-
 import {Provider} from 'react-redux';
 import {createStore, combineReducers} from 'redux';
 
 
-const store = createStore(combineReducers({user, searchOptions, numberOfAids, indexOptions, aids}));
+const store = createStore(combineReducers({user, searchOptions, numberOfAids, indexOptions, aids, filAriane}));
 
 
 function App() {
@@ -38,14 +38,9 @@ function App() {
          <Route exact path="/searchPage" component={SearchPage} />
          <Route exact path="/resultPage" component={ResultPage} />
          <Route exact path="/signin" component={SigninPage} />
-         <Route exact path="/signup" component={SignupPage} />
-         <Route exact path="/test" component={TestEngine} />
-         <Route exact path="/modaltest" component={Apptest} />
-         <Route exact path="/test" component={TestEngine} />         
+         <Route exact path="/signup" component={SignupPage} /> 
+         <Route exact path="/modaltest" component={Apptest} />    
          <Route exact path="/useraccount" component={UserAccount} />
-
-          
-
 
 
 

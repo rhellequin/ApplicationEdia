@@ -195,8 +195,6 @@ router.get('/countallaids', async function(req, res, next){
 // POST avec les paramètres pour la recherche :
 router.post('/search', async function(req, res, next){
 
- 
-
   const parameters = JSON.parse(req.body.parameters);
   
   let filter = {};
@@ -206,10 +204,6 @@ router.post('/search', async function(req, res, next){
         filter[parameters[i].critere] = parameters[i].valeur
     }
   }
-
- // { aidNumberOfWorker: { $regex: /10-49/i } }  
-
-  console.log('Filter :', filter);
 
 //Find avec Populate sur les infos détails :
   const aids =  await aidModel.find(filter)
@@ -276,13 +270,9 @@ router.post('/filariane', async function(req, res, next){
       parameters[i].name = '';
     }
   }
-  if (true) {
-    console.log ('\x1b[34m%s\x1b[0m','=============== > POST filariane' )
+  
+  console.log ('\x1b[34m%s\x1b[0m','=============== > POST filariane' )
   res.json({result: true, filAriane: parameters})
-  } else {
-    console.log ('\x1b[31m%s\x1b[0m','=============== > POST filariane')
-  res.json({result: false})
-  }
 })
 
 module.exports = router;
