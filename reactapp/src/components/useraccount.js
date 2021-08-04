@@ -151,7 +151,8 @@ return (
 
     </Row>
     
-    <Row style={{border: '1px solid #E0E5E9', backgroundColor:'#E0E5E9', height:'10vh', flexDirection: 'column' }}>
+    <Row>
+    
     </Row>
     
     <Row style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around', margin:'50px 0 0 0' }}>
