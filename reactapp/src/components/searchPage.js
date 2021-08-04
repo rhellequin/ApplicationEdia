@@ -71,6 +71,10 @@ function SearchPage (props) {
               </Button>   
     }
 
+
+
+
+
 // Appel des résultats de la recherche, Voir les Aides :
   const callResultPage = async ()=> {
     const filAriane = await FilAriane(props.searchOptions);
@@ -108,7 +112,7 @@ return (
       <Navigation/>      
       <Content style={{ 
                         
-                        height: '490px',
+                        height: '60vh',
                         marginLeft: '15px',
                         marginRight: '15px' 
           }}>
@@ -121,7 +125,7 @@ return (
                                                                         display:'flex',
                                                                         flexDirection:'row',
                                                                         justifyContent:'space-between',
-                                                                        marginTop:'20px'}} >
+                                                                        marginTop:'10px'}} >
             {buttonContinuer}
             {buttonVoirAides}                  
         </Col>

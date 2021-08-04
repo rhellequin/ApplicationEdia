@@ -86,13 +86,14 @@ function Profiles (props) {
                     <Col span={6} key={i}>
                       <Card bordered={false} 
                         onClick={() => runSearch(i)}
+                        className="mouseHoverChange"
                         style={{ 
                           marginRight: '8px',
                           marginLeft: '8px',
                           marginTop: '8px',
                           marginBottom: '8px',
                           textAlign: 'center',
-                          fontFamily: 'Alata',
+                          fontFamily: 'Inter',
                           borderRadius: '10px',
                           fontSize: '16px',
                           border:'1px solid #E0E5E9',

@@ -106,6 +106,7 @@ function Types (props) {
           {dataItem.map((item,i) => (
                     <Col span={6} key={i}>
                       <Card bordered={false} 
+                        className="mouseHoverChange"
                         onClick={() => runSearch(i)}
                         style={{ 
                           marginRight: '15px',

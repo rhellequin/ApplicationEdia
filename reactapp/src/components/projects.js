@@ -116,10 +116,11 @@ let colorBg =  'white'
           dataSource={dataItem}
           renderItem={item => (
             <List.Item 
-                    style={{color: item.colorText, backgroundColor: item.colorBg, fontSize: '16px', fontFamily: 'Inter',border:'1px solid #E0E5E9'}}
-                    onClick={() => {runSearch(item.i)}}>      
-                <Col offset={1} span={8}>{item.domain}</Col>
-                <Col span={14}>{item.name}</Col>
+                className="mouseHoverChange"
+                style={{color: item.colorText, backgroundColor: item.colorBg, fontSize: '16px', fontFamily: 'Inter',border:'1px solid #E0E5E9'}}
+                onClick={() => {runSearch(item.i)}}>      
+              <Col offset={1} span={8}>{item.domain}</Col>
+              <Col span={14}>{item.name}</Col>
             </List.Item>)}
         />     
       </div>
