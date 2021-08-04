@@ -31,33 +31,19 @@ function SearchPage (props) {
     let buttonContinuer ='';
     if (indexOptions < (props.searchOptions.length - 1) && props.searchOptions[0].valeur != null) {
       buttonContinuer = 
-              <Button color="primary" size='md'
-                          onClick={() => callNext()}
-                          style={{backgroundColor: '#0A62D0',
-                                  borderRadius:'10px',
-                                  height: "60px",
-                                  fontSize: '24px',
-                                  color: 'white',
-                                  }}>
-                    Continuer
-                    <RightOutlined />   
-              </Button>
+      <button  className="boutonContinuer" onClick={() => callNext()}>Continuer</button>              
     } 
 
 // Bouton : Voir les aides si >0 et <200 aides :
     let buttonVoirAides ='';
     if (props.numberOfAids < 200  && props.numberOfAids > 0 ) {
       buttonVoirAides = 
-              <Button color="primary" size='lg' 
-                          onClick={() => callResultPage()}
-                          style={{backgroundColor: '#0A62D0',
-                                  borderRadius:'10px',
-                                  height: "60px",
-                                  fontSize: '24px',
-                                  color: 'white'}}>
-                      Voir les aides
-              </Button>   
+              <button  className="boutonVoirAides" onClick={() => callResultPage()}> Voir les aides </button>   
     }
+
+
+
+
 
 // Appel des résultats de la recherche, Voir les Aides :
   const callResultPage = async ()=> {
@@ -96,7 +82,7 @@ return (
       <Navigation/>      
       <Content style={{ 
                         
-                        height: '490px',
+                        height: '60vh',
                         marginLeft: '15px',
                         marginRight: '15px' 
           }}>
@@ -109,7 +95,7 @@ return (
                                                                         display:'flex',
                                                                         flexDirection:'row',
                                                                         justifyContent:'space-between',
-                                                                        marginTop:'20px'}} >
+                                                                        marginTop:'10px'}} >
             {buttonContinuer}
             {buttonVoirAides}                  
         </Col>

@@ -114,6 +114,7 @@ if (iSelected>=0) {
                           <Col span={8} key={i}>
                           <Card bordered={false} 
                             onClick={() => runSearch(i)}
+                            className="mouseHoverChange"
                             style={{ 
                               marginRight: '15px',
                               marginLeft: '15px',

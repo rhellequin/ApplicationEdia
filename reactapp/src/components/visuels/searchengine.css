@@ -40,7 +40,6 @@
   .buttonTerritory {
     background-color: #0A62D0;
     border-radius : 2px;
-    
     font-size: 16px;
     margin-left: 50px;
     color: white;
@@ -57,3 +56,31 @@
     border: 1px solid #E0E5E9
 
   }
+
+  .boutonContinuer {
+     
+    border-radius : 2px;
+    font-size: 16px;
+    height: 50px;
+    width:177px;
+    line-height:1.5;
+    background-color: white;
+    color: #0A62D0;
+    border: 1px solid #0A62D0
+  }
+  
+  .boutonVoirAides{
+     
+    border-radius : 2px;
+    font-size: 16px;
+    height: 50px;
+    width:177px;
+    line-height:1.5;
+    background-color: #0A62D0;
+    color: white;
+    border: 1px solid #0A62D0
+  }
+  
+.mouseHoverChange:hover {
+  cursor: pointer;
+}
