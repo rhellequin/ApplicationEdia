@@ -35,7 +35,8 @@ margin-right: 10px;
     margin-top: 10px;
     margin-bottom: 15px;
     margin-left: 10px;
-   
+    margin-right: 10px;
+   border: 1px solid black;
     font-family: Alata;
 }
 
@@ -131,13 +132,12 @@ overflow-y: auto;
     margin-right: 15px;
     margin-bottom: 30px;
     margin-top: 10px;
-    border-radius:30px;
+    border-radius:10px;
     flex: 1 1 0;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    border-style: none;
-   
+    border: 1px solid black;
     height: 500px;
     justify-content: space-;
     font-family: Alata;
@@ -145,11 +145,12 @@ overflow-y: auto;
 
 
 .CardRang1{
-    height:19%;
+    height:75px;
     display: flex;
     flex-direction: row;
     align-self: flex-start;
     justify-content: space-between;
+    background-color: yellow;
   
 
     
@@ -157,7 +158,7 @@ overflow-y: auto;
 
 .CardAidName{
    
-    height:33%; 
+    height:175px; 
     font-size: 18px;
     font-weight: bold;
     justify-content: center;
@@ -165,6 +166,8 @@ overflow-y: auto;
     text-align: center;
     align-items: center;
     text-overflow: "-";
+    background-color: blue;
+  
 
     
     
@@ -180,7 +183,7 @@ overflow-y: auto;
     align-content: center;
   
     border-radius: 5px;
-    border: 1px solid Black;
+  
 }
 
 .CardAidInfo{
@@ -191,7 +194,9 @@ overflow-y: auto;
     justify-content: space-around;
     text-align: center;
     font-family: Alata;
-    height: 30%;
+    height: 175px;
+    background-color: green;
+  
   
 }
            
@@ -237,7 +242,7 @@ display: flex;
     }
 
 .CardAidbouton{
-    height:10%;
+    height:75px;
     justify-content: center;
     align-content: flex-end;
    

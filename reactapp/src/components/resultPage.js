@@ -74,15 +74,6 @@ var importResult = props.aids.map((aid, i) => ({
 
 var idlist ={id1:"", id2:"", id3:"", id4:"", id5:""}
 
-
-
-
-console.log('blurEffect',blurEffect)
-
-
-
-       
-
       
 var ActiverBlur = async () => {
         setBlurEffect('blurEffectOn');
@@ -220,7 +211,7 @@ return(
                       <div style={{marginBottom:'10px'}}>{aide.name}</div>
                 </Row>
                 
-                <div className='Hline'></div>
+              
 
                 <Row className='CardAidInfo' >
                       <div className='CardAidInfoSup'>
@@ -289,8 +280,10 @@ if(isLogin==true){
 
 
 
-  <div style={{display:'flex', flexDirection: 'row'}}>                                          
-      <div className='Sidebar' >
+  <div style={{display:'flex', flexDirection: 'row'}}>   
+
+  <Col xs={{ span: 24, offset: 0 }}  md={{ span: 24, offset: 0 }} lg={{ span: 5, offset: 0 }} className='Sidebar'>
+    
           <h2 style={{marginBottom:'20px', marginTop:'20px'}}>TRIER PAR</h2>                       
               <ul className='SidebarList'>
                   <li id={ids.id1} onClick={() => TrierParMontant()} key="1" className='Row'><img src='../images/euro.png' alt=''id="IconeTri" /><div id="Title">Montant</div></li>
@@ -299,8 +292,8 @@ if(isLogin==true){
                   <li id={ids.id4} onClick={() => TrierParDifficulte()} key="4" className='Row'><img src='../images/difficulty.png' alt='' id="IconeTri" /><div id="Title">Difficulté</div></li>
                   <li id={ids.id5} onClick={() => TrierParDelai()} key="5" className='Row'><img src='../images/delais.png' alt='' id="IconeTri" /><div id="Title">Délais d'obtention</div></li>
               </ul>
-          </div>
-   
+        
+</Col>
         
             <div className='Mapper'>
                 <Row>
