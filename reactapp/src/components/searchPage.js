@@ -35,9 +35,14 @@ function SearchPage (props) {
                           onClick={() => callNext()}
                           style={{backgroundColor: '#0A62D0',
                                   borderRadius:'10px',
-                                  height: "60px",
-                                  fontSize: '24px',
+                                  height: "50px",
+                                  width: '30vh',
+                                  fontSize: '20px',
                                   color: 'white',
+                                  fontWeight: 'regular',
+                                  marginBottom: '10vh',
+                                  marginTop: '3vh',
+                                  marginLeft: '-25vh'
                                   }}>
                     Continuer
                     <RightOutlined />   
@@ -50,11 +55,19 @@ function SearchPage (props) {
       buttonVoirAides = 
               <Button color="primary" size='lg' 
                           onClick={() => callResultPage()}
-                          style={{backgroundColor: '#0A62D0',
+                          style={{backgroundColor: '#ffffff',
                                   borderRadius:'10px',
-                                  height: "60px",
-                                  fontSize: '24px',
-                                  color: 'white'}}>
+                                  border: '1px solid #E0E5E9',
+                                  height: "50px",
+                                  width: '30vh',
+                                  fontSize: '20px',
+                                  color: '#191718',
+                                  fontWeight: 'regular',
+                                  marginBottom: '10vh',
+                                  marginTop: '3vh',
+                                  marginRight: '34vh'
+                                }}>
+                                    
                       Voir les aides
               </Button>   
     }

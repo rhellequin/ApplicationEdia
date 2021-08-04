@@ -111,9 +111,9 @@ function Landingpage(props) {
 
     return ( 
 
-            <Container fluid={true}>
+            <Container fluid={true} style={{marginLeft: '-2vh'}}>
 
-                <Navigation />
+                <Navigation/>
 
                 <Row fluid={true} style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
                     <Col sm="12" md="6" lg="6" style={{ display: 'flex', flexDirection: 'column', marginTop: '30px', justifyContent: 'center', alignItems: 'center' }} >
@@ -155,8 +155,8 @@ function Landingpage(props) {
                 </Row>
 
                 <Row>
-                    <Media style={{ display: 'flex', alignItems: 'center', width: '153vh', margin: "3vh", marginLeft: '20vh' }}>
-                        <Media object src="../images/yellow.png" alt="Icone avec une cible" style={{ marginRight: '10vh' }} />
+                    <Media style={{ display: 'flex', alignItems: 'center', width: '153vh', margin: "3vh", marginLeft: '10vh' }}>
+                        <Media object src="../images/yellow.png" alt="Icone avec une cible" style={{ marginRight: '5vh' }} />
                         <Media body>
                             <Media heading style={{ fontSize: 50, fontFamily: 'Spartan', fontWeight: 'bold', color: "#191718", textAlign: 'left', }}>Intelligentes</Media>
                             <Media style={{ fontSize: 20, fontFamily: 'Inter', fontWeight: 'regular', color: "#191718", textAlign: 'left' }}>En quelques clics</Media>
@@ -164,8 +164,8 @@ function Landingpage(props) {
                         </Media>
                     </Media>
 
-                    <Media style={{ display: 'flex', alignItems: 'center', width: '153vh', margin: "3vh", marginLeft: '20vh' }}>
-                        <Media object src="../images/blue.png" alt="Icone avec un robot" style={{ marginRight: '10vh' }} />
+                    <Media style={{ display: 'flex', alignItems: 'center', width: '153vh', margin: "3vh", marginLeft: '50vh', flexDirection: 'row-reverse' }}>
+                        <Media object src="../images/blue.png" alt="Icone avec un robot" style={{ marginRight: '10vh', marginLeft: '5vh' }} />
                         <Media body>
                             <Media heading style={{ fontSize: 50, fontFamily: 'Spartan', fontWeight: 'bold', color: "#191718", textAlign: 'left' }}>Exhaustives</Media>
                             <Media style={{ fontSize: 20, fontFamily: 'Inter', fontWeight: 'regular', color: "#191718", textAlign: 'left' }}>La puissance du big data</Media>
@@ -173,8 +173,8 @@ function Landingpage(props) {
                         </Media>
                     </Media>
 
-                    <Media style={{ display: 'flex', alignItems: 'center', width: '153vh', margin: "3vh", marginLeft: '20vh' }}>
-                        <Media object src="../images/grey.png" alt="Icone avec un avion en papier" style={{ marginRight: '10vh' }} />
+                    <Media style={{ display: 'flex', alignItems: 'center', width: '153vh', margin: "3vh", marginLeft: '10vh' }}>
+                        <Media object src="../images/grey.png" alt="Icone avec un avion en papier" style={{ marginRight: '5vh' }} />
                         <Media body>
                             <Media heading style={{ fontSize: 50, fontFamily: 'Spartan', fontWeight: 'bold', color: "#191718", textAlign: 'left' }}>Automatisées</Media>
                             <Media style={{ fontSize: 20, fontFamily: 'Inter', fontWeight: 'regular', color: "#191718", textAlign: 'left'}}>C'est un match !</Media>
@@ -195,7 +195,7 @@ function Landingpage(props) {
 
                 <Row >
                     <Col sm="12" md="6" lg="4">
-                        <Card style={{ display: 'flex', alignItems: 'center', border: '1px solid white' }}>
+                        <Card style={{ display: 'flex', alignItems: 'center', border: '1px solid white', marginLeft: '3vh' }}>
                             <CardImg top style={{ margin: '20px', width: "50%", justifyContent: 'center' }} src="../images/eric.png" alt="Photo d'Eric Schmidt" />
                             <CardBody style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                                 <CardTitle tag="h1" style={{ fontSize: 50, fontFamily: 'Spartan', fontWeight: 'bold', color: "#191718" }}>Eric Schmidt</CardTitle>
@@ -205,7 +205,7 @@ function Landingpage(props) {
                         </Card>
                     </Col>
                     <Col sm="12" md="6" lg="4">
-                        <Card style={{ display: 'flex', alignItems: 'center', border: '1px solid white' }}>
+                        <Card style={{ display: 'flex', alignItems: 'center', border: '1px solid white', marginLeft: '3vh' }}>
                             <CardImg top style={{ margin: '20px', width: "50%", justifyContent: 'center' }} src="../images/sofia.png" alt="Photo de Sofia Cantre" />
                             <CardBody style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                                 <CardTitle tag="h1" style={{ fontSize: 50, fontFamily: 'Spartan', fontWeight: 'bold', color: "#191718" }}>Sofia Cantre</CardTitle>
@@ -215,7 +215,7 @@ function Landingpage(props) {
                         </Card>
                     </Col>
                     <Col sm="12" md="6" lg="4">
-                        <Card style={{ display: 'flex', alignItems: 'center', border: '1px solid white' }}>
+                        <Card style={{ display: 'flex', alignItems: 'center', border: '1px solid white', marginLeft: '3vh' }}>
                             <CardImg top style={{ margin: '20px', width: "50%", justifyContent: 'center' }} src="../images/jean.png" alt="Photo de Jean de Nevers" />
                             <CardBody style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                                 <CardTitle tag="h1" style={{ fontSize: 50, fontFamily: 'Spartan', fontWeight: 'bold', color: "#191718" }}>Jean de Nevers</CardTitle>
