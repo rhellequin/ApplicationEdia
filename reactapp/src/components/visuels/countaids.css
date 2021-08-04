@@ -1,16 +1,17 @@
 .BarreCompteur{
-    background-color: #E0E5E9;
+   
     position: absolute;
-    top: 74px;
-    right: 15px;
-    text-align: center;
-    width: 400px;
-    font-family: Alata;
-    font-size: 28px;
+    top: 5vh;
+    left: 35vw;
     border-right: 10px;
     margin-left: 5px;
-    box-shadow: 0 0 10px rgb(0, 0, 0, 1);
-    border-radius: 10px;
+   
+
+    text-align: center;
+    font-size: 35px;
+    font-family: Spartan;
+    color:#73cf05
+  
 }
 
 .BarreLoader{

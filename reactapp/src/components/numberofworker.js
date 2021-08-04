@@ -1,7 +1,7 @@
 import React, {useState, useEffect } from 'react';
 import {connect} from 'react-redux';
 import 'antd/dist/antd.css';
-import {Input, Typography, Card, Col, Row } from 'antd'; 
+import {Card, Col, Row } from 'antd'; 
 
 import SearchAids from './searchaids';
 import CountAids from './countaids';
@@ -11,93 +11,86 @@ const {Meta} = Card;
 
 function NumberOfWorker (props) {
   
-    const [aidNumberOfWorker, setAidNumberOfWorker] = useState([]);
-    const [numberOfAids, setNumberOfAids] = useState(0);
-    const [iSelected, setISelected] = useState(-1);
-    const [isSpinning,setIsSpinning] = useState(false); 
+  const [aidNumberOfWorker, setAidNumberOfWorker] = useState([]);
+  const [numberOfAids, setNumberOfAids] = useState(0);
+  const [iSelected, setISelected] = useState(-1);
+  const [isSpinning,setIsSpinning] = useState(false); 
 
-    const { Search } = Input;
-    const { Text } = Typography;
-        
-    useEffect(() => {
-      
-        var dataWorker =['micro','-5','-10','-15', '10-49', '50-249', '250 et plus' ];
-        setAidNumberOfWorker(dataWorker);
-        setNumberOfAids(props.numberOfAids);
-         
-      },[])   
+  useEffect(() => {
     
-      const runSearch = async (i) => {
+      var dataWorker =['micro','-5','-10','-15', '10-49', '50-249', '250 et plus' ];
+      setAidNumberOfWorker(dataWorker);
+      setNumberOfAids(props.numberOfAids);      
+    },[])   
+    
 
-        setIsSpinning(true); // Affichage Spin de recherche
-        setISelected(i); // pour gérer le marquage du projet sélectionné :
-    
-      // Appel recherche :
-          let parameters = [...props.searchOptions]
-          parameters[props.indexOptions].valeur = aidNumberOfWorker[i]
-          const aids = await SearchAids(parameters);
-      // Mise à jour du critère dans le store :
-          props.updateSearchOptions(props.indexOptions,aidNumberOfWorker[i]);
-      // Store des aids trouvées :
-          props.updateAids(aids);
-      // Store du compteur d'aides :         
-          const n = aids.length;
-          props.updateNumberOfAids(n);
-          setNumberOfAids(n);
-          setIsSpinning(false);
-      }
+
+  const runSearch = async (i) => {
+
+    setIsSpinning(true); // Affichage Spin de recherche
+    setISelected(i); // pour gérer le marquage du projet sélectionné :
+
+  // Appel recherche :
+      let parameters = [...props.searchOptions]
+      parameters[props.indexOptions].valeur = aidNumberOfWorker[i]
+      const aids = await SearchAids(parameters);
+  // Mise à jour du critère dans le store :
+      props.updateSearchOptions(props.indexOptions,aidNumberOfWorker[i]);
+  // Store des aids trouvées :
+      props.updateAids(aids);
+  // Store du compteur d'aides :         
+      const n = aids.length;
+      props.updateNumberOfAids(n);
+      setNumberOfAids(n);
+      setIsSpinning(false);
+  }
             
-           // Gestion du marquage projet :
-           let colorTextSelected = "black"
-           let colorBgSelected = "#F3D849"
-           let colorText = 'white'
-           let colorBg =  '#0A62D0'
+  // Gestion du marquage projet :
+  let colorTextSelected = "black"
+  let colorBgSelected = "#F3D849"
+  let colorText = 'white'
+  let colorBg =  '#0A62D0'
         
         
-           const dataItem = aidNumberOfWorker.map ((numberofworker,i)=>( 
-            {i: i, name: numberofworker, colorText : colorText, colorBg: colorBg} 
-            ));
+  const dataItem = aidNumberOfWorker.map ((numberofworker,i)=>( 
+  {i: i, name: numberofworker, colorText : colorText, colorBg: colorBg} 
+  ));
         
         
-            if (iSelected>=0) {  console.log('iSelected ',iSelected)
-              dataItem[iSelected].colorText = colorTextSelected
-              dataItem[iSelected].colorBg=colorBgSelected   
-            }
+  if (iSelected>=0) {  console.log('iSelected ',iSelected)
+    dataItem[iSelected].colorText = colorTextSelected
+    dataItem[iSelected].colorBg=colorBgSelected   
+  }
             
         
-        return ( 
-                
+  return ( 
         
-        <div className="site-card-wrapper">
-          <CountAids numberOfAids={numberOfAids}/>
-          <SpinSearch isSpinning={isSpinning}/>
-        
-                       
-          <Row gutter={16}>
-        
-            {dataItem.map((item,i) => (
-                        
+    <div className="site-card-wrapper">
+      <CountAids numberOfAids={numberOfAids}/>
+      <SpinSearch isSpinning={isSpinning}/>      
+      <Row gutter={16}>
+          {dataItem.map((item,i) => (                     
                             <Col span={6} key={i}>
-                            <Card bordered={false} 
-                              onClick={() => runSearch(i)}
-                              style={{ 
-                                    marginRight: '15px',
-                                    marginLeft: '15px',
-                                    marginTop: '15px',
-                                    marginBottom: '15px',
-                                    textAlign: 'center',
-                                    fontFamily: 'Alata',
-                                    borderRadius: '10px',
-                                    fontSize: '18px',
-                                    color: item.colorText,
-                                    backgroundColor: item.colorBg, 
-                                }}>
-                                {item.name}
-                            </Card>
+                              <Card bordered={false} 
+                                onClick={() => runSearch(i)}
+                                style={{ 
+                                      marginRight: '15px',
+                                      marginLeft: '15px',
+                                      marginTop: '15px',
+                                      marginBottom: '15px',
+                                      textAlign: 'center',
+                                      fontFamily: 'Alata',
+                                      borderRadius: '10px',
+                                      fontSize: '18px',
+                                      color: item.colorText,
+                                      backgroundColor: item.colorBg, 
+                                  }}>
+                                  {item.name}
+                              </Card>
                             </Col>       
                       ))}
-            </Row>  
-          </div>   )
+        </Row>  
+      </div>   )
   }
         
         

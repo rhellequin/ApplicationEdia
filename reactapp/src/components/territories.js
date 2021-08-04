@@ -62,28 +62,31 @@ function Territories (props) {
 
 // Appel de la recherche :
 const runSearch = async (i) => {
+
+
+// La recherche sur le territoire est by passée 
+// car les données récupérées sont inexploitables dans l'état.
+// ============================================================
   
   let parameters = [...props.searchOptions]
-  parameters[props.indexOptions].valeur = territories[i]._id
+  // parameters[props.indexOptions].valeur = territories[i]._id
   const aids = await SearchAids(parameters);
 
 // Mise à jour du Store :
-    props.updateSearchOptions(props.indexOptions,territories[i]._id);
-    props.updateAids(aids);        
+    //props.updateSearchOptions(props.indexOptions,territories[i]._id);
+    // props.updateAids(aids);        
     const n = aids.length;
     props.updateNumberOfAids(n);
-    setNumberOfAids(n);
-    console.log('aids :',aids )
-}
+    setNumberOfAids(n); 
  
-const inputDept =  (value) => {
- 
-    setTerritory(value);
-    console.log('inputDept :', value)
+  }
 
+// Input département :
+const inputDept =  (value) => {
+    setTerritory(value);
   }
   
-
+// recherche du département :
 const searchDept = async () => {
  
   const index = territories.findIndex((d) => d.territoryId == territory)

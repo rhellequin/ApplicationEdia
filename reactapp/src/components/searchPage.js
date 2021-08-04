@@ -1,5 +1,5 @@
 import React, {useState, useEffect } from 'react';
-import {Layout, Text, Button, Col, notification  } from 'antd'; 
+import {Layout, Typography, Button, Col, Text } from 'antd'; 
 import {connect} from 'react-redux';
 import { RightOutlined } from '@ant-design/icons';
 import { Redirect, useHistory } from 'react-router-dom';
@@ -15,6 +15,9 @@ import FilAriane from './filariane';
 function SearchPage (props) {
 
     const { Content } = Layout;
+    const { Text, Link } = Typography;
+
+
     const [indexOptions, setIndexOptions] = useState(0);
     const [onResultPage, setOnResultPage] = useState(false)
         
@@ -60,7 +63,7 @@ function SearchPage (props) {
   const callResultPage = async ()=> {
     const filAriane = await FilAriane(props.searchOptions);
     props.updateFilAriane(filAriane);
-    console.log('SearchPage filAriane =', filAriane)
+    
     setOnResultPage(true);
 }
 
@@ -77,7 +80,6 @@ function SearchPage (props) {
 // Redirect : 
 
 const history = useHistory();
-console.log('history :', history)
 
 
 
@@ -90,16 +92,16 @@ if (onResultPage) {
 
 return ( 
   <div>
-    <Layout>
+    <Layout  style={{backgroundColor: 'white'}}>
       <Navigation/>      
       <Content style={{ 
-                        backgroundColor: '#E0E5E9',
+                        
                         height: '490px',
                         marginLeft: '15px',
                         marginRight: '15px' 
           }}>
-            <p className='Question'>{props.searchOptions[indexOptions].question}</p>
-              {props.searchOptions[indexOptions].composant}
+          <p className='Question'>{props.searchOptions[indexOptions].question} </p>
+          {props.searchOptions[indexOptions].composant}
       </Content>        
     </Layout>
     <Col>

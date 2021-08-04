@@ -15,45 +15,45 @@ const {Meta} = Card;
 
 function Profiles (props) {
 
-    const [aidProfiles, setAidProfiles] = useState([]);
-    const [numberOfAids, setNumberOfAids] = useState(0);
-    const [iSelected, setISelected] = useState(-1);
-    const [isSpinning,setIsSpinning] = useState(false);
- 
+  const [aidProfiles, setAidProfiles] = useState([]);
+  const [numberOfAids, setNumberOfAids] = useState(0);
+  const [iSelected, setISelected] = useState(-1);
+  const [isSpinning,setIsSpinning] = useState(false);
 
-    useEffect(() => {
-        const findProfiles = async() => {
-            const data = await fetch(`/profiles`, {
-                method: 'GET',
-                headers: {'Content-Type': 'application/x-www-form-urlencoded'},    
-            })
-            const body = await data.json()
-            if (body.result) {
-                setAidProfiles(body.profiles);
-            }
+
+  useEffect(() => {
+    const findProfiles = async() => {
+        const data = await fetch(`/profiles`, {
+            method: 'GET',
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'},    
+        })
+        const body = await data.json()
+        if (body.result) {
+            setAidProfiles(body.profiles);
         }
-        setNumberOfAids(props.numberOfAids);
-        findProfiles()    
-      },[])
+    }
+    setNumberOfAids(props.numberOfAids);
+    findProfiles()    
+  },[])
 
   const runSearch = async (i) => {
 
     setIsSpinning(true); // Affichage Spin de recherche
     setISelected(i); // pour gérer le marquage du projet sélectionné :
 
-    // Appel recherche :
-        let parameters = [...props.searchOptions]
-        parameters[props.indexOptions].valeur = aidProfiles[i]._id
-        const aids = await SearchAids(parameters);
-    // Mise à jour du critère dans le store :
-        props.updateSearchOptions(props.indexOptions,aidProfiles[i]._id);
-    // Store des aids trouvées :
-        props.updateAids(aids);
-    // Store du compteur d'aides :         
-        const n = aids.length;
-        props.updateNumberOfAids(n);
-        setNumberOfAids(n);
-        setIsSpinning(false); 
+// Appel recherche :
+    let parameters = [...props.searchOptions]
+    parameters[props.indexOptions].valeur = aidProfiles[i]._id
+    const aids = await SearchAids(parameters);
+// Mise à jour du critère dans le store :
+    props.updateSearchOptions(props.indexOptions,aidProfiles[i]._id);
+// Store des aids trouvées :
+    props.updateAids(aids);
+// Store du compteur d'aides :         
+    const n = aids.length;
+    props.updateNumberOfAids(n);
+    setNumberOfAids(n);
+    setIsSpinning(false); 
   }
     
    // Gestion du marquage projet :
@@ -73,11 +73,7 @@ function Profiles (props) {
     dataItem[iSelected].colorText = colorTextSelected
     dataItem[iSelected].colorBg=colorBgSelected   
   }
-    
-
-
-
- 
+  
   return ( 
         
 

@@ -1,13 +1,10 @@
 .scroll-container {
-    height: 350px;
-    width:  80%;
-    margin-left: 10%;
-   
-    
+    height: 55vh;
+    width:  70vw;
+    margin-left: 15%;
     overflow: auto;
-   
-    border-radius: 10px; 
-    box-shadow: 0 0 10px rgb(0, 0, 0, 1);
+    border-radius: 5px; 
+    border: 1px solid #E0E5E9
     
 
   }
