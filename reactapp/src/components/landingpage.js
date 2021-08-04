@@ -86,6 +86,8 @@ function Landingpage(props) {
         props.updateIndexOptions(0);
         // Compteur de recherche :
         props.updateNumberOfAids(0);
+        //Nombre d'aide
+        props.reinitialiseAids()
 
 
 
@@ -284,8 +286,11 @@ function mapDispatchToProps(dispatch) {
 
         updateNumberOfAids: function (n) {
             dispatch({ type: 'updateNumberOfAids', numberOfAids: n })
-        }
+        },
 
+        reinitialiseAids: function() {
+            dispatch({type: 'initAids'})
+        }
     }
 }
 

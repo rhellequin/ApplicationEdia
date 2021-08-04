@@ -15,6 +15,17 @@ function SigninPage(props) {
     const [listErrorsUp, setListErrorsUp] = useState([]);
     const[isResearch,setIsResearch]= useState(false)
     const [validEmail,setValidEmail]= useState(false)
+    const [isAid, setIsAid]= useState(false)
+
+
+    useEffect(()=>console.log(isAid)
+
+,[isAid])
+
+
+
+
+
 
     var handleSubmitSignIn = async () => {
       if (validEmail==true){ 
@@ -26,15 +37,19 @@ function SigninPage(props) {
         var body = await data.json();
         if(body.result){
           props.connectFunction(body.token,body.firstName);
-          setIsLogin(true);
-          console.log('body.result', body)
-          console.log(body.result)
+
+        if(props.aids.length>0){
+          setIsAid(true)
+        }    
+        setIsLogin(true);
         } else {
           setListErrorsUp(body.error)
         }
+        
+        console.log(props.aids.length)
+        
       } 
       }
-
       // validation format email
       var ValidateEmail= (email) => {
         var emailformat = /\S+@\S+\.\S+/
@@ -62,7 +77,8 @@ if(isLogin==false){
       
 return(
 <div className="Login-page" >
-            
+<           Link to='/landingpage'><img src='../images/petit-logo-150x94-transparent.png'/></Link>
+
             {/* SIGN-IN */}
             <div className="Sign">
             {tabError}
@@ -71,7 +87,7 @@ return(
                 <Input style={{marginLeft:'5px'}} onChange={(e)=> {setSignInEmail(e.target.value);ValidateEmail(e.target.value)}} value={signInEmail} className="Signup-input" placeholder="email" />
             </div>
             <div style={{display:'flex', alignItems:'center', marginLeft:'20px'}}>  
-                <Input  onChange={(e)=> setSignInPassword(e.target.value)} value={signInPassword}  className="Signup-input" placeholder="mot de passe" />  
+                <Input  onChange={(e)=> setSignInPassword(e.target.value)} value={signInPassword}  type='password' className="Signup-input" placeholder="mot de passe" />  
             </div>
               <Button onClick={()=> handleSubmitSignIn()} style={{  background: "#0A62D0" }} type="primary">Sign in</Button>
               <Link to='signup' style={{marginTop:'50px'}}> No account yet ? </Link>
@@ -80,9 +96,16 @@ return(
     );
 }
 else if (isLogin === true) {
-  return (
+  if(isAid==true){
+    return (
+    <Redirect to='/resultPage' />
+    )
+  }
+  else{
+    return (
     <Redirect to='/landingpage' />
   )
+  }
 }
 }
 
