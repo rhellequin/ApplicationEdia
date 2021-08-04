@@ -166,9 +166,9 @@ function Landingpage(props) {
                     <Media style={{ display: 'flex', alignItems: 'center', width: '153vh', margin: "3vh", marginLeft: '50vh', flexDirection: 'row-reverse' }}>
                         <Media object src="../images/blue.png" alt="Icone avec un robot" style={{ marginRight: '10vh', marginLeft: '5vh' }} />
                         <Media body>
-                            <Media heading style={{ fontSize: 50, fontFamily: 'Spartan', fontWeight: 'bold', color: "#191718", textAlign: 'left' }}>Exhaustives</Media>
-                            <Media style={{ fontSize: 20, fontFamily: 'Inter', fontWeight: 'regular', color: "#191718", textAlign: 'left' }}>La puissance du big data</Media>
-                            <Media style={{ fontSize: 18, fontFamily: 'Inter', fontWeight: 'regular', color: "#191718", textAlign: 'justify', width: '130vh' }}>Notre algorithme se charge de parcourir l'ensemble des dispositifs d'aides en France et en Europe. Vous êtes assuré(e) de ne manquer aucune aide publique pour développer votre entreprise.</Media>
+                            <Media heading style={{ fontSize: 50, fontFamily: 'Spartan', fontWeight: 'bold', color: "#191718", textAlign: 'right' }}>Exhaustives</Media>
+                            <Media style={{ fontSize: 20, fontFamily: 'Inter', fontWeight: 'regular', color: "#191718", textAlign: 'right' }}>La puissance du big data</Media>
+                            <Media style={{ fontSize: 18, fontFamily: 'Inter', fontWeight: 'regular', color: "#191718", textAlign: 'right', width: '130vh' }}>Notre algorithme se charge de parcourir l'ensemble des dispositifs d'aides en France et en Europe. Vous êtes assuré(e) de ne manquer aucune aide publique pour développer votre entreprise.</Media>
                         </Media>
                     </Media>
 
