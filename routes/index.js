@@ -205,6 +205,10 @@ router.post('/search', async function(req, res, next){
     }
   }
 
+
+  console.log('Filter : ', filter);
+
+  
 //Find avec Populate sur les infos détails :
   const aids =  await aidModel.find(filter)
                               .populate('aidProfiles')

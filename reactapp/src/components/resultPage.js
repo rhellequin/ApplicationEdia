@@ -60,13 +60,10 @@ function ResultPage (props) {
 }, [])
 
 
-console.log('props.filAriane :', props.filAriane);
-
-
 
 
 var importResult = props.aids.map((aid, i) => ({
-    id: aid._id, name: aid.aidName, financeur: aid.aidFunders[0] == !undefined ?  aid.aidFunders[0].funderName : '', montant:aid.aidAmount, niveauAide: aid.aidLevel.levelName, logo:'../images/pinguin.png', diff:'facile',delai: '6 mois',
+    id: aid._id, name: aid.aidName, financeur: aid.aidFunders[0].funderName, montant:aid.aidAmount, niveauAide: aid.aidLevel.levelName, logo: aid.aidLogo, diff:'facile',delai: '6 mois',
 
 }));
 
@@ -76,9 +73,7 @@ var idlist ={id1:"", id2:"", id3:"", id4:"", id5:""}
 
 
 
-
-console.log('blurEffect',blurEffect)
-
+ 
 
        
 
