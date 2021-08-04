@@ -3,7 +3,7 @@ import './visuels/Modal.css';
 import './visuels/Bouton.css';
 
 
-export default function Modal (props){
+export default function Modal2 (props){
     
         return (
             <div className='Modal'

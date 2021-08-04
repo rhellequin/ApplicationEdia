@@ -4,6 +4,8 @@ import { Button,Col,Row,Container,Card, CardImg, CardText, CardBody,CardTitle, C
 import{Link,Redirect} from "react-router-dom";
 import {connect} from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTimesCircle,faCheckCircle} from '@fortawesome/free-solid-svg-icons'
 
 function SigninPage(props) {
 
@@ -12,6 +14,7 @@ function SigninPage(props) {
     const [isLogin, setIsLogin] = useState(false)
     const [listErrorsUp, setListErrorsUp] = useState([]);
     const[isResearch,setIsResearch]= useState(false)
+    const [validEmail,setValidEmail]= useState(false)
 
     var handleSubmitSignIn = async () => {
         var data = await fetch('/users/sign-in',{
@@ -30,6 +33,25 @@ function SigninPage(props) {
         }
       }
 
+      // validation format email
+      var ValidateEmail= (email) => {
+        var emailformat = /\S+@\S+\.\S+/
+        var emailTest= false
+        if (email.match(emailformat)) {
+         var emailTest=true }
+        else {
+          var emailTest=false
+        }
+        setValidEmail(emailTest)
+        }
+      if(validEmail==false){
+        var colorEmail = {color: 'red'}
+        var iconEmail = faTimesCircle
+        } else{
+        var colorEmail = {color: 'green'}
+        var iconEmail = faCheckCircle
+      }
+
       var tabError = listErrorsUp.map((error, i) => {
         return(<p style={{color:"red"}}>{error}</p>)
       });
@@ -42,8 +64,13 @@ return(
             {/* SIGN-IN */}
             <div className="Sign">
             {tabError}
-                <Input onChange={(e)=> setSignInEmail(e.target.value)} value={signInEmail} className="Signin-input" placeholder="johndoe@gmail.com" />
-                <Input.Password onChange={(e)=> setSignInPassword(e.target.value)} value={signInPassword}  className="Signin-input" placeholder="mot de passe" />  
+            <div style={{display:'flex', alignItems:'center'}}>
+                <FontAwesomeIcon style={colorEmail} icon={iconEmail} size='lg'  />
+                <Input style={{marginLeft:'5px'}} onChange={(e)=> {setSignInEmail(e.target.value);ValidateEmail(e.target.value)}} value={signInEmail} className="Signup-input" placeholder="email" />
+            </div>
+            <div style={{display:'flex', alignItems:'center', marginLeft:'20px'}}>  
+                <Input  onChange={(e)=> setSignInPassword(e.target.value)} value={signInPassword}  className="Signup-input" placeholder="mot de passe" />  
+            </div>
               <Button onClick={()=> handleSubmitSignIn()} style={{  background: "#0A62D0" }} type="primary">Sign in</Button>
               <Link to='signup' style={{marginTop:'50px'}}> No account yet ? </Link>
             </div>

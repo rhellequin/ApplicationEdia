@@ -1,9 +1,11 @@
+
 .Ariane{
     
     margin-left: 10px;
     display:flex;
     flex-flow: row wrap;
     flex: 1 1 0;
+    font-family: Alata;
     
     
 }
@@ -19,7 +21,7 @@
 
 .CritQuestion{
 font-weight: bold;
-font-size: 18px;
+font-size: 14px;
 margin-right: 10px;
 
 }
@@ -31,8 +33,9 @@ margin-right: 10px;
     border-radius: 20px;
     margin-top: 10px;
     margin-bottom: 15px;
-    margin-left: 20px;
-    box-shadow: 0 0 10px rgb(0, 0, 0, 1); 
+    margin-left: 10px;
+   
+    font-family: Alata;
 }
 
 .SidebarList{
@@ -57,7 +60,7 @@ font-weight: bold;
 transition: ease-out 0.3s;
 outline:none;
 position: relative;
-z-index: 1;
+z-index: 0;
 }
 
 .SidebarList .Row:before {
@@ -79,6 +82,7 @@ z-index: 1;
 
 #active{
     background-color: #0A62D0 !important ;
+    color:white;
 }
 
 
@@ -86,8 +90,7 @@ z-index: 1;
 .Row:hover:before{
    transition: 0.5s all ease;
    z-index:-1;
-   left: 0;
-   right:0;
+
    opacity: 1;
    
 }
@@ -117,7 +120,7 @@ z-index: 1;
  
 width: 80%;
 max-height: calc(100vh);
-    overflow-y: auto;
+overflow-y: auto;
 }
 
 
@@ -131,24 +134,29 @@ max-height: calc(100vh);
     flex: 1 1 0;
     display: flex;
     flex-direction: column;
-    border-style: none;
-    box-shadow: 0 0 10px rgb(0, 0, 0, 1);
-    height: 500px;
     justify-content: space-between;
+    border-style: none;
+   
+    height: 500px;
+    justify-content: space-;
+    font-family: Alata;
 }
 
 
 .CardRang1{
-    height:60px;
+    height:19%;
     display: flex;
     flex-direction: row;
     align-self: flex-start;
     justify-content: space-between;
+  
+
     
 }
 
 .CardAidName{
-    height:120px; 
+   
+    height:33%; 
     font-size: 18px;
     font-weight: bold;
     justify-content: center;
@@ -156,41 +164,40 @@ max-height: calc(100vh);
     text-align: center;
     align-items: center;
     text-overflow: "-";
-    margin-top: 10px;
+
+    
     
 }
 
+.Hline { width:100%; height:1px; background: black }
+
 .CardAidMontant{
-    height:50px;
+    height:60%;
    width: 180px;
     font-size: 24px;
-   
-    
    text-align: center;
     align-content: center;
-    
-    background-color: #F3D849;
+  
     border-radius: 5px;
-   
     border: 1px solid Black;
 }
 
 .CardAidInfo{
-    margin-top: 20px;
-    height:220px;
+    margin-top: auto;
+    height:33%;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     text-align: center;
     font-family: Alata;
     height: 30%;
-    border-top: 1px solid black;
+  
 }
            
 .CardAidInfoSup{
     display: flex;
     flex-direction: column;
-   
+    justify-content:space-between;
     text-align: center;
     font-family: Alata;
     font-size: 14px;
@@ -203,7 +210,6 @@ max-height: calc(100vh);
     text-align: center;
     font-family: Alata;
     font-size: 14px;
-    padding: 20px;
 }     
 
 .Criteres{
@@ -211,8 +217,8 @@ max-height: calc(100vh);
     flex-direction:column;
     text-align: start;
     width: 100px;
-    height: 60px;
-    margin-bottom: 20px;
+
+  
     
 }  
 
@@ -225,13 +231,36 @@ display: flex;
 .ans{
     display: flex;
     flex-direction: column;
-    align-items: baseline
+    align-items: baseline;
+    font-family: Alata;
     }
 
 .CardAidbouton{
-    height:60px;
+    height:10%;
     justify-content: center;
     align-content: flex-end;
-    margin-bottom: 0;
+   
+    font-family: Alata;
+}         
+
+.Ensavoirplus{
+    color: #fff;
+    background: #0A62D0;
+
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    width: 40%;
+    height: 100%;
+    max-width: 100%;
+    font-size: 18px;
+    font-weight: bold;
+
+
+}
   
+
+#blurEffectOn{
+    filter: blur(4px);
+
 }
