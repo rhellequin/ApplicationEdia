@@ -31,14 +31,45 @@ function SearchPage (props) {
     let buttonContinuer ='';
     if (indexOptions < (props.searchOptions.length - 1) && props.searchOptions[0].valeur != null) {
       buttonContinuer = 
-      <button  className="boutonContinuer" onClick={() => callNext()}>Continuer</button>              
+              <Button color="primary" size='md'
+                          onClick={() => callNext()}
+                          style={{backgroundColor: '#0A62D0',
+                                  borderRadius:'10px',
+                                  height: "50px",
+                                  width: '30vh',
+                                  fontSize: '20px',
+                                  color: 'white',
+                                  fontWeight: 'regular',
+                                  marginBottom: '10vh',
+                                  marginTop: '3vh',
+                                  marginLeft: '-25vh'
+                                  }}>
+                    Continuer
+                    <RightOutlined />   
+              </Button>
     } 
 
 // Bouton : Voir les aides si >0 et <200 aides :
     let buttonVoirAides ='';
     if (props.numberOfAids < 200  && props.numberOfAids > 0 ) {
       buttonVoirAides = 
-              <button  className="boutonVoirAides" onClick={() => callResultPage()}> Voir les aides </button>   
+              <Button color="primary" size='lg' 
+                          onClick={() => callResultPage()}
+                          style={{backgroundColor: '#ffffff',
+                                  borderRadius:'10px',
+                                  border: '1px solid #E0E5E9',
+                                  height: "50px",
+                                  width: '30vh',
+                                  fontSize: '20px',
+                                  color: '#191718',
+                                  fontWeight: 'regular',
+                                  marginBottom: '10vh',
+                                  marginTop: '3vh',
+                                  marginRight: '34vh'
+                                }}>
+                                    
+                      Voir les aides
+              </Button>   
     }
 
 

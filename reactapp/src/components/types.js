@@ -81,10 +81,12 @@ function Types (props) {
     
    // Gestion du marquage projet :
 
-  let colorTextSelected = "white"
+   
+  let colorTextSelected = "#ffffff"
   let colorBgSelected = "#285fda"
-  let colorText = 'black'
-  let colorBg =  'white'
+  let colorText = '#191718'
+  let colorBg =  '#ffffff'
+
 
   const dataItem = aidTypes.map ((type,i)=>( 
   {i: i, name: type.typeName, colorText : colorText, colorBg: colorBg} 
@@ -102,7 +104,6 @@ function Types (props) {
       <SpinSearch isSpinning={isSpinning}/>
       <Row gutter={16}>
           {dataItem.map((item,i) => (
-                
                     <Col span={6} key={i}>
                       <Card bordered={false} 
                         className="mouseHoverChange"
