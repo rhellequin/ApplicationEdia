@@ -63,7 +63,7 @@ function ResultPage (props) {
 
 
 var importResult = props.aids.map((aid, i) => ({
-    id: aid._id, name: aid.aidName, financeur: aid.aidFunders[0].funderName, montant:aid.aidAmount, niveauAide: aid.aidLevel.levelName, logo: aid.aidLogo, diff:'facile',delai: '6 mois',
+    id: aid._id, name: aid.aidName, financeur: aid.aidFunders[0].funderName, montant:aid.aidAmount, niveauAide: aid.aidLevel.levelName, logo: aid.aidLogo, diff:aid.aidDiff,delai: aid.aidDelai,
 
 }));
 
@@ -89,16 +89,13 @@ var DesactiverBlur = async () => {
         
       // Fonctions de tri
       var TrierParMontant = async () => {
-        
                   importResult.sort(
                       function compareMountant( a, b ) {
                           if ( a.montant < b.montant ){return -1;}
                           if ( a.montant > b.montant ){return 1;}
                           return 0;}
-                  );
-                  
+                  ); 
                   setIds({id1:"active", id2:"inactive", id3:"inactive", id4:"inactive", id5:"inactive"})
-                  
                   setResultList(importResult)};
 
       var TrierParFinanceur = async () => {
@@ -199,14 +196,14 @@ var DesactiverBlur = async () => {
 
 return(
                 
-    <Col xs={{ span: 24, offset: 0 }}  md={{ span: 24, offset: 0 }} lg={{ span: 8, offset: 0 }}key={i}>
+    <Col xs={{ span: 2, offset: 0 }}  md={{ span: 8, offset: 0 }} lg={{ span: 8, offset: 0 }}key={i}>
      
         <Card  className='CardAid' >
                 
                 <Row  className='CardRang1'>
                       <img src={aide.logo} alt='' height='80px' />
                     
-                      <div className='CardAidMontant'>{aide.montant}€</div>
+                      <div className='CardAidMontant'>{aide.montant} €</div>
                       <p><FontAwesomeIcon icon={faStar}
                           style={colorStar} size='2x'
                           onClick={()=>addUserAid(aide,aide.id)}/>
@@ -217,31 +214,29 @@ return(
                       <div style={{marginBottom:'10px'}}>{aide.name}</div>
                 </Row>
                 
-                <div className='Hline'></div>
+              
 
                 <Row className='CardAidInfo' >
-                      <div className='CardAidInfoSup'>
-                      <div className='Criteres'>
-                          <div className='ask'>Financeur:</div>
-                          <p className='ans'>{aide.financeur}</p>
-                          </div>
-                        <div className='Criteres'>
-                        <div className='ask'>Niveau de l'aide</div>
-                        <div className='ans'>{aide.niveauAide}</div>
-                          </div>
-                      </div>
-              
-                      <div className='CardAidInfoInf' >
-                      <div className='Criteres'>
-                      <div className='ask'>Difficulté d'obtention: </div>
-                      <div className='ans'>{aide.diff}</div>
-
-                          </div>
-                          <div className='Criteres'>    
-                          <div className='ask'>Délai d'obtention:</div>
-                          <div className='ans'> {aide.delai}</div>
-                          </div>
-                      </div>
+                    <div className='CardAidInfoSup'>
+                                <div className='Criteres'>
+                                                <div className='ask'>Financeur:</div>
+                                                <div className='ans'>{aide.financeur}</div>   
+                                </div>
+                                <div className='Criteres'>
+                                                <div className='ask'>Difficulté d'obtention: </div>
+                                                <div className='ans'>{aide.diff}</div>
+                                </div>
+                    </div>
+                    <div className='CardAidInfoInf' >
+                                <div className='Criteres'>
+                                        <div className='ask'>Niveau de l'aide</div>
+                                        <div className='ans'>{aide.niveauAide}</div>
+                                </div>
+                                <div className='Criteres'>    
+                                        <div className='ask'>Délai d'obtention:</div>
+                                        <div className='ans'> {aide.delai}</div>
+                                </div>
+                    </div>
                 </Row>
               
                 <Row className='CardAidbouton'>          
@@ -261,9 +256,31 @@ return(
 
 
 const displayFilAriane = props.filAriane.map((fil,i) => {
-    if (fil.name != '') {
-        return ( <Text underline>{fil.name} | </Text> ) 
-        }});
+    var icone=''
+if ([i]==0){icone='../images/1.png'}
+else if ([i]==1){icone='../images/2.png'}
+else if ([i]==2){icone='../images/3.png'}
+else if ([i]==3){icone='../images/4.png'}
+else if ([i]==4){icone='../images/5.png'}
+else if ([i]==5){icone='../images/6.png'}
+else if ([i]==6){icone='../images/7.png'}
+
+
+
+var reponse=''
+
+if (fil.name !='' ){reponse=fil.name}
+else {reponse='Champ non renseigné'}
+
+var idAriane=''
+
+if (fil.name !='' ){idAriane='questionRepondue'}
+else {idAriane='ChampNonRenseigne'}
+
+
+    // if (fil.name != '') {
+        return ( <Text className="Ariane" id={idAriane}><img className='Numero' src={icone} alt='' id={idAriane} />{reponse}</Text> ) 
+        });
 
 console.log('displayFilAriane :', displayFilAriane);
 
@@ -286,8 +303,10 @@ if(isLogin==true){
 
 
 
-  <div style={{display:'flex', flexDirection: 'row'}}>                                          
-      <div className='Sidebar' >
+  <div style={{display:'flex', flexDirection: 'row'}}>   
+
+  <Col xs={{ span: 24, offset: 0 }}  md={{ span: 24, offset: 0 }} lg={{ span: 5, offset: 0 }} className='Sidebar'>
+    
           <h2 style={{marginBottom:'20px', marginTop:'20px'}}>TRIER PAR</h2>                       
               <ul className='SidebarList'>
                   <li id={ids.id1} onClick={() => TrierParMontant()} key="1" className='Row'><img src='../images/euro.png' alt=''id="IconeTri" /><div id="Title">Montant</div></li>
@@ -296,8 +315,8 @@ if(isLogin==true){
                   <li id={ids.id4} onClick={() => TrierParDifficulte()} key="4" className='Row'><img src='../images/difficulty.png' alt='' id="IconeTri" /><div id="Title">Difficulté</div></li>
                   <li id={ids.id5} onClick={() => TrierParDelai()} key="5" className='Row'><img src='../images/delais.png' alt='' id="IconeTri" /><div id="Title">Délais d'obtention</div></li>
               </ul>
-          </div>
-   
+        
+</Col>
         
             <div className='Mapper'>
                 <Row>

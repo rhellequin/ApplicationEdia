@@ -50,10 +50,10 @@ function CompanyAge (props) {
       }
             
   // Gestion du marquage projet :
-  let colorTextSelected = "black"
-  let colorBgSelected = "#F3D849"
-  let colorText = 'white'
-  let colorBg =  '#0A62D0'
+  let colorTextSelected = "#ffffff"
+  let colorBgSelected = "#285fda"
+  let colorText = '#191718'
+  let colorBg =  '#ffffff'
 
     const dataItem = aidCompanyAge.map ((companyage,i)=>( 
     {i: i, name: companyage, colorText : colorText, colorBg: colorBg} 
@@ -76,15 +76,17 @@ return (
         <Col span={6} key={i}>
           <Card bordered={false} 
             onClick={() => runSearch(i)}
+            className="mouseHoverChange"
             style={{ 
                   marginRight: '15px',
                   marginLeft: '15px',
                   marginTop: '15px',
                   marginBottom: '15px',
                   textAlign: 'center',
-                  fontFamily: 'Alata',
+                  fontFamily: 'Inter',
                   borderRadius: '10px',
                   fontSize: '18px',
+                  border:'1px solid #E0E5E9',
                   color: item.colorText,
                   backgroundColor: item.colorBg, 
                   }}>

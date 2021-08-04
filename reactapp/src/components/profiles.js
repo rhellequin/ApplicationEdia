@@ -58,10 +58,10 @@ function Profiles (props) {
     
    // Gestion du marquage projet :
 
-  let colorTextSelected = "black"
-  let colorBgSelected = "#F3D849"
-  let colorText = 'white'
-  let colorBg =  '#0A62D0'
+   let colorTextSelected = "#ffffff"
+   let colorBgSelected = "#285fda"
+   let colorText = '#191718'
+   let colorBg =  '#ffffff'
 
 
   const dataItem = aidProfiles.map ((profile,i)=>( 
@@ -86,15 +86,17 @@ function Profiles (props) {
                     <Col span={6} key={i}>
                       <Card bordered={false} 
                         onClick={() => runSearch(i)}
+                        className="mouseHoverChange"
                         style={{ 
                           marginRight: '8px',
                           marginLeft: '8px',
                           marginTop: '8px',
                           marginBottom: '8px',
                           textAlign: 'center',
-                          fontFamily: 'Alata',
+                          fontFamily: 'Inter',
                           borderRadius: '10px',
                           fontSize: '16px',
+                          border:'1px solid #E0E5E9',
                           color: item.colorText,
                           backgroundColor: item.colorBg, 
                           }}>
