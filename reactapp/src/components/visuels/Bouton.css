@@ -1,6 +1,5 @@
 .Bouton{
-    top: 30%;
-    left: 50%;
+  
     transform: translate (-50%, -50%);
     color: #fff;
     background: #0A62D0;
@@ -8,8 +7,11 @@
     border-radius: 5px;
     border: none;
     cursor: pointer;
-    width: 309px;
+    width: 40vw;
     height: 67px;
+    max-width: 180px;
+    font-size: 18px;
+    font-weight: bold;
 
 }
 
@@ -25,6 +27,7 @@
     width: 200px;
     height: 67px;
     margin: 10px;
+    
     
 
 }
