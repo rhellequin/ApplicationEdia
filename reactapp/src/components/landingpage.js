@@ -8,14 +8,11 @@ import Navigation from './navigation';
 import { Button, Col, Row, Container, Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Media} from 'reactstrap';
 
 
-// composant de test :
-import TestEngine from './testengine';
 
 // Import des composants pour les critères de recherche :
 import Types from './types';
 import Domains from './domains';
 import Projects from './projects';
-import ActivitySector from './activitysector';
 import Territories from './territories';
 import NumberOfWorker from './numberofworker';
 import CompanyAge from './companyage';
@@ -86,6 +83,8 @@ function Landingpage(props) {
         props.updateIndexOptions(0);
         // Compteur de recherche :
         props.updateNumberOfAids(0);
+        //Nombre d'aide
+        props.reinitialiseAids()
 
 
 
@@ -284,8 +283,11 @@ function mapDispatchToProps(dispatch) {
 
         updateNumberOfAids: function (n) {
             dispatch({ type: 'updateNumberOfAids', numberOfAids: n })
-        }
+        },
 
+        reinitialiseAids: function() {
+            dispatch({type: 'initAids'})
+        }
     }
 }
 

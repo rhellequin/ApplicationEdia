@@ -25,7 +25,7 @@ import {
 } from 'antd';
 
 
-import './visuels/territories.css';
+import './visuels/searchengine.css';
 import SearchAids from './searchaids'
 import CountAids from './countaids'
 
@@ -105,20 +105,20 @@ return (
     <CountAids numberOfAids={numberOfAids}/>
     <Form.Item 
         className="form-dept"  >
-        <Text style={{textAlign:'right', marginBottom:'10px',fontWeight:'bold' ,fontSize:20, fontFamily:'Spartan', marginRight:'50px', color: 'white'}}>
+        <Text style={{textAlign:'right', marginBottom:'10px',fontWeight:'bold' ,fontSize:16, fontFamily:'Inter', marginRight:'50px', color: 'black'}}>
         Votre département</Text>
         <InputNumber  
-            style={{textAlign:'right', marginBottom:'10px',fontWeight:'bold' ,fontSize:20, fontFamily:'Arial'}}
+            style={{textAlign:'right', marginBottom:'10px',fontWeight:'bold' ,fontSize:16, fontFamily:'Arial'}}
             
             placeholder="01" 
             value={territory} 
             onChange={inputDept} 
             className="form-field"/>
             <Text
-            style={{textAlign:'left', marginBottom:'10px',fontWeight:'bold' ,fontSize:20, fontFamily:'Spartan', marginLeft:'50px', color: 'white'}}>
+            style={{textAlign:'left', marginBottom:'10px',fontWeight:'bold' ,fontSize:16, fontFamily:'Inter', marginLeft:'50px', color: 'black'}}>
             {territoryName}</Text>
             
-        <Button className="buttonTerritory" onClick={searchDept}>Valider </Button>  
+        <button className="buttonTerritory"   onClick={searchDept}>Valider </button>  
  
       </Form.Item>
     

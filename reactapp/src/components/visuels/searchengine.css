@@ -1,0 +1,59 @@
+.BarreCompteur{
+   
+    position: absolute;
+    top: 5vh;
+    left: 35vw;
+    border-right: 10px;
+    margin-left: 5px;
+    text-align: center;
+    font-size: 35px;
+    font-family: Spartan;
+    color:#0A62D0
+  
+}
+
+.BarreLoader{
+    background-color: #E0E5E9;
+    position: absolute;
+    top: 74px;
+    right: 15px;
+    text-align: center;
+    width: 400px;
+    font-family: Alata;
+    font-size: 28px;
+    border-right: 10px;
+    margin-left: 5px;
+    border-radius: 10px;
+}
+
+.form-dept {
+    height: 350px;
+    width:  80%;
+    background-color: white;
+    margin-left: 10%;
+    border-radius: 5px; 
+    border: 1px solid #E0E5E9;
+    padding-top : 80px;
+    padding-left: 50px;
+    
+  }
+  .buttonTerritory {
+    background-color: #0A62D0;
+    border-radius : 2px;
+    
+    font-size: 16px;
+    margin-left: 50px;
+    color: white;
+    width:177px;
+    line-height:1.5;
+  }
+
+  .scroll-container {
+    height: 55vh;
+    width:  70vw;
+    margin-left: 15%;
+    overflow: auto;
+    border-radius: 5px; 
+    border: 1px solid #E0E5E9
+
+  }

@@ -14,6 +14,7 @@ function SignupPage(props) {
     const [visibility, setVisibility]= useState(false)
     const [validEmail, setValidEmail] = useState(false)
     const [validPhone, setValidPhone] = useState(false)
+    const [isAid, setIsAid]= useState(false)
     const [user, setUser]= useState({
         firstName: "",
         lastName:"",
@@ -33,6 +34,9 @@ function SignupPage(props) {
         var response = await requete.json();
         if (response.result === true){
           props.connectFunction(response.token, response.firstName);
+          if(props.aids.length>0){
+            setIsAid(true)
+          }  
           setIsLogin(true);
         } else {
           setListErrorsUp(response.error)
@@ -116,6 +120,8 @@ function SignupPage(props) {
 if(isLogin==false){
 return(
 <div className="Login-page" >
+
+            <Link to='/landingpage'><img src='../images/petit-logo-150x94-transparent.png'/></Link>
             {/* SIGN-UP*/}
             <div className="Sign">
               <div style={{display:'flex', alignItems:'center'}}>
@@ -151,10 +157,17 @@ return(
     );
 }
 else if (isLogin === true) {
-      return (
-        <Redirect to='/landingpage' />
-      )
-    }
+  if(isAid==true){
+    return (
+    <Redirect to='/resultPage' />
+    )
+  }
+  else{
+    return (
+    <Redirect to='/landingpage' />
+  )
+  }
+}
 }
 function mapDispatchToProps(dispatch){
     return{
