@@ -81,25 +81,14 @@ function Types (props) {
     
    // Gestion du marquage projet :
 
-   
   let colorTextSelected = "white"
   let colorBgSelected = "#285fda"
   let colorText = 'black'
   let colorBg =  'white'
 
-
-/*
-  let colorTextSelected = "black"
-  let colorBgSelected = "#F3D849"
-  let colorText = 'white'
-  let colorBg =  '#0A62D0'
-*/
-
-
   const dataItem = aidTypes.map ((type,i)=>( 
   {i: i, name: type.typeName, colorText : colorText, colorBg: colorBg} 
   ));
-
 
   if (iSelected>=0) {  
     dataItem[iSelected].colorText = colorTextSelected
@@ -108,7 +97,6 @@ function Types (props) {
     
   return ( 
         
-
     <div className="site-card-wrapper">
       <CountAids numberOfAids={numberOfAids}/>
       <SpinSearch isSpinning={isSpinning}/>

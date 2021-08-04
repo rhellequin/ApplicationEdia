@@ -2,10 +2,10 @@
 .form-dept {
     height: 350px;
     width:  80%;
-    background-color: #0A62D0;
+    background-color: white;
     margin-left: 10%;
-    border-radius: 10px; 
-    box-shadow: 0 0 10px rgb(0, 0, 0, 1);
+    border-radius: 5px; 
+    border: 1px solid #E0E5E9;
     padding-top : 80px;
     padding-left: 50px;
     
@@ -19,7 +19,6 @@
     height: 60px;
     font-size: 24px;
     margin-left: 50px;
-      
     color: white                                                             
 
   }

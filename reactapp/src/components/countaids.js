@@ -1,19 +1,20 @@
 import React from 'react';
-
-import './visuels/countaids.css';
+import './visuels/searchengine.css';
  
-
- 
-
 function CountAids (props) {
-   
-    return (  
 
-       
+let displayCount;
+if (props.numberOfAids > 1 ) {
+    displayCount = props.numberOfAids + ' aides disponibles'
+} else {
+    displayCount = props.numberOfAids + ' aide disponible'
+}
+
+   
+    return (   
         <div className='BarreCompteur'>
-              {props.numberOfAids} aides disponibles
+              {displayCount} 
         </div>
-        
     )}
 export default CountAids;
      

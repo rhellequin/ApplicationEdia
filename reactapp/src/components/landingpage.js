@@ -8,14 +8,11 @@ import Navigation from './navigation';
 import { Button, Col, Row, Container, Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Media} from 'reactstrap';
 
 
-// composant de test :
-import TestEngine from './testengine';
 
 // Import des composants pour les critères de recherche :
 import Types from './types';
 import Domains from './domains';
 import Projects from './projects';
-import ActivitySector from './activitysector';
 import Territories from './territories';
 import NumberOfWorker from './numberofworker';
 import CompanyAge from './companyage';
