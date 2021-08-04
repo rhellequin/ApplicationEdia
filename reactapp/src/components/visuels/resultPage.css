@@ -1,4 +1,7 @@
-
+body{
+    font-family: Inter;
+text-align: justify;
+}
 .Ariane{
 
     padding: 15px;
@@ -43,8 +46,8 @@ margin-right: 10px;
     margin-bottom: 15px;
     margin-left: 10px;
     margin-right: 10px;
-    border: 1px solid black;
-    font-family: Alata;
+    border: 1px solid #E0E5E9;
+    font-family: Inter;
 }
 
 .SidebarList{
@@ -103,6 +106,7 @@ z-index: 0;
 
 #Title{
     flex:70%;
+    
 }
 
 .Mapper{
@@ -124,10 +128,10 @@ overflow-y: auto;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    border: 1px solid black;
+    border: 1px solid #E0E5E9;
     height: 475px;
-    justify-content: space-;
-    font-family: Alata;
+  
+    font-family: Inter;
 }
 
 
@@ -149,7 +153,6 @@ overflow-y: auto;
     font-size: 18px;
     font-weight: bold;
     justify-content: center;
-    font-family: Alata;
     text-align: center;
     align-items: center;
     text-overflow: "-";
@@ -222,7 +225,7 @@ display: flex;
     display: flex;
     flex-direction: column;
     align-items: baseline;
-    font-family: Alata;
+  
     }
 
 .CardAidbouton{
@@ -230,7 +233,7 @@ display: flex;
     justify-content: center;
     align-content: flex-end;
    
-    font-family: Alata;
+
 }         
 
 .Ensavoirplus{
