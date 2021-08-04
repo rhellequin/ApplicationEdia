@@ -120,8 +120,9 @@ function SignupPage(props) {
 if(isLogin==false){
 return(
 <div className="Login-page" >
-
-            <Link to='/landingpage'><img src='../images/petit-logo-150x94-transparent.png'/></Link>
+            <div className="Image">
+              <Link to='/landingpage'><img src='../images/petit-logo-150x94-transparent.png'/></Link>
+            </div>
             {/* SIGN-UP*/}
             <div className="Sign">
               <div style={{display:'flex', alignItems:'center'}}>

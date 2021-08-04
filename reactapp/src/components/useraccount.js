@@ -126,9 +126,7 @@ var addUserAid= async(aide,id)=>{
         setIsLogin(false)}
     else {
         setFavList(listCopy)
-    }
-    console.log(favList)
-            
+    }            
 } 
 
 if (isLogin==true){
@@ -146,15 +144,15 @@ return (
     
         <Nav variant="tabs" style={{width:'50%'}} >
             <Nav.Item>
-                <Nav.Link eventKey="link-1 "onClick={()=>setDonnee(false)}>Favoris</Nav.Link>
+                <Nav.Link eventKey="link-1 "  onClick={()=>setDonnee(false)}>Favoris</Nav.Link>
             </Nav.Item>
             <Nav.Item>
-                <Nav.Link eventKey="link-2" onClick={()=>setDonnee(true)} >Données perso</Nav.Link>
+                <Nav.Link eventKey="link-1" onClick={()=>setDonnee(true)} >Données perso</Nav.Link>
             </Nav.Item>
         </Nav>
 
     </Row>
-
+    
     <Row style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around', margin:'50px 0 0 0' }}>
         <Col className="colonne">
             <h3>Bonjour {props.firstName}</h3>

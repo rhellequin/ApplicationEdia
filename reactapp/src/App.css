@@ -110,3 +110,11 @@ body {
   background-color: white;
 }
 
+.Image{
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  width:100%;
+  margin-left: 24px;
+  
+}

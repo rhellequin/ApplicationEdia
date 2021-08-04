@@ -13,17 +13,21 @@
 }
 
 .BarreLoader{
-    background-color: #E0E5E9;
-    position: absolute;
-    top: 74px;
-    right: 15px;
-    text-align: center;
-    width: 400px;
-    font-family: Alata;
-    font-size: 28px;
-    border-right: 10px;
-    margin-left: 5px;
-    border-radius: 10px;
+  
+  background-color: white;
+  position: absolute;
+  top: 5vh;
+  left: 35vw;
+  text-align: center;
+  width: 400px;
+  font-family: Alata;
+  font-size: 28px;
+  border-right: 10px;
+  margin-left: 5px;
+  
+  border-radius: 10px;
+    
+    
 }
 
 .form-dept {

@@ -3,22 +3,16 @@
 
 
 import React from 'react';
-import { Spin, Space } from 'antd';
+import { Spin } from 'antd';
 import './visuels/searchengine.css';
 
 function SpinSearch (props) {
    
     return (  
-     
-
-<row className='BarreLoader'>        
-
-<Spin size="large" spinning={props.isSpinning}/>
-
-</row>
+        <row className='BarreLoader'>        
+            <Spin size="large" spinning={props.isSpinning}/>
+        </row>
     )}
  
-
-
 export default SpinSearch;
      
