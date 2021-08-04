@@ -14,6 +14,8 @@ import './visuels/Modal.css';
 import Navigation from './navigation';
 import Bouton from './Bouton';
 import CountAids from './countaids';
+import FilAriane from './filariane';
+
 
 Modal.setAppElement('#root')
 
