@@ -248,7 +248,6 @@ display: flex;
 .Ensavoirplus{
     color: #fff;
     background: #0A62D0;
-
     border-radius: 5px;
     border: none;
     cursor: pointer;
@@ -263,6 +262,7 @@ display: flex;
   
 
 #blurEffectOn{
-    filter: blur(4px);
+    filter: blur(7px);
+ 
 
 }
