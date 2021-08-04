@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import{Redirect} from "react-router-dom";
 import Modal from 'react-modal'
 
-import {Col, Row,Card} from 'antd'; 
+import {Col, Row,Card, Typography} from 'antd'; 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 
@@ -11,19 +11,16 @@ import 'antd/dist/antd.css';
 import './visuels/resultPage.css';
 import './visuels/Modal.css';
 
-
-
-
-
-
 import Navigation from './navigation';
 import Bouton from './Bouton';
-import CountAids from './countaids'
-import FilAriane from './filariane'
+import CountAids from './countaids';
+import FilAriane from './filariane';
+
 
 Modal.setAppElement('#root')
 
 function ResultPage (props) {
+ 
 
   const [ResultList, setResultList] = useState([])
   const [addingAid, setAddingAid] = useState (false)
@@ -38,12 +35,40 @@ function ResultPage (props) {
 
  
   
+  const { Text, Link } = Typography;
 
-  var importResult = props.aids.map((aid, i) => ({
-  id: aid._id, name: aid.aidName, financeur:aid.aidFunders[0].funderName, montant:aid.aidAmount, niveauAide: aid.aidLevel.levelName, logo: aid.aidLogo, diff: aid.aidDiff, delai: aid.aidDelai
+
+
+  useEffect(() => {
+    var resultat = async () => {
+            importResult.sort(function compareMountant( a, b ) {
+            if ( a.montant < b.montant ){return -1;}
+            if ( a.montant > b.montant ){return 1;}
+            return 0;});
+    console.log('useffect', importResult);
+    setResultList(importResult);
+    setNumberOfAids(props.numberOfAids);
+
+    const filAriane = await FilAriane(props.searchOptions);
+    setFilAr(filAriane);
+    setIds(idlist)
+    setBlurEffect('blurEffectOff')
+    
+  }
+  resultat()
+
+}, [])
+
+
+console.log('props.filAriane :', props.filAriane);
+
+
+
+
+var importResult = props.aids.map((aid, i) => ({
+    id: aid._id, name: aid.aidName, financeur: aid.aidFunders[0] == !undefined ?  aid.aidFunders[0].funderName : '', montant:aid.aidAmount, niveauAide: aid.aidLevel.levelName, logo:'../images/pinguin.png', diff:'facile',delai: '6 mois',
 
 }));
-
 
 
 
@@ -57,29 +82,6 @@ console.log('blurEffect',blurEffect)
 
        
 
-      useEffect(() => {
-          var resultat = async () => {
-                  importResult.sort(function compareMountant( a, b ) {
-                  if ( a.montant < b.montant ){return -1;}
-                  if ( a.montant > b.montant ){return 1;}
-                  return 0;});
-          console.log('useffect', importResult);
-          setResultList(importResult);
-          setNumberOfAids(props.numberOfAids);
-
-          const filAriane = await FilAriane(props.searchOptions);
-          setFilAr(filAriane);
-          setIds(idlist)
-          setBlurEffect('blurEffectOff')
-          
-          
-          
-         
-         
-        }
-        resultat()
-
-      }, [])
       
 var ActiverBlur = async () => {
         setBlurEffect('blurEffectOn');
@@ -174,8 +176,6 @@ var DesactiverBlur = async () => {
                 else if(aide.favorite==true){
                       newFavorite=false}
 
-            console.log(id)
-            
             const data = await fetch('/add-favorite', {
                         method: 'POST',
                         headers: {'Content-Type':'application/x-www-form-urlencoded'},
@@ -190,6 +190,8 @@ var DesactiverBlur = async () => {
       }
 
  
+
+
 
             var displayList = ResultList.map((aide,i) => {
                             if(aide.favorite ==true){
@@ -259,6 +261,16 @@ return(
     </Col>
     )
           })
+          
+
+
+
+const displayFilAriane = props.filAriane.map((fil,i) => {
+    if (fil.name != '') {
+        return ( <Text underline>{fil.name} | </Text> ) 
+        }});
+
+console.log('displayFilAriane :', displayFilAriane);
 
 
 if(isLogin==true){
@@ -271,18 +283,13 @@ if(isLogin==true){
   <Navigation/>
 
   <CountAids numberOfAids={numberOfAids}/>
-  <Col md={{ span: 24 }} className='Ariane' >
-      
-      <div className='CritAid'><div className='CritQuestion'>Type d'aide: </div>Exonération de charges sociales </div>
-      <div className='CritAid'><div className='CritQuestion'>/ Secteur d'activité: </div>Economie</div>
-      <div className='CritAid'><div className='CritQuestion'>/ Enjeux: </div>Connaître les exonérations fiscales</div>
-      <div className='CritAid'><div className='CritQuestion'>/ Département: </div>Loire-Atlantique</div>
-      <div className='CritAid'><div className='CritQuestion'>Profil de l'entreprise: </div>Autres services, professions libérales</div>
-      <div className='CritAid'><div className='CritQuestion'>Effectifs: </div>+ de 250</div>
-      <div className='CritAid'><div className='CritQuestion'>Age de l'entreprise: </div>moins de 3 ans
-      </div>
 
-  </Col>
+  <div>
+      {displayFilAriane}
+  </div>
+
+
+
 
   <div style={{display:'flex', flexDirection: 'row'}}>                                          
       <div className='Sidebar' >
@@ -297,11 +304,11 @@ if(isLogin==true){
           </div>
    
         
-              <div className='Mapper'>
-                  <Row>
-                      {displayList}
-                  </Row>  
-              </div> 
+            <div className='Mapper'>
+                <Row>
+                    {displayList}
+                </Row>  
+            </div> 
         
   </div> 
   <Modal isOpen={modalIsOpen} onRequestClose={() =>DesactiverBlur()} style={{overlay:{position: 'fixed',
@@ -423,7 +430,14 @@ d’aides. </p>
 }
 
 function mapStateToProps(state) {
-  return { searchOptions: state.searchOptions, indexOptions: state.indexOptions, numberOfAids: state.numberOfAids, aids: state.aids, token: state.user.token}}
+  return { 
+        searchOptions: state.searchOptions, 
+        indexOptions: state.indexOptions, 
+        numberOfAids: state.numberOfAids, 
+        aids: state.aids, 
+        token: state.user.token, 
+        filAriane: state.filAriane
+        }}
 
 export default connect(
   mapStateToProps,

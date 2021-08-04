@@ -87,10 +87,13 @@ function Landingpage(props) {
         // Compteur de recherche :
         props.updateNumberOfAids(0);
 
-    }, [])
 
-    // Action Click sur Recherche :
-    const callSearchPage = () => {
+
+      }, [])
+
+// Action Click sur Recherche :
+    const callSearchPage = ()=> {
+
         setOnCallSearch(true);
     }
 
