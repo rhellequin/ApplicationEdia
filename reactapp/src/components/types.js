@@ -92,7 +92,6 @@ function Types (props) {
   {i: i, name: type.typeName, colorText : colorText, colorBg: colorBg} 
   ));
 
-
   if (iSelected>=0) {  
     dataItem[iSelected].colorText = colorTextSelected
     dataItem[iSelected].colorBg=colorBgSelected   
@@ -100,7 +99,6 @@ function Types (props) {
     
   return ( 
         
-
     <div className="site-card-wrapper">
       <CountAids numberOfAids={numberOfAids}/>
       <SpinSearch isSpinning={isSpinning}/>

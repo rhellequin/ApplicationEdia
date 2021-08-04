@@ -7,9 +7,9 @@ import CountAids from './countaids';
 import SpinSearch from './spinsearch';
 
 import 'antd/dist/antd.css';
-import './visuels/projects.css';
-import {Input, Typography, Card, Col, Row, List, Divider } from 'antd'; 
-import { Container } from 'reactstrap';
+import './visuels/searchengine.css';
+import {Col,  List } from 'antd'; 
+
 
 
 function Projects (props) {

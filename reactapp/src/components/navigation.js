@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {connect} from 'react-redux';
 import { Button,Col,Row,Container,Card, CardImg, CardText, CardBody,CardTitle, CardSubtitle, Media} from 'reactstrap';
@@ -10,6 +10,19 @@ import {Link, Redirect,useLocation} from 'react-router-dom';
 
 function Navigation (props) {
    
+useEffect(() => {
+    var resultat = async () => {
+    
+    }
+    resultat()
+
+}, [props.firstName])
+
+
+
+
+
+
 const location = useLocation()
 console.log(location.pathname)
 var handleClick=()=>{
