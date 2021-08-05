@@ -66,33 +66,32 @@ function CompanyAge (props) {
           
            
 return (     
-  <div className="site-card-wrapper">
+  <div>
     <CountAids numberOfAids={numberOfAids}/>
     <SpinSearch isSpinning={isSpinning}/>
                 
-    <Row gutter={16}>
+    <Row gutter={16} style={{alignItems:'center', width: '60%', margin: 'auto', marginTop:'20vh'}}>
       {dataItem.map((item,i) => (
-                  
-        <Col span={6} key={i}>
-          <Card bordered={false} 
-            onClick={() => runSearch(i)}
-            className="mouseHoverChange"
-            style={{ 
-                  marginRight: '15px',
-                  marginLeft: '15px',
-                  marginTop: '15px',
-                  marginBottom: '15px',
-                  textAlign: 'center',
-                  fontFamily: 'Inter',
-                  borderRadius: '10px',
-                  fontSize: '18px',
-                  border:'1px solid #E0E5E9',
-                  color: item.colorText,
-                  backgroundColor: item.colorBg, 
-                  }}>
-            {item.name}
-          </Card>
-        </Col>    
+              
+               <Card bordered={false} 
+                 onClick={() => runSearch(i)}
+                 className="mouseHoverChange"
+                 style={{    
+                      width: '20vw',
+                      margin: '10vh',
+                      margin: 'auto',
+                      textAlign: 'center',
+                      fontFamily: 'Inter',
+                      borderRadius: '10px',
+                      fontSize: '18px',
+                      border:'1px solid #E0E5E9',
+                      color: item.colorText,
+                      backgroundColor: item.colorBg, 
+                       }}>
+                 {item.name}
+               </Card>
+                   
+        
       ))}
     </Row>  
   </div>)
