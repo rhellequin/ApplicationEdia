@@ -251,8 +251,6 @@ return(
     </Col>
     )
           })
-          
-
 
 
 const displayFilAriane = props.filAriane.map((fil,i) => {
@@ -265,20 +263,12 @@ else if ([i]==4){icone='../images/5.png'}
 else if ([i]==5){icone='../images/6.png'}
 else if ([i]==6){icone='../images/7.png'}
 
-
-
 var reponse=''
-
-if (fil.name !='' ){reponse=fil.name}
-else {reponse='Champ non renseigné'}
-
 var idAriane=''
 
-if (fil.name !='' ){idAriane='questionRepondue'}
-else {idAriane='ChampNonRenseigne'}
+if (fil.name !='' ){reponse=fil.name}
+else {reponse='Champ non renseigné';idAriane='ChampNonRenseigne'}
 
-
-    // if (fil.name != '') {
         return ( <Text className="Ariane" id={idAriane}><img className='Numero' src={icone} alt='' id={idAriane} />{reponse}</Text> ) 
         });
 
