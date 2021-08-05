@@ -125,6 +125,9 @@ return(
             </div>
             {/* SIGN-UP*/}
             <div className="Sign">
+            <div style={{ width:'300vh', marginTop: '-14vh', marginBottom: '17vh', height:"5vh", backgroundImage: "url(" + "https://images.unsplash.com/photo-1557683311-eac922347aa1?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=715&q=80" + ")", backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}>
+            <p></p>
+          </div>
               <div style={{display:'flex', alignItems:'center'}}>
                 <FontAwesomeIcon style={colorEmail} icon={iconEmail} size='lg'/>
                 <Input name="email" onChange={(e)=> {handleChange(e.target.name, e.target.value);ValidateEmail(e.target.value)}} value={user.email} className="Signup-input" placeholder="email" />

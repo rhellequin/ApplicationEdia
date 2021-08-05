@@ -40,8 +40,8 @@ function SearchPage (props) {
                                   fontSize: '20px',
                                   color: 'white',
                                   fontWeight: 'regular',
-                                  marginBottom: '2vh',
-                                  marginTop: '3vh',
+                                  marginBottom: '3vh',
+                                  marginTop: '10vh',
                                   marginLeft: '-25vh'
                                   }}>
                     Continuer
@@ -62,8 +62,8 @@ function SearchPage (props) {
                                   fontSize: '20px',
                                   color: '#191718',
                                   fontWeight: 'regular',
-                                  marginBottom: '2vh',
-                                  marginTop: '3vh',
+                                  marginBottom: '3vh',
+                                  marginTop: '10vh',
                                   marginRight: '34vh'
                                 }}>
                                     

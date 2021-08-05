@@ -138,11 +138,11 @@ function Landingpage(props) {
                     </Col>
                 </Row>
 
-                <Row style={{ justifyContent: 'center', alignItems: 'center', marginTop: '30px' }}>
+                {/* <Row style={{ justifyContent: 'center', alignItems: 'center', marginTop: '30px' }}>
                     <Col sm="12" style={{ display: 'flex', justifyContent: 'center' }}>
                         <div style={{ width: '60vh', borderRadius: '5px', border: '1px solid #E0E5E9', textAlign: 'center' }}>En utilisant EDIA vous acceptez notre politique de cookies      X </div>
                     </Col>
-                </Row>
+                </Row> */}
 
 
                 {/* MEDIA  */}

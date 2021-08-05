@@ -135,39 +135,39 @@ return (
 <div>
     <Navigation handleClickParent={detectLogin}/>
     
-    <Row style= {{height:"20vh", backgroundImage: "url(" + "https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1953&q=80" + ")", backgroundSize: 'cover', backgroundRepeat: 'no-repeat'}}>
+    <Row style= {{marginTop: '-1vh', height:"5vh", backgroundImage: "url(" + "https://images.unsplash.com/photo-1557683311-eac922347aa1?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=715&q=80" + ")", backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat'}}>
     <Row>
     </Row>
     </Row>
 
     <Row  style={{width:'100%',display:'flex',alignItems:'center', justifyContent:'center', margin:'30px 0 50px 0'}}>
     
-        <Nav variant="tabs" style={{width:'50%'}} >
-            <Nav.Item>
-                <Nav.Link eventKey="link-1 "  onClick={()=>setDonnee(false)}>Favoris</Nav.Link>
-            </Nav.Item>
+        <Nav variant="tabs" style={{marginRight: '95vh', width:'50vh'}} >
             <Nav.Item>
                 <Nav.Link eventKey="link-1" onClick={()=>setDonnee(true)} >Données perso</Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+                <Nav.Link styleeventKey="link-1 "  onClick={()=>setDonnee(false)}>Favoris</Nav.Link>
             </Nav.Item>
         </Nav>
 
     </Row>
     
     <Row style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around', margin:'50px 0 0 0' }}>
-        <Col className="colonne">
+        <Col style={{marginLeft: '-12vh'}} className="colonne">
             <h3>Bonjour {props.firstName}</h3>
-            <h5>Votre profil est compliqué à {percentage}%</h5>
+            <h5>Votre profil est complété à {percentage}%</h5>
         </Col>
 
-        <Col className="colonne">
+        <Col style={{marginRight: '-9vh'}} className="colonne">
         <h3 style={{textAlign:'left'}} >Entreprise</h3>
         <h5 style={{textAlign:'left'}}>{userCompany}</h5>
         </Col>
     </Row>
 { donnee === true ?
 
-        <Row style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around', margin:'50px 0 0 0' }}>
-                <Row style={{marginBottom:'5vh', border: '1px solid #E0E5E9'}}>
+        <Row style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around', marginTop: '8vh' }}>
+                <Row style={{width: '144vh'}}>
                     <h1>Mes informations personnelles</h1>
                 </Row>
                 <Col style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
