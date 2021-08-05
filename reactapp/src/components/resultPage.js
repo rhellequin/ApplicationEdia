@@ -330,12 +330,12 @@ if(isLogin==true){
                                     }}}>
                                     <div>
                                     <div className='Divhaut'>
-                                    <img className='Divhautgauche'src='../images/pinguin.png'  height='150px' alt='' />
+                                    <img className='Divhautgauche'src='../images/logo-travail.png'  height='150px' alt='' />
                                     
                                     <div className='Divhautdroite'>
                                         <div>
-                                        <h2>Super Aide</h2>
-                                        <h4>1000 à  2000 €</h4>
+                                        <h2>Réduction générale des cotisations patronales de sécurité sociale</h2>
+                                        <h4>6500 €</h4>
                                         </div>
                                         <div style={{
                                             display: 'flex',
@@ -344,16 +344,16 @@ if(isLogin==true){
                                             
      }}>
          <div>
-         <h5 className='Details'>Type d'aide: </h5>
-         <p className='Details'>Subvention</p>
+         <h5 className='Details' style={{fontWeight:"bold"}}>Type d'aide: </h5>
+         <p className='Details'>Exonération de charges sociales</p>
          </div>
          <div>
-         <h5 className='Details'>Difficulté: </h5>
-         <p className='Details'>très faible</p>
+         <h5 className='Details' style={{fontWeight:"bold"}}>Difficulté: </h5>
+         <p className='Details'>moyenne</p>
          </div>
          <div>
-         <h5 className='Details'>Délai d'obtention: </h5>
-         <p className='Details'>1 mois</p>
+         <h5 className='Details' style={{fontWeight:"bold"}}>Délai d'obtention: </h5>
+         <p className='Details'>- de 1 mois</p>
          </div>
         
      </div>
@@ -375,13 +375,13 @@ if(isLogin==true){
 }}>
     <div className='Colonnegauche'>
     <h5>Organisme financeur</h5>
-    <p>Pôle Emplois</p>
+    <p>Ministère du Travail</p>
     <h5>Stratégie</h5>
-    <p>iRecrutement</p>
+    <p>Réductions de charges</p>
     <h5>Département</h5>
-    <p>Bouches-du-Rhône</p>
+    <p>Tous</p>
     <h5>Lien de l’organisme</h5>
-    <p>https://www.bpifrance.fr/nos-solutions/innovation</p>
+    <p>https://travail-emploi.gouv.fr</p>
     </div>
     <div>
     <h3>Bénéficiaires</h3>
