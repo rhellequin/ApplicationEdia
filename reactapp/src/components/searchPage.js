@@ -40,12 +40,11 @@ function SearchPage (props) {
                                   fontSize: '20px',
                                   color: 'white',
                                   fontWeight: 'regular',
-                                  marginBottom: '10vh',
+                                  marginBottom: '2vh',
                                   marginTop: '3vh',
                                   marginLeft: '-25vh'
                                   }}>
                     Continuer
-                    <RightOutlined />   
               </Button>
     } 
 
@@ -63,7 +62,7 @@ function SearchPage (props) {
                                   fontSize: '20px',
                                   color: '#191718',
                                   fontWeight: 'regular',
-                                  marginBottom: '10vh',
+                                  marginBottom: '2vh',
                                   marginTop: '3vh',
                                   marginRight: '34vh'
                                 }}>

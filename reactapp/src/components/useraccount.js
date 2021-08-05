@@ -13,7 +13,6 @@ import Navigation from './navigation';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart,faDownload, faStar,faCog,faUser, faHouseUser, faVideo} from '@fortawesome/free-solid-svg-icons'
 
-
 import  './visuels/useraccount.css'
 import signup from './signup';
 import './visuels/resultPage.css';
@@ -127,9 +126,7 @@ var addUserAid= async(aide,id)=>{
         setIsLogin(false)}
     else {
         setFavList(listCopy)
-    }
-    console.log(favList)
-            
+    }            
 } 
 
 if (isLogin==true){
@@ -137,31 +134,33 @@ if (isLogin==true){
 return (
 <div>
     <Navigation handleClickParent={detectLogin}/>
+    
+    <Row style= {{height:"20vh", backgroundImage: "url(" + "https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1953&q=80" + ")", backgroundSize: 'cover', backgroundRepeat: 'no-repeat'}}>
+    <Row>
+    </Row>
+    </Row>
+
     <Row  style={{width:'100%',display:'flex',alignItems:'center', justifyContent:'center', margin:'30px 0 50px 0'}}>
-        
     
         <Nav variant="tabs" style={{width:'50%'}} >
             <Nav.Item>
-                <Nav.Link eventKey="link-1 "onClick={()=>setDonnee(false)}>Favoris</Nav.Link>
+                <Nav.Link eventKey="link-1 "  onClick={()=>setDonnee(false)}>Favoris</Nav.Link>
             </Nav.Item>
             <Nav.Item>
-                <Nav.Link eventKey="link-2" onClick={()=>setDonnee(true)} >Données perso</Nav.Link>
+                <Nav.Link eventKey="link-1" onClick={()=>setDonnee(true)} >Données perso</Nav.Link>
             </Nav.Item>
         </Nav>
 
     </Row>
     
-    <Row style={{border: '1px solid #E0E5E9', backgroundColor:'#E0E5E9', height:'10vh', flexDirection: 'column' }}>
-    </Row>
-    
     <Row style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around', margin:'50px 0 0 0' }}>
         <Col className="colonne">
             <h3>Bonjour {props.firstName}</h3>
-            <h5>Vous avez {percentage}% de profile complété</h5>
+            <h5>Votre profil est compliqué à {percentage}%</h5>
         </Col>
 
         <Col className="colonne">
-        <h3 style={{textAlign:'left'}} >Dirigeant de l'entreprise</h3>
+        <h3 style={{textAlign:'left'}} >Entreprise</h3>
         <h5 style={{textAlign:'left'}}>{userCompany}</h5>
         </Col>
     </Row>
@@ -209,6 +208,7 @@ return (
         </Row>
     :
     <Row  style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around', margin:'50px 0 0 0' }}>   
+
 
 {favList.length>0 ?
 

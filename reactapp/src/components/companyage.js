@@ -76,13 +76,14 @@ return (
         <Col span={6} key={i}>
           <Card bordered={false} 
             onClick={() => runSearch(i)}
+            className="mouseHoverChange"
             style={{ 
                   marginRight: '15px',
                   marginLeft: '15px',
                   marginTop: '15px',
                   marginBottom: '15px',
                   textAlign: 'center',
-                  fontFamily: 'Alata',
+                  fontFamily: 'Inter',
                   borderRadius: '10px',
                   fontSize: '18px',
                   border:'1px solid #E0E5E9',
