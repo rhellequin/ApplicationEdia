@@ -120,6 +120,8 @@ router.post('/sign-up', async function(req, res, next) {
 
 /* POST sign in. */
 router.post('/sign-in', async function(req, res, next) {
+
+  console.log('sign-in')
   
   var user = await userModel.findOne({email: req.body.email});
   var result = false;

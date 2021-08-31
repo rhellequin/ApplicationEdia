@@ -589,8 +589,13 @@ router.post('/updatedelai', async function(req, res, next){
 //Test Route :
 router.post('/test', function(req, res, next) {
 
-  const descriptionTest = req.body.description;
-  res.json({result: true, message: 'Vous avez dit : '+ descriptionTest})
+  const level = req.body.level;
+  if (level < 10 ) {
+    res.json({result: true, level: level})
+  } else {
+    res.json({result: false, level: 99})
+  }
+  
 });
 
 
